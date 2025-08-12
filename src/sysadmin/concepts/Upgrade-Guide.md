@@ -1,198 +1,291 @@
-# DHIS2 upgrade guide
+# DHIS2 Upgrade Guide for System Administrators
 
 ## Introduction
 
-This document serves as a comprehensive guide outlining the process of upgrading DHIS2. It is designed to facilitate the smooth transition from one version to another by breaking down the upgrade process into manageable action items. Additionally, it provides detailed considerations for crucial aspects such as backups, ensuring that no essential steps are overlooked.
+This guide provides a structured approach to upgrading DHIS2 and its dependencies, facilitating a seamless transition between versions.  It outlines actionable steps while emphasizing critical aspects such as comprehensive backups to mitigate the risk of data loss.  Upgrading DHIS2 involves more than simply replacing the WAR file; new releases may require updated dependencies, such as Java or Tomcat.  Given the potential for unforeseen issues, thorough preparation is essential.  By proactively identifying potential risks and developing mitigation strategies, administrators can minimize disruptions and ensure a successful upgrade
 
-While DHIS2 upgrading may appear straightforward on the surface, it is indeed a complex process requiring careful planning and execution. While a simple replacement of the war file with the latest release may seem sufficient, the reality is that unforeseen complications can and do arise. Therefore, it is imperative to anticipate and prepare for potential challenges that may arise during the upgrade process.
+## Target Audience
 
-The manual nature of both DHIS2 installation and upgrade underscores the importance of having a well-defined strategy in place. While automation tools such as `apt` exist to streamline certain aspects of the upgrade process, the responsibility ultimately lies with the user to manage dependencies and address any issues that may arise.
+This guide is intended for **System Administrators** responsible for maintaining DHIS2 deployments.  Because DHIS2 supports only the three most recent annual releases, regular upgrades are required.  These upgrades, typically handled by system administrators, necessitate Linux expertise and strong server/application management skills.  The largely manual process requires careful planning, encompassing not only DHIS2 itself but also dependencies like PostgreSQL, Java, Tomcat, and the base operating system.
 
-To increase the likelihood of a successful upgrade, thorough preparation and strategic planning are essential. This includes identifying potential risks and developing strategies to mitigate them effectively. By following this general guide and implementing best practices, organizations can minimize disruptions and ensure a smooth transition to the latest version of DHIS2.
+## Importance of Upgrading
 
-### Who is this document for?
+Only the three latest major releases of DHIS2 are supported with maintenance patches and updates. The same is true of its dependencies, such as PostgreSQL, Tomcat, and Nginx, which follow their own independent release and support cycles. While their timelines may vary, outdated versions eventually reach end-of-life, losing official support, security updates, and compatibility with newer DHIS2 releases. To ensure system stability, security, and compatibility, it is crucial to keep both DHIS2 and its dependencies within their supported versions.
 
-- Short answer, Whoever is managing and maintaining DHIS2. In most cases, System Administrator, - Generally anyone running an outdated dhis2 instance, and planning to do an upgrade.
-- DHIS2 is an open source application. Anyone can simply install/deploy it and implement any project with it, solving whichever needs they have. Obviously, to do an upgrade, there are are basics Linux skills you require. Not everyone can manage the upgrade. System Admins, in most cases are the ones responsible for the server and application maintenance. More often that not, they are the ones performing the upgrade, or at least leading the process of the upgrade. This document is a high level guide helping to plan better for the upgrade. New dhis2 versions are regularly released, but the upgrade process is quite manual.
 
-### Why do we need to upgrade?
+### Key Benefits of Upgrading
 
-Or asked differently, are there problems running outdated software? There surely are lots of problems with outdated software. Only 3 dhis2 major releases are supported, you want to always run actively supported version. Some of the reasons listed below.
+- Ensure compliance with DHIS2 support policy, which covers only the latest three major releases.
+- Apply the latest security patches to protect against vulnerabilities.
+- Benefit from recent bug fixes that enhance system stability.
+- Improve performance through optimizations introduced in newer versions.
+- Gain access to new features and enhancements.
+- Maintain compatibility with updated dependencies required by the latest DHIS2 releases.
 
-- to be withing supported version of dhis2, usually the latest three versions.
-- to get latest security fixes
-- to get latest bug fixes
-- latest version might be having performance improvement
-- new features could be shipped with the latest releases.
-- To meet required dependencies.
+### Components for Upgrading
 
-Unlike other software systems, like Linux OS's, dhis2 upgrade process is not automated, this is an hands on task. You will need to to the upgrade yourself. You will need to plan better, know prior required and recommended dependencies.
+The system administrators must take into account the entire system stack when considering DHIS2 upgrades. This consists of:
 
-Is it advisable to upgrade to the bleeding-edge version? Sometimes the upgrades introduces new problems, regressions, breaking changes, issues never envisaged. That is why we develop this plan.
+- **Operating System (OS)** – Most deployments use Ubuntu LTS, which has a five-year support lifecycle. Running DHIS2 on an unsupported OS can lead to compatibility and security issues. It’s best to upgrade the OS first while keeping DHIS2 unchanged, ensuring a stable foundation before updating the application. Supported LTS versions typically include compatible software like PostgreSQL.  
 
-### Types of upgrade
+- **Database** – PostgreSQL follows a defined support lifecycle, maintaining only the [latest five major releases](https://www.postgresql.org/support/versioning/). Running a supported version is crucial for security and performance. While upgrading via package managers like `apt` is straightforward, changes in newer versions (such as JIT being enabled by default from PostgreSQL 12) can introduce regressions that may impact performance.
 
-It depends on the scope really, upgrades can have many forms, it can be categorized into software, hardware, minor, major, dependency upgrades, name them. DHIS2 is a not stand-alone software, its depends on other libraries and software to work, Java , Tomcat PostgreSQL, OS, just to name a few. Lets talk about upgrade types with respect to dhis2 and its dependencies.
+- **Dependencies** – DHIS2 relies on various components like **Tomcat**, **Nginx**, and **PostgreSQL**, all of which require periodic updates. Linux package managers (`apt`, `yum`) simplify dependency upgrades, but it’s essential to review DHIS2’s recommended versions and requirements before proceeding; the system requirements may change with a new DHIS2 version.
 
-- Operating system upgrade - We all know that your need a form of an Operating System to run DHIS2. But OS's with time, get out of date. This one type of the upgrade that at some point you'd need to tackle. In most of our deployments, we are using Ubuntu. This system has release life cycles. LTS releases are have 5year support lifetime. Not supported LTS systems runs in most cases unsupported software, take for example Ubuntu 18.04, the default postgres version is 10, which its last release was, November 10, 2022. If you have dhis2 running on old, and no-longer supported OS, then you'll have bigger problems to solve. It is recommended to deal with one problem at at time, start with upgrading the OS, keep the dhis2 system the way it is, while upgrading your base OS. Then after that is successful, start working on the app. In most cases, if you are running an OS that is still withing LTS bracket, its software like PostgreSQL will also be withing supported versions.
+- **DHIS2 application upgrade**
 
-- Database upgrade - Same as the base OS upgrade, the backend database needs to be also upgraded. Its has support life cycle as well, referring to [PostgreSQL Versioning](https://www.postgresql.org/support/versioning/) for example,it is apparent that postgresql supports only the latest five major releases. You always want to be running supported version. Well, it is important to note that in most cases, your PostgreSQL database install with apt package management tool and its upgrade is pretty straight forward, apt deals with dependencies. It try, upgrades have many benefits but but can introduce undesired changes as well. An example, JIT setting, prior to PostgreSQL 12, this setting was off, any server running pg_version 12 onwards have this on by default, and this is a regression on how particularly PI related queries are executed in the DB.
+  The DHIS2 upgrade itself may also vary in scope, complexity and risk. We can consider three main types of upgrade for the core application:
 
-- Dependency Upgrades - As discussed, dhis2 relies on other software to run, this software needs to be constantly upgrade for reasons already mentioned, lucky enough that can be simple if you are on Linux system, you use upgrade management software such as apt and yum. Its also important reading more on the dependency requirements/recommendations before doing upgrade.
-- DHIS2 application Upgrade
-  - **Major Upgrade** - Significant and potentially breaking changes, new features Major upgrades are often denoted by changes in the first version number (e.g., from version 2.38 to 2.39, or v41 to v42). does changes to the database schema to accommodate new structure.
-  - **Minor Upgrade (patch update)** - This is an upgrade with incremental, and potentially non-breaking changes. This upgrade usually come with improvements and bug-fixes. Historically, the DHIS2 team refer to these as patch updates.
+  - **Major Upgrade** - These involve significant changes and new features, and may break compatibility with older versions. Major upgrades are denoted by changes in the first version number (e.g., from version 2.38 to 2.39, or v41 to v42). They often include changes to the database schema to accommodate new functionality. New versions are release yearly.
+
+  - **Minor Upgrade (patch update)** - This is an upgrade with incremental, and potentially (non-breaking) changes. This upgrade usually come with improvements and bug-fixes. Historically, the DHIS2 team refer to these as patch updates. Patch updates are released every couple of months.
+
   - **Hot-fix** - These are minimal updates release to solve urgent, critical issues. They can be safely applied to systems already running the proceeding patch update.
 
 > **Note**
 >
-> The `2.` in the DHIS2 version number has been replaced with `v` (version) in more recent documentation. The remaining numbers are referenced by the core team in the following format:  
+> The `2.` in the DHIS2 version number has been replaced with `v` (version) in more recent documentation. The remaining numbers are referenced by the core team in the following format:
 > `<major>.<patch>.<hotfix>`
 > *This is equivalent to a classic semantic versioning, which would usually be referred to as `<major>.<minor>.<patch>`*
 
+## Technical Skills and Roles Required
 
-### General guide on developing a good upgrade plan.
+Managing and upgrading DHIS2 requires coordination among multiple teams and stakeholders, each contributing specific expertise to ensure a smooth transition and system stability. Below is a breakdown of the key roles and their responsibilities.
 
-This guide provides a comprehensive upgrade plan, but it is general in nature. Customize it to fit your specific needs. Visualize your entire upgrade process before starting and write it down—that's your upgrade plan. While this guide aims to cover all upgrade requirements, different setups demand different approaches. For instance, you might be running DHIS2 on Windows, or you could have a very outdated database that requires upgrading first. Read the upgrade notes, but keep in mind that they are also general.
+#### **1. System Administrator**
 
-When you begin the actual upgrade, you may need to develop a more specific plan tailored to your situation. Planning is crucial for a successful upgrade as it breaks down the large task into smaller, manageable actions. This clear perspective on what needs to be done makes tackling individual tasks much easier.
+The system administrator is responsible for:
 
-#### Scope of the upgrade
+- Performing DHIS2 upgrades and managing server-related tasks.
+- Ensuring the operating system, database, and dependencies are up to date.
+- Monitoring server performance and troubleshooting issues.
+- Managing backups and disaster recovery plans.
 
-Understand the scope of work better - Well there are other things that need upgrading apart from just dhis2 system. There is always the base operating system, and the PostgreSQL database and even other dependencies, these too get out of date. It is a good idea if you understand the scope of your upgrade.
+#### **2. DHIS2 Users**
 
-#### Read on the release/upgrade notes.
+DHIS2 users interact with the system in different capacities, including:
 
-Gather required information from the upgrade/release notes usually have important information on the precautions you'll need to take before doing the upgrade. Get to know what is required for the upgrades. Know more about dependency/software version requirements.
+- **Developers/Implementers** – Configuring, customizing, and extending DHIS2 functionality.
+- **Data Entry Personnel** – Capturing and validating data within the system.
+- **Data Consumers & Analysts** – Generating reports and analyzing data for decision-making.
 
-#### Hardware resource requirements
+#### **3. Network Team**
 
-Before doing the upgrade, you'll need to budget for the test resources. Ideally, you usually need to test your upgrade before doing actual upgrade.  
-Your infrastructure should have:
+In some organizations, a dedicated network team is responsible for:
 
-- Good network - You'll need to have a fast networking if you are on a distributed environment. Preferably, connectivity should happen on 1Gbps links.
-- Fast Storage - DHIS2, saving data on PostgreSQL database is I/O intensive, it needs fast disks, preferably SSD disks.
+- Configuring and maintaining network security, including firewall rules.
+- Ensuring secure access to DHIS2 servers and databases.
+- Troubleshooting connectivity issues that may affect system access.
 
-#### Upgrade Schedule
+#### **4. Infrastructure Team**
 
-- **Upgrade Schedule**
-  - Best timing: Friday or Monday?
-  - Ensure all necessary personnel are available
-  - Align with the DHIS2 release schedule
+The infrastructure team handles:
 
-- **Scheduling and Planning**
-  - Timelines: Schedule tasks with clear timelines
-  - Feasibility: Ensure the plan is realistic, considering resources, constraints, and challenges
+- Provisioning and managing virtual machines, storage pools, and cloud resources.
+- Setting up a test environment for pre-upgrade validations.
+- Ensuring high availability and system redundancy where required.
 
-- **Team Coordination**
-  - Roles and Responsibilities: Understand who is responsible for what
-  - Collaborative process: know your team
+#### **5. DNS Administrator**
 
-- **Continuous Monitoring and Evaluation**
-  - Flexibility: Regularly review and adjust the plan as needed
+A designated person or team is responsible for:
 
-- **Resource Planning**
-  - Testing Environment: Plan for test bed resource requirements
-  - Training: Include a training phase for the team
-  - Changeover Phase: Optimal timing (e.g., Monday morning or Friday evening) and consider weekend work compensation
+- Managing domain name resolution to ensure DHIS2 services are accessible.
+- Updating DNS records in case of server migrations or IP changes.
 
-- **Risk Management and Contingency Plans**
-  - Risk Management: Identify and mitigate potential risks
-  - Backups: Plan for backups with adequate storage, including off-site backups
+#### **6. Key Stakeholders**
 
-- **Action Points**
-  - Detailed Breakdown: Break the plan into actionable steps
+Several other roles play an essential part in DHIS2 management and upgrades, including:
 
-- **Post-Upgrade Activities**
-  - Post-Upgrade: Plan for post-upgrade activities, including monitoring and issue resolution
+- **Management & System Owners (e.g., Government entities)** – Overseeing the system’s operational integrity and compliance.
+- **Funders & Donors** – Supporting system sustainability and ensuring necessary resources are available.
+- **Project Managers** – Coordinating upgrade timelines and ensuring minimal disruption to users.
 
 
+## Preparations Before Upgrading
 
-### Who needs to be involved
+#### **1. Backup Everything**
 
-- System Administrator - This individual handles server tasks, performs upgrades, and manages server-related activities.
-- DHIS2 users - These are users of the system. They can be developers/implementers, those doing data capture, those consuming reports generated etc.
-- Network Team - On certain occasions, there exists a distinct and autonomous network team whose support may be required. Typically, they are tasked with configuring and securing the network, including firewall configurations.
-- Infrastructure team- Responsible for creating virtual resources, e.g virtual machines, storage pools etc. You'll generally need a test environment, which they will provide.
-- person responsible for the DNS
-- stakeholders, Management. 
-  - system owners (the Government for example) 
-  - funders
-  - Managers etc
+- **Database Backup**: Use `pg_dump` to create a full backup of your PostgreSQL database, ensure its tested and stored off-site.
+- **DHIS2 Files Backup**: Backup the DHIS2 home directory, configuration files, filestore and any custom scripts.
+- **Server Snapshot**: If running on a virtualized or cloud environment, take a full system snapshot for quick rollback if needed.
 
-### Post Upgrade
+#### **2. Review Compatibility and System Requirements**
 
-- Testing and feedback channels.
-- System monitoring and evaluation
-- optimizations,
-- backup configuration
+- Check DHIS2’s [release notes](https://dhis2.org) for version-specific requirements.
+- Ensure the operating system, PostgreSQL, Java (jre), Tomcat, and other dependencies meet the new version’s requirements.
+
+#### **3. Test in a Staging Environment**
+
+- Deploy the new version in a test environment before upgrading production.
+- Verify data integrity and application functionality.
+
+#### **4. Review Custom Configurations and Extensions**
+
+- Check if any custom apps, scripts, or configurations need modifications for compatibility.
+- Ensure any third-party integrations will work with the new version.
+
+#### **5. Inform Stakeholders and Plan Downtime**
+
+- Notify users about potential downtime and expected changes.
+- Schedule the upgrade during off-peak hours to minimize disruptions.
+
+#### **6. Document the Current System**
+
+- Record current DHIS2, PostgreSQL, Tomcat, and OS versions.
+- Take note of configurations in `dhis.conf` and `server.xml`.
+
+#### **7. Prepare a Rollback Plan**
+
+- Have a tested recovery strategy in case the upgrade fails.
+- Ensure backups and snapshots are easily accessible.
+
+### **Post-Upgrade Steps for DHIS2**
+
+After upgrading DHIS2, follow these steps to verify the system's stability, performance, and functionality.
+
+#### **1. Verify the Upgrade**
+
+- Confirm the DHIS2 version using the **About DHIS2** page (`/dhis-web-dashboard` → Help → About DHIS2).
+- Check the server logs (`catalina.out` for Tomcat, DHIS2 logs) for any errors or warnings.
+- Verify the database migration logs to ensure all schema updates were applied.
+
+#### **2. Test Core Functionality**
+
+- Log in and confirm that user authentication works as expected.
+- Open dashboards, data entry forms, analytics tools, and reports.
+- Run key analytics tasks (`analyticsTableUpdate`) and confirm expected outputs.
+
+#### **3. Validate Data Integrity**
+
+- Run the **Data Integrity Check** under **Maintenance App** to identify inconsistencies.
+- Check that all tracked entities, programs, and data elements are properly loaded.
+
+#### **4. Monitor Performance and Resource Usage**
+
+- Use `htop`, `top`, or **server monitoring tools** e.g Munin Zabbix to check CPU, RAM, and disk usage.
+- Review PostgreSQL performance (`pg_stat_activity`, `EXPLAIN ANALYZE` for slow queries).
+- Monitor system logs for memory leaks, slow queries, or other potential bottlenecks.
+
+#### **5. Update and Optimize Configurations**
+
+- Review `dhis.conf` and `server.xml` settings to ensure they are optimized for the new version.
+- Check PostgreSQL settings (e.g., `work_mem`, `shared_buffers`, `max_connections`) for performance improvements.
+- If using caching (Redis, Nginx), ensure they are functioning correctly.
+
+#### **6. Test Integrations and External Services**
+
+- If DHIS2 is integrated with external systems (e.g., third-party APIs, data pipelines), confirm that they are still functioning correctly.
+- Validate scheduled jobs and scripts (e.g., data sync, backups, notifications).
+
+#### **7. Inform Users and Provide Support**
+
+- Notify users that the upgrade is complete and share any relevant changes or new features.
+- Provide training or documentation if needed.
+- Encourage users to report any issues they encounter.
+
+#### **8. Perform a Final Backup**
+
+- Once confirmed stable, create a full **post-upgrade backup** of the database and configuration files.
+- Store it securely as a restore point in case of future issues.
+
 
 ## Detailed considerations
 
+### Analyze Scope of the upgrade
+
+Consider all system components that may need updating, such as the operating system, PostgreSQL database, and other dependencies. If multiple components need upgrading (e.g., operating system, PostgreSQL), tackle each one separately, starting with the operating system. Upgrading the base OS often includes updated software like Tomcat and PostgreSQL.
+
+For OS upgrades, building a new server with the target OS and migrating DHIS2 is strongly recommended over in-place upgrades. This minimizes risk and provides a cleaner, more predictable upgrade path.  Ensure the new OS's default Tomcat, JRE, and PostgreSQL versions are compatible with the target DHIS2 version.
+
+For more details on version lifecycles and support timelines for other dependencies refer to:
+
+- [Ubuntu Suppport Lifecycle](https://ubuntu.com/about/release-cycle)
+- [PostgreSQL Support and Release Schedule](https://www.postgresql.org/support/versioning/)
+- [Tomcat Release and Support Schedule](https://tomcat.apache.org/whichversion.html)
+
+
 ### Backups
 
-When planning an upgrade, having a fallback plan is crucial. Numerous issues can arise during the process, so having backups is essential. It’s not uncommon to complete an upgrade only to find that nothing works afterward, and it can be challenging to pinpoint what went wrong. In such situations, your best option is to restore the system to its previous state, which makes backups your lifeline.
+A robust fallback plan, including comprehensive backups, is crucial for any DHIS2 upgrade.  Issues can arise, and restoring to the previous state is often the fastest recovery.  While a full system snapshot is ideal, database backups are essential at a minimum.  Regular database backups are also crucial for ongoing data continuity. For OS upgrades, build a new server with the target OS and migrate DHIS2, rather than performing an in-place upgrade.  Ensure compatibility between the new OS's default Tomcat, JRE, and PostgreSQL versions and the target DHIS2 version.
 
-Backups help you prepare for unforeseen circumstances. Ideally, you should have a complete system snapshot. However, if this is not feasible, having a database backup is sufficient. Data is invaluable, and maintaining regular database backups is crucial not just during the upgrade, but as a standard practice. Data continuity is vital for business operations, especially in the face of uncertainties.
+There are several methods to perform database backups, with the `pg_dump` utility being one of the most commonly used for logical backups.
 
-There are several methods to perform database backups, with the pg_dump utility being one of the most commonly used.
+#### Backup strategies
 
-#### Types of backups
+- **Full OS Backup/Snapshot:** A complete snapshot of the server's file system and configuration. This allows for a rapid rollback to the previous state.
+- **Database backup**
+    - **Logical Backup:** (e.g., `pg_dump`): A portable copy of the database schema and data. This is the primary backup for restoring the database to a specific point in time.
+    - **Incremental Backup:**  Backs up only the changes since the last full or incremental backup. These are smaller and faster than full backups, but require a full backup as a base. They are useful for more granular recovery and minimizing backup windows.
 
-- Full OS backup, snapshot.
-- database backup
-- local backups
-- remote backups
-- Cloud Backup
-- application backup
+#### Backup storage strategy
 
-#### What do your need to backup?
+- **Local Backups:** Storing backups on the same machine as the DHIS2 instance is not recommended for disaster recovery, as it exposes the backups to the same risks as the primary system (e.g., disk crashes, server failures). However, having a local backup can be useful during maintenance or upgrades. For added reliability, consider pushing your local backups to a network-attached storage (NAS) device.
+- **Off-site Storage:** Backups should be stored separately from the primary server. This can include solutions like object storage services (e.g., AWS S3, Google Cloud Storage, Azure Blob Storage), dedicated backup servers, or other geographically distinct locations.  Off-site storage protects against site-wide disasters.
+- **Cloud Backups:** Cloud providers offer various backup services, including managed backup solutions and storage options suitable for backups.  These services often provide features like encryption, versioning, and automated backup schedules. If you are already in cloud, consider cloud backups as part of a comprehensive backup strategy.
 
-- databases
-- dhis.conf, and sometime it has database encryption password
+
+#### Important items to back up before an upgrade.
+
+- *Databases* - Full dhis2 database backup, created with `pg_dump`
+- dhis.conf, and sometimes it has database encryption password
 - application static files e.g custom logos etc
 - dhis2.war file, -- especially if its been majorly customized, ensure you have its backup. Also, take note of its version information.
-- Make backups notes. - version for dhis2 postgresql, proxy and other important dependencies - time it takes to make backups dumps.
+- Make backups notes.
+    - version for dhis2 postgresql, proxy and other important dependencies
+    - time it takes to create backups dumps - good for planning on downtimes.
 
 #### Backup Tips:
 
-- Ensure you have enough disk storage for storing local backups. <br> use `df -h` command to check available disk space on your server.
+- Ensure you have enough disk storage for storing local backups.  
+  use `df -h` command to check available disk space on your server.
 - Ensure you have remote location for storing your backups. It can be and object storage end point, Network Attached Storage (NAS), some backup server with sufficient storage,
-- Versioning - Consider using versioned backups, which allow you to restore to a specific point in time, not just the latest backup.
-- Encryption: Encrypt your backups to secure your data, especially if it contains sensitive information
-- Documentation: Document your restore procedures and keep them in an easily accessible location. This can save valuable time during a crisis.
-- Cloud Backups: Utilize cloud-based backup solutions for scalability, redundancy, and ease of access.
-- Snapshot Backups: If your infrastructure supports it, use snapshot backups to create point-in-time copies of your data and systems.
-- Compression: Compress your backups to reduce storage requirements and speed up backup and restore processes.
+- **Versioning** - Consider using versioned backups, which allow you to restore to a specific point in time, not just the latest backup.
+- **Encryption:** Encrypt your backups to secure your data, especially if it contains sensitive information
+- **Documentation:** Document your restore procedures and keep them in an easily accessible location. This can save valuable time during a crisis.
+- **Cloud Backups:** Utilize cloud-based backup solutions for scalability, redundancy, and ease of access.
+- **Snapshot Backups:** If your infrastructure supports it, use snapshot backups to create point-in-time copies of your data and systems.
+- **Compression:** Compress your backups to reduce storage requirements and speed up backup and restore processes.
 
-#### Restore Tips:
+#### Backup Restore Tips:
 
+- Perform a Dry Run – Before restoring on a production system, test the process in a safe environment.
 - Test Restores: - Regularly be testing your backup restoration, take note of how long it takes, and ensure it works as expected. A backup is only valuable if you can restore from it.
 - Validation: Even after restore, validate that your data is intact, and applications are functioning as expected.
+- Check File Permissions – After restoration, verify file ownership and permissions to prevent access issues.
+- Match Software Versions – Ensure the OS, database, and application versions align with the backup to avoid compatibility issues.
 
-### Assessing Server Requirements for upgrade
+### Assessing Server resouces before upgrading
 
-Typically, the server size is influenced by various factors such as database size, anticipated growth, and expected user numbers. It is advisable to regularly monitor resource utilization using tools like Zabbix and Munin to gauge your system's needs. This monitoring provides insights into resource requirements. Cloud-deployed servers hold an advantage in easy scalability. In many countries with data centers, it is common to specify the minimal resources necessary to operate an empty database.
+#### Hardware resource requirements
 
-- _RAM:_ At least 4 GB for a small instance, 12 GB for a medium instance, 64 GB or more for a large instance.
-- _CPU cores:_ 4 CPU cores for a small instance, 8 CPU cores or more for a medium or large instance.
-- _Disk:_ SSD is recommended as a storage device. The minimum read speed is 150 Mb/s, 200 Mb/s is good, and 350 Mb/s or better is ideal. In terms of disk space, at least 100 GB is recommended, but it will depend entirely on the amount of data which is contained in the data value tables. Analytics tables require a significant amount of disk space. Plan and ensure your server can be upgraded with more disk space.
+The server size, including RAM and CPU, depends on various factors such as the database size, anticipated growth, and the number of users. Regular monitoring of resource utilization through tools like Zabbix and Munin can help determine your system's needs. Cloud-hosted servers benefit from easy scalability. In many regions with data centers, minimum resource requirements are often specified for operating an empty database.
 
-### Software requirements for the new version
+Ensure that you have a test server, ideally with the same specifications as the production instance. Your production server should also have adequate storage space for backup requirements before the upgrade.
 
-Later DHIS2 versions require the following software versions to operate.
+For successful upgrade preparation, plan for test resources in advance. Your infrastructure should meet these requirements:
 
-1. An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
-2. Java JDK. OpenJDK is recommended.
-   1. For DHIS2 version 2.38 and later, JDK 11 is required.
-   2. For DHIS2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required.
-   3. For DHIS2 versions older than 2.35, JDK 8 is required.
-   4. For DHIS2 Versions 2.41 and later, JDK 17 is required.
-3. PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
-4. PostGIS database extension version 2.2 or later.
-5. Tomcat servlet container version 8.5.50 or later, or other Servlet API 3.1 compliant servlet containers.
+- Fast Storage: DHIS2's PostgreSQL database is I/O intensive and requires fast disks (SSD). Backup storage can use slower, more cost-effective disks.
+- Good Network: Ensure a fast network (preferably 1Gbps) for distributed environments and off-site backups, to avoid delays during backup transfers.
 
-### What if you also need to upgrade other components like the OS and database etc.
+
+### Assess Software requirements for the new version
+
+Check DHIS2 release notes, and note the following requrements
+
+1. JRE requred/Recommended
+2. PostgreSQL required/Recommended
+3. PostGIS version requred/Recommend
+4. Tomcate Version Requred/Recommended
+
+Note that dhis2 can run on the requred dependecy version, nevertheless, you better run on the recommended version.
+
+### Assess whether other dependencies needs upgrading
+
+Ensure
+
+- Base operating system is still supported, if its out of support, more often than not, other software in it, like postgresql, nginx, and Tomcat would be outdated.
+- PostgreSQL release lifecycle
+- Tomcat Support lifecycle
 
 If you need to upgrade base OS, and other components, the recommended approach is to setup a new environment, with the required OS version and databases for example,
 
@@ -215,8 +308,6 @@ One of the most common causes of upgrade failure is that anomalies in the existi
 
 ## Upgrading DHIS2 (Short version)
 
-
-
 | Step  | Task| Description | Status |
 |---|-----|--------|---|
 | 1  | Getting Started|Identification of all National systems and critical custom applications, Versions for the different instances <br><br>- Custom Applications<br>- Software versions (java,tomcat, dhis2,PostgreSQL, nginx/apache2 proxy etc )<br>- Resources - Test server availability. <br>- Scope - Does it include OS and the database?|- Pending<br>- ongoing<br>- completed |
@@ -235,6 +326,7 @@ One of the most common causes of upgrade failure is that anomalies in the existi
 
 ## The Upgrade calendar (example)
 
+New DHIS2 version is generally released around May, you
 
 |Month|Activity|Resource implication|
 |--- |--- |--- |

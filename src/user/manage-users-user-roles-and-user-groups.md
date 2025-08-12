@@ -265,7 +265,7 @@ facilities within that district.<br/><br/>
 three fields will show. (Optional) <br/><br/>
 
 10. In the **Search organisation units** 
-select the organisation units you want the user to be able to search in.<br/><br/>
+select the organisation units you want the user to be able to search in. Searching is allowed by default for the data capture and maintenance organisation units (if no search organisation units are selected). If additional scope is provided using the search organisation units, the data capture and maintenance organisation units plus the search organisation units are the scope used during a search.<br/><br/>
 
 11. (Optional) In the **Available user groups** section, double-click the
 user groups you want to assign to the user.<br/><br/>
@@ -344,6 +344,26 @@ organisation unit.
 
 The list of users will be filtered to only include users which have been
 assigned to the selected organisation units.
+
+### Filter users by email verification
+
+You can filter users based on whether their email address is verified or not.
+
+1. Open the **Users** app and click **Users**.
+  
+2. Above the user list, you will see a new dropdown filter labeled **Email verification**. This dropdown is located between **Time inactive** and **Invitation** filters.
+
+3. Click on the **Email verification** dropdown to see the available options:
+   - **All**: Displays all users, regardless of their email verification status.
+   - **Email verified**: Displays only users with a verified email address (**emailVerified: true**).
+   - **Email not verified**: Displays only users with an unverified email address (**emailVerified: false**).
+
+4. Select the desired option from the dropdown to filter the list of users accordingly.
+
+> **Email verification column**: If the system has email configured, a new column named **Email verification** will appear in the users list table, between **Status** and **Last login**. The two possible statuses are:
+>    - **Verified**: Indicates the user’s email is verified.
+>    - **Not verified**: Indicates the user’s email is not verified.
+
 
 ### Clone user { #clone_user } 
 

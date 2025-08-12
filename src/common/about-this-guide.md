@@ -51,6 +51,8 @@ would need to be executed on the operating system or database.`
 Links to external web sites or cross references will be displayed in
 blue text, and underlined like [this.](http://www.dhis2.org).
 
+Any API section marked as `(Experimental)` indicates that it is most likely newly-added functionality and it is likely to change in the near future.
+
 <!--
 Bibliographic references will displayed in square brackets like this
 Store2007. A full reference can be found in the bibliography contained

@@ -44,38 +44,38 @@ connection.pool.max_size = 40
 # Database connection for PostgreSQL [Optional]
 # ----------------------------------------------------------------------
 
-# Minimum number of Connections a pool will maintain at any given time (default: 5).
+# Deprecated since v43. Minimum number of Connections a pool will maintain at any given time (default: 5).
 connection.pool.min_size=5
 
-# Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
+# Deprecated since v43. Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
 connection.pool.initial_size=5
 
-#Determines how many connections at a time will try to acquire when the pool is exhausted.
+# Deprecated since v43. Determines how many connections at a time will try to acquire when the pool is exhausted.
 connection.pool.acquire_incr=5
 
 #Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
 connection.pool.max_idle_time=7200
 
-#Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
+# Deprecated since v43. Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
 connection.pool.max_idle_time_excess_con=0
 
-#If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
+# Deprecated since v43. If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
 connection.pool.idle.con.test.period=0
 
-#If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+# Deprecated since v43. If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
 connection.pool.test.on.checkout=false
 
-#If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+# Deprecated since v43. If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
 connection.pool.test.on.checkin=on
 
 #Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
 connection.pool.preferred.test.query=select 1
 
-#Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+# Deprecated since v43. Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads=3
 
-# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
-db.pool.type = c3p0
+# Database datasource pool type. Supported pool types are: hikari (default), c3p0 (deprecated), unpooled
+db.pool.type = hikari
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
@@ -93,26 +93,23 @@ server.https = off
 # System [Optional]
 # ----------------------------------------------------------------------
 
-# System identifier
-system.id = hmis1.country.org
-
-# System mode for database read operations only, can be 'off', 'on'
+# System mode for database read operations only, can be 'off', 'on'. (default: 'off').
 system.read_only_mode = off
 
-# Session timeout in seconds, default is 3600
+# Session timeout in seconds. (default: 3600)
 system.session.timeout = 3600
 
-# SQL view protected tables, can be 'on', 'off'
+# SQL view protected tables, can be 'on', 'off'. (default: 'on').
 system.sql_view_table_protection = on
 
-# SQL view write enabled, can be 'on', 'off'
+# SQL view write enabled, can be 'on', 'off'. (default: 'off').
 system.sql_view_write_enabled = off
 
-# Disable server-side program rule execution, can be 'on', 'off'
-system.program_rule.server_execution = on
-
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
-system.remote_servers_allowed = https://server1.org/,https://server2.org/
+metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
+
+# Set the maximum size for the cache instance to be built. If set to 0, no caching will take place. Cannot be a negative value. (default: 0.5).
+system.cache.max_size.factor = 0.5
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -223,7 +220,7 @@ analytics.connection.url = jdbc:postgresql:analytics
 # Analytics database username
 analytics.connection.username = analytics
 
-# Analytics database password
+# Analytics database password (sensitive)
 analytics.connection.password = xxxx
 
 # Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
@@ -284,6 +281,14 @@ apphub.api.url = https://apps.dhis2.org/api
 
 # Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
+
+# ----------------------------------------------------------------------
+# Route API [Optional]
+# ----------------------------------------------------------------------
+
+# Remote servers allowed to call from the route endpoint. Default is any HTTPS URL. Wildcards are allowed. 
+# e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
+route.remote_servers_allowed = https://*
 ```
 
 Note that the configuration file supports environment variables. This
@@ -367,8 +372,18 @@ system.system.sql_view_write_enabled = on | off
 
 Enables or disables write permissions for SQL views. This will prohibit SQL view performing underlying writes (query can be a select which requires write permission). Enabling is not recommended. Can be `on` or `off`. Default is `off`.
 
+### Enable TOTP (OTP-based) 2FA:
+
+TOTP (Time-Based One-Time Password) uses apps like **Google Authenticator** or **Authy** to generate a time-sensitive one-time password. To enable TOTP 2FA, set the following:
+
 ```properties
-system.program_rule.server_execution = on | off
+login.security.totp_2fa.enabled = on
 ```
 
-Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
+### Enable Email-Based 2FA:
+
+Email-based 2FA sends a verification code to the user's email address during login. The user must enter this code to complete the login process. To enable email-based 2FA, set the following:
+
+```properties
+login.security.email_2fa.enabled = on
+```

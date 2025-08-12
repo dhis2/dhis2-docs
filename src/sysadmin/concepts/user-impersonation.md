@@ -61,8 +61,8 @@ The user impersonation feature configuration options.
 * Users trying to impersonate need to send requests from an allowed IP.
 * Users without the `ALL` authority can not impersonate another user that has the `ALL` authority.
 * Users can not impersonate themselves.
-## Security Implications
 
+## Security Implications
 This feature should be used with caution due to its inherent security implications. Only trusted administrators should
 be granted the capability to impersonate users. It's also recommended to pay attention to the log events related to the
 user impersonation.

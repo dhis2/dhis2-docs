@@ -89,6 +89,13 @@ CSV is supported in this format:
 >
 > Please refer to the date and period section above for time formats.
 
+> **Note**
+>
+> Any imported data value which is seen as unchanged will be ignored and the import summary will reflect this. An unchanged data value is classed as one which has the same value for all 3 of these properties:
+> - value
+> - comment
+> - followUp
+
 From the example, we can see that we need to identify the period, the
 data set, the org unit (facility) and the data elements for which to
 report.
@@ -289,7 +296,7 @@ supplied.
 
 ### Import parameters { #webapi_data_values_import_parameters } 
 
-The import process can be customized using a set of import parameters:
+The import process can be customized using a set of import parameters.
 
 Table: Import parameters
 
@@ -431,8 +438,6 @@ information.
 The following section describes the CSV format used in DHIS2. The first
 row is assumed to be a header row and will be ignored during import.
 
-
-
 Table: CSV format of DHIS2
 
 ||||
@@ -491,8 +496,7 @@ GET /api/dataValueSets
 
 Data values can be retrieved in *XML*, *JSON*, *CSV*, and *ADX* format. Since we want to read data we will use the *GET* HTTP verb. We will also specify that we are
 interested in the XML resource representation by including an `Accept` HTTP header with our request. The following query parameters are
-accepted:
-
+available.
 
 Table: Data value set query parameters
 
@@ -505,7 +509,7 @@ Table: Data value set query parameters
 | startDate | Start date for the time span of the values to export. |
 | endDate | End date for the time span of the values to export. |
 | orgUnit | Organisation unit identifier. Can be repeated any number of times. |
-| children | Whether to include the children in the hierarchy of the organisation units. |
+| children | Whether to include the children in the hierarchy of the organisation units. Boolean value (default `false`)|
 | orgUnitGroup | Organisation unit group identifier. Can be repeated any number of times. |
 | attributeOptionCombo | Attribute option combo identifier. Can be repeated any number of times. |
 | includeDeleted | Whether to include deleted data values. |
@@ -520,11 +524,13 @@ Table: Data value set query parameters
 | categoryIdScheme | Property of the category object to use in the response (ADX only). |
 | categoryOptionIdScheme | Property of the category option object to use in the response (ADX only). |
 | idScheme | Property of any of the above objects if they are not specified, to use in the response. If not specified, the default idScheme for ADX is code, and for all other formats is uid. |
-| inputOrgUnitIdScheme | Identification property used for the provided `orgUnit` parameter values; `id` or `code` |
-| inputDataSetIdScheme | Identification property used for the provided `dataSet` parameter values; `id` or `code` |
-| inputDataElementGroupIdScheme | Identification property used for the provided `dataElementGroup` parameter values; `id` or `code` |
-| inputDataElementIdScheme | Identification property used for the provided `dataElement` parameter values; `id` or `code` |
-| inputIdScheme | Identification property used for any of the provided `dataSet`, `dataElementGroup`, `orgUnit`, `orgUnitGroup`, `attributeOptionCombo`  parameter values unless any of the three schemes above explicitly overrides this input default; `id` or `code` |
+| inputOrgUnitIdScheme | Identifier property used for the provided `orgUnit` parameter values; `id` or `code` |
+| inputDataSetIdScheme | Identifier property used for the provided `dataSet` parameter values; `id` or `code` |
+| inputDataElementGroupIdScheme | Identifier property used for the provided `dataElementGroup` parameter values; `id` or `code` |
+| inputDataElementIdScheme | Identifier property used for the provided `dataElement` parameter values; `id` or `code` |
+| inputIdScheme | General identifier property used for all object types, specific identifier schemes will override the general scheme; `id` or `code` |
+| compression | Whether to compress the response payload; `none`, `gzip` or `zip` |
+| attachment | File name to use for the response, a non-blank value indicates rendering the response as an attachment. |
 
 The following parameters from the list above are required:
 - either dataSet or dataElementGroup (for ADX this must be dataSet)
@@ -587,7 +593,7 @@ You can request the data in JSON format like this:
 
     /api/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8
 
-The response will look something like this:
+The response will look like this:
 
 ```json
 {
@@ -631,8 +637,7 @@ deletions. You can include deleted values in the response like this:
 
 You can also request data in CSV format like this:
 
-    /api/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
-      &orgUnit=DiszpKrYNg8
+    /api/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8
 
 The response will look like this:
 
@@ -643,6 +648,14 @@ Ix2HsbDMLea,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,14,system,2015-04-05T19:5
 eY5ehpbEsB7,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,16,system,2015-04-05T19:58:12.000,comment3,false
 FTRrcoaog83,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2014-03-02T21:45:05.519,comment4,false
 ```
+
+Request data values in CSV format compressed with `gzip`:
+
+```
+/api/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=202401&orgUnit=DiszpKrYNg8&compression=gzip
+```
+
+The response will be in compressed CSV format. The content can be uncompressed with the `gunzip` tool.
 
 The following constraints apply to the data value sets resource:
 

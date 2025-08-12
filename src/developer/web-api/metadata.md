@@ -1,4 +1,4 @@
-# Metadata
+# Metadata { #webapi_metadata }
 
 ## Identifier schemes { #webapi_identifier_schemes } 
 
@@ -13,19 +13,12 @@ The full set of identifier scheme object types available are listed
 below, using the name of the property to use in queries:
 
   - idScheme
-
   - dataElementIdScheme
-
   - categoryOptionComboIdScheme
-
   - orgUnitIdScheme
-
   - programIdScheme
-
   - programStageIdScheme
-
   - trackedEntityIdScheme
-
   - trackedEntityAttributeIdScheme
 
 The general idScheme applies to all types of objects. It can be
@@ -79,7 +72,7 @@ Table: Query parameters
 | paging | true &#124; false | true | Indicates whether to return lists of elements in pages. |
 | page | number | 1 | Defines which page number to return. |
 | pageSize | number | 50 | Defines the number of elements to return for each page. |
-| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. |
+| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. If it is wanted to sort for more than one property, separate them using a comma.  |
 
 An example of how these parameters can be used to get a full list of
 data element groups in XML response format is:
@@ -103,6 +96,10 @@ You can completely disable paging like this:
 To order the result based on a specific property:
 
     /api/indicators.json?order=shortName:desc
+
+To order the result based on created datetime property first (descending order) and then by name property (ascending order):
+
+    /api/indicators.json?order=created:desc,name:asc
 
 You can find an object based on its ID across all object types through
 the *identifiableObjects* resource:
@@ -245,27 +242,12 @@ The status code will be `204 No Content` if the data value was successfully save
 
 ### Web API versions { #webapi_api_versions } 
 
-The Web API is versioned starting from DHIS 2.25. The API versioning
-follows the DHIS2 major version numbering. As an example, the API
-version for DHIS 2.33 is `33`.
+The Web API `/api` can be used with a DHIS2 version number, example:
 
-You can access a specific API version by including the version number
-after the `/api` component, as an example like this:
+    /api/42/dataElements
 
-    /api/33/dataElements
-
-If you omit the version part of the URL, the system will use the current
-API version. As an example, for DHIS 2.25, when omitting the API part,
-the system will use API version 25. When developing API clients it is
-recommended to use explicit API versions (rather than omitting the API
-version), as this will protect the client from unforeseen API changes.
-
-The last three API versions will be supported. As an example, DHIS
-version 2.27 will support API version 27, 26 and 25.
-
-Note that the metadata model is not versioned and that you might
-experience changes e.g. in associations between objects. These changes
-will be documented in the DHIS2 major version release notes.
+Versions `28`-`43` are supported. Calling an endpoint with or without a version does not change the behaviour of the API. The behaviour is the same no matter which approach is used. We aim to remove supporting API calls with versions, so please use API calls without the use of a version number.  
+The support for using versions is due to legacy design, which didn't evolve as originally envisioned. 
 
 ## Metadata object filter { #webapi_metadata_object_filter } 
 
@@ -482,7 +464,7 @@ Table: Field presets
 |---|---|
 | all | All fields of the object |
 | \* | Alias for all |
-| identifiable | Includes id, name, code, created and lastUpdated fields |
+| identifiable | Includes id, name, code, created, lastUpdated and lastUpdatedBy fields |
 | nameable | Includes id, name, shortName, code, description, created and lastUpdated fields |
 | persisted | Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation. |
 | owner | Returns all persisted property on an object where the object is the owner of all properties, this payload can be used to update through the API. |
@@ -578,6 +560,8 @@ for _data elements_ is:
 
     /api/dataElements
 
+> **_NOTE:_**  When updating objects, all existing property values will be overwritten, even if the new value is null. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
+
 ### Create / update parameters { #webapi_metadata_create_update } 
 
 The following request query parameters are available across all metadata endpoints.
@@ -588,7 +572,6 @@ Table: Available Query Filters
 |---|---|---|---|---|
 | preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
 | importStrategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
-| mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects { #webapi_creating_updating_objects } 
 
@@ -998,7 +981,7 @@ table. You can also apply this to all available types by using
 `type:fields=<filter>` and `type:filter=<filter>`. You can also
 enable/disable the export of certain types by setting `type=true|false`.
 
-Table: Export Parameter
+Table: Export parameters
 
 | Name | Options | Description |
 |---|---|---|
@@ -1009,6 +992,7 @@ Table: Export Parameter
 | locale | <locale\> | Change from user locale, to your own custom locale. |
 | defaults | INCLUDE/EXCLUDE | Should auto-generated category object be included or not in the payload. If you are moving metadata between 2 non-synced instances, it might make sense to set this to EXCLUDE to ease the handling of these generated objects. |
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| inclusionStrategy | NON_NULL, ALWAYS, NON_EMPTY | *NON_NULL* includes properties which are not null, *ALWAYS* includes all properties, *NON_EMPTY* includes non empty properties (will not include strings of 0 length or empty collections) |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
 ### Metadata export examples { #webapi_metadata_export_examples } 
@@ -1058,7 +1042,7 @@ These exports can then be imported using `/api/metadata`.
 
 These endpoints also support the following parameters:
 
-Table: Export Parameter
+Table: Export parameters
 
 | Name | Options | Description |
 |---|---|---|
@@ -1079,7 +1063,7 @@ generated by the metadata export API can be imported directly.
 The metadata import endpoint support a variety of parameters, which are
 listed below.
 
-Table: Import Parameter
+Table: Import parameters
 
 | Name | Options (first is default) | Description |
 |---|---|---|
@@ -1089,16 +1073,14 @@ Table: Import Parameter
 | preheatMode | REFERENCE, ALL, NONE | Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with *preheatCache=true*) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended. |
 | importStrategy | CREATE_AND_UPDATE, CREATE, UPDATE, DELETE | Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object. |
 | atomicMode | ALL, NONE | Sets atomic mode, in the old importer we always did a *best effort* import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior. |
-| ~~mergeMode~~ | ~~REPLACE, MERGE~~ | ~~Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.~~ (*) |
-| flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). | 
+| flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). |
 | skipSharing | false, true | Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects. |
 | skipValidation | false, true | Skip validation for import. `NOT RECOMMENDED`. |
 | async | false, true | Asynchronous import, returns immediately with a *Location* header pointing to the location of the *importReport*. The payload also contains a json object of the job created. |
-| inclusionStrategy | NON_NULL, ALWAYS, NON_EMPTY | *NON_NULL* includes properties which are not null, *ALWAYS* include all properties, *NON_EMPTY* includes non empty properties (will not include strings of 0 length, collections of size 0, etc.) |
 | userOverrideMode | NONE, CURRENT, SELECTED | Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X) |
 | overrideUser | User ID | If userOverrideMode is SELECTED, use this parameter to select the user you want override with. |
 
-> (*) Currently the `mergeMode=MERGE` option of the import service has limitations and doesn't support all objects. It doesn't work with some object types such as Embedded objects, or objects which are saved as JSONB format in database ( sharing, attributeValues, etc...). Fixing those issues are complicated and would just cause new issues. Therefore, this `mergedMode=MERGE` is deprecated and currently is not recommended to use. The update mode should always be mergedMode=REPLACE. We have developed a new [JSON Patch API](#webapi_partial_updates) which can be used as an alternative approach. This feature is introduced in 2.37 release.
+> **NOTE** When updating objects, all property values will be overwritten even if the new values are `null`. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
 
 
 An example of a metadata payload to be imported looks like this. Note how
@@ -1153,7 +1135,6 @@ ignored:
     "preheatMode": "REFERENCE",
     "importStrategy": "CREATE_AND_UPDATE",
     "atomicMode": "ALL",
-    "mergeMode": "REPLACE",
     "flushMode": "AUTO",
     "skipSharing": false,
     "skipTranslation": false,
@@ -1227,8 +1208,8 @@ Both of them be accessed through the icons resource.
 
     GET /api/icons
 
-This endpoint returns a list of information about the available icons.
-In case of default icons, each entry contains the icon's metadata, and a reference to the actual file resource.
+This endpoint returns a list of information about the available default and custom icons.
+By default key, description, keywords and href will be included in response. But fields parameter can be used to change this behaviour.
 
 ```json
 {
@@ -1239,22 +1220,9 @@ In case of default icons, each entry contains the icon's metadata, and a referen
     "mosquito",
     "dengue"
   ],
+  "created": "2024-02-12T09:50:11.794",
+  "lastUpdated": "2024-02-12T09:50:11.794",
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
-}
-```
-When it comes to custom icons, the response also includes the referenced file resource and the user who created the icon:
-
-```json
-{
-  key: "custom key",
-  description: "description",
-  keywords: [
-    "keyword 1",
-    "keyword 2"
-  ],
-  fileResourceUid: "ohUVXsOZ8qp",
-  userUid: "AIK2aQOJIbj",
-  href: "<dhis server>/api/fileResources/ohUVXsOZ8qp/data"
 }
 ```
 
@@ -1262,16 +1230,49 @@ It's also possible to get a particular icon directly by filtering by its key, in
 
     GET /api/icons/mosquito_outline
 
-Keywords can be used to filter which icons to return. Passing a list
-of keywords with the request will only return icons (both default and custom) that match all the keywords:
-
-    GET /api/icons?keywords=shape,small
-
-A list of all unique keywords can be found at the keywords resource:
-
-    GET /api/icons/keywords
-
 ### Custom icon operations { #webapi_icons_custom }
+
+A list of custom icons can be fetched retrieved certain request parameters
+
+    GET /api/icons?type=CUSTOM
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`type`|`Text`| DEFAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
+|`keys`|`Text`| | List of keys custom icons should be retrieved for | 
+|`keywords`|`Text`| | List of keywords custom icons should be retrieved for| 
+|`search`|`Text`| | Search for a given text across icon keys and keywords, and retrieve all icons that contain this text in their key or keywords.| 
+|`createdStartDate`|`Date`| | Starting point of created date|
+|`createdEndDate`|`Date`| | End point of created date| 
+|`lastUpdatedStartDate`|`Date`| | Starting point of last updated date| 
+|`lastUpdatedEndDate`|`Date`| | End point of last updated date| 
+
+
+#### Request parameters for pagination
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
+|`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
+|`paging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`|
+
+#### Request parameters for ordering
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`order`|`Text`| created:desc | Comma-separated list of property name and sort direction pairs in format propName:sortDirection. By default icons will be ordered based on key:asc|
+
+
+#### Request parameter to filter responses
+
+The endpoints accept a `fields` parameter which controls which fields will be returned in the
+JSON response. `fields` parameter accepts a comma separated list of field names. If nothing is specified, default fields will be used and those are 
+
+`key,keywords,description,fileResourceUid,createdByUserUid,href`
+
+A custom icon resource can be downloaded by providing the icon key:
+
+    GET /api/icons/{key}/icon
 
 Custom icons can be created, modified and deleted.
 To create a custom icon, use the resource below.
@@ -1289,7 +1290,7 @@ It expects a payload containing the icon key, description, list of keywords and 
 }
 ```
 
-Two of these properties are possible to update, they are the description and keywords, using the resource below.
+Only custom icons can be updated using below resource. 
 
     PUT /api/icons
 
@@ -1305,7 +1306,7 @@ With the following payload, the icon's description and keywords would be updated
 
 Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work the other way around, to update the keywords and leave the original description untouched.
 
-To delete a custom icon we use the resource
+Only custom icon can be deleted using below resource.
 
     DELETE /api/icons/{icon_key}
 
@@ -1456,6 +1457,541 @@ following payload to change the style:
     "color": "#ffffff",
     "icon": "my-beautiful-icon"
   }
+}
+```
+## Category Option
+
+### Merge category options { #category_option_merge }
+
+The category option merge endpoint allows you to merge a number of category options (sources) into a target category option.
+
+#### Authorisation
+
+The main authority required to perform a category option merge is `F_CATEGORY_OPTION_MERGE`.  
+Other authorities required relate to the general sharing and access of category options, `F_CATEGORY_OPTION_PUBLIC_ADD` and `F_CATEGORY_OPTION_DELETE`.
+
+#### Request
+
+Merge category options with a POST request:
+
+```
+POST /api/categoryOptions/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the category options to merge (the source category options)                                                                                                     |
+| target            | Yes      | Identifier of the category option to merge the sources into (the target category option)                                                                                                |
+| deleteSources     | No       | Whether to delete the source category options after the operation. Default is false.                                                                                                    |
+
+The merge operation will merge the source category options into the target category option. One or many source category options can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category option metadata associations to the target category option.
+The following metadata get updated:
+
+
+| Metadata            | Property        | Action taken               |
+|---------------------|-----------------|----------------------------|
+| Category            | categoryOptions | remove sources, add target |
+| CategoryDimension   | items           | remove sources, add target |
+| CategoryOptionCombo | categoryOptions | remove sources, add target |
+| CategoryOptionGroup | members         | remove sources, add target |
+| OrganisationUnit    | categoryOptions | remove sources, add target |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                              |
+|------------|----------------------------------------------------------|
+| E1530      | At least one source CategoryOption must be specified     |
+| E1531      | Target CategoryOption must be specified                  |
+| E1532      | Target CategoryOption cannot be a source category option |
+| E1533      | Source/Target CategoryOption does not exist: `{uid}`     |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CategoryOption",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CategoryOption merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source CategoryOption must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target CategoryOption does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CategoryOption",
+            "sourcesDeleted": [],
+            "message": "CategoryOption merge has errors"
+        }
+    }
+}
+```
+
+## Category Option Combo
+
+### Merge category option combos { #category_option_combo_merge }
+
+The category option combo merge endpoint allows you to merge a number of category options (sources) into a target category option. This can be used to clean up the system, removing duplicates for instance. 
+> **Note**
+>
+> Only duplicate category option combos can be merged. There's more info about this in the validation section below.
+
+#### Authorisation
+
+The main authority required to perform a category option combo merge is `F_CATEGORY_OPTION_COMBO_MERGE`.  
+
+#### Request
+
+Merge category option combos with a POST request:
+
+```
+POST /api/categoryOptionCombos/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "dataMergeStrategy": "DISCARD"
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                                                       |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the category option combos to merge (the source category option combos)                                                                                                                             |
+| target            | Yes      | Identifier of the category option combo to merge the sources into (the target category option combo)                                                                                                                        |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will merge all data values and use the last updated value where duplicates are met. |
+
+The merge operation will merge the source category option combos into the target category option combo. One or many source category option combos can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category option combo metadata associations to the target category option combo.
+
+> **Note**
+>
+> All source category option combos will always be deleted during a merge. The is because after all source references have been handled, empty category option combos are left. These are not seen as valid by the system.
+
+The following metadata get updated:
+
+
+| Metadata           | Property                                 | Action taken               |
+|--------------------|------------------------------------------|----------------------------|
+| CategoryOption     | categoryOptionCombos                     | remove sources             |
+| CategoryCombo      | optionCombos                             | remove sources             |
+| DataElementOperand | categoryOptionCombo                      | set as target              |
+| DataDimensionItem  | dataelementoperand_categoryoptioncomboid | set as target              |
+| Expression         | expression                               | replace source with target |
+| Indicator          | numerator                                | replace source with target |
+| Indicator          | denominator                              | replace source with target |
+| MinMaxDataElement  | optionCombo                              | set as target              |
+| Predictor          | outputCombo                              | set as target              |
+| SMSCode            | optionId                                 | set as target              |
+
+
+| Data                        | Property             | Action taken                                             |
+|-----------------------------|----------------------|----------------------------------------------------------|
+| DataValue                   | categoryOptionCombo  | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataValue                   | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataApproval                | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataApprovalAudit           | attributeOptionCombo | DISCARD or leave depending if sources are deleted or not |
+| Event                       | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataValueAudit              | categoryOptionCombo  | DISCARD or leave depending if sources are deleted or not |
+| DataValueAudit              | attributeOptionCombo | DISCARD or leave depending if sources are deleted or not |
+| CompleteDataSetRegistration | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+
+> **Note**
+>
+> The following properties haven been purposely excluded from the merge as these may use references for external systems. If you encounter issues with these fields, they may need to be updated. 
+>
+> Indicator: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
+>
+> ProgramIndicator: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
+
+
+#### Validation
+
+The following constraints and error codes apply. One of the main validation points is regarding duplicate CategoryOptionCombos. 
+A duplicate CategoryOptionCombo is one which satisfies the criteria: 
+- has the same CategoryCombo
+- has the same CategoryOptions
+- has a different UID
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                                                 |
+|------------|-------------------------------------------------------------------------------------------------------------|
+| E1530      | At least one source CategoryOptionCombo must be specified                                                   |
+| E1531      | Target CategoryOptionCombo must be specified                                                                |
+| E1532      | Target CategoryOptionCombo cannot be a source CategoryOptionCombo                                           |
+| E1533      | Source/Target CategoryOptionCombo does not exist: `{uid}`                                                   |
+| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                           |
+| E1540      | CategoryOptionCombos must be duplicates (same cat combo, same cat options, different UID) in order to merge |
+
+#### Database constraints
+There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
+Below are a list of the known database unique key constraints at the time of writing. For example, you
+can only have 1 min max data element with the same org unit, data element and category option combo.
+
+Table: Database table unique key constraints
+
+| Table                   | Unique key constraint                     |
+|-------------------------|-------------------------------------------|
+| minmaxdataelement       | orgunit, dataelement, categoryoptioncombo |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CategoryOptionCombo",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CategoryOptionCombo merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source CategoryOptionCombo must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target CategoryOptionCombo does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CategoryOptionCombo",
+            "sourcesDeleted": [],
+            "message": "CategoryOptionCombo merge has errors"
+        }
+    }
+}
+```
+
+A database constraint sample error response:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
+}
+```
+
+
+
+## Data Elements
+
+### Merge data elements { #data_element_merge }
+
+> **Caution**
+>
+> Merging DataElements should be carried out with the utmost care. Particular attention
+> should be given to the merging of data values that have data element references involved in the
+> merge. Knowing the potential side effects of a merge should be fully understood before performing
+> the merge. The merging of DataElements has far-reaching effects. The information below
+> will try to help show what's involved in a DataElement merge. A DataElement merge
+> touches all the major parts of the system (metadata, data, tracker, analytics and audit).
+> 
+> System performance may be impacted if the source DataElements are linked to large amounts of Data/Audit records particularly.
+
+The data element merge endpoint allows you to merge a number of data elements (sources) into a target data element.
+
+#### Authorisation
+
+The main authority required to perform a data element merge is `F_DATA_ELEMENT_MERGE`.  
+Other authorities required relate to the general sharing and access of data elements, `F_DATAELEMENT_PUBLIC_ADD` and `F_DATAELEMENT_DELETE`.
+
+#### Request
+
+Merge data elements with a POST request:
+
+```
+POST /api/dataElements/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true,
+  "dataMergeStrategy": "DISCARD"
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                                                       |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the data elements to merge (the source data elements)                                                                                                                                               |
+| target            | Yes      | Identifier of the data element to merge the sources into (the target data element)                                                                                                                                          |
+| deleteSources     | No       | Whether to delete the source data elements after the operation. Default is false. If true is chosen, then all source audit records will also be deleted.                                                                    |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will merge all data values and use the last updated value where duplicates are met. |
+
+The merge operation will merge the source data elements into the target data element. One or many source data elements can be specified. Only one target should be specified.
+
+The merge operation will transfer all source data element metadata associations to the target data element.
+The following metadata get updated:
+
+
+| Metadata                          | Property                  | Action taken               |
+|-----------------------------------|---------------------------|----------------------------|
+| DataDimensionItem                 | dataElement               | set to target              |
+| EventVisualization                | dataElementValueDimension | set to target              |
+| ProgramStageDataElement           | dataElement               | set to target              |
+| ProgramNotificationTemplate       | recipientDataElement      | set to target              |
+| ProgramRuleVariable               | dataElement               | set to target              |
+| ProgramRuleAction                 | dataElement               | set to target              |
+| TrackedEntityDataElementDimension | dataElement               | set to target              |
+| MinMaxDataElement                 | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| Predictor                         | output                    | set to target              |
+| DataSetElement                    | dataElement               | set to target              |
+| DataElementOperand                | dataElement               | set to target              |
+| ProgramStageDataElement           | dataElements              | remove sources, add target |
+| Section                           | dataElements              | remove sources, add target |
+| DataElementGroup                  | members                   | remove sources, add target |
+| Event                             | eventDataValues           | remove sources, add target |
+| Indicator                         | numerator                 | replace source with target |
+| Indicator                         | denominator               | replace source with target |
+| Predictor                         | generator                 | replace source with target |
+| Predictor                         | sampleSkipTest            | replace source with target |
+| DataEntryForm                     | htmlCode                  | replace source with target |
+| ProgramIndicator                  | expression                | replace source with target |
+| ProgramIndicator                  | filter                    | replace source with target |
+| DataValue                         | dataElement               |                            |
+
+
+| Data                            | Property        | Action taken                                                                                                                                                                                             |
+|---------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event                           | eventDataValues | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source event data values. LAST_UPDATED will use the event data value which was last updated, when more than one exists. |
+| DataValue                       | dataElement     | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated, when more than one exists.             |
+| TrackedEntityDataValueChangeLog |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+| DataValueAudit                  |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                                                                                 |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| E1530      | At least one source DataElement must be specified                                                                                           |
+| E1531      | Target DataElement must be specified                                                                                                        |
+| E1532      | Target DataElement cannot be a source indicator                                                                                             |
+| E1533      | Source/Target DataElement does not exist: `{uid}`                                                                                           |
+| E1550      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
+| E1551      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
+| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
+
+#### Database constraints
+There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
+Below are a list of the known database unique key constraints at the time of writing. For example, you
+can only have 1 data set element with the same dataset and data element.
+
+Table: Database table unique key constraints
+
+| Table                   | Unique key constraint                     |
+|-------------------------|-------------------------------------------|
+| minmaxdataelement       | orgunit, dataelement, categoryoptioncombo |
+| programstagedataelement | programstage, dataelement                 |
+| datasetelement          | dataset, dataelement                      |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "DataElement",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "DataElement merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source DataElement must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target DataElement does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "DataElement",
+            "sourcesDeleted": [],
+            "message": "DataElement merge has errors"
+        }
+    }
+}
+```
+
+Another sample validation error response:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "All source ValueTypes must match target ValueType: `TEXT`. Other ValueTypes found: `NUMBER`",
+                    "errorCode": "E1550",
+                    "args": []
+                }
+            ],
+            "mergeType": "DataElement",
+            "sourcesDeleted": [],
+            "message": "DataElement merge has errors"
+        }
+    }
+}
+```
+
+A database constraint sample error response:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
 }
 ```
 
@@ -1618,6 +2154,244 @@ description of the expression.
   "status": "OK",
   "message": "Valid",
   "description": "Acute Flaccid Paralysis"
+}
+```
+
+### Merge indicators { #webapi_indicator_merge }
+
+The indicator merge endpoint allows you to merge a number of indicators (sources) into a target indicator.
+
+#### Authorisation
+
+The authority `F_INDICATOR_MERGE` is required to perform indicator merges.
+
+#### Request
+
+Merge indicators with a POST request:
+
+```
+POST /api/indicators/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                         |
+|---------------|----------|-------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicators to merge (the source indicators)       |
+| target        | Yes      | Identifier of the indicator to merge the sources into (the target indicator)  |
+| deleteSources | No       | Whether to delete the source indicators after the operation. Default is false |
+
+The merge operation will merge the source indicators into the target indicator. One or many source indicators can be specified. Only one target should be specified.
+
+The merge operation will transfer all source indicator metadata associations to the target indicator. 
+The following metadata get updated:
+
+
+| Metadata            | Property                                   | Action taken                                                                |
+|---------------------|--------------------------------------------|-----------------------------------------------------------------------------|
+| IndicatorGroup      | members                                    | Source indicator removed, target indicator added                            |
+| DataSet             | indicators                                 | Source indicator removed, target indicator added                            |
+| DataDimensionalItem | n/a                                        | Any linked data items with sources will be linked with the target           |
+| Section             | indicators                                 | Source indicator removed, target indicator added                            |
+| Configuration       | infrastructuralIndicators (IndicatorGroup) | Source indicator removed, target indicator added                            |
+| Indicator           | numerator / denominator                    | Replace any source reference with the target reference                      |
+| DataEntryForm       | htmlCode                                   | Replace any source reference with the target reference                      |
+| Visualization       | sorting                                    | Replace any source reference with the target reference as Sorting dimension |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+|------------|-------------------------------------------------|
+| E1530      | At least one source indicator must be specified |
+| E1531      | Target indicator must be specified              |
+| E1532      | Target indicator cannot be a source indicator   |
+| E1533      | Source/Target indicator does not exist: `{uid}` |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "Indicator",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "Indicator merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source Indicator must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target Indicator does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "Indicator",
+            "sourcesDeleted": [],
+            "message": "Indicator merge has errors"
+        }
+    }
+}
+```
+
+## Indicator Types { #webapi_indicator_types}
+
+### Merge indicator types { #webapi_indicator_type_merge}
+
+The indicator type merge endpoint allows you to merge a number of indicator types into a target indicator type.
+
+#### Authorisation
+
+The authority `F_INDICATOR_TYPE_MERGE` is required to perform indicator type merges.
+
+#### Request
+
+Merge indicator types with a POST request:
+
+```
+POST /api/indicatorTypes/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                                   |
+|---------------|----------|-----------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicator types to merge (the source indicator types).      |
+| target        | Yes      | Identifier of the indicator type to merge the sources into (the target indicator type). |
+| deleteSources | No       | Whether to delete the source indicator types after the operation. Default is false.     |
+
+The merge operation will merge the source indicator types into the target indicator type. One or many source indicator types can be specified. Only one target should be specified.
+
+The merge operation will transfer all of the indicator metadata associations to the source indicator types over to the target indicator type.
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                            |
+|------------|--------------------------------------------------------|
+| E1530      | At least one source IndicatorType must be specified    |
+| E1531      | Target IndicatorType must be specified                 |
+| E1532      | Target IndicatorType cannot be a source indicator type |
+| E1533      | Source/Target IndicatorType does not exist: `{uid}`    |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "IndicatorType",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "IndicatorType merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source IndicatorType must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target IndicatorType does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "IndicatorType",
+            "sourcesDeleted": [],
+            "message": "IndicatorType merge has errors"
+        }
+    }
 }
 ```
 
@@ -1999,6 +2773,143 @@ resource for a predictor:
 
     POST /api/predictors/AG10KUJCrRk/run
 
+## Programs { #webapi_programs }
+
+To retrieve programs you can make a GET request to the programs resource like this:
+
+    /api/programs
+
+### Program category mappings { #webapi_program_category_mappings }
+
+Starting in version 2.42, a program may optionally define one of more category mappings.
+These mappings can be used to add disaggregations to program indicators for the program.
+A program indicator for this program can choose which mappings to use for
+the categories in its category combination and/or attribute combination.
+
+This allows program indicator data to be viewed by category and category option
+such as in the Data Visualizer.
+It also allows an Aggregate data exchange to generate values from the program indicator
+that contain a category option combination and/or an attribute option combination.
+
+These category mappings can be generated by the Maintenance (Preview) App
+or they can be added using the Web API.
+This section describes the format of the category mappings if you are using the Web API.
+
+A new program has no category mappings.
+In the Web API this looks like:
+
+```json
+"categoryMappings": []
+```
+
+To add category mappings to the program, you can edit this part of the program
+definition and then import the result back into DHIS2.
+Here is an example of how the edited field could look:
+
+```json
+"categoryMappings": [
+  {
+    "id": "goor7Li4See",
+    "categoryId": "cX5k9anHEHd",
+    "mappingName": "standard Gender mapping",
+    "optionMappings": [
+      {
+        "optionId": "apsOixVZlf1",
+        "filter": "#{Zj7UnCAulEk.oZg33kd9taw} == 'Female'"
+      },
+      {
+        "optionId": "jRbMi0aBjYn",
+        "filter": "#{Zj7UnCAulEk.oZg33kd9taw} == 'Male'"
+      }
+    ]
+  },
+  {
+    "id": "ESesheeva1i",
+    "categoryId": "VPqYge5RB93",
+    "mappingName": "standard Outcome mapping",
+    "optionMappings": [
+      {
+        "optionId": "e3oqm527jBS",
+        "filter": "#{Zj7UnCAulEk.sAg4Niej9bo} == 'Managed at PHU'"
+      },
+      {
+        "optionId": "rSdQZYDmHJm",
+        "filter": "#{Zj7UnCAulEk.sAg4Niej9bo} == 'Referred'"
+      }
+    ]
+  },
+  {
+    "id": "laiHaid9eit",
+    "categoryId": "fkAkrdC7eJF",
+    "mappingName": "Referrals Age at event",
+    "optionMappings": [
+      {
+        "optionId": "K4gwuiVvW3z",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{event_date})<5"
+      },
+      {
+        "optionId": "oaFqxkefkPs",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{event_date})>=5"
+      }
+    ]
+  },
+  {
+    "id": "SeNg0bohFah",
+    "categoryId": "fkAkrdC7eJF",
+    "mappingName": "Referrals Age at analyitcs period start",
+    "optionMappings": [
+      {
+        "optionId": "K4gwuiVvW3z",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{analytics_period_start})<5"
+      },
+      {
+        "optionId": "oaFqxkefkPs",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{analytics_period_start})>=5"
+      }
+    ]
+  }
+]
+```
+
+In this example, the program defines four category mappings that can be used
+by the program indicators assigned to the program:
+- A mapping for the `Gender` category
+- A mapping for the `Outcome` category
+- Two mappings for the `Referrals Age` category. A program indicator can choose which mapping
+it wants to use depending on whether it wants to show the age at the event date
+or the age at the analytics period start.
+
+The `categoryMappings` fields are:
+
+| name | description
+|---|---|
+| id | An 11 character UID that uniquely identifies the mapping. The first character must be an upper or lower case letter, followed by 10 characters each being an upper or lower case letter or a digit. The id should be chosen so that it is unique. This UID is used by program indicators for the mappings they choose. |
+| categoryId | The UID of the category to be mapped. In this example they are the UIDs for Gender, Outcome, and Referrals Age. |
+| mappingName | A name you assign to the mapping. If you define more than one mapping for a category, the name must be unique within the mappings for that category in that program. |
+| optionMappings | These specify a filter for each category option within the category. |
+| optionId | The UID of the category option to which this filter applies. |
+| filter | The filter to use for this category option. The filter must have the same syntax as the filter expression for a program indicator in the program. **Tip:** You can use the Maintenance App to generate and validate the filter: construct it as a filter expression for a new or existing program indicator for the program, make sure it's valid, and then copy-and-paste it into the metadata. (You don't have to save the program indicator with this filter.) |
+
+A program indicator may select which program mappings to use in its `categoryMappingIds` field.
+A new program indicator has no category mapping ids.
+In the Web API this looks like:
+
+```json
+"categoryMappingIds": [],
+```
+
+You can replace this with the category mappings that you want the program indicator to use.
+For example, if the program indicator has selected a category combination that combines
+`Gender` and `Outcome`, this field could be edited to contain the mapping ids for these
+categories such as defined in the above `categoryMappings` example:
+
+```json
+"categoryMappingIds": [
+    "goor7Li4See",
+    "ESesheeva1i"
+],
+```
+
 ## Program rules { #webapi_program_rules } 
 
 This section is about sending and reading program rules, and explains
@@ -2044,7 +2955,7 @@ Table: programRuleAction
 | name | description | Compulsory |
 |---|---|---|
 | programRule | The programRule that is the parent of this action. | Compulsory |
-| programRule- ActionType | The type of action that is to be performed.<br>  * `DISPLAYTEXT` - Displays a text in a given widget.<br> * `DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.<br> * `HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.<br>    -         *content* - if defined, the text in *content* will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If *content* is not defined, a standard message will be shown to the user in this instance.<br>   -         *dataElement* - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.<br>   -         *trackedEntityDataValue* - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.<br>  * `HIDESECTION` - Hide a specified section.<br>    -         *programStageSection* - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.<br>  * `ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)<br>    -         *content* - if defined, the value in *data* is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a *programRule.priority* to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.<br>   -         *data* - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.<br>   -         *dataElement* - if defined, the value in *data* is assigned to this data element.<br>  Either the content or dataElement must be defined for the ASSIGN action to be effective.<br> * `SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.<br>    -         *content* - if defined, content is a static part that is displayed at the end of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the warning message.<br>   -         *dataElement* - if defined, the warning message is displayed next to this data element.<br>   -         *trackedEntityAttribute* - if defined, the warning message is displayed next to this tracked entity attribute.<br>  Either dataElement or trackedEntityAttribute must be specified.<br> * `SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.<br>    -         *content* - if defined, content is a static part that is displayed in the start of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the error message.<br>   -         *dataElement* - if defined, the error message is linked to this data element.<br>   -         *trackedEntityAttribute* - if defined, the error message is linked to this tracked entity attribute.<br>  Either dataElement or trackedEntityAttribute must be specified.<br> * `WARNINGONCOMPLETE` - Show a warning to the user on the "Complete form" dialog, but allowing the user to complete the event.<br>    -         *content* - if defined, content is a static part that is displayed at the end of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the warning message.<br>   -         *dataElement* - if defined, the warning message prefixed with the name/formName of the data element.<br>  * `ERRORONCOMPLETE` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.<br>    -         *content* - if defined, content is a static part that is displayed in the start of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the error message.<br>   -         *dataElement* - if defined, the error message is linked to this data element.<br>  * `CREATEEVENT` - Create an event within the same enrollment.<br>    -         *content*<br>   -         *data* - if defined, contains data values to assign the created event. The format is <uid\>:<data value\>. Where several values is specified, these are separated with comma.<br> AcMrnleqHqc:100,AqK1IHqCkEE:'Polyhydramnios'   -         *programStage* - must be defined, and designates the program stage that the rule shall create an event of.<br>  * `SETMANDATORYFIELD` - Set a field to be mandatory.<br>    -         *dataElement* - if defined, this data element will be set to be mandatory in the data entry form.<br>   -         *trackedEntityAttribute* - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.<br>  * `SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.<br>    -         *messageTemplate* - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.<br>  * `SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.<br>    -         *messageTemplate* - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.<br>   -         *Date to send message* - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled. | Compulsory |
+| programRule- ActionType | The type of action that is to be performed.<br>  * `DISPLAYTEXT` - Displays a text in a given widget.<br> * `DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.<br> * `HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.<br>    -         *content* - if defined, the text in *content* will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If *content* is not defined, a standard message will be shown to the user in this instance.<br>   -         *dataElement* - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.<br>   -         *trackedEntityDataValue* - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.<br>  * `HIDESECTION` - Hide a specified section.<br>    -         *programStageSection* - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.<br>  * `ASSIGN` - Assign a value to either a dataElement or trackedEntityAttribute or a ProgramRuleVariable. Intended to help the user calculate something or fill in an obvious value somewhere.<br>    -         *content* - if defined, the value in *data* is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a *programRule.priority* to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.<br>   -         *data* - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.<br>   -         *dataElement* - if defined, the value in *data* is assigned to this data element.<br>  Either the content or dataElement must be defined for the ASSIGN action to be effective.<br> * `SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.<br>    -         *content* - if defined, content is a static part that is displayed at the end of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the warning message.<br>   -         *dataElement* - if defined, the warning message is displayed next to this data element.<br>   -         *trackedEntityAttribute* - if defined, the warning message is displayed next to this tracked entity attribute.<br>  Either dataElement or trackedEntityAttribute must be specified.<br> * `SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.<br>    -         *content* - if defined, content is a static part that is displayed in the start of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the error message.<br>   -         *dataElement* - if defined, the error message is linked to this data element.<br>   -         *trackedEntityAttribute* - if defined, the error message is linked to this tracked entity attribute.<br>  Either dataElement or trackedEntityAttribute must be specified.<br> * `WARNINGONCOMPLETE` - Show a warning to the user on the "Complete form" dialog, but allowing the user to complete the event.<br>    -         *content* - if defined, content is a static part that is displayed at the end of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the warning message.<br>   -         *dataElement* - if defined, the warning message prefixed with the name/formName of the data element.<br>  * `ERRORONCOMPLETE` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.<br>    -         *content* - if defined, content is a static part that is displayed in the start of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the error message.<br>   -         *dataElement* - if defined, the error message is linked to this data element.<br>  * `CREATEEVENT` - Create an event within the same enrollment.<br>    -         *content*<br>   -         *data* - if defined, contains data values to assign the created event. The format is <uid\>:<data value\>. Where several values is specified, these are separated with comma.<br> AcMrnleqHqc:100,AqK1IHqCkEE:'Polyhydramnios'<br>   -         *programStage* - must be defined, and designates the program stage that the rule shall create an event of.<br>  * `SETMANDATORYFIELD` - Set a field to be mandatory.<br>    -         *dataElement* - if defined, this data element will be set to be mandatory in the data entry form.<br>   -         *trackedEntityAttribute* - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.<br>  * `SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.<br>    -         *messageTemplate* - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.<br>  * `SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.<br>    -         *messageTemplate* - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.<br>   -         *Date to send message* - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled. <br>  * `HIDEPROGRAMSTAGE` - Prevent adding new events to stage. <br>  * `HIDEOPTION` - Hide option (from an optionSet). <br>  * `HIDEOPTIONGROUP` - Hide option group (hide the options that belong to that option group). <br>  * `SHOWOPTIONGROUP` - Show option group (show the options that belong to that option group).| Compulsory |
 | location | Used for actionType DISPLAYKEYVALUEPAIR and DISPLAYTEXT to designate which widget to display the text or keyvaluepair in. Compulsory for DISPLAYKEYVALUEPAIR and DISPLAYTEXT. | See description |
 | content | Used for user messages in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETE, ERRORONCOMPLETE, DISPLAYTEXT and DISPLAYKEYVALUEPAIR. Optional for HIDEFIELD and ASSIGN. | See description |
 | data | Used for expressions in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for ASSIGN. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETE, ERRORONCOMPLETE, DISPLAYTEXT, CREATEEVENT and DISPLAYKEYVALUEPAIR | See description |
@@ -2097,15 +3008,15 @@ programRuleVariable model.
 
 Table: programRuleVariable
 
-| name | description | Compulsory |
-|---|---|---|
-| name | the name for the programRuleVariable - this name is used in expressions. #{myVariable} \> 5 | Compulsory |
-| sourceType | Defines how this variable is populated with data from the enrollment and events. <br> * DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.<br> * DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.<br> * CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action<br> * TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute | Compulsory |
-| valueType | valueType parameter defines the type of the value that this ProgramRuleVariable can contain. Its value is dependent on sourceType parameter. If source is DataElement or TrackedEntityAttribute<br> then valueType will be derived from valueType of the source. When the sourceType is CALCULATED_VALUE, then valueType should be provided by the user otherwise it will default <br> to ValueType.TEXT| Compulsory
-| dataElement | Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_. | See description |
-| trackedEntity- Attribute | Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE. | See description |
-| useCodeFor- OptionSet | If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated. ||
-| programStage | Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE. | See description |
+| name                     | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Compulsory      |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+| name                     | the name for the programRuleVariable - this name is used in expressions. #{myVariable} \> 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Compulsory      |
+| sourceType               | Defines how this variable is populated with data from the enrollment and events.<br> *DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - This source type works the same way as DATAELEMENT_NEWEST_EVENT_PROGRAM, except that it only evaluates values from one program stage. This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage. In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest `createdAt` property of the event. <br>*DATAELEMENT_NEWEST_EVENT_PROGRAM - This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>**NB** Future dates are "newer" than current or past dates.<br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest `createdAt` property of the event.<br>*DATAELEMENT_CURRENT_EVENT - Program rule variables with this source type will contain the data value from the same event that the user currently has open. This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules.<br>*DATAELEMENT_PREVIOUS_EVENT - Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open. This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events. Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered.<br>*CALCULATED_VALUE - Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action. This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable. These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary caculation is done before the rule that consumes the calculated value.<br>*TEI_ATTRIBUTE - Populates the program rule variable with a specified tracked entity attribute for the current enrollment. Use this is the source type to create program rules that evaluate data values entered during registration. This source type is also useful when you create program rules that compare data in events to data entered during registration. This source type is only used for tracker programs (programs with registration). | Compulsory      |
+| valueType                | valueType parameter defines the type of the value that this ProgramRuleVariable can contain. Its value is dependent on sourceType parameter. If source is DataElement or TrackedEntityAttribute<br> then valueType will be derived from valueType of the source. When the sourceType is CALCULATED_VALUE, then valueType should be provided by the user otherwise it will default <br> to ValueType.TEXT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Compulsory      |
+| dataElement              | Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | See description |
+| trackedEntity- Attribute | Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | See description |
+| useCodeFor- OptionSet    | If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                 |
+| programStage             | Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | See description |
 
 ### Creating program rules { #webapi_creating_program_rules } 
 
@@ -2484,11 +3395,19 @@ Table: Collection membership CSV Format
 | 1 | UID | Yes | UID | The UID of the collection to add an object to |
 | 2 | UID | Yes | UID | The UID of the object to add to the collection |
 
+### Category Option Group
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 characters. Unique. |
+| 2 | UID | No | UID | Stable identifier. Max 11 chars. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 char. |
+| 4 | Short name | No || Short name. Max 50 characters. |
+| 5 | Data Dimension Type | Yes || Data Dimension Type, can be either DISAGGREGATION or ATTRIBUTE |
+
 ### Other objects { #webapi_csv_other_objects } 
 
-
-
-Table: Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format
+Table: Data Element Group, Category Option, Organisation Unit Group CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
 |---|---|---|---|---|
@@ -3074,6 +3993,28 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -d "https://dhis2.org/metadata-repo/221/trainingland-org-units/metadata.json"
   -H "Content-Type:text/plain" -u admin:district
 ```
+
+> **Note**
+>
+> The supplied URL will be checked against the config property `metadata.sync.remote_servers_allowed` in the `dhis.conf` file.
+> If the base URL is not one of the configured servers allowed then the operation will not be allowed. See failure example below.  
+> Some examples where the config set is `metadata.sync.remote_servers_allowed=https://server1.org/,https://server2.org/`
+> - supply `https://server1.org/path/to/resource` -> this will be accepted
+> - supply `https://server2.org/resource/path` -> this will be accepted
+> - supply `https://oldserver.org/resource/path` -> this will be rejected
+
+Sample failure response in JSON format.
+
+```json
+ {
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Provided URL is not in the remote servers allowed list",
+  "errorCode": "E1004"
+}
+```
+
 
 ## Reference to created by user
 

@@ -54,7 +54,6 @@ Later DHIS2 versions require the following software versions to operate.
 | 2.35              | 11                    | 8                          | 9                  | 22.04                      |
 | Pre-2.35          | 8                     | 8                          | 9                  | 22.04                      |
 
-
 - PostgreSQL database version 13 or later. A later PostgreSQL 16 is recommended.
 - PostGIS database extension version 2.2 or later, 3 is recommended.
 - Tomcat servlet container version 8.5.50 or 9, 9 is recommended.

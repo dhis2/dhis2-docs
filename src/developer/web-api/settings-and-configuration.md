@@ -45,6 +45,18 @@ Alternatively, you can specify the key as a query parameter:
 
     /api/33/systemSettings?key=my-key
 
+If a key is not found or marked confidential then a `404` response will be returned like so:
+
+```json
+{
+    "httpStatus": "Not Found",
+    "httpStatusCode": 404,
+    "status": "ERROR",
+    "message": "Setting does not exist or is marked as confidential",
+    "errorCode": "E1005"
+}
+```
+
 You can retrieve specific system settings as JSON by repeating the key
 query parameter:
 
@@ -115,8 +127,6 @@ Table: System settings
 | keyCacheStrategy | Cache strategy. Default: "CACHE_6AM_TOMORROW" | No |
 | keyCacheability | PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not. | No |
 | phoneNumberAreaCode | Phonenumber area code | No |
-| multiOrganisationUnitForms | Enable multi-organisation unit forms. Default: "false" | No |
-| keyConfig || No |
 | keyAccountRecovery | Enable user account recovery. Default: "false" | No |
 | keyLockMultipleFailedLogins | Enable locking access after multiple failed logins | No |
 | googleAnalyticsUA | Google Analytic UA key for tracking site-usage | No |
@@ -130,16 +140,19 @@ Table: System settings
 | recaptchaSite | Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production. | No |
 | keyCanGrantOwnUserAuthorityGroups | Allow users to grant own user roles. Default: "false" | No |
 | keySqlViewMaxLimit | Max limit for SQL view | No |
+| keyDataQualityMaxLimit | Max limit for data quality results. Must be between zero and 50,000. | No |
 | keyRespectMetaDataStartEndDatesInAnalyticsTableExport | When "true", analytics will skip data not within category option's start and end dates. Default: "false" | No |
 | keySkipDataTypeValidationInAnalyticsTableExport | Skips data type validation in analytics table export | No |
 | keyCustomLoginPageLogo | Logo for custom login page | No |
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
-| keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
+| globalShellEnabled | When this property is enabled (set to true), apps will be displayed as iframes within a global shell. This global shell provides a consistent header bar across the system which has expanded functionalities compared to the original header bar. Default: true. | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
-| keyAnalyticsMaxLimit | Maximum number of analytics recors. Default: "50000" | No |
+| keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
+| KeyTrackedEntityMaxLimit | Maximum number of tracked entities that are returned by `/tracker/trackedEntities`. More info [here](tracker.md#tracked-entities-collection-limits). Default: "50000" | No |
 | keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
+| keyAnalyticsPeriodYearsOffset | Defines the years' offset to be used in the analytics export process. If the year of a respective date is out of the offset the system sends back a warning message during the process. At this point, the period generation step is skipped. ie.: suppose the system user sets the offset value to `5`, and we are in the year 2023. It means that analytics will accept exporting dates from 2018 (inclusive) to 2028 (inclusive). Which translates to: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028]. NOTE: The offset will have a significant influence on resource usage. Higher values will trigger higher usage of memory RAM/HEAP and CPU. Setting negative numbers to this key will disable any kind of validation (which means no warnings) and the internal range of years will be used (1970 to current year plus 10) Default: 22 | No |
 | keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
 | keyLastSuccessfulAnalyticsTablesRuntime | Keeps timestamp of last successful analytics tables run | No |
 | keyLastSuccessfulLatestAnalyticsPartitionRuntime | Keeps timestamp of last successful latest analytics partition run | No |
@@ -177,7 +190,7 @@ Table: System settings
 | keyCustomCss | Custom CSS to be used on the website | No |
 | keyCalendar | The calendar type. Default: "iso8601". | No |
 | keyDateFormat | The format in which dates should be displayed. Default: "yyyy-MM-dd". | No |
-| keyStyle | The style used on the DHIS2 webpages. Default: "light_blue/light_blue.css". | No |
+| keyStyle | The style used by the DHIS2 Android app. Default: "light_blue/light_blue.css". | No |
 | keyRemoteInstanceUrl | Url used to connect to remote instance | No |
 | keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
@@ -208,7 +221,11 @@ Table: System settings
 | keyDashboardContextMenuItemOpenInRelevantApp | Allow users to open dashboard favorites in relevant apps | Yes |
 | keyDashboardContextMenuItemShowInterpretationsAndDetails | Allow users to show dashboard favorites' interpretations and details | Yes |
 | keyDashboardContextMenuItemViewFullscreen | Allow users to view dashboard favorites in fullscreen | Yes |
-
+| jobsRescheduleAfterMinutes | If a job is in state `RUNNING` for this amount of minutes or longer without making progress in form of updating its `lastAlive` timestamp the job is considered stale and reset to `SCHEDULED` state | No |
+| jobsCleanupAfterMinutes | A "run once" job is deleted when this amount of minutes has passed since it finished successful or unsuccessful | No |
+| jobsMaxCronDelayHours | A CRON expression triggered job will only trigger in the window between its target time of the day and this amount of hours later. If it wasn't able to run in that window the execution is skipped and next execution according to the CRON expression is the next target execution | No |
+| jobsLogDebugBelowSeconds | A job with an execution interval below this number of seconds logs its information on debug rather than info | No |
+| keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
 
 ## User settings { #webapi_user_settings } 
 
@@ -314,15 +331,15 @@ resources:
     
     GET POST /api/facilityOrgUnitLevel
 
-For the CORS whitelist configuration you can make a POST request with an
-array of URLs to whitelist as payload using "application/json" as
+For the CORS allowlist configuration you can make a POST request with an
+array of URLs to allowlist as payload using "application/json" as
 content-type, for instance:
 
 ```json
 ["www.google.com", "www.dhis2.org", "www.who.int"]
 ```
 
-    GET POST /api/33/configuration/corsWhitelist
+    GET POST /api/33/configuration/corsAllowlist
 
 For POST requests, the configuration value should be sent as the request
 payload as text. The following table shows appropriate configuration
@@ -345,7 +362,7 @@ Table: Configuration values
 | remoteServerUrl | URL to remote server |
 | remoteServerUsername | Username for remote server authentication |
 | remoteServerPassword | Password for remote server authentication |
-| corsWhitelist | JSON list of URLs |
+| corsAllowlist | JSON list of URLs |
 
 As an example, to set the feedback recipients user group you can invoke
 the following curl command:
@@ -354,36 +371,6 @@ the following curl command:
 curl "localhost/api/33/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
   -H "Content-Type:text/plain"-u admin:district
 ```
-
-## Read-only configuration { #webapi_readonly_configuration_interface } 
-
-To access all configuration settings and properties you can use the read-only configuration endpoint. This will provide read-only access to *UserSettings, SystemSettings and DHIS2 server configurations* You can get XML and JSON responses through the *Accept* header. You can *GET* all settings from:
-
-    /api/33/configuration/settings
-
-You can get filtered settings based on setting type:
-
-    GET /api/33/configuration/settings/filter?type=USER_SETTING
-
-    GET /api/33/configuration/settings/filter?type=CONFIGURATION
-
-More than one type can be provided:
-
-    GET /api/33/configuration/settings/filter?type=USER_SETTING&type=SYSTEM_SETTING
-
-
-
-Table: SettingType values
-
-| Value | Description |
-|---|---|
-| USER_SETTING | To get user settings |
-| SYSTEM_SETTING | To get system settings |
-| CONFIGURATION | To get DHIS server settings |
-
-> **Note**
->
-> Fields which are confidential will be provided in the output but without values.
 
 ## Tokens { #webapi_tokens } 
 
@@ -512,35 +499,45 @@ DHIS2 web application. This can be particularly useful in certain situations:
   - Including CSS styles which are used in custom data entry forms and
     HTML-based reports.
 
-### Javascript { #webapi_customization_javascript } 
+## Login App customization { #login_app_customization }
 
-To insert Javascript from a file called *script.js* you can interact
-with the *files/script* resource with a POST request:
+The Settings App allows users to define a variety of elements (text, logo, flag) that can be used to customize the login page of DHIS2. Additionally, it is possible to choose between two preconfigured layouts (the default and a sidebar layout).
 
-```bash
-curl --data-binary @script.js "localhost/api/33/files/script"
-  -H "Content-Type:application/javascript" -u admin:district
+If needed, the login app's styling and layout can be further customized by uploading an HTML template (also definable in the settings app). This HTML template replaces certain elements (based on ID); the reserved IDs are listed in the table below. In this way, it is possible to combine custom styling (using css) and custom layout (using HTML) to change the look of the login app. The custom template does not support custom scripts, and script tags will be removed from any uploaded template.
+
+To create a custom template, it is recommended to start with one of the existing templates (these are available for download from within the login app at the extension dhis-web-login/#download).
+
+ID | Replaced by |
+|---|---|
+| **login-box** | The main login dialog, which prompts the user to enter their username/password. **This must be included for the login app to work as intended.**  |
+| **application-title** | Text for the application title.  |
+| **application-introduction** | Text for the application introduction. |
+| **flag** | The selected flag. |
+| **logo** | The logo (DHIS2 logo is used if custom logo is not defined). |
+| **powered-by** | A link to DHIS2.org. |
+| **application-left-footer** | Text for the left-side footer. |
+| **application-right-footer** | Text for the right-side footer. |
+| **language-select** | Selection to control the language of the login app. |
+
+The appearance of the login dialog can also be modified by defining css variables within the HTML template. The following css variables are available for customization:
+```
+--form-container-margin-block-start
+--form-container-margin-block-end
+--form-container-margin-inline-start, auto
+--form-container-margin-inline-end
+--form-container-default-width
+--form-container-padding
+--form-container-background-color
+--form-container-box-border-radius
+--form-container-box-shadow
+--form-container-font-color
+--form-title-font-size
+--form-title-font-weight
+--form-container-title-color
 ```
 
-Note that we use the `--data-binary` option to preserve formatting of the
-file content. You can fetch the JavaScript content with a GET request:
-
-    /api/33/files/script
-
-To remove the JavaScript content you can use a DELETE request.
-
-### CSS { #webapi_customization_css } 
-
-To insert CSS from a file called *style.css* you can interact with the
-*files/style* resource with a POST-request:
+You can reset the login page theme using the API by making a *POST* request to ```/api/41/systemSettings/loginPageLayout``` including the loginPageLayout DEFAULT or SIDEBAR value in the request body, where content type is set to "text/plain". As an example, you can use curl like this:
 
 ```bash
-curl --data-binary @style.css "localhost/api/33/files/style"
-  -H "Content-Type:text/css" -u admin:district
+curl "play.im.dhis2.org/stable-2-41-0/api/41/systemSettings/loginPageLayout" -d "DEFAULT" -H "Content-Type: text/plain" -u admin:district
 ```
-
-You can fetch the CSS content with a GET-request:
-
-    /api/33/files/style
-
-To remove the JavaScript content you can use a DELETE request.

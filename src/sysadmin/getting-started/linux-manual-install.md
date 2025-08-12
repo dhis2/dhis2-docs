@@ -1,4 +1,5 @@
-# Manual Install on Ubuntu Server { #getting_started_linux_manual_install } 
+# Manual Install on Ubuntu Server { #getting_started_linux_manual_install }
+
 ## Introduction { #install_server_setup } 
 This guide explains how to manually install DHIS2 on Ubuntu 22.04
 with PostgreSQL and Tomcat as the server. It also suggests
@@ -77,19 +78,19 @@ standard user and use it to run the Tomcat instance to enhance security.,
 Install PostgreSQL with below steps
 
 *  Add PostgreSQL repository
-   ```
+   ```sh
    sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
    ```
 * Import the PostgreSQL repository signing key:
-   ```
+   ```sh
    curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
    ```
 * Update the package lists 
-   ```
+   ```sh
    sudo apt update -y && sudo apt upgrade -y 
    ```
 * Install PostgreSQL 16
-   ```
+   ```sh
    sudo apt-get install -y postgresql-16 postgresql-16-postgis-3
    ```
 
@@ -103,7 +104,7 @@ Install PostgreSQL with below steps
    ```sh
    sudo -u postgres createuser -SDRP dhis
    ```
-   Enter a secure password at the prompt: <br>
+   Enter a secure password at the prompt:
 
    > **Note**
    >
@@ -148,6 +149,7 @@ To install the recommended JDK for your DHIS2 version, use the following command
 
 ```
 sudo apt-get install -y openjdk-<jdk_version>-jdk
+
 ```
 Verify that your installation is correct by invoking:
 ```
@@ -215,8 +217,8 @@ connection.password = xxxx
    at the end for the file. 
    `sudo -u dhis vim /home/dhis/tomcat-dhis/bin/setenv.sh`
    ```
-   export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
-   export JAVA_OPTS='-Xms4000m -Xmx7000m'
+   export JAVA_HOME='/usr/lib/jvm/java-17-openjdk-amd64/'
+   export JAVA_OPTS='-Xms3g -Xmx6g'
    export DHIS2_HOME='/home/dhis/config'
    ```
       * `JAVA_HOME` sets the location of the JDK installation.
@@ -282,7 +284,7 @@ connection.password = xxxx
 
 ## Running DHIS2 { #install_running_dhis2 } 
 
-*  Start the DHIS2 instance with the command below,
+*  Start the DHIS2 instance with the command below:
    ```sh
    sudo -u dhis /home/dhis/tomcat-dhis/bin/startup.sh
    ```
@@ -291,13 +293,13 @@ connection.password = xxxx
 > 
 > The DHIS2 server should never be run as root or other privileged user.
 
-* Check the logs live 
+* Check the logs live:
    ```
    tail -f /home/dhis/tomcat-dhis/logs/catalina.out
    ```
 
-* To stop dhis2 instance 
-   ```
+* To stop the DHIS2 instance:
+   ```sh
    sudo -u dhis /home/dhis/tomcat-dhis/bin/shutdown.sh
    ```
 

@@ -152,7 +152,8 @@ Supported filter parameters include:
 * `created=<ISO-expression>` to match all validation results that were created within the provided period
 * `notificationSent=<boolean>` to match either only validation results for which a notification was or wasn't sent
 
-If filters are combined all conditions have to be true (AND logic).
+
+If filters are combined, all conditions have to be true (AND logic).
 
 Some examples:
 
@@ -183,7 +184,7 @@ This endpoint supports two algorithms for detecting outliers:
 
 * **Z-score:** The z-score is defined as the absolute deviation between the score and mean divided by the standard deviation. A threshold parameter referring to the number of standard deviations from the mean must be specified with the z-score algorithm to define the upper and lower boundaries for what is considered an outlier value.
 * **Modified Z-score:** Same as z-score except it uses the median instead of the mean as measure of central tendency. Parameters are same as for Z-score.
-* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS 2 based on data element, org unit and category option combination.
+* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS2 based on data element, org unit and category option combination.
 
 The outlier values will be *ordered according to significance*, by default by the absolute deviation from the mean, with the most significant value first. This is helpful to quickly identify the outlier values which have the biggest impact on data quality and data analytics.
 
@@ -203,7 +204,7 @@ The following query parameters are supported.
 | dataStartDate   | Start date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd). |
 | dataEndDate     | End date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).   |
 | orderBy         | Field to order by. `Z_SCORE` and `MOD_Z_SCORE`algorithm only.| No        | `MEAN_ABS_DEV`, `Z_SCORE`                 |
-| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 500. |
+| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero and less than system setting `keyDataQualityMaxLimit` Default: 500. |
 
 [*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
 
@@ -378,18 +379,30 @@ To run validation rules and retrieve violations:
 
 The following query parameters are supported:
 
-
-
 Table: Validation rule analysis query parameters
 
-| Query parameter | Description | Option |
-|---|---|---|
-| vrg | Validation rule group | ID |
-| ou | Organisation unit | ID |
-| startDate | Start date for the timespan | Date |
-| endDate | End date for the timespan | Date |
-| persist | Whether to persist violations in the system | false &#124; true |
-| notification | Whether to send notifications about violations | false &#124; true |
+| Query parameter | Description | Option | Required | Default |
+|---|---|---|---|
+| vrg | Validation rule group | ID | false | If omitted, all validation rule groups will be used |
+| ou | Organisation unit | ID |true | |
+| startDate | Start date for the time span | Date (yyyy-MM-dd) | false | Today |
+| endDate | End date for the time span | Date (yyyy-MM-dd) | false | Today |
+| persist | Whether to persist violations in the system | false &#124; true | false | false |
+| notification | Whether to send notifications about violations | false &#124; true | false | false |
+| maxResults | Max limit for the output | Integer, greater than zero. Maximum as specified by system setting `keyDataQualityMaxLimit`| false | 500 |
+
+Sample POST body request: 
+
+```json
+{
+    "startDate":"2024-01-01",
+    "endDate":"2025-04-10",
+    "ou":"ImspTQPwCqd",
+    "notification":false,
+    "persist":false,
+    "vrg":"UP1lctvalPn",
+    "maxResults": 500
+}
 
 Sample output:
 ```json
@@ -546,9 +559,22 @@ Additional results can be filtered using a `section` parameter.
 
 The `section` filter will return all exact matches which have the specified section. 
 
+Furthermore, to filter (select) only checks marked as `isSlow` use `slow=true`,
+
+    GET /api/dataIntegrity?slow=true
+
+or to filter (select) only checks that are not performed via database query 
+(programmed checks) use `programmatic=true`:
+
+    GET /api/dataIntegrity?programmatic=true
+
+The `slow`, `programmatic` and `section` filters can be combined in which case
+all conditions must be met.
+
 ### Running data integrity summaries { #webapi_data_integrity_run_summary }
 
 Since version 2.38, data integrity checks have two levels of specificity: 
+
 - a `summary` level that provides an overview of the number of issues
 - a `details` level that provides a list of issues pointing to individual data integrity violations.
 
@@ -648,6 +674,39 @@ To get a list of the names of checks for which results are available already use
 
     GET /api/dataIntegrity/summary/completed
 
+### Retrieving completed checks as Prometheus metrics {#webapi_data_integrity_metrics}
+
+Metadata integrity checks which are present in the cache, can be retrieved in the Prometheus
+metrics format by making a request to :
+    GET /api/dataIntegrity/metrics
+
+The response should return a plain text format in the [Prometheus plain text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format). Several metrics are available
+for each data integrity check.
+ - Count: A count of the number of issues identified by the metadata check. 
+ - Percentage: When available, provides a percentage of the objects which have been identified by the check relative to a baseline. For instance, if check "Organisation units with trailing spaces" has a percent of 2.13, the percentage is calculated by dividing the number of organisation units with trailing spaces by the total number of organisation units. Note that this percentage may not be available for all metadata integrity checks.
+ - Duration: Number of milliseconds that the check took to execute the last time it was run.
+
+An example of the output of this endpoint is provided below:
+
+```text
+# HELP dhis_data_integrity_check_count Data integrity check counts
+# TYPE dhis_data_integrity_check_count gauge
+dhis_data_integrity_check_count{check="orgunits_invalid_geometry"} 1
+dhis_data_integrity_check_count{check="user_groups_scarce"} 0
+dhis_data_integrity_check_count{check="indicator_no_analysis"} 13
+# HELP dhis_data_integrity_check_percentage Data integrity check percentages
+# TYPE dhis_data_integrity_check_percentage gauge
+dhis_data_integrity_check_percentage{check="orgunits_invalid_geometry"} 0.13054830287206268
+dhis_data_integrity_check_percentage{check="user_groups_scarce"} 0.0
+dhis_data_integrity_check_percentage{check="indicator_no_analysis"} 16.0
+# HELP dhis_data_integrity_check_duration Data integrity check durations
+# TYPE dhis_data_integrity_check_duration gauge
+dhis_data_integrity_check_duration{check="orgunits_invalid_geometry"} 11
+dhis_data_integrity_check_duration{check="user_groups_scarce"} 1
+dhis_data_integrity_check_duration{check="indicator_no_analysis"} 0
+```
+
+Data integrity checks which are not currently in the cache will not be returned by this endpoint.  A request would need to be made to the `/summary` endpoint to trigger the checks to be run or alternatively through a scheduled job.
 
 ### Running data integrity details { #webapi_data_integrity_run_details }
 
@@ -733,16 +792,25 @@ already completed details checks can be obtained using:
 
 ### Custom Data Integrity Checks { #custom_data_integrity_checks } 
 
-Users of DHIS2 can now create and supply their own Data Integrity Checks. This can be useful if users 
-want to avail of this functionality and extend upon the supplied set of core data integrity checks.  
+Users of DHIS2 can now create and supply their own Data Integrity Checks. This can be useful if users
+want to avail of this functionality and extend upon the supplied set of core data integrity checks.
 
-An example of a custom check could be for determining if certain users are members of specific user groups. This 
-type of check would be very specific to an implementation, and not generally applicable across all installs.  
+> **Tip**
+> 
+> Users are also encouraged to share their custom checks with others by opening a pull request in the 
+> [dhis2-core](https://github.com/dhis2/dhis2-core) repository containing their `.yaml` file(s).
+> Please select `platform-backend` as reviewer to put the PR on our radar early on. The team will 
+> take care of checking and linking the check correctly, so it becomes part of the provided suite of 
+> checks with the next release. 
 
-Custom checks can be implemented by satisfying the following requirements, each of which we will go into detail:  
+An example of a custom check could be for determining if certain users are members of specific user groups.
+This type of check would be very specific to an implementation, and not generally applicable across all installs.
+These types of metadata checks can be used to extend the default checks which are included with DHIS2.
+
+Custom checks can be implemented by satisfying the following requirements, each of which we will go into detail:
 - Supplying your own list of custom data integrity checks in a list file named `custom-data-integrity-checks.yaml`
  in your `DHIS2_HOME` directory
-- Having a directory named `custom-data-integrity-checks` in your `DHIS2_HOME` directory 
+- Having a directory named `custom-data-integrity-checks` in your `DHIS2_HOME` directory
 - Supplying your valid custom data integrity check yaml files
 
 #### Custom Data Integrity Check List File
@@ -753,7 +821,7 @@ data integrity checks:
     GET /api/dataIntegrity
 
 DHIS2 will look for a file named `custom-data-integrity-checks.yaml` in your `DHIS2_HOME` directory when loading
-data integrity files. If you are not using custom checks and the file is not present, a warning log like this will 
+data integrity files. If you are not using custom checks and the file is not present, a warning log like this will
 be present:
 
 ```text
@@ -761,11 +829,11 @@ be present:
 ```
 
 If you are implementing custom data integrity checks then this file must be present. To see what the core data integrity checks
-file looks like as an example, check out [this file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks.yaml). 
+file looks like as an example, check out [this file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks.yaml).
 
 
 The `custom-data-integrity-checks.yaml` file should list all of your custom data integrity checks.
-As an example, it could look something like this: 
+As an example, it could look something like this:
 
 ```yaml
 checks:
@@ -800,7 +868,7 @@ check will not be loaded.
 > custom checks will not affect these core system checks.
 
 An example data integrity check yaml file is located [here](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks/orgunits/orgunits_orphaned.yaml)
-for reference. Note the `name` property.  
+for reference. Note the `name` property.
 
 The data integrity `code` is calculated dynamically by using the first letter of each word in the `name`. Some examples:
 
@@ -859,12 +927,49 @@ Details of the data integrity check yaml file, taken from the JSON schema file
 | introduction    | yes      | outlining the objective of the check                                                                                          |
 | recommendation  | yes      | outlining how to resolve identified issues                                                                                    |
 
-## Complete data set registrations { #webapi_complete_data_set_registrations } 
+### Example custom data integrity check
+
+
+An example of a custom check could be for determining if users have an email. Emails are useful to be
+able to communicate with users and sent them notifications, as well as password recovery. So, in some
+instllations of DHIS2, it could be a policy that all users should have emails. An example of this type
+of custom check is shown below.
+
+```
+---
+name: users_should_have_emails
+description: Users should have emails.
+section: Users
+section_order: 6
+summary_sql: >-
+  WITH users_no_email as (
+  SELECT uid,username from
+  userinfo where email IS NULL)
+  SELECT COUNT(*) as value,
+  100*COUNT(*) / NULLIF( ( select COUNT(*) from userinfo), 0) as percent
+  from users_no_email;
+details_sql: >-
+  WITH users_no_email as (
+  SELECT uid,username from
+  userinfo where email IS NULL)
+  SELECT uid,username as from users_no_email;
+severity: WARNING
+introduction: >
+  Users should have defined emails. This is important for password recovery and to be able
+  to send notifications to users.
+recommendation: >
+  Make sure that all users have defined emails.
+details_id_type: users
+```
+
+More examples of different types of metadata integrity checks can be found in the DHIS2 source code [here](https://github.com/dhis2/dhis2-core/tree/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks).
+
+## Complete data set registrations { #webapi_complete_data_set_registrations }
 
 This section is about complete data set registrations for data sets. A
 registration marks as a data set as completely captured.
 
-### Completing data sets { #webapi_completing_data_sets } 
+### Completing data sets { #webapi_completing_data_sets }
 
 This section explains how to register data sets as complete. This is
 achieved by interacting with the *completeDataSetRegistrations*
@@ -964,7 +1069,7 @@ one can be used. For example, it doesn't make sense to both set the start/end da
 An example request looks like this:
 
 ```bash
-GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX&dataSet=pBOMPrpg1QX
+GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX
   &startDate=2014-01-01&endDate=2014-01-31&orgUnit=YuQRtpLP10I
   &orgUnit=vWbkYPRmKyS&children=true
 ```

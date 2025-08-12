@@ -215,7 +215,7 @@ Report will highlight all the **Program rule variables** not configured with **T
 
 ### ProgramRuleActions with no data Objects.
 
-Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataElement or trackedEntityAttribute.
+Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assigning values to either dataElement or trackedEntityAttribute.
 
 ### ProgramRuleActions with no notification
 
@@ -244,8 +244,9 @@ Table: Data maintenance functions in the Data Administration app
 | Function | Description |
 |---|---|
 | Clear analytics tables | Completely empties the analytics tables. These tables are used to generate aggregate data for the pivot tables, GIS and reports. |
+| Analyze analytics tables | Performs a PostgreSQL `analyze` operation on all analytics tables. |
 | Remove zero data values | Removes zero data values from the database. Values registered for data elements with aggregation operator average is not removed, as such values will be significant when aggregating the data, contrary to values registered for data elements with aggregation operator sum.<br> <br>Reducing the number of data values will improve system performance. |
-| Permanently remove soft deleted data values | When a data value is deleted in DHIS2, the system will mark the corresponding database row as deleted, and not actually delete the row.<br> <br>Running this maintenance function will physically remove these data value rows from the database. |
+| Permanently remove soft deleted data values / events / enrollments / tracked entity instances | When a data value is deleted in DHIS2, the system will mark the corresponding database row as deleted, and not actually delete the row.<br> <br>Running this maintenance function will physically remove these data value rows from the database. |
 | Prune periods | Removes all periods which have no registered data values. Reducing the number of periods will improve system performance. |
 | Remove expired invitations | Will delete users which represent user account invitations that now have gone past their expiry date. |
 | Drop SQL views | DHIS2 lets you set up and manage SQL views as system objects with corresponding database SQL views.<br> <br>Running this maintenance function will drop underlying SQL views for all system views. Use the **Create SQL views** function to recreate these SQL views. |
@@ -266,7 +267,7 @@ all data integrity issues are resolved. The resource tables are also
 generated automatically, every time the analytics process is run by the
 system.
 
-  - Organisation unit structure (\_orgunitstructure)
+  - Organisation unit structure (analytics_rs_orgunitstructure)
 
     This table should be regenerated any time there have been any
     changes made to the organisational unit hierarchy. This table
@@ -275,14 +276,14 @@ system.
     unit level and the organisation unit identifiers for all parents in
     the lineage as values.
 
-  - Data element group set structure (\_dataelementgroupsetstructure)
+  - Data element group set structure (analytics_rs_dataelementgroupsetstructure)
 
     This table provides information about which data elements are
     members of which data element group sets. The table has one row for
     each data element, one column for each data element group set and
     the names of the data element group as values.
 
-  - Indicator group set structure (\_indicatorgroupsetstructure)
+  - Indicator group set structure (analytics_rs_indicatorgroupsetstructure)
 
     This table provides information about which indicators are members
     of which indicator group sets. The table has one row for each
@@ -290,27 +291,27 @@ system.
     the indicator group as values.
 
   - Organisation unit group set structure
-    (\_organisationunitgroupsetstructure)
+    (analytics_rs_organisationunitgroupsetstructure)
 
     This table provides information about which organisation units are
     members of which organisation unit group sets. The table has one row
     for each organisation unit, one column for each organisation unit
     group set and the names of the organisation unit groups as values.
 
-  - Category structure (\_categorystructure)
+  - Category structure (analytics_rs_categorystructure)
 
     This table provides information about which data elements are
     members of which categories. The table has one row for each data
     element, one column for each category and the names of the category
     options as values.
 
-  - Data element category option combo name (\_categoryoptioncomboname)
+  - Data element category option combo name (analytics_rs_categoryoptioncomboname)
 
     This table should be regenerated any time there have been changes
     made to the category combination names. It contains readable names
     for the various combinations of categories.
 
-  - Data element structure (\_dataelementstructure)
+  - Data element structure (analytics_rs_dataelementstructure)
 
     This table provides information about all data elements and which
     period type (frequency) they capture data at. The period type is
@@ -318,18 +319,31 @@ system.
     elements to be member of data sets with similar period types to have
     a defined behaviour.
 
-  - Period structure (\_dataperiodstructure)
+  - Date periods structure (analytics_rs_dateperiodstructure)
 
     This table provides information about all periods and which period
     type they are associated with. For each period type with lower
     frequency than itself, it contains information about which period it
     will fall within.
 
+  - Periods structure (analytics_rs_periodstructure)
+
+    Similar to `analytics_rs_dateperiodstructure`, containing a scoped set of
+    periods more adapted for aggregated analytics.
+    It's based on `period` and `periodtype` tables.
+
   - Data element category option combinations
-    (\_dataelementcategoryoptioncombo)
+    (analytics_rs_dataelementcategoryoptioncombo)
 
     This table provides a mapping between data elements and all possible
     category option combinations.
+
+  - Data set organisation unit category (analytics_rs_datasetorganisationunitcategory)
+
+    This table provides information related to data sets, organisation units
+    and its category option combinations associated. If no association is found,
+    it uses the default category option combo.
+  
 
 ## Analytics tables management { #data_admin_analytics_tables }
 
@@ -360,7 +374,9 @@ re-process.
 
       - **Skip generation of organisation unit ownership data**
 
-3.  Select **Number of last years of data to include**.
+3.  Select **Number of last years of data to include**.  (If 0 is selected,
+then you will run latest or continuous analytics, as defined in
+[Continuous analytics table](scheduling.html#scheduling_continuous_analytics_table).)
 
 4.  Click **Start export**.
 
@@ -398,6 +414,8 @@ expiry period of the data set has passed.
 In the example above, a data lock exception would be created for "Bo" for the
 "ART monthly summary" dataset for "February 2014".
 
+In order to run this function, no extra authority is needed.
+
 ## Min-Max Value Generation { #data_admin_min_max_value_generation }
 
 This administrative function can be used to generate min-max values,
@@ -407,7 +425,8 @@ from the left hand frame, and then select the required organisation
 units to generate the min-max values for from the organisational units
 selector on the right. Press the "Generate" button to generate or
 regenerate all min-max values. Press "Remove" to remove all min-max
-values which are currently stored in the database.
+values which are currently stored in the database. In order to run this
+function, the user MUST have the authority `F_GENERATE_MIN_MAX_VALUES`.
 
 ![](resources/images/maintenance/min_max_value_generation.png)
 

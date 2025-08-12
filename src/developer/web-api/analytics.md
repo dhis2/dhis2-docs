@@ -17,8 +17,6 @@ organisation unit group sets.
 
 The analytics resource lets you specify a range of query parameters:
 
-
-
 Table: Query parameters
 
 | Query parameter | Required | Description | Options (default first) |
@@ -34,7 +32,7 @@ Table: Query parameters
 | skipData | No | Exclude the data part of the response. | false &#124; true |
 | skipRounding | No | Skip rounding of data values, i.e. provide full precision. | false &#124; true |
 | hierarchyMeta | No | Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata. | false &#124; true |
-| ignoreLimit | No | Ignore limit on max 50 000 records in response - use with care. | false &#124; true |
+| ignoreLimit | No | Ignore limit on max 50 000 records in response, use with care. | false &#124; true |
 | tableLayout | No | Use plain data source or table layout for the response. | false &#124; true |
 | hideEmptyRows | No | Hides empty rows in response, applicable when table layout is true. | false &#124; true |
 | hideEmptyColumns | No | Hides empty columns in response, applicable when table layout is true. | false &#124; true |
@@ -43,18 +41,18 @@ Table: Query parameters
 | includeMetadataDetails | No | Include metadata details to raw data response. | false &#124; true |
 | displayProperty | No | Property to display for metadata. | NAME &#124; SHORTNAME |
 | outputIdScheme | No | Identifier scheme used for metadata items in the query response. It accepts identifier, code or attributes. | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
-| outputOrgUnitIdScheme | No | Identifier scheme used for metadata items in the query response. This parameter overrides the "outputIdScheme" specifically for for Org Units. It accepts identifier, code or attributes. | UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
-| outputDataElementIdScheme | No | Identifier scheme used for metadata items in the query response. This parameter overrides the "outputIdScheme" specifically for Data Elements. It accepts identifier, code or attributes. | UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| outputOrgUnitIdScheme | No | Identifier scheme used for metadata items in the query response. Overrides "outputIdScheme" specifically for for Org Units. It accepts identifier, code or attributes. | UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| outputDataElementIdScheme | No | Identifier scheme used for metadata items in the query response. Overrides "outputIdScheme" specifically for Data Elements. It accepts identifier, code or attributes. | UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
 | inputIdScheme | No | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | UID &#124; CODE &#124; ATTRIBUTE:<ID\> |
 | approvalLevel | No | Include data which has been approved at least up to the given approval level, refers to identifier of approval level. | Identifier of approval level |
-| relativePeriodDate | No | Date used as basis for relative periods. | Date. |
-| userOrgUnit | No | Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separated by semicolon. | Organisation unit identifiers. |
-| columns | No | Dimensions to use as columns for table layout. | Any dimension (must be query dimension) |
-| rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
+| relativePeriodDate | No | Date used as basis for relative periods. | Date |
+| userOrgUnit | No | Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separated by semicolon. | Organisation unit identifiers |
+| columns | No | Dimensions to use as columns for table layout, separated by semi-colon. | Any dimension (must be query dimension) |
+| rows | No | Dimensions to use as rows for table layout, separated by semi-colon. | Any dimension (must be query dimension) |
 | order | No | Specify the ordering of rows based on value. | ASC &#124; DESC |
 | timeField | No | The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. | EVENT_DATE &#124; ENROLLMENT_DATE &#124; INCIDENT_DATE &#124; DUE_DATE &#124; COMPLETED_DATE &#124; CREATED &#124; LAST_UPDATED &#124; <Attribute ID\> &#124; <Data element ID\> |
 | orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. | <Attribute ID\> &#124; <Data element ID\> &#124; REGISTRATION &#124; ENROLLMENT &#124; OWNER_AT_START &#124; OWNER_AT_END |
-| enhancedConditions           | No       | Enable enhanced conditions for dimensions/filters | false &#124; true |
+| enhancedConditions | No | Enable enhanced conditions for dimensions and filters. | false &#124; true |
 
 The *dimension* query parameter defines which dimensions should be
 included in the analytics query. Any number of dimensions can be
@@ -148,7 +146,8 @@ order is:
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
 period (time) and organisation unit dimension. You can dynamically add
-dimensions through categories, data element group sets and organisation
+dimensions through categories, category option group sets, 
+organisation unit group sets, data element group sets and organisation
 unit group sets. The table below displays the available data dimensions
 in DHIS2. Each data dimension has a corresponding *dimension
 identifier*, and each dimension can have a set of *dimension items*:
@@ -317,12 +316,15 @@ below.
     above called "Date and period format" for the period format and
     available relative periods.
 
-  - For the organisation unit dimension, you can specify the items to be
-    the organisation unit or sub-units of the organisation unit
-    associated with the user currently authenticated for the request
-    using the keys `USER_ORGUNIT` or `USER_ORGUNIT_CHILDREN` as items,
-    respectively. You can also specify organisation unit identifiers
-    directly, or a combination of both.
+  - For the organization unit dimension, you can specify items as either
+    the organization unit or its sub-units associated with the currently
+    authenticated user. Use the keys USER_ORGUNIT for the organization unit
+    itself or USER_ORGUNIT_CHILDREN for its sub-units. You may also specify
+    organization unit identifiers directly or use a combination of both.
+    The authenticated user must have permission to export and analyze data
+    for the designated organization units. If no organization unit permissions
+    are explicitly granted, data capture and maintenance rights
+    will be applied instead.
 
   - For the organisation unit dimension, you can specify the organisation
     hierarchy level and the boundary unit to use for the request on the
@@ -343,8 +345,6 @@ below.
 
 The `dx` dimension is a special dimension which can contain all of the
 following data types.
-
-
 
 Table: Data dx dimension types
 
@@ -427,20 +427,20 @@ The JSON response will look like this:
     {
       "name": "dx",
       "column": "Data",
-      "meta": true,
-      "type": "java.lang.String"
+      "valueType": "TEXT",
+      "meta": true
     },
     {
       "name": "pe",
       "column": "Period",
-      "meta": true,
-      "type": "java.lang.String"
+      "valueType": "TEXT",
+      "meta": true
     },
     {
       "name": "value",
       "column": "Value",
-      "meta": false,
-      "type": "java.lang.Double"
+      "valueType": "NUMBER",
+      "meta": false
     }
   ],
   "height": 4,
@@ -807,7 +807,7 @@ Table: Query parameters for event query analytics only
 
 | Query parameter | Required | Description | Options |
 |---|---|---|---|
-| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. More details [here](#webapi_tracker_orgunit_scope) | DESCENDANTS, CHILDREN, SELECTED |
 | asc | No | Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
@@ -1017,21 +1017,21 @@ The default response JSON format will look similar to this:
     {
       "name": "psi",
       "column": "Event",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
     {
       "name": "ps",
       "column": "Program stage",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
     {
       "name": "eventdate",
       "column": "Event date",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
@@ -1039,7 +1039,6 @@ The default response JSON format will look similar to this:
       "name": "storedby",
       "column": "Stored by",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1047,7 +1046,6 @@ The default response JSON format will look similar to this:
       "name": "lastupdated",
       "column": "Last Updated",
       "valueType": "DATE",
-      "type": "java.time.LocalDate",
       "hidden": false,
       "meta": true
     },
@@ -1055,7 +1053,6 @@ The default response JSON format will look similar to this:
       "name": "createdbydisplayname",
       "column": "Created by (display name)",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1063,49 +1060,48 @@ The default response JSON format will look similar to this:
       "name": "lastupdatedbydisplayname",
       "column": "Last updated by (display name)",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
     {
       "name": "coordinates",
       "column": "Coordinates",
-      "type": "java.lang.String",
+      "valueType": "COORDINATE",
       "hidden": false,
       "meta": false
     },
     {
       "name": "ouname",
       "column": "Organisation unit name",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
     {
       "name": "oucode",
       "column": "Organisation unit code",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
     {
       "name": "ou",
       "column": "Organisation unit",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
     {
       "name": "oZg33kd9taw",
       "column": "Gender",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     },
     {
       "name": "qrur9Dvnyt5",
       "column": "Age",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "hidden": false,
       "meta": false
     }
@@ -1332,31 +1328,31 @@ using the HTTP *GET* method. The response will look similar to this:
     {
       "name": "oZg33kd9taw",
       "column": "Gender",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     },
     {
       "name": "qrur9Dvnyt5",
       "column": "Age",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     },
     {
       "name": "pe",
       "column": "Period",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     },
     {
       "name": "ou",
       "column": "Organisation unit",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     },
     {
       "name": "value",
       "column": "Value",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     }
   ],
@@ -1438,25 +1434,25 @@ of the underlying events is included. A sample response looks like this:
     {
       "name": "count",
       "column": "Count",
-      "type": "java.lang.Long",
+      "valueType": "INTEGER",
       "meta": false
     },
     {
       "name": "center",
       "column": "Center",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     },
     {
       "name": "extent",
       "column": "Extent",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     },
     {
       "name": "points",
       "column": "Points",
-      "type": "java.lang.String",
+      "valueType": "TEXT",
       "meta": false
     }
   ],
@@ -1505,8 +1501,8 @@ The response will provide the count and extent in JSON format:
 
 ```json
 {
-  extent: "BOX(-13.2682125910096 7.38679562779441,-10.4261178860988 9.90401290212795)",
-  count: 59
+  "extent": "BOX(-13.2682125910096 7.38679562779441,-10.4261178860988 9.90401290212795)",
+  "count": 59
 }
 ```
 
@@ -1570,8 +1566,6 @@ The enrollment analytics API lets you access aggregated event data and query *en
 
 Enrollment dimensions include data elements, attributes, organisation units and periods. The query analytics resource will simply return enrollments matching a set of criteria and does not perform any aggregation.
 
-
-
 Table: Enrollment dimensions
 
 | Dimension | Dimension id | Description |
@@ -1594,10 +1588,6 @@ Table: Possible indexing of repeatable stages
 | dqlbukwRfQ[-2].vANAXwtLwcT                 | -2                           | second from last execution date                                                            |
 | dqlbukwRfQ[1].vANAXwtLwcT                  | 1                            | first execution date                                                                       |
 | dqlbukwRfQ[3].vANAXwtLwcT                  | 3                            | third execution date                                                                       |
-| edqlbukwRfQ[*].vANAXwtLwcT                 | *                            | all repetitions                                                                            |
-| edqlbukwRfQ[-1~3].vANAXwtLwcT              | -1, 3                        | 3 repetitions starting with -1 (first after last execution date)                           |
-| edqlbukwRfQ[0~5~LAST_3_MONTHS ].vANAXwtLwcT | 0, 5, LAST_3_MONTHS          | 5 repetitions starting with last execution date down to the fifth one within last 3 months |
-| edqlbukwRfQ[-1~3~2021-01-01~2022-05-31].vANAXwtLwcT            | -1, 3, 2021-01-01,2022-05-31 | 3 repetitions starting with -1 (first after last execution date) within specified dates                                     |
 
 Warning: Indexing of non-repeatable program stage leads to parameter validation error.
 
@@ -1614,29 +1604,44 @@ You can specify any number of dimensions and any number of filters in a query. D
 
 For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the following program stage, and only women that have "Cronic conditions" would be included, you can use the following query:
 
-    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
-      &dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz
-      &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=edqlbukwRfQ.vANAXwtLwcT
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json
+      ?dimension=ou:ImspTQPwCqd
+      &dimension=w75KJ2mc4zz
+      &dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1
+      &dimension=w75KJ2mc4zz
+      &dimension=WZbXY0S00lP.sWoqcoByYmD
+      &dimension=edqlbukwRfQ.vANAXwtLwcT
       &startDate=2019-01-01&endDate=2019-01-31
 
 To retrieve enrollments in the from the "Antenatal care" program from last month (relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the followup program stage, only including smoking women with hemoglobin less than 20:
 
-    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json
+      ?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz
-      &dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1&dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20
+      &dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1
+      &dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20
       &dimension=pe:LAST_MONTH
 
 Sorting can be applied to the query for the enrollment and incident dates of the enrollment:
 
-    /api/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
-      &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH
-      &stage=WZbXY0S00lP&pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.xls
+      ?dimension=ou:ImspTQPwCqd
+      &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD
+      &dimension=pe:LAST_MONTH
+      &stage=WZbXY0S00lP&pageSize=10
+      &page=1
+      &asc=ENROLLMENTDATE
+      &ouMode=DESCENDANTS
 
 Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
-    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
-      &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
-      &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json
+      ?dimension=ou:ImspTQPwCqd
+      &dimension=WZbXY0S00lP.de0FEHSIoxh
+      &dimension=w75KJ2mc4zz
+      &dimension=pe:LAST_MONTH
+      &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10
+      &page=2
 
 #### Filtering
 
@@ -1701,8 +1706,6 @@ Table: Filter operators
 
 The analytics enrollment query API lets you specify a range of query parameters.
 
-
-
 Table: Query parameters for enrollment query endpoint
 
 | Query parameter | Required | Description | Options (default first) |
@@ -1714,7 +1717,7 @@ Table: Query parameters for enrollment query endpoint
 | filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. ||
 | programStatus | No | Specify enrollment status of enrollments to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED |
 | relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
-| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. More details [here](#webapi_tracker_orgunit_scope) | DESCENDANTS, CHILDREN, SELECTED |
 | asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return enrollments which have coordinates. | false &#124; true |
@@ -1736,10 +1739,16 @@ The default response representation format is JSON. The requests must be using t
 
 As an example, to get a response in Excel format you can use a file extension in the request URL like this:
 
-    /api/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
-      &dimension=WZbXY0S00lP.de0FEHSIoxh&columns=w75KJ2mc4zz
-      &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
-      &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.xls
+      ?dimension=ou:ImspTQPwCqd
+      &dimension=WZbXY0S00lP.de0FEHSIoxh
+      &columns=w75KJ2mc4zz
+      &dimension=WZbXY0S00lP.sWoqcoByYmD
+      &dimension=pe:LAST_MONTH
+      &stage=WZbXY0S00lP
+      &pageSize=10&page=1
+      &asc=ENROLLMENTDATE
+      &ouMode=DESCENDANTS
 
 The default response JSON format will look similar to this:
 
@@ -1750,7 +1759,6 @@ The default response JSON format will look similar to this:
       "name": "pi",
       "column": "Enrollment",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1758,7 +1766,6 @@ The default response JSON format will look similar to this:
       "name": "tei",
       "column": "Tracked entity instance",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1766,7 +1773,6 @@ The default response JSON format will look similar to this:
       "name": "enrollmentdate",
       "column": "Enrollment date",
       "valueType": "DATE",
-      "type": "java.util.Date",
       "hidden": false,
       "meta": true
     },
@@ -1774,7 +1780,6 @@ The default response JSON format will look similar to this:
       "name": "incidentdate",
       "column": "Incident date",
       "valueType": "DATE",
-      "type": "java.util.Date",
       "hidden": false,
       "meta": true
     },
@@ -1782,7 +1787,6 @@ The default response JSON format will look similar to this:
       "name": "storedby",
       "column": "Stored by",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1790,7 +1794,6 @@ The default response JSON format will look similar to this:
       "name": "lastupdated",
       "column": "Last Updated",
       "valueType": "DATE",
-      "type": "java.time.LocalDate",
       "hidden": false,
       "meta": true
     },
@@ -1798,7 +1801,6 @@ The default response JSON format will look similar to this:
       "name": "storedby",
       "column": "Stored by",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1806,7 +1808,6 @@ The default response JSON format will look similar to this:
       "name": "createdbydisplayname",
       "column": "Created by (display name)",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1814,7 +1815,6 @@ The default response JSON format will look similar to this:
       "name": "lastupdatedbydisplayname",
       "column": "Last updated by (display name)",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1822,7 +1822,6 @@ The default response JSON format will look similar to this:
       "name": "geometry",
       "column": "Geometry",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1830,7 +1829,6 @@ The default response JSON format will look similar to this:
       "name": "longitude",
       "column": "Longitude",
       "valueType": "NUMBER",
-      "type": "java.lang.Double",
       "hidden": false,
       "meta": true
     },
@@ -1838,7 +1836,6 @@ The default response JSON format will look similar to this:
       "name": "latitude",
       "column": "Latitude",
       "valueType": "NUMBER",
-      "type": "java.lang.Double",
       "hidden": false,
       "meta": true
     },
@@ -1846,7 +1843,6 @@ The default response JSON format will look similar to this:
       "name": "ouname",
       "column": "Organisation unit name",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1854,7 +1850,6 @@ The default response JSON format will look similar to this:
       "name": "oucode",
       "column": "Organisation unit code",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1862,7 +1857,6 @@ The default response JSON format will look similar to this:
       "name": "ou",
       "column": "Organisation unit",
       "valueType": "TEXT",
-      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1870,7 +1864,6 @@ The default response JSON format will look similar to this:
       "name": "de0FEHSIoxh",
       "column": "WHOMCH Chronic conditions",
       "valueType": "BOOLEAN",
-      "type": "java.lang.Boolean",
       "hidden": false,
       "meta": true
     },
@@ -1878,7 +1871,6 @@ The default response JSON format will look similar to this:
       "name": "sWoqcoByYmD",
       "column": "WHOMCH Smoking",
       "valueType": "BOOLEAN",
-      "type": "java.lang.Boolean",
       "hidden": false,
       "meta": true
     }
@@ -2025,6 +2017,142 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
       &startDate=2019-01-01&endDate=2019-01-31    
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
+
+## Tracked entity analytics { #webapi_te_analytics } 
+
+The tracked entity (TE) analytics API allows querying *TEs with their enrollments and event data* captured in DHIS2. 
+This resource retrieves data from TE, enrollments, events, and data elements across multiple programs, for a given tracked entity type.
+
+### Dimensions and items { #webapi_te_analytics_dimensions } 
+
+Tracked entity instance dimensions include program attributes (TE attributes), data elements, 
+organization units, and different kinds of periods. The analytics query will simply return TEs matching a set of criteria.
+It does not perform any aggregation.
+
+Table: TE dimensions
+
+| Dimension                          | Dimension id                                                | Description |
+|------------------------------------|-------------------------------------------------------------|---|
+| Program attributes (TE attributes) | `<attribute id>`                                            | The identifier of the program attribute.
+| Data elements in program stages    | `<program id>.<program stage id>[offset].<data element id>` | Data element identifiers must include the program and program stage. ie: `dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO` |
+| Periods                            | N.A.                                                        | There's no direct support for `period` dimension. Periods are supported through several different specific parameters. See the *Periods* section below. |
+| TEI Organisation units             | `ou`                                                        | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+| Enrollment Organisation units      | `<program id>.ou`                                           | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+| Event Organisation units           | `<program id><program stage id>.ou`                         | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+
+#### Offset
+
+Dimensions referring to items in repeatable events can include an optional offset.
+The offset is used to specify which repetition of the event to use.
+The order of the repetitions is based on the occurred date, with the most recent event being the latest repetition.
+The offset is an integer value, where 0 refers to the last repetition, -1 to the second last, and so on.
+Positive values refer to the first (oldest) repetition, second repetition, and so on.
+The offset is enclosed in square brackets [ ].
+
+Example:
+
+    IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO -- refers to the last repetition
+    IpHINAT79UW.ZzYYXq4fJie[-1].GQY2lXrypjO -- refers to the second last repetition
+    IpHINAT79UW.ZzYYXq4fJie[2].GQY2lXrypjO -- refers to the second repetition 
+
+### Tracked entity (TE) query analytics { #webapi_te_query_analytics } 
+
+The *analytics/trackedEntities/query* endpoint provides queries for captured TEs, allowing querying and filtering for information related to TEs, along with their respective enrollments and events. It does not perform any aggregation.
+
+    /api/41/analytics/trackedEntities/query
+
+You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, program attributes, tracked entity attributes, fixed and relative periods, and organization units. Dimensions can optionally have a query operator and a filter. TEs queries should be in the format described below.
+
+    /api/41/analytics/trackedEntities/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
+    	dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
+
+For example, to retrieve TEs of type `Person` from the "Child Program" and "Antenatal care" programs, where the "First name" is "James":
+
+    /api/41/analytics/trackedEntities/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+
+Paging can be applied to the query by specifying the page number and the page size parameters. If the page number is specified but the page size is not, a page size of 50 will be used. If the page size is specified but the page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
+
+    /api/41/analytics/trackedEntities/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+    	&pageSize=10&page=2
+
+#### Filtering
+
+Filters can be applied to data elements, tracked entity attributes, and tracked entity identifiers. The filtering is done through a query parameter in the following format:
+
+    &dimension=<item-id>:<operator>:<filter-value>
+
+For example, you can filter the "MCH Infant Weight (g)" data element, of the program "Child Program" and program stage "Baby Postnatal" looking for values greater than 2000 and lower than 4000. The filter is defined like this:
+
+    &dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO:GT:2000&dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO:LT:4000
+
+#### Periods 
+
+Unlike enrollment and event query endpoints, the TE endpoint supports multiple ways to specify the period the data belongs to. They are based on different *date* params as shown below:
+
+| Parameter      | Description                                                                      | 
+|----------------|----------------------------------------------------------------------------------|
+| eventDate      | TEs will be filtered based on the date the event occurred.                       |
+| enrollmentDate | TEs will be filtered based on the date of enrollment.                            |
+| scheduledDate  | TEs will be filtered based on the date the event was scheduled.                  |
+| incidentDate   | TEs will be filtered based on enrollment's incident date.                        |
+| lastUpdated    | TEs will be filtered based on the date the TE/enrollment/event was last updated. |
+| created        | TEs will be filtered based on the date the TE/enrollment/event was created.      |
+
+Some periods, mentioned above, can be applied to Tracked Entities, Enrollments, or Events, depending on the way they are expressed.
+
+Examples:
+
+* filtering TEs that have been updated during the last year:
+
+`lastUpdated=LAST_YEAR`
+
+* filtering TEs whose latest enrollment in the program "Child Program" has been updated during the last year:
+
+`lastUpdated=IpHINAT79UW.LAST_YEAR`
+
+* filtering TEs whose latest event in the program stage "Baby Postnatal", in the latest enrollment in the program "Child Program" has been updated during the last year:
+
+`lastUpdated=IpHINAT79UW.ZzYYXq4fJie.LAST_YEAR`
+
+* filtering TEs whose latest enrollment in the "Child Program" occurred in the last year:
+
+`enrollmentDate=IpHINAT79UW.LAST_YEAR`
+
+### Request query parameters { #webapi_te_analytics_query_parameters } 
+
+The analytics TE query API supports a range of query parameters.
+
+Table: Query parameters for the TE query endpoint
+
+| Query parameter         | Required | Description                                                                                                                                                                                                                                                                                                                                                               | Options (default first)                                                                                                                                                                              |
+|-------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| trackedEntityType       | Yes      | Tracked entity type identifier.                                                                                                                                                                                                                                                                                                                                           | Any tracked entity type identifier.                                                                                                                                                                  |
+| program                 | No       | Program identifiers.                                                                                                                                                                                                                                                                                                                                                      | Any program identifier. Accepts multiple comma-separated identifiers.                                                                                                                                |
+| dimension               | No       | Dimension identifier including data elements, attributes, program indicators, periods, organization units and organization unit group sets. Can be specified multiple times. Dimension filters can be applied to a dimension in the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN                                                                              |
+| filter                  | No       | Dimension identifier including data elements, attributes, periods, organization units and organization unit group sets. Can be specified multiple times. Dimension filters can be applied to a dimension in the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator).                     | Operators: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN                                                                              |
+| headers                 | No       | The name of the headers to be returned as part of the response.                                                                                                                                                                                                                                                                                                           | One or more header names (separated by a comma).                                                                                                                                                     |
+| relativePeriodDate      | No       | Overrides the start date, so relative periods will use this date as the starting date.                                                                                                                                                                                                                                                                                    | Example: "2016-01-01"                                                                                                                                                                                |
+| ouMode                  | No       | The mode for the selection of organization units. The default is `DESCENDANTS`, meaning all subunits in the hierarchy. `CHILDREN` refers to immediate children in the hierarchy; `SELECTED` refers to the selected organization units only.                                                                                                                                     | `DESCENDANTS`, `CHILDREN`, `SELECTED`                                                                                                                                                                      |
+| asc                     | No       | Dimensions to be sorted ascending. Can reference to enrollment date, incident date, org unit name, and code.                                                                                                                                                                                                                                                              | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>`   |
+| desc                    | No       | Dimensions to be sorted descending, can reference to enrollment date, incident date, org unit name and code.                                                                                                                                                                                                                                                              | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>`   |
+| page                    | No       | The page number. The default value is 1.                                                                                                                                                                                                                                                                                                                                  | Numeric positive value.                                                                                                                                                                              |
+| pageSize                | No       | The page size. The default value is 50 (which means 50 items per page).                                                                                                                                                                                                                                                                                                   | Numeric zero or positive value.                                                                                                                                                                      |
+| displayProperty         | No       | Property to display for metadata.                                                                                                                                                                                                                                                                                                                                         | NAME &#124; SHORTNAME                                                                                                                                                                                |
+| includeMetadataDetails  | No       | Include metadata details to raw data response.                                                                                                                                                                                                                                                                                                                            | false &#124; true                                                                                                                                                                                    |
+| outputIdScheme          | No       | Identifier scheme used for metadata items in the query response. It accepts identifiers, codes, or attributes.                                                                                                                                                                                                                                                            | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\>                                                                                                                                       |
+| dataIdScheme            | No       | Id scheme to be used for data, more specifically data elements and attributes that have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response.                                                                                                                    | NAME &#124; CODE &#124; UID                                                                                                                                                                          |
+| programStatus           | No       | Specify enrollment status of events to include. *Deprecated, prefer `enrollmentStatus`*                                                                                                                                                                                                                                                                                   | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*).                                                                                                                 |
+| enrollmentStatus        | No       | Specify enrollment status of events to include.                                                                                                                                                                                                                                                                                                                           | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*).                                                                                                                 |
+| eventStatus             | No       | Specify the status of events to include.                                                                                                                                                                                                                                                                                                                                  | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. Can be comma separated (*for query only*).                                                                                    |
+| coordinatesOnly         | No       | Whether to only return events that have coordinates.                                                                                                                                                                                                                                                                                                                      | false &#124; true                                                                                                                                                                                    |
+| geometryOnly            | No       | Whether to only return events that have geometries.                                                                                                                                                                                                                                                                                                                       | false &#124; true                                                                                                                                                                                    |
+| userOrgUnit             | No       | User organization unit identifier.                                                                                                                                                                                                                                                                                                                                        | Any organization unit identifier.                                                                                                                                                                    | 
+| skipMeta                | No       | Skip metadata in the response.                                                                                                                                                                                                                                                                                                                                            | false &#124; true                                                                                                                                                                                    |
+| skipData                | No       | Skip data in the response.                                                                                                                                                                                                                                                                                                                                                | false &#124; true                                                                                                                                                                                    |
+| skipRounding            | No       | Skip rounding of data values.                                                                                                                                                                                                                                                                                                                                             | false &#124; true                                                                                                                                                                                    |
+| skipHeaders             | No       | Skip headers in the response.                                                                                                                                                                                                                                                                                                                                             | false &#124; true                                                                                                                                                                                    |
+| totalPages              | No       | Include the total number of pages in the response.                                                                                                                                                                                                                                                                                                                        | false &#124; true                                                                                                                                                                                    |
+| displayProperty         | No       | Property to display for metadata.                                                                                                                                                                                                                                                                                                                                         | NAME &#124; SHORTNAME                                                                                                                                                                                |
 
 ## Dimensions { #webapi_dimensions }
 
@@ -2178,63 +2306,63 @@ All value types for data elements and tracked entity attributes are considered *
 
 ```json
 {
-   "page":1,
-   "total":5,
-   "pageSize":50,
-   "dimensions":[
-      {
-         "dimensionType":"PROGRAM_INDICATOR",
-         "created":"2015-08-06T22:49:20.128",
-         "lastUpdated":"2015-08-06T22:51:19.787",
-         "name":"Measles + Yellow fever doses low infant weight",
-         "displayName":"Measles + Yellow fever doses low infant weight",
-         "id":"tt54DiKuQ9c",
-         "uid":"tt54DiKuQ9c",
-         "displayShortName":"Measles + Yellow fever doses low infant weight"
-      },
-      {
-         "dimensionType":"PROGRAM_INDICATOR",
-         "created":"2017-01-20T10:32:26.388",
-         "lastUpdated":"2017-01-20T10:32:26.388",
-         "name":"Weight gain(in g) between birth and last postnatal",
-         "displayName":"Weight gain(in g) between birth and last postnatal",
-         "id":"qhTkqwAJLMv",
-         "uid":"qhTkqwAJLMv",
-         "displayShortName":"Weight gain(g)"
-      },
-      {
-         "dimensionType":"PROGRAM_INDICATOR",
-         "created":"2015-09-14T20:25:55.543",
-         "lastUpdated":"2018-08-28T12:22:47.857",
-         "name":"Average weight (g)",
-         "displayName":"Average weight (g)",
-         "id":"GxdhnY5wmHq",
-         "uid":"GxdhnY5wmHq",
-         "displayShortName":"Average weight (g)"
-      },
-      {
-         "dimensionType":"PROGRAM_INDICATOR",
-         "created":"2015-08-06T22:35:40.391",
-         "lastUpdated":"2015-08-06T22:35:40.391",
-         "name":"BCG doses low birth weight",
-         "displayName":"BCG doses low birth weight",
-         "id":"hCYU0G5Ti2T",
-         "uid":"hCYU0G5Ti2T",
-         "displayShortName":"BCG doses low birth weight"
-      },
-      {
-         "valueType":"NUMBER",
-         "dimensionType":"DATA_ELEMENT",
-         "created":"2012-09-20T17:37:45.474",
-         "lastUpdated":"2014-11-11T21:56:05.418",
-         "name":"MCH Weight (g)",
-         "displayName":"MCH Weight (g)",
-         "id":"A03MvHHogjR.UXz7xuGCEhU",
-         "uid":"UXz7xuGCEhU",
-         "code":"DE_2005736",
-         "displayShortName":"Weight (g)"
-      }
-   ]
+  "page":1,
+  "total":5,
+  "pageSize":50,
+  "dimensions":[
+    {
+      "dimensionType":"PROGRAM_INDICATOR",
+      "created":"2015-08-06T22:49:20.128",
+      "lastUpdated":"2015-08-06T22:51:19.787",
+      "name":"Measles + Yellow fever doses low infant weight",
+      "displayName":"Measles + Yellow fever doses low infant weight",
+      "id":"tt54DiKuQ9c",
+      "uid":"tt54DiKuQ9c",
+      "displayShortName":"Measles + Yellow fever doses low infant weight"
+    },
+    {
+      "dimensionType":"PROGRAM_INDICATOR",
+      "created":"2017-01-20T10:32:26.388",
+      "lastUpdated":"2017-01-20T10:32:26.388",
+      "name":"Weight gain(in g) between birth and last postnatal",
+      "displayName":"Weight gain(in g) between birth and last postnatal",
+      "id":"qhTkqwAJLMv",
+      "uid":"qhTkqwAJLMv",
+      "displayShortName":"Weight gain(g)"
+    },
+    {
+      "dimensionType":"PROGRAM_INDICATOR",
+      "created":"2015-09-14T20:25:55.543",
+      "lastUpdated":"2018-08-28T12:22:47.857",
+      "name":"Average weight (g)",
+      "displayName":"Average weight (g)",
+      "id":"GxdhnY5wmHq",
+      "uid":"GxdhnY5wmHq",
+      "displayShortName":"Average weight (g)"
+    },
+    {
+      "dimensionType":"PROGRAM_INDICATOR",
+      "created":"2015-08-06T22:35:40.391",
+      "lastUpdated":"2015-08-06T22:35:40.391",
+      "name":"BCG doses low birth weight",
+      "displayName":"BCG doses low birth weight",
+      "id":"hCYU0G5Ti2T",
+      "uid":"hCYU0G5Ti2T",
+      "displayShortName":"BCG doses low birth weight"
+    },
+    {
+      "valueType":"NUMBER",
+      "dimensionType":"DATA_ELEMENT",
+      "created":"2012-09-20T17:37:45.474",
+      "lastUpdated":"2014-11-11T21:56:05.418",
+      "name":"MCH Weight (g)",
+      "displayName":"MCH Weight (g)",
+      "id":"A03MvHHogjR.UXz7xuGCEhU",
+      "uid":"UXz7xuGCEhU",
+      "code":"DE_2005736",
+      "displayShortName":"Weight (g)"
+    }
+  ]
 }
 ```
 
@@ -2309,8 +2437,6 @@ and returns the result in the form of an HTML table.
 
 The request supports the following parameters:
 
-
-
 Table: Data set report query parameters
 
 | Parameter | Description | Type | Required |
@@ -2379,8 +2505,6 @@ this endpoint:
 A push analysis consists of the following properties, where some are
 required to automatically run push analysis jobs:
 
-
-
 Table: Push analysis properties
 
 | Property | Description | Type | Required |
@@ -2431,8 +2555,6 @@ URL that creates a new event view of charts:
 A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
-
-
 Table: Supported event types
 
 | Key | Description |
@@ -2450,8 +2572,6 @@ Table: Supported event types
 
 The usage analytics (data statistics) API lets you specify certain query
 parameters when asking for an aggregated report.
-
-
 
 Table: Query parameters for aggregated usage analytics (data statistics)
 
@@ -2476,8 +2596,6 @@ API query that creates a query for a monthly
 
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
-
-
 
 Table: Query parameters for top favorites
 
@@ -2586,7 +2704,9 @@ The JSON response looks like this:
 ]
 ```
 
-### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics } 
+Note that the number of `activeUsers` indicates the number of distinct users who had any events during the requested time period. The number of `users` represents the total number of users in the system (both enabled and disabled).
+
+### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics }
 
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
@@ -2685,8 +2805,6 @@ for creating (POST), updating (PUT), retrieving (GET) and deleting
 
 Analytics table hooks have the following fields:
 
-
-
 Table: Analytics table hook fields
 
 | Field | Options | Description |
@@ -2721,8 +2839,6 @@ temporary database table only.
 The following table shows the valid combinations of phases, table types
 and temporary tables.
 
-
-
 Table: Phases, table types and temporary tables
 
 | Phase | Table type | Temporary table |
@@ -2748,6 +2864,8 @@ Table: Phases, table types and temporary tables
 || VALIDATION_RESULT | analytics\_validationresult\_temp |
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
+
+You can create hooks with the Maintenance app or with the API.
 
 To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* as content type:
 
@@ -2786,8 +2904,6 @@ To create a hook which should run after the event analytics tables are populated
 }
 ```
 
-
-
 ## SVG conversion { #webapi_svg_conversion } 
 
 The Web API provides a resource which can be used to convert SVG content
@@ -2816,6 +2932,307 @@ Table: Query parameters
 | svg | Yes | The SVG content |
 | filename | No | The file name for the returned attachment without file extension |
 
+## Analytics outlier detection { #webapi_analytics_outlier_detection } 
+
+The analytics outliert API provides endpoints for investigation of the data quality based on Z Score and Modified Z Score. Both scores are statistical measures that help analyze and interpret data in the context of deviations from the middle value. They are particularly useful in identifying outliers or extreme values in a dataset. The API is implemented as a single analytics endpoint:
+
+- /api/analytics/outlierDetection
+
+### Request  { #webapi_analytics_outlier_detection_request } 
+
+**Query parameters**
+
+| Query parameter    | Description                                                                                                 | Required                                            | Options (default first)                                                                          |                                                                          
+|--------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| ds                 | Data set                                                                                                    | Yes                                                 | Data set identifier                                                                              |
+| startDate          | Start date for interval tocheck for outliers                                                                | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd)                                                                                |
+| endDate            | End date for interval to check for outliers                                                                 | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd)                                                                                |
+| pe                 | ISO periods and relative periods                                                                            | No (start and end date is mandatory in this case)   | see "date and period format"                                                                     |
+| relativePeriodDate | Date used as basis for relative periods.                                                                    | No                                                  | Date (yyyy-MM-dd)                                                                                |
+| ou                 | Organisation unit, organisation unit level or groups (can be combined)                                      | No                                                  | Organisation unit (level, group) identifier                                                      |
+| headers            | The name of the headers to be returned as part of the response. One or more headers name separated by comma | No                                                  | (NULL), dx, dxname, pename, pe ...                                                               |
+| orderBy            | Sort the records on the value column                                                                        | No                                                  | absdev, zscore, modifiedzscore, median, mean, stddev, medianabsdeviation, lowerbound, upperbound |
+| sortOrder          | Sort the records on the value column in ascending or descending order                                       | No                                                  | ASC, DESC                                                                                        |
+| algorithm          | Algorithm to use for outlier detection                                                                      | No                                                  | Z_SCORE, MODIFIED_Z_SCORE                                                                        |
+| threshold          | Threshold for outlier values Z_SCORE or MODIFIED_Z_SCORE                                                    | No                                                  | Numeric, greater than zero. Default: 3.0                                                         |
+| inputIdScheme      | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | No                                                  | UID, ID, CODE, NAME                                                                              |
+| maxResults         | Maximum rows (responses)                                                                                    | No                                                  | 500                                                                                              |
+| skipRounding       | Skip rounding of data values, i.e. provide fine precision (scale 10).                                       | No                                                  | false, true                                                                                      |
+
+**Request example**
+    
+    GET api/analytics/outlierDetection?ds=BfMAe6Itzgt&ou=ImspTQPwCqd&startDate=2022-07-26&endDate=2022-10-26&algorithm=Z_SCORE&maxResults=30&orderBy=value&threshold=3.0&sortOrder=asc&outputIdScheme=code
+
+### Response { #webapi_analytics_outlier_detection_response } 
+
+Response is delivered in several representation formats. The default format is JSON. The
+available formats and content types are:
+
+  - json (application/json)
+  - xml (application/xml)
+  - xsl (application/vnd.ms-excel)
+  - csv (application/csv)
+  - html (text/html)
+  - html+css (text/html)
+
+**Response example**
+
+```json
+{
+  "headers":[
+    {
+      "name":"dx",
+      "column":"Data",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"dxname",
+      "column":"Data name",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"pe",
+      "column":"Period",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"pename",
+      "column":"Period name",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"ou",
+      "column":"Organisation unit",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"ouname",
+      "column":"Organisation unit name",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"ounamehierarchy",
+      "column":"Organisation unit name hierarchy",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"coc",
+      "column":"Category option combo",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"cocname",
+      "column":"Category option combo name",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"aoc",
+      "column":"Attribute option combo",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"aocname",
+      "column":"Attribute option combo name",
+      "valueType":"TEXT",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"value",
+      "column":"Value",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"mean",
+      "column":"Mean",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"stddev",
+      "column":"Standard deviation",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"absdev",
+      "column":"Absolute deviation",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"zscore",
+      "column":"zScore",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"lowerbound",
+      "column":"Lower boundary",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    },
+    {
+      "name":"upperbound",
+      "column":"Upper boundary",
+      "valueType":"NUMBER",
+      "hidden":false,
+      "meta":false
+    }
+  ],
+  "metaData":{
+    "maxResults":30,
+    "count":3,
+    "orderBy":"VALUE",
+    "threshold":3.0,
+    "algorithm":"Z_SCORE"
+  },
+  "rowContext":{
+    
+  },
+  "width":18,
+  "rows":[
+    [
+      "DE_22",
+      "Q_Early breastfeeding (within 1 hr after delivery) at BCG",
+      "202209",
+      "September 2022",
+      "OU_204860",
+      "Sandaru CHC",
+      "/Sierra Leone/Kailahun/Penguia/Sandaru CHC",
+      "COC_292",
+      "Fixed, <1y",
+      "default",
+      "default",
+      "105.0",
+      "18.3",
+      "28.7",
+      "86.7",
+      "3.0",
+      "-67.9",
+      "104.4"
+    ],
+    [
+      "DE_359706",
+      "BCG doses given",
+      "202208",
+      "August 2022",
+      "OU_595",
+      "Ngalu CHC",
+      "/Sierra Leone/Bo/Bargbe/Ngalu CHC",
+      "COC_292",
+      "Fixed, <1y",
+      "default",
+      "default",
+      "220.0",
+      "41.6",
+      "57.4",
+      "178.3",
+      "3.1",
+      "-130.7",
+      "213.9"
+    ],
+    [
+      "DE_35",
+      "Yellow Fever doses given",
+      "202209",
+      "September 2022",
+      "OU_1027",
+      "Yemoh Town CHC",
+      "/Sierra Leone/Bo/Kakua/Yemoh Town CHC",
+      "COC_292",
+      "Fixed, <1y",
+      "default",
+      "default",
+      "466.0",
+      "48.1",
+      "114.2",
+      "417.8",
+      "3.6",
+      "-294.6",
+      "391.0"
+    ]
+  ],
+  "headerWidth":18,
+  "height":3
+}
+```
+### Statistics in response { #webapi_analytics_outlier_detection_stats_in_response }
+
+| Statistical Measure | Header name | Description | Link |
+|---|---|---|---|
+| Value | value | The data set/ data element numeric value (Penta1 doses given, Measles doses given, etc.) | |
+| Mean | mean |The average value of a set of numbers. Calculated by summing all values and dividing by the count.| https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data |
+| Standard Deviation | stddev | A measure of the amount of variation or dispersion in a set of values. | https://www.statisticshowto.com/probability-and-statistics/standard-deviation/ |
+| Absolute Deviation | absdev | The absolute difference between each data value and the middle value. | https://www.mathsisfun.com/data/mean-absolute-deviation.html |
+| Z Score | zscore | A standardized score that represents how many standard deviations a data value is from the mean. | https://www.statisticshowto.com/probability-and-statistics/z-score/ |
+| Modified Z Score | modifiedzscore | Similar to the Z score but robust to outliers. It uses the median and median absolute deviation. | https://www.statisticshowto.com/modified-z-scores/ |
+| Median Absolute Deviation | medianabsdeviation | A robust measure of the spread of data values, calculated as the median of the absolute deviations from the median. | https://math.stackexchange.com/questions/2232309/median-absolute-deviation-mad-formula |
+| Minimum | lowerbound | The minimum is the smallest value in a dataset. It represents the lowest observed value among all the data values. | |
+| Maximum| upperbound | The maximum is the largest value in a dataset. It represents the highest observed value among all the data values. | |
+
+### Error messages { #webapi_analytics_outlier_detection_error_messages } 
+
+All error messages are delivered with http status code 409.
+
+| Code | Message |
+|---|---|
+| E2200 | At least one data element must be specified. |
+| E2201 | Start date and end date or relative period must be specified. |
+| E2202 | Start date must be before end date. |
+| E2203 | At least one organisation unit must be specified. | 
+| E2204 | Threshold must be a positive number. |
+| E2205 | Max results must be a positive number. |
+| E2206 | Max results exceeds the allowed max limit: *500*. |
+| E2207 | Data start date must be before data end date. |
+| E2208 | Non-numeric data values encountered during outlier value detection. |
+| E2209 | Data start date not allowed. |
+| E2210 | Data end date not allowed. |
+| E2211 | Algorithm min-max values not allowed. |
+| E2212 | Specifying both a start date/end date and a relative period is not allowed. |
+| E2213 | Value of param orderBy is not compatible with algorithm *Z_SCORE*. |
+| E7180 | The analytics outliers data does not exist. Please ensure analytics job was run and did not skip the outliers. |
+| E7181 | Column *dxname* specified in orderBy, is not eligible for orderBy or does not exist. |
+
+The values in error messages are examples only.
+
+**Error message example**
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Start date and end date or relative period must be specified",
+  "errorCode": "E2201"
+}
+```
 ## Analytics query execution plan and costs including execution time estimation
 
 The analytics API provides endpoints for investigation of query performance issues. It is implemented as part of all analytics endpoints:
@@ -2831,271 +3248,11 @@ The analytics API provides endpoints for investigation of query performance issu
       &filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false
       &skipData=true&includeMetadataDetails=true
 
-The response looks like this.
-
-```json
-{
-    "headers": [
-        {
-            "name": "dx",
-            "column": "Data",
-            "valueType": "TEXT",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": true
-        },
-        {
-            "name": "ou",
-            "column": "Organisation unit",
-            "valueType": "TEXT",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": true
-        },
-        {
-            "name": "value",
-            "column": "Value",
-            "valueType": "NUMBER",
-            "type": "java.lang.Double",
-            "hidden": false,
-            "meta": false
-        }
-    ],
-    "metaData": {
-        "items": {
-            "ImspTQPwCqd": {
-                "uid": "ImspTQPwCqd",
-                "code": "OU_525",
-                "name": "Sierra Leone",
-                "dimensionItemType": "ORGANISATION_UNIT",
-                "valueType": "NUMBER",
-                "totalAggregationType": "SUM"
-            },
-            "sB79w2hiLp8": {
-                "uid": "sB79w2hiLp8",
-                "name": "ANC 3 Coverage",
-                "description": "Total 3rd ANC visits (Fixed and outreach) by expected number of pregnant women.",
-                "legendSet": "fqs276KXCXi",
-                "dimensionItemType": "INDICATOR",
-                "valueType": "NUMBER",
-                "totalAggregationType": "AVERAGE",
-                "indicatorType": {
-                    "name": "Per cent",
-                    "displayName": "Per cent",
-                    "factor": 100,
-                    "number": false
-                }
-            },
-            "dx": {
-                "uid": "dx",
-                "name": "Data",
-                "dimensionType": "DATA_X"
-            },
-            "pe": {
-                "uid": "pe",
-                "name": "Period",
-                "dimensionType": "PERIOD"
-            },
-            "ou": {
-                "uid": "ou",
-                "name": "Organisation unit",
-                "dimensionType": "ORGANISATION_UNIT"
-            },
-            "Uvn6LCg7dVU": {
-                "uid": "Uvn6LCg7dVU",
-                "code": "IN_52486",
-                "name": "ANC 1 Coverage",
-                "description": "Total 1st ANC visits (Fixed and outreach) by expected number of pregnant women.",
-                "legendSet": "fqs276KXCXi",
-                "dimensionItemType": "INDICATOR",
-                "valueType": "NUMBER",
-                "totalAggregationType": "AVERAGE",
-                "indicatorType": {
-                    "name": "Per cent",
-                    "displayName": "Per cent",
-                    "factor": 100,
-                    "number": false
-                }
-            },
-            "THIS_YEAR": {
-                "name": "This year"
-            },
-            "2022": {
-                "uid": "2022",
-                "code": "2022",
-                "name": "2022",
-                "dimensionItemType": "PERIOD",
-                "valueType": "NUMBER",
-                "totalAggregationType": "SUM",
-                "startDate": "2022-01-01T00:00:00.000",
-                "endDate": "2022-12-31T00:00:00.000"
-            }
-        },
-        "dimensions": {
-            "dx": [
-                "Uvn6LCg7dVU",
-                "sB79w2hiLp8"
-            ],
-            "pe": [
-                "2022"
-            ],
-            "ou": [
-                "ImspTQPwCqd"
-            ],
-            "co": []
-        }
-    },
-    "performanceMetrics": {
-        "totalTimeInMillis": 90.894,
-        "executionPlans": [
-            {
-                "timeInMillis": 12.314,
-                "planningTime": 6.801,
-                "executionTime": 5.513,
-                "query": "select ax.\"dx\",ax.\"uidlevel1\", sum(daysxvalue) / 365 as value from analytics_2022 as ax where ax.\"dx\" in ('h0xKKjijTdI') and ax.\"uidlevel1\" in ('ImspTQPwCqd') and ( ax.\"yearly\" in ('2022') ) and ax.\"year\" in (2022) group by ax.\"dx\",ax.\"uidlevel1\"",
-                "plan": {
-                    "Node Type": "Aggregate",
-                    "Strategy": "Sorted",
-                    "Partial Mode": "Simple",
-                    "Parallel Aware": false,
-                    "Async Capable": false,
-                    "Startup Cost": 20.21,
-                    "Total Cost": 5602.98,
-                    "Plan Rows": 260,
-                    "Plan Width": 32,
-                    "Actual Startup Time": 5.448,
-                    "Actual Total Time": 5.449,
-                    "Actual Rows": 1,
-                    "Actual Loops": 1,
-                    "Group Key": [
-                        "dx",
-                        "uidlevel1"
-                    ],
-                    "Plans": [
-                        {
-                            "Node Type": "Bitmap Heap Scan",
-                            "Parent Relationship": "Outer",
-                            "Parallel Aware": false,
-                            "Async Capable": false,
-                            "Relation Name": "analytics_2022",
-                            "Alias": "ax",
-                            "Startup Cost": 20.21,
-                            "Total Cost": 5588.33,
-                            "Plan Rows": 1520,
-                            "Plan Width": 32,
-                            "Actual Startup Time": 0.446,
-                            "Actual Total Time": 5.003,
-                            "Actual Rows": 1032,
-                            "Actual Loops": 1,
-                            "Recheck Cond": "(dx = 'h0xKKjijTdI'::bpchar)",
-                            "Rows Removed by Index Recheck": 0,
-                            "Filter": "((uidlevel1 = 'ImspTQPwCqd'::bpchar) AND (yearly = '2022'::text) AND (year = 2022))",
-                            "Rows Removed by Filter": 0,
-                            "Exact Heap Blocks": 46,
-                            "Lossy Heap Blocks": 0,
-                            "Plans": [
-                                {
-                                    "Node Type": "Bitmap Index Scan",
-                                    "Parent Relationship": "Outer",
-                                    "Parallel Aware": false,
-                                    "Async Capable": false,
-                                    "Index Name": "in_dx_ao_ax_2022_MClNI",
-                                    "Startup Cost": 0.0,
-                                    "Total Cost": 19.83,
-                                    "Plan Rows": 1520,
-                                    "Plan Width": 0,
-                                    "Actual Startup Time": 0.406,
-                                    "Actual Total Time": 0.407,
-                                    "Actual Rows": 1032,
-                                    "Actual Loops": 1,
-                                    "Index Cond": "(dx = 'h0xKKjijTdI'::bpchar)"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            {
-                "timeInMillis": 38.35,
-                "planningTime": 0.627,
-                "executionTime": 37.723,
-                "query": "select ax.\"dx\",ax.\"uidlevel1\", sum(value) as value from analytics_2022 as ax where ax.\"dx\" in ('Jtf34kNZhzP') and ax.\"uidlevel1\" in ('ImspTQPwCqd') and ( ax.\"yearly\" in ('2022') ) and ax.\"year\" in (2022) group by ax.\"dx\",ax.\"uidlevel1\"",
-                "plan": {
-                    "Node Type": "Aggregate",
-                    "Strategy": "Sorted",
-                    "Partial Mode": "Simple",
-                    "Parallel Aware": false,
-                    "Async Capable": false,
-                    "Startup Cost": 193.57,
-                    "Total Cost": 47322.83,
-                    "Plan Rows": 261,
-                    "Plan Width": 32,
-                    "Actual Startup Time": 37.685,
-                    "Actual Total Time": 37.685,
-                    "Actual Rows": 1,
-                    "Actual Loops": 1,
-                    "Group Key": [
-                        "dx",
-                        "uidlevel1"
-                    ],
-                    "Plans": [
-                        {
-                            "Node Type": "Bitmap Heap Scan",
-                            "Parent Relationship": "Outer",
-                            "Parallel Aware": false,
-                            "Async Capable": false,
-                            "Relation Name": "analytics_2022",
-                            "Alias": "ax",
-                            "Startup Cost": 193.57,
-                            "Total Cost": 47191.38,
-                            "Plan Rows": 17179,
-                            "Plan Width": 32,
-                            "Actual Startup Time": 1.981,
-                            "Actual Total Time": 32.332,
-                            "Actual Rows": 17462,
-                            "Actual Loops": 1,
-                            "Recheck Cond": "(dx = 'Jtf34kNZhzP'::bpchar)",
-                            "Rows Removed by Index Recheck": 0,
-                            "Filter": "((uidlevel1 = 'ImspTQPwCqd'::bpchar) AND (yearly = '2022'::text) AND (year = 2022))",
-                            "Rows Removed by Filter": 0,
-                            "Exact Heap Blocks": 1165,
-                            "Lossy Heap Blocks": 0,
-                            "Plans": [
-                                {
-                                    "Node Type": "Bitmap Index Scan",
-                                    "Parent Relationship": "Outer",
-                                    "Parallel Aware": false,
-                                    "Async Capable": false,
-                                    "Index Name": "in_dx_ax_2022_Eb64F",
-                                    "Startup Cost": 0.0,
-                                    "Total Cost": 189.27,
-                                    "Plan Rows": 17179,
-                                    "Plan Width": 0,
-                                    "Actual Startup Time": 1.765,
-                                    "Actual Total Time": 1.765,
-                                    "Actual Rows": 17462,
-                                    "Actual Loops": 1,
-                                    "Index Cond": "(dx = 'Jtf34kNZhzP'::bpchar)"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    "width": 0,
-    "rows": [],
-    "height": 0,
-    "headerWidth": 2
-}
-```
-
-This response displays the execution plan that the PostgreSQL planner generates for the supplied statement.
+The response will show the execution plan that the PostgreSQL planner generates for the supplied statement.
 
 The execution plan shows how the table(s) referenced by the statement will be scanned: by plain sequential scan, index scan,and if multiple tables are referenced, what joins will be used to bring together the required rows from each input table.
 
-The most critical part of the display is the estimated statement execution cost, which is the query planner's estimate at how long it will take to run the statement.
+The most critical part of the display is the estimated statement execution cost, which is the query planner's estimate of how long it will take to run the statement.
 
 All entry points are secured by authorization. The `F_PERFORM_ANALYTICS_EXPLAIN` role is required.
 
@@ -3112,3 +3269,7 @@ All entry points are secured by authorization. The `F_PERFORM_ANALYTICS_EXPLAIN`
 ## Enrollment analytics explain { #webapi_enrollment_analytics_explain }
 
 	/api/analytics/enrollment/query/{program}/explain
+
+## Outliers analytics explain  { #webapi_analytics_outlier_detection_explain } 
+
+	/api/analytics/outlierDetection/explain

@@ -57,6 +57,8 @@ Known Differences:
 * Gist offers using attribute UIDs as field and filter property names to allow
   listing or filtering based on custom attribute values
 * Gist offers filter grouping
+* Gist offers renaming the enrty list in a paged response using `pageListName`
+* Gist offers to pluck multiple simple properties
 
 Known Limitations:
 
@@ -67,7 +69,7 @@ Known Limitations:
 * orders can only be applied to persisted fields
 * token filters are not available
 * order is always case-sensitive
-* `pluck` transformer limited to text properties
+* `pluck` transformer limited to text properties (or simple properties for multi-pluck)
 * fields which hold collections of simple (non-identifiable) items cannot always
   be included depending on how they are stored
 
@@ -117,21 +119,23 @@ ignored.
 ### Overview
 Parameters in alphabetical order:
 
-| Parameter      | Options               |  Default     | Description          |
-| -------------- | --------------------- | ------------ | ---------------------|
-| `absoluteUrls` | `true` or `false`     | `false`      | `true` use relative paths in links, `false` use absolute URLs in links |
-| `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent) | extent of fields selected by `*` field selector |
-| `fields`       | (depends on endpoint) | `*`          | comma separated list of fields or presets to include |
-| `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |   | comma separated list of query field filters (can be used more than once) |
-| `headless`     | `true` or `false`     | `false`      | `true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
-| `inverse`      | `true` or `false`     | `false`      | `true` return items **not** in the list, `false` return items in the list |
+| Parameter      | Options               | Default                            | Description          |
+| -------------- | --------------------- |------------------------------------| ---------------------|
+| `absoluteUrls` | `true` or `false`     | `false`                            | `true` use relative paths in links, `false` use absolute URLs in links |
+| `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent)                | extent of fields selected by `*` field selector |
+| `fields`       | (depends on endpoint) | `*`                                | comma separated list of fields or presets to include |
+| `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |                                    | comma separated list of query field filters (can be used more than once) |
+| `headless`     | `true` or `false`     | `false`                            | `true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
+| `inverse`      | `true` or `false`     | `false`                            | `true` return items **not** in the list, `false` return items in the list |
 | `locale`       |                       | (user account configured language) | translation language override |
-| `order`        | `<field>` or  `<field>:asc` or `<field>:desc` | `:asc` | comma separated list of query order fields (can be used more than once) |
-| `page`         | 1-n                   | 1            | page number |
-| `pageSize`     | 1-1000                | 50           | number of items on a page |
-| `rootJunction` | `AND` or `OR`         | `AND`        | logical combination of `filter`s, `AND`= all must match, `OR`= at least one must match |
-| `total`        | `true` or `false`     | `false`      | `true` add total number of matches to the pager, `false` skip counting total number of matches |
-| `translate`    | `true` or `false`     | `true`       | `true` translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names) |
+| `order`        | `<field>` or  `<field>:asc` or `<field>:desc` | `:asc`                             | comma separated list of query order fields (can be used more than once) |
+| `page`         | 1-n                   | 1                                  | page number |
+| `pageSize`     | 1-1000                | 50                                 | number of items on a page |
+| `pageListName` | `<text>` | (object type plural) | overrides the property name of the result entry list | 
+| `rootJunction` | `AND` or `OR`         | `AND`                              | logical combination of `filter`s, `AND`= all must match, `OR`= at least one must match |
+| `total`/`totalPages`        | `true` or `false`     | `false`                            | `true` add total number of matches to the pager, `false` skip counting total number of matches |
+| `translate`    | `true` or `false`     | `true`                             | `true` translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names) |
+
 
 
 ### The `absoluteUrls` Parameter { #gist_parameters_absoluteUrls } 
@@ -567,7 +571,27 @@ used between filters. Possible are:
 Default is `AND`.
 
 
-### The `total` Parameter { #gist_parameters_total } 
+### The `pageListName` Parameter { #gist_parameters_pageListName }
+<!--DHIS2-SECTION-ID:gist_parameters_pageListName-->
+The array property in a paged response that contains the matching entry list is 
+named  after the object type contained in the list. 
+For `/api/organisationUnits/gist` it would be named `organisationUnits`.
+
+This default naming can be customized using the `pageListName` parameter.
+For example, `/api/organisationUnits/gist?pageListName=matches` returns a
+response root object with the format:
+
+```json
+{
+  "pager": {},
+  "matches": []
+}
+```
+(details of the pager and matches are omitted here)
+
+
+### The `total` or `totalPages` Parameter { #gist_parameters_total } 
+
 <!--DHIS2-SECTION-ID:gist_parameters_total-->
 
 By default, a gist query will **not** count the total number of matches should 
@@ -677,18 +701,18 @@ any of the indicators `::`, `~` or `@` followed by the transformer expression.
 
 Available transformer expressions are:
 
-| Transformer        | JSON Result Type    | Description                       |
-| ------------------ | ------------------- | --------------------------------- |
-| `rename(<name>)`   | -                   | renames the field in the response to `<name>` |
-| `size`             | `number`            | number of items in the collection field |
-| `isEmpty`          | `boolean`           | emptiness of a collection field   |
-| `isNotEmpty`       | `boolean`           | non-emptiness of a collection field |
-| `ids`              | `string` or `[string]` | ID of an object or IDs of collection items |
-| `id-objects`       | `[{ "id": <id> }]`  | IDs of collection items as object |
-| `member(<id>)`     | `boolean`           | has member with `<id>` for collection field |
-| `not-member(<id>)` | `boolean`           | not has member with `<id>` for collection field |
-| `pluck(<field>)`   | `string` or `[string]` | extract single text property of the object or of each collection item |
-| `from(<field>,...)`| depends on bean type | extracts a non-persistent field from one or more persistent ones |
+| Transformer          | JSON Result Type       | Description                                                                                           |
+|----------------------|------------------------|-------------------------------------------------------------------------------------------------------|
+| `rename(<name>)`     | -                      | renames the field in the response to `<name>`                                                         |
+| `size`               | `number`               | number of items in the collection field                                                               |
+| `isEmpty`            | `boolean`              | emptiness of a collection field                                                                       |
+| `isNotEmpty`         | `boolean`              | non-emptiness of a collection field                                                                   |
+| `ids`                | `string` or `[string]` | ID of an object or IDs of collection items                                                            |
+| `id-objects`         | `[{ "id": <id> }]`     | IDs of collection items as object                                                                     |
+| `member(<id>)`       | `boolean`              | has member with `<id>` for collection field                                                           |
+| `not-member(<id>)`   | `boolean`              | not has member with `<id>` for collection field                                                       |
+| `pluck(<field>,...)` | `string` or `[string]` | extract single text property or multiple simple properties from the object or of each collection item |
+| `from(<field>,...)`  | depends on bean type   | extracts a non-persistent field from one or more persistent ones                                      |
 
 A field can receive both the `rename` transformer and one of the other 
 transformers, for example:

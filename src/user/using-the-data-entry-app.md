@@ -271,12 +271,9 @@ case, you can enable multi-organisation unit data entry.
 
 ## See also { #data_entry_app_see_also } 
 
-  - [Control data
-    quality](https://docs.dhis2.org/master/en/user/html/control_data_quality.html)
+  - [Control data quality](#control_data_quality)
 
-  - [Manage data sets and data entry
-    forms](https://docs.dhis2.org/master/en/user/html/manage_data_set.html)
+  - [Manage data sets and data entry forms](#manage_data_set)
 
-  - [Using the Maintenance
-    app](https://docs.dhis2.org/master/en/user/html/maintenance_app.html)
+  - [Using the Maintenance app](#maintenance_app)
 

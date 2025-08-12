@@ -21,12 +21,14 @@ How To:
   # - Securing DHIS2: '@github(dhis2/dhis2-docs, src/sysadmin/how-to/secure-dhis2.md, master)'
   # - Upgrade Major: '@github(dhis2/dhis2-docs, src/sysadmin/how-to/upgrade-major.md, master)'
   # - Dependencies: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/dependencies.md, master)'
+
 Hosting:
   - Requirements: '@github(dhis2/dhis2-docs, src/sysadmin/hosting/requirements.md, master)'
   - Physical Hosting: '@github(dhis2/dhis2-docs, src/sysadmin/hosting/physical-hosting.md, master)'
   - Cloud Hosting: '@github(dhis2/dhis2-docs, src/sysadmin/hosting/cloud-hosting.md, master)'
 Reference:
   - dhis.conf: '@github(dhis2/dhis2-docs, src/sysadmin/reference/dhis.conf.md, master)'
+  - Connection Pool Configuration: '@github(dhis2/dhis2-docs, src/sysadmin/reference/connection-pool.md, master)'
   - File Storage: '@github(dhis2/dhis2-docs, src/sysadmin/reference/file-storage.md, master)'
   - OpenID Connect (OIDC): '@github(dhis2/dhis2-docs, src/sysadmin/reference/oauth.md, master)'
   - Google service account configuration: '@github(dhis2/dhis2-docs, src/sysadmin/reference/google-service-account-config.md, master)'
@@ -45,7 +47,6 @@ Reference:
 Concepts:
   - Using Gateways for SMS reporting: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/SMS-reporting.md, master)'
   - Debugging as another user: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/user-impersonation.md, master)'
-  - Upgrading: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/upgrading.md, master)'
   - Audit: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/audit.md, master)'
   - Deployment Architectures: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/architecture.md, master)'
   - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Server-Upgrade-guide.md, master)'

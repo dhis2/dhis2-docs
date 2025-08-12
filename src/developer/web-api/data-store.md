@@ -713,3 +713,140 @@ parameter.
 For example, to add a value to `Peter`'s datastore an admin uses:
 
     POST /api/userDataStore/<namespace>/<key>?username=Peter
+
+## Partial Update (Experimental)
+Both the datastore and user datastore allow partial updating of entry values.  
+
+All the subsequent examples operate on the basis that the following JSON entry is in the namespace `pets` with key `whiskers`.  
+
+```json
+{
+  "name": "wisker",
+  "favFood": [
+    "fish", "rabbit"
+  ]
+}
+```
+
+We can perform many update operations on this entry. The following examples use `{store}` in the API calls, please substitute with `dataStore` or `userDataStore` for your use case.
+
+### Update root (entire entry)
+We can update the entry at the root by not supplying the `path` request param or leaving it empty `path=`.  
+
+`PUT` `/api/{store}/pets/whiskers` with body `"whiskers"` updates the entry to be the supplied body. So a `GET` request to `/api/{store}/pets/whiskers` would now show:  
+```json
+"whiskers"
+```
+
+### Update at specific path
+We can update the entry at a specific path by supplying the `path` request param and the property to update.
+
+`PUT` `/api/{store}/pets/whiskers?path=name` with body `"whiskers"` updates the entry at the `name` property only. So a `GET` request to `/api/{store}/pets/whiskers` would now show the updated `name`:
+
+```json
+{
+    "name": "whiskers",
+    "favFood": [
+        "fish",
+        "rabbit"
+    ]
+}
+```
+
+We can update an array element at a specific path.
+
+`PUT` `/api/{store}/pets/whiskers?path=favFood.[0]` with body `"carrot"` updates the first element in the `favFood` array only. So a `GET` request to `/api/{store}/pets/whiskers` would now show the updated `favFood`:
+
+```json
+{
+    "name": "wisker",
+    "favFood": [
+        "carrot",
+        "rabbit"
+    ]
+}
+```
+
+### Benefits
+- smaller payloads required for small changes
+- less error-prone (no copy-pasting large entries to change 1 property)
+
+## Roll (Experimental)
+The `roll` request param enables the user to have a 'rolling' number of elements in an array. In our example we have the `favFood` array. If we wanted to update this array previously, we'd have to supply the whole payload like so:  
+`PUT` `/api/{store}/pets/whiskers` with body
+
+```json
+{
+    "name": "wisker",
+    "favFood": [
+        "fish",
+        "rabbit",
+        "carrot"
+    ]
+}
+```
+
+Now we can use the `roll` request param (with the `path` functionality) to state that we want the rolling functionality for _n_ number of elements.
+In this example we state that we want the array to have a rolling value of 3, passing in an extra element in the call.  
+`PUT` `/api/{store}/pets/whiskers?roll=3&path=favFood` with body `"carrot"` would result in the following state.
+
+```json
+{
+    "name": "wisker",
+    "favFood": [
+        "fish",
+        "rabbit",
+        "carrot"
+    ]
+}
+```
+
+Since we passed the rolling value of `3`, this indicates that we only want the last 3 elements passed into the array. So if we now make another call and add a new element to the array, we would expect the first element (`fish`) to be dropped from the array.
+`PUT` `/api/{store}/pets/whiskers?roll=3&path=favFood` with body `"bird"` would result in the following state:
+
+```json
+{
+    "name": "wisker",
+    "favFood": [
+        "rabbit",
+        "carrot",
+        "bird"
+    ]
+}
+```
+
+> **Note**
+>
+> Once a rolling value has been set (e.g. `role=3`), it can only be increased (e.g. `roll=5`) and cannot be decreased (e.g. `roll=2`)
+
+Dot notation does allow for nested calls. Let's say we have this current entry value:
+
+```json
+{
+  "name": "wisker",
+  "favFood": [
+    "fish", "rabbit"
+  ],
+  "type": {
+    "breed": ["shorthair"]
+  }
+}
+```
+
+If we wanted to add another breed using a rolling array we could make the call:
+`PUT` `/api/{store}/pets/whiskers?roll=3&path=type.breed` with body `"small"` which would result in the following state:
+
+```json
+{
+  "name": "wisker",
+  "favFood": [
+    "fish", "rabbit"
+  ],
+  "type": {
+    "breed": ["shorthair, small"]
+  }
+}
+```
+
+### Benefits
+- Only interested in keeping track of _n_ values which may change over time
