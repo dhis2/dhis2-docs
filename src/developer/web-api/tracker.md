@@ -1869,15 +1869,23 @@ Supported binary operators:
 | Operator | Description |
 | --- | --- |
 | eq | equal to, uses integer/numeric semantics for integer/decimal value types |
+| ieq | equal to, ignoring case (use `eq` instead)* |
 | ge | greater than or equal to (uses integer/number semantics for integer/decimal value types) |
 | gt | greater than, uses integer/number semantics for integer/decimal value types |
 | le | less than or equal to, uses integer/number semantics for integer/decimal value types |
 | lt | less than (uses integer/number semantics for integer/decimal value types) |
 | ne | not equal to (uses integer/number semantics for integer/decimal value types) |
+| neq | not equal to (uses integer/number semantics for integer/decimal value types), use `ne` instead* |
+| nieq | not equal to, ignoring case (use `ne` instead)* |
 | in | one of multiple values separated by semicolon ";", uses integer/number semantics for integer/decimal value types |
 | like | like text match |
+| ilike | like text match, ignoring case (use `like` instead)*|
+| nilike | not like, ignoring case (use `like` instead)* |
+| nlike | not like, ignoring case (use `like` instead)* |
 | sw | starts with |
 | ew | ends with |
+
+*These operators are currently supported but may be removed in the future. We recommend using the operator mentioned in the description, as it provides the same functionality.
 
 Matches are case-insensitive. For example, `filter=w75KJ2mc4zz:eq:Scott` would return values of the given attribute that match any variation of "Scott" regardless of case, such as SCOTT, scott, Scott...
 
