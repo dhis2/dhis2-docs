@@ -178,31 +178,31 @@ elements. The following parameters are available:
   update process. This reduces the time the process takes to complete, but leads
   to changes in metadata not being reflected in the analytics data.
 
-### Tracker search optimization { #scheduling_tracker_search_optimization }
+### Tracker trigram index maintenance { #scheduling_tracker_search_optimization }
+The Tracker Trigram Index Maintenance Job is responsible for generating and updating 
+trigram indexes for relevant tracked entity attribute values. These indexes 
+significantly improve the performance of searches on tracked entities.
 
-The tracker search optimization job is responsible for generating and updating
-the trigram indexes for relevant tracked entity attributes. Trigram indexes
-improve the performance of searching tracked entity instances based on specific
-tracked entity attribute values. The usefulness of trigram indexes depends on
-whether the tracked entity attribute is configured as unique or if they are
-configured as searchable (when connected to program/tracked entity type). You
-can configure the job to choose which tracked entity attributes should be
-trigram indexed. The job also takes care of deleting any obsolete indexes that
-have been created earlier but are no more required due to change in metadata
-configuration.
+A trigram index is created on a tracked entity attribute value if both of the 
+following conditions are met:
+- The tracked entity attribute has the flag `trigramindexable` set to true.
+- The tracked entity attribute allows the use of at least one of the following 
+operators: `LIKE` or `EW`.
 
-The following parameters are available:
+The job also removes obsolete trigram indexes that were previously created but have 
+since become unnecessary because one or both of the above conditions are no longer 
+satisfied.
 
-- **Attributes:** The list of attributes that needs a trigram index created. For
-  each attribute, a partial trigram index will be created. As an example, if you
-  specify "firstname" and "lastname" attribute, the process will create two
-  separate trigram indexes for the corresponding attributes "firstname" and
-  "lastname". Note that, if the attribute provided in this parameter is not
-  indexable (either because they are not unique or not searchable), such
-  attributes are simply ignored by the process and no trigram index will be
-  created for them.
-- **Skip index deletion:** Skip obsolete index deletion during the trigram index
-  process. If set to true, indexes that are deemed obsolete will not be deleted.
+A trigram index only takes effect if the searched text is at least 3 characters long.
+For this reason, it is recommended to configure the tracked entity attribute intended 
+for trigram indexing with a minimum search length of 3 characters.
+This can be set using the property `minCharactersToSearch`.
+
+The job accepts one parameter: `runAnalyze`.
+This is a boolean flag. When set to true, the job will execute an `ANALYZE` command on 
+the `trackedentityattributevalue` table.
+Running `ANALYZE` updates PostgreSQL column statistics, enabling the query planner to 
+make accurate decisions about when to use the trigram index for optimal query performance.
 
 ### Data synchronization { #scheduling_data_sync }
 
