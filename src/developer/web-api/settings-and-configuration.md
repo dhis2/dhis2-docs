@@ -226,6 +226,8 @@ Table: System settings
 | jobsMaxCronDelayHours | A CRON expression triggered job will only trigger in the window between its target time of the day and this amount of hours later. If it wasn't able to run in that window the execution is skipped and next execution according to the CRON expression is the next target execution | No |
 | jobsLogDebugBelowSeconds | A job with an execution interval below this number of seconds logs its information on debug rather than info | No |
 | keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
+| orgUnitCentroidsInEventsAnalytics | If true, the analytics event tables are created with a centroid value for each Data Element or TEA of type OU or OU Geometry. Default: false | No |
+
 
 ## User settings { #webapi_user_settings } 
 
