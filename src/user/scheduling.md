@@ -180,16 +180,16 @@ elements. The following parameters are available:
 
 ### Tracker trigram index maintenance { #scheduling_tracker_search_optimization }
 The Tracker Trigram Index Maintenance Job is responsible for creating and updating 
-trigram indexes for relevant tracked entity attribute values. These indexes 
+partial trigram indexes for relevant tracked entity attributes on the `trackedentityattributevalue` table. These partial trigram indexes 
 significantly improve the performance of searches on tracked entities.
 
-A trigram index is created on a tracked entity attribute value if both of the 
+A partial trigram index is created for a tracked entity attribute on the `trackedentityattributevalue` table if both of the 
 following conditions are met:
 - The tracked entity attribute has the flag `trigramindexable` set to true.
 - The tracked entity attribute allows the use of at least one of the following 
 operators: `LIKE` or `EW`.
 
-The job also removes obsolete trigram indexes that were previously created but have 
+The job also removes obsolete partial trigram indexes that were previously created but have 
 since become unnecessary because one or both of the above conditions are no longer 
 satisfied.
 
