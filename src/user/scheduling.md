@@ -179,7 +179,7 @@ elements. The following parameters are available:
   to changes in metadata not being reflected in the analytics data.
 
 ### Tracker trigram index maintenance { #scheduling_tracker_search_optimization }
-The Tracker Trigram Index Maintenance Job is responsible for generating and updating 
+The Tracker Trigram Index Maintenance Job is responsible for creating and updating 
 trigram indexes for relevant tracked entity attribute values. These indexes 
 significantly improve the performance of searches on tracked entities.
 
