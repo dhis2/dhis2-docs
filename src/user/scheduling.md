@@ -178,7 +178,7 @@ elements. The following parameters are available:
   update process. This reduces the time the process takes to complete, but leads
   to changes in metadata not being reflected in the analytics data.
 
-### Tracker trigram index maintenance { #scheduling_tracker_search_optimization }
+### Tracker trigram index maintenance { #scheduling_tracker_index_maintenance }
 The Tracker Trigram Index Maintenance Job is responsible for creating and updating 
 partial trigram indexes for relevant tracked entity attributes on the `trackedentityattributevalue` table. These partial trigram indexes 
 significantly improve the performance of searches on tracked entities.
