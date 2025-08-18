@@ -1880,8 +1880,8 @@ Supported binary operators:
 | in | one of multiple values separated by semicolon ";", uses integer/number semantics for integer/decimal value types |
 | like | like text match |
 | ilike | like text match, ignoring case (use `like` instead)*|
-| nilike | not like, ignoring case (use `like` instead)* |
-| nlike | not like, ignoring case (use `like` instead)* |
+| nlike | not like |
+| nilike | not like, ignoring case (use `nlike` instead)* |
 | sw | starts with |
 | ew | ends with |
 
