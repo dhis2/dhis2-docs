@@ -1887,7 +1887,9 @@ Supported binary operators:
 
 *These operators are currently supported but may be removed in the future. We recommend using the operator mentioned in the description, as it provides the same functionality.
 
-Matches are case-insensitive. For example, `filter=w75KJ2mc4zz:eq:Scott` would return values of the given attribute that match any variation of "Scott" regardless of case, such as SCOTT, scott, Scott...
+Matches are case-insensitive, for example `eq` and `ieq` (`i` for `insensitive`) behave in the same way. To ensure future compatibility, always use the non-i form (eq, like, etc.).
+
+For instance, `filter=w75KJ2mc4zz:eq:Scott` would return values of the given attribute that match any variation of "Scott" regardless of case, such as SCOTT, scott, Scott...
 
 Supported unary operators:
 
