@@ -440,41 +440,6 @@ request:
     /api/33/system/styles
     
     
-## Trigram Index Summary
-
-Trigram indexes can be created using Tracker Search Optimization jobs. It is useful to know which tracked entity attributes are indexed and which ones are not. The following API can be used to get a summary of the trigram index status. The API supports field selection and filtering using the field query parameter.
-
-The attributes corresponding to the property "indexedAttributes" are currently indexed in the system. The attributes corresponding to the property "indexableAttributes" are not indexed currently but are candidates for creating indexes if required. The attributes corresponding to the property "obsoleteIndexedAttributes" are indexed in the system, but those indexes are obsolete due to changes in the attribute configuration which do not qualify them as indexable anymore.
-
-```
-GET /api/39/trigramSummary
-```
-
-A sample JSON response looks like this:
-
-```json
-{
-	"indexedAttributes": [{
-		"displayName": "First name",
-		"id": "w75KJ2mc4zz"
-	}, {
-		"displayName": "Last name",
-		"id": "zDhUuAYrxNC"
-	}],
-	"indexableAttributes": [{
-		"displayName": "Phone number",
-		"id": "P2cwLGskgxn"
-	}],
-	"obsoleteIndexedAttributes": [{
-		"displayName": "TB identifier",
-		"id": "xs8A6tQJY0s"
-	}, {
-		"displayName": "Provider ID",
-		"id": "DODgdr5Oo2v"
-	}]
-}
-```
-
 ## Cluster info
 
 When DHIS 2 is set up in a cluster configuration, it is useful to know which node in the cluster acts as the leader of the cluster. The following API can be used to get the details of the leader node instance. The API supports both JSON and XML formats.
