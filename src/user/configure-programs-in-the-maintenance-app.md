@@ -1741,25 +1741,25 @@ programs.
     | Yes/No | Boolean values, renders as drop-down lists in data entry. |
     | Yes only | True values, renders as check-boxes in data entry. |
 
-9.  Select an **Aggregation type**.
+10.  Select an **Aggregation type**.
 
 
 
-    Table: Aggregation operators
+       Table: Aggregation operators
 
-    | Aggregation operator | Description |
-    |---|---|
-    | Average | Average the values in both the period as and the organisation unit dimensions. |
-    | Average (sum in organisation unit hierarchy) | Average of data values in the period dimension, sum in the organisation unit dimensions. |
-    | Count | Count of data values. |
-    | Min | Minimum of data values. |
-    | Max | Maximum of data values. |
-    | None | No aggregation is performed in any dimension. |
-    | Sum | Sum of data values in the period and organisation unit dimension. |
-    | Standard deviation | Standard deviation (population-based) of data values. |
-    | Variance | Variance (population-based) of data values. |
+| Aggregation operator | Description |
+|---|---|
+| Average | Average the values in both the period and the organisation unit dimensions. |
+| Average (sum in organisation unit hierarchy) | Average of data values in the period dimension, sum in the organisation unit dimensions. |
+| Count | Count of data values. |
+| Min | Minimum of data values. |
+| Max | Maximum of data values. |
+| None | No aggregation is performed in any dimension. |
+| Sum | Sum of data values in the period and organisation unit dimension. |
+| Standard deviation | Standard deviation (population-based) of data values. |
+| Variance | Variance (population-based) of data values. |
 
-10. Select **Unique** to specify that the values of the tracked entity
+12. Select **Unique** to specify that the values of the tracked entity
     attribute is unique.
 
     There are two options for the unique setting:
@@ -1780,20 +1780,29 @@ programs.
       - **Organisation unit**: The values of the tracked entity
         attribute must not duplicate in the same organisation unit.
 
-11. Select **Inherit** to registry a new entity for relationship with an
+13. Select **Inherit** to registry a new entity for relationship with an
     available entity, all inherit entity attribute values of the entity
     will be pre-filled in the registration form.
 
-12. (Optional) Select **Confidential**.
+14. (Optional) Select **Confidential**.
 
     This option is only available if you have configured encryption for
     the system.
 
-13. (Optional) Select **Display in list without program**.
+> [!WARNING]
+> The Confidential flag does not guarantee encryption of data at rest and is not currently functioning as intended. Currently, values are stored as both encrypted and plain text values in the database. 
+> 
+> For implementations requiring encryption of sensitive data, it is recommended to use encryption-at-rest features provided by the underlying operating system at the file system level or the block level. Many operating systems support this functionality, including Windows.
+> 
+> Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at Analytics Output level, and not as an encryption feature.
+>
+> The DHIS2 Core team therefore discourages use of the Confidential flag for data protection or encryption purposes. Upcoming versions will implement and document consistent functionality and recommendations for security approaches.
 
-14. (Optional) Assign one or multiple **Legends**.
+14. (Optional) Select **Display in list without program**.
 
-15. Click **Save**.
+15. (Optional) Assign one or multiple **Legends**.
+
+16. Click **Save**.
 
 ### Create or edit a tracked entity type { #create_tracked_entity } 
 
