@@ -487,21 +487,60 @@ Table: Period format
 | Financial Year July | yyyyJuly | 2004July | July 2004-June 2005 |
 | Financial Year Oct | yyyyOct | 2004Oct | Oct 2004-Sep 2005 |
 
-
 ### Relative Periods { #webapi_date_relative_period_values } 
-
 
 In some parts of the API, like for the analytics resource, you can
 utilize relative periods in addition to fixed periods (defined above).
 The relative periods are relative to the current date and allow e.g.
-for creating dynamic reports. The available relative period values are:
+for creating dynamic reports. The available relative period values are
+described in the table below.
 
-    THIS_WEEK, LAST_WEEK, LAST_4_WEEKS, LAST_12_WEEKS, LAST_52_WEEKS,
-    THIS_MONTH, LAST_MONTH, THIS_BIMONTH, LAST_BIMONTH, THIS_QUARTER, LAST_QUARTER,
-    THIS_SIX_MONTH, LAST_SIX_MONTH, MONTHS_THIS_YEAR, QUARTERS_THIS_YEAR,
-    THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_10_FINANCIAL_YEARS, LAST_12_MONTHS, 
-    LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
-    LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
+| Name | Keyword |
+| ---- | ------- |
+| Today | TODAY |
+| Yesterday | YESTERDAY |
+| Last 3 days | LAST_3_DAYS |
+| Last 7 days | LAST_7_DAYS |
+| Last 14 days | LAST_14_DAYS |
+| Last 30 days | LAST_30_DAYS |
+| Last 60 days | LAST_60_DAYS |
+| Last 90 days | LAST_90_DAYS |
+| Last 180 days | LAST_180_DAYS |
+| This month | THIS_MONTH |
+| This bi-month | THIS_BIMONTH |
+| Last bi-month | LAST_BIMONTH |
+| This quarter | THIS_QUARTER |
+| Last quarter | LAST_QUARTER |
+| This six-month | THIS_SIX_MONTH |
+| Last six-month | LAST_SIX_MONTH |
+| Weeks this year | WEEKS_THIS_YEAR |
+| Months this year | MONTHS_THIS_YEAR |
+| Bi-months this year | BIMONTHS_THIS_YEAR |
+| Quarters this year | QUARTERS_THIS_YEAR |
+| This year | THIS_YEAR |
+| Months last year | MONTHS_LAST_YEAR |
+| Quarters last year | QUARTERS_LAST_YEAR |
+| Last year | LAST_YEAR |
+| Last 5 years | LAST_5_YEARS |
+| Last 10 years | LAST_10_YEARS |
+| Last 12 months | LAST_12_MONTHS |
+| Last 6 months | LAST_6_MONTHS |
+| Last 3 months | LAST_3_MONTHS |
+| Last 6 bi-months | LAST_6_BIMONTHS |
+| Last 4 quarters | LAST_4_QUARTERS |
+| Last 2 six-months | LAST_2_SIXMONTHS |
+| This financial year | THIS_FINANCIAL_YEAR |
+| Last financial year | LAST_FINANCIAL_YEAR |
+| Last 5 financial years | LAST_5_FINANCIAL_YEARS |
+| Last 10 financial years | LAST_10_FINANCIAL_YEARS |
+| This week | THIS_WEEK |
+| Last week | LAST_WEEK |
+| This bi-week | THIS_BIWEEK |
+| Last bi-week | LAST_BIWEEK |
+| Last 4 weeks | LAST_4_WEEKS |
+| Last 4 bi-weeks | LAST_4_BIWEEKS |
+| Last 12 weeks | LAST_12_WEEKS |
+| Last 52 weeks | LAST_52_WEEKS |
 
 ### Custom date periods { #webapi_date_custom_date_periods }
 
@@ -544,7 +583,6 @@ In the example bellow, the endpoint will return events that are scheduled to hap
 
 `analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&scheduledDate=20210101_20210104&...`
 
-
 ## Authorities
 System authority ids and names can be listed using:
 
@@ -565,4 +603,3 @@ It returns the following format:
   ]
 }
 ```
-
