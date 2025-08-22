@@ -168,6 +168,10 @@ to test the content.
 
 ## Importing coordinates in GML format { #gis_creating_setup }
 
+> **Note**
+>
+> Only GML 2.0 is supported. GeoJSON is the recommended format.
+
 Step 1 - Simplify/generalize your geographical data
 
 The boundaries in geographical data files are usually very accurate, too
