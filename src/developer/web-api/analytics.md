@@ -184,9 +184,8 @@ The `/dimensions` API also provides an endpoint where the clients can get the *r
 
     /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD
 
-In the example above, the client will receive back all the *Categories* that are configured as `Data dimension`s and associated (through data sets and category combos) with the data element `fbfJHSPpUQD`.
-In addition, all *Organization Unit Group Set*s that are configured as `Data dimension`s will also (and always) be returned as part of the response.
-
+In the example above, the response will contain the categories which are configured as data dimensions and associated, through data sets and category combos, with the data element `fbfJHSPpUQD`.
+In addition, all org unit group sets which are configured as data dimensions will be returned.
 
 The endpoint supports multiple data elements. If one wishes to send multiple data elements, they should be separated by `;`. For example:
 
@@ -195,7 +194,6 @@ The endpoint supports multiple data elements. If one wishes to send multiple dat
 > Note
 >
 > This endpoint returns only dimensions that can be read by the current logged user. It will check if the current user can read the data or the metadata of the respective recommended dimension. Non-authorized dimensions are omitted from the list.
-
 
 The base URL to the analytics resource is `/api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
