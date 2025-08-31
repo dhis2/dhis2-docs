@@ -316,8 +316,8 @@ below.
 
   - For the organization unit dimension, you can specify items as either
     the organization unit or its sub-units associated with the currently
-    authenticated user. Use the keys USER_ORGUNIT for the organization unit
-    itself or USER_ORGUNIT_CHILDREN for its sub-units. You may also specify
+    authenticated user. Use the keys `USER_ORGUNIT` for the organization unit
+    itself or `USER_ORGUNIT_CHILDREN` for its sub-units. You may also specify
     organization unit identifiers directly or use a combination of both.
     The authenticated user must have permission to export and analyze data
     for the designated organization units. If no organization unit permissions
@@ -618,7 +618,7 @@ XML looks like this:
     api/analytics/dataValueSet.xml?dimension=dx:Uvn6LCg7dVU;OdiHJayrsKo
       &dimension=pe:LAST_4_QUARTERS&dimension=ou:lc3eMKXaEfw;PMa2VCrupOd
 
-A request which aggregates data for data element operands and uses CODE
+A request which aggregates data for data element operands and uses `CODE`
 as output identifier scheme looks like the below. When defining the
 output identifier scheme, all metadata objects part of the response are
 affected:
@@ -628,7 +628,7 @@ affected:
 
 When using attribute-based identifier schemes for export there is a risk
 of producing duplicate data values. The boolean query parameter
-duplicatesOnly can be used for debugging purposes to return only
+`duplicatesOnly` can be used for debugging purposes to return only
 duplicates data values. This response can be used to clean up the
 duplicates:
 
@@ -805,7 +805,7 @@ Table: Query parameters for event query analytics only
 
 | Query parameter | Required | Description | Options |
 |---|---|---|---|
-| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. More details [here](#webapi_tracker_orgunit_scope) | DESCENDANTS, CHILDREN, SELECTED |
+| ouMode | No | The mode of selecting organisation units. Default is `DESCENDANTS`, meaning all sub units in the hierarchy. `CHILDREN` refers to immediate children in the hierarchy; `SELECTED` refers to the selected organisation units only. More details [here](#webapi_tracker_orgunit_scope) | DESCENDANTS, CHILDREN, SELECTED |
 | asc | No | Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
@@ -814,11 +814,11 @@ Table: Query parameters for event query analytics only
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
-| eventDate | no | (`events` resource only) Custom period on `eventDate` (see "custom date periods" section) | see "date and period format" section |
-| enrollmentDate | no | Custom period on `enrollmentDate` (see "custom date periods" section) | see "date and period format" section |
-| scheduledDate | no | (`events` resource only) Custom period on `scheduledDate` (see "custom date periods" section) | see "date and period format" section |
-| incidentDate | no | Custom period on `incidentDate` (see "custom date periods" section) | see "date and period format" section |
-| lastUpdated | no | Custom period on `lastUpdated` (see "custom date periods" section) | see "date and period format" section |
+| eventDate | no | Events resource only. Custom period on `eventDate`. See "custom date periods" section. | See "date and period format" section |
+| enrollmentDate | no | Custom period on `enrollmentDate`. See "custom date periods" section. | See "date and period format" section |
+| scheduledDate | no | Events resource only. Custom period on `scheduledDate`. See "custom date periods" section. | See "date and period format" section |
+| incidentDate | no | Custom period on `incidentDate`. See "custom date periods" section. | See "date and period format" section |
+| lastUpdated | no | Custom period on `lastUpdated`. See "custom date periods" section. | See "date and period format" section |
 
 
 
