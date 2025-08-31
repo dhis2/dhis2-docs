@@ -68,7 +68,7 @@ connection.pool.test.on.checkout=false
 # Deprecated since v43. If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
 connection.pool.test.on.checkin=on
 
-#Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
+# Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
 connection.pool.preferred.test.query=select 1
 
 # Deprecated since v43. Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)

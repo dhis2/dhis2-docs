@@ -237,6 +237,18 @@ Reports all the violations in program indicator expression caused by invalid **D
 
 Reports all the violations in program indicator filter expression caused by invalid **DataElement** or invalid **TrackedEntityAttribute**.
 
+### Tracked entity attributes having a suboptimal search configuration
+
+Reports all tracked entity attributes with suboptimal configuration, which could potentially result in slower search performance when searching for tracked entities using those attributes.
+
+### Partial trigram indexes on trackedentityattributevalue in sync with the tracked entity attribute
+
+Reports all tracked entity attributes that are not in sync with the trigram index in the database. This means that some indexes may need to be created, deleted, or both.
+
+### Tracked entity attributes with a partial trigram index created
+
+Reports all tracked entity attributes that have a partial trigram index in the `trackedentityattributevalue` table.
+
 ## Maintenance { #data_admin_maintenance }
 
 Table: Data maintenance functions in the Data Administration app
