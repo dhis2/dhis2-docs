@@ -115,7 +115,7 @@ related to whether we track a specific `Tracked Entity` or not. We sometimes ref
 PROGRAM` events as "anonymous events" or "single events" since they only represent themselves and
 not another `Tracked Entity`.
 
-In the API, the significant difference is that all events are either connected to the same
+In the API, the significant difference is that all events are either not connected to an
 enrollment (`EVENT PROGRAM`) or different enrollments (`TRACKER PROGRAM`). The table below will
 point out any exceptional cases between these two.
 
@@ -124,15 +124,15 @@ point out any exceptional cases between these two.
 | event | The identifier of the event. Generated if not supplied. | No | Yes | String:Uid | ABCDEF12345 |
 | programStage | The program stage the event represents. | Yes | No | String:Uid | ABCDEF12345 |
 | enrollment | A reference to the enrollment which owns the event. Not applicable for `EVENT PROGRAM`. | Yes | Yes | String:Uid | ABCDEF12345 |
-| program | Only for reading data. The type of program the enrollment which owns the event has. | No | Yes | String:Uid | ABCDEF12345 |
+| program | The program stage the event represents. | No | Yes | String:Uid | ABCDEF12345 |
 | trackedEntity | Only for reading data. The tracked entity which owns the event. Not applicable for `EVENT PROGRAM`. | No | No | String:Uid | ABCDEF12345 |
-| status | Status of the event. Default is `ACTIVE`. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
+| status | Status of the event. Default is `ACTIVE`. For `EVENT PROGRAM` only `ACTIVE` and `COMPLETED` statuses are allowed. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
 | orgUnit | The organisation unit where the user registered the event. | Yes | No | String:Uid | ABCDEF12345 |
 | createdAt | Only for reading data. Timestamp when the user created the event. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | createdAtClient | Timestamp when the user created the event on client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Only for reading data. Timestamp when the event was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAtClient | Timestamp when the event was last updated on client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| scheduledAt | Timestamp when the event was scheduled for. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| scheduledAt | Timestamp when the event was scheduled for. Not applicable for `EVENT PROGRAM`. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when something occurred. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedAt | Timestamp when the user completed the event. Set on the server if not set by the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedBy | Only for reading data. User that completed the event. Set on the server. | No | No | String:any | John Doe |
