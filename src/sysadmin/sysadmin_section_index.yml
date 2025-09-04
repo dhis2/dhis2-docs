@@ -49,4 +49,4 @@ Concepts:
   - Debugging as another user: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/user-impersonation.md, master)'
   - Audit: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/audit.md, master)'
   - Deployment Architectures: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/architecture.md, master)'
-  - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Server-Upgrade-guide.md, master)'
+  - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Upgrade-Guide.md, master)'
