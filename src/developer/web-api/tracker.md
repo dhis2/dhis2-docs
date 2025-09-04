@@ -2493,7 +2493,7 @@ Returns a list of events based on the provided filters.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|program|String|uid| Identifier of a tracker or event program|
+|program|String|uid| Identifier of a tracker or event program. This parameter is mandatory.|
 |programStage|String|uid| Identifier of program stage|
 |programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the events enrollment.|
 |filter|String|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. A filter like `filter=fazCI2ygYkq:!null` returns all events where the given data element has a value. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. User needs access to the data element to filter on it.|
