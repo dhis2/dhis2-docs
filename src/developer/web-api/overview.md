@@ -41,16 +41,24 @@ The DHIS2 Web API supports three protocols for authentication:
 - [Personal Access Tokens (PAT)](#webapi_pat_authentication)
 - [OAuth 2](#webapi_oauth2)
 
-You can verify and get information about the currently authenticated 
-user by making a GET request to the following URL:
+Verify and get information about the currently authenticated 
+user by making a GET request to the following endpoint.
 
-    /api/33/me
+    GET /api/me
 
-And more information about authorities (and if a user has a certain
-authority) by using the endpoints:
+Get the list of authorities for the currently authenticatd user.
 
-    /api/33/me/authorities
-    /api/33/me/authorities/ALL
+    GET /api/me/authorization
+
+Check whether the currently authenticated user has the given authority.
+
+    GET /api/me/authorization/{authority}
+
+For example, to check whether the user has the `F_CONSTANT_ADD` authority.
+
+    GET /api/me/authorization/F_CONSTANT_ADD
+
+The response will be either `true` or `false` in JSON format.
 
 ## Basic Authentication { #webapi_basic_authentication } 
 
@@ -99,13 +107,14 @@ your token depending on how you intend to use it, see **Configuring your token**
 server, it is advised to rather create a new special user that you assign only
 the roles/authorities you want it to have access to.**
 
-
 ### Creating a token
+
 To create a new PAT, you have two choices:
 * A. Create a token in the UI on your account's profile page.
 * B. Create a token via the API.
 
-### A. Creating a token on the account's page
+### A. Creating a token on the account page
+
 Log in with your username and password, go to your profile page
 (Click top right corner, and chose "Edit profile" from the dropdown).
 On your user profile page, choose "Personal access tokens" from the
@@ -115,13 +124,15 @@ text: "You don't have any active personal access tokens".
 Click "Generate new token" to make a new token.
 A "Generate new token" popup will be shown and present you with two choices:
 
-#### 1. Server/script context:
+#### 1. Server/script context
+
 _"This type is used for integrations and scripts that won't be accessed by a browser"._
 
 If you plan to use the token in an application, a script or similar, this
 type should be your choice.
 
-#### 2. Browser context:
+#### 2. Browser context
+
 _"This type us used for applications, like public portals, that will be accessed with a web browser"._
 
 If you need to link to DHIS2 on a webpage, or e.g. embed in an iframe,
@@ -145,30 +156,35 @@ performed by your user.
 you want the token to have if you plan on using PAT tokens in a non-secure and/or public environment,
 e.g. on a PC or server, you don't have 100% control over, or "embedded" in a webpage on another server.
 
-#### The different constraint types are as follows:
+#### Constraint types
+
 * Expiry time
 * Allowed UP addresses
 * Allowed HTTP methods
 * Allowed HTTP referrers
 
 ##### Expiry time
+
 Expiry time simply sets for how long you want your token to be usable, the default is 30
 days. After the expiry time, the token will simply return a 401 (Unauthorized) message.
 You can set any expiry time you want, but it is strongly advised that you set an expiry time 
 that is reasonable for your use case.
 
-#### Allowed IP addresses
+#### IP addresses
+
 This is a comma-separated list of IP addresses you want to limit where the token requests can come from.
 
 **Important**: IP address validation relies on the X-Forwarded-For header, which can be spoofed.
 For security, make sure a load balancer or reverse proxy overwrites this header.
 
-#### Allowed HTTP methods
+#### HTTP methods
+
 A comma-separated list of HTTP methods you want your token to be able to use.
 If you only need your token to view data, not modify or delete, selecting only the GET HTTP method 
 makes sense.
 
-#### Allowed HTTP referrers
+#### HTTP referrers
+
 HTTP referer is a header added to the request, when you click on a link, this says which site/page 
 you were on when you clicked the link. 
 Read more about the HTTP referer header here: https://en.wikipedia.org/wiki/HTTP_referer
@@ -181,7 +197,8 @@ help avoid abuse of the token, e.g. if someone posts it on a public forum.
 This setting is intended to discourage unauthorized third-party developers from connecting
 to public access instances.
 
-#### Saving your token:
+#### Saving a token
+
 When you are done configuring your token, you can save it by clicking the "Generate new token"
 button, on the bottom right of the pop-up.
 When doing so the token will be saved and a secret token key will be generated on the server.
@@ -197,12 +214,12 @@ The secret token key will be securely hashed on the server, and only the hash of
 key will be saved to the database. This is done to minimize the security impact if someone gets 
 unauthorized access to the database, similar to the way passwords are handled.
 
-### B. Creating a token via the API
+### Creating a token with the API
 
-Example of how to create a new Personal Access Token with the API:
+Example of how to create a new Personal Access Token using the API:
 
 ```
-POST https://play.dhis2.org/dev/api/apiToken
+POST /api/apiToken
 Content-Type: application/json
 Authorization: Basic admin district
 
@@ -211,6 +228,7 @@ Authorization: Basic admin district
 **NB**: Remember the empty JSON body (`{}`) in the payload! 
 
 This will return a response containing a token similar to this:
+
 ```json
 {
   "httpStatus": "Created",
@@ -226,7 +244,7 @@ This will return a response containing a token similar to this:
 }
 ```
 
-**Important**: The token key will only be shown once here in this response.
+**Note**: The token key will only be shown once here in this response.
 You need to copy and save this is in a secure place for use later!
 
 The token itself consists of three parts:
@@ -234,14 +252,14 @@ The token itself consists of three parts:
 2. Random bytes Base64 encoded: (`5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ`)
 3. CRC32 checksum: (`1151814092`) the checksum part is padded with 0 so that it always stays ten characters long.
 
+#### Configure token with the API
 
-#### Configure your token via the API:
 To change any of the constraints on your token, you can issue the following HTTP API request.
 
-**NB**: Only the constraints are possible to modify after the token is created! 
+**Note**: Only the constraints are possible to modify after the token has been created.
 
-```
-PUT https://play.dhis2.org/dev/api/apiToken/jJYrtIVP7qU
+```bash
+PUT /api/apiToken/jJYrtIVP7qU
 Content-Type: application/json
 Authorization: Basic admin district
 ```
@@ -264,31 +282,33 @@ Authorization: Basic admin district
 }
 ```
 
-### Using your Personal Access Token
+### Using a Personal Access Token
 
 To issue a request with your newly created token, use the Authorization header
-accordingly.
-The Authorization header format is:
+accordingly. The authorization header format is:
+
 ```
 Authorization: ApiToken [YOUR_SECRET_API_TOKEN_KEY]
 ```
-**Example**:
-```
-GET https://play.dhis2.org/dev/api/apiToken/jJYrtIVP7qU
+
+For example:
+
+```bash
+GET /api/apiToken/jJYrtIVP7qU
 Content-Type: application/json
 Authorization: ApiToken d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
 ```
 
+### Deleting a Personal Access Token
 
-### Deleting your Personal Access Token
 You can delete your PATs either in the UI on your profile page where you created it,
 or via the API like this:
-```
-DELETE https://play.dhis2.org/dev/api/apiToken/jJYrtIVP7qU
+
+```bash
+DELETE /api/apiToken/jJYrtIVP7qU
 Content-Type: application/json
 Authorization: ApiToken d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
 ```
-
 
 ## OAuth2 { #webapi_oauth2 } 
 
@@ -303,7 +323,7 @@ Each client for which you want to allow OAuth 2 authentication must be
 registered in DHIS2. To add a new OAuth2 client go to `Apps > Settings > OAuth2 Clients`
 in the user interface, click *Add new* and enter the desired client name and the grant types.
 
-#### Adding a client using the Web API
+#### Create a Client
 
 An OAuth2 client can be added through the Web API. As an example, we can
 send a payload like this:
@@ -332,7 +352,7 @@ curl -X POST -H "Content-Type: application/json" -d @client.json
   -u admin:district "$SERVER/api/oAuth2Clients"
 ```
 
-We will use this client as the basis for our next grant type examples.
+This client will be used as the basis for the next grant type examples.
 
 #### Grant type password { #webapi_oauth2_password } 
 
@@ -458,9 +478,11 @@ Table: WebMessage properties
 Throughout the Web API, we refer to dates and periods. The date format
 is:
 
-    yyyy-MM-dd
+```
+yyyy-MM-dd
+```
 
-For instance, if you want to express March 20, 2014, you must use
+For example, if you want to express March 20, 2014, you must use
 *2014-03-20*.
 
 The period format is described in the following table (also available on
@@ -487,21 +509,60 @@ Table: Period format
 | Financial Year July | yyyyJuly | 2004July | July 2004-June 2005 |
 | Financial Year Oct | yyyyOct | 2004Oct | Oct 2004-Sep 2005 |
 
-
 ### Relative Periods { #webapi_date_relative_period_values } 
-
 
 In some parts of the API, like for the analytics resource, you can
 utilize relative periods in addition to fixed periods (defined above).
 The relative periods are relative to the current date and allow e.g.
-for creating dynamic reports. The available relative period values are:
+for creating dynamic reports. The available relative period values are
+described in the table below.
 
-    THIS_WEEK, LAST_WEEK, LAST_4_WEEKS, LAST_12_WEEKS, LAST_52_WEEKS,
-    THIS_MONTH, LAST_MONTH, THIS_BIMONTH, LAST_BIMONTH, THIS_QUARTER, LAST_QUARTER,
-    THIS_SIX_MONTH, LAST_SIX_MONTH, MONTHS_THIS_YEAR, QUARTERS_THIS_YEAR,
-    THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_10_FINANCIAL_YEARS, LAST_12_MONTHS, 
-    LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
-    LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
+| Name | Keyword |
+| ---- | ------- |
+| Today | TODAY |
+| Yesterday | YESTERDAY |
+| Last 3 days | LAST_3_DAYS |
+| Last 7 days | LAST_7_DAYS |
+| Last 14 days | LAST_14_DAYS |
+| Last 30 days | LAST_30_DAYS |
+| Last 60 days | LAST_60_DAYS |
+| Last 90 days | LAST_90_DAYS |
+| Last 180 days | LAST_180_DAYS |
+| This month | THIS_MONTH |
+| This bi-month | THIS_BIMONTH |
+| Last bi-month | LAST_BIMONTH |
+| This quarter | THIS_QUARTER |
+| Last quarter | LAST_QUARTER |
+| This six-month | THIS_SIX_MONTH |
+| Last six-month | LAST_SIX_MONTH |
+| Weeks this year | WEEKS_THIS_YEAR |
+| Months this year | MONTHS_THIS_YEAR |
+| Bi-months this year | BIMONTHS_THIS_YEAR |
+| Quarters this year | QUARTERS_THIS_YEAR |
+| This year | THIS_YEAR |
+| Months last year | MONTHS_LAST_YEAR |
+| Quarters last year | QUARTERS_LAST_YEAR |
+| Last year | LAST_YEAR |
+| Last 5 years | LAST_5_YEARS |
+| Last 10 years | LAST_10_YEARS |
+| Last 12 months | LAST_12_MONTHS |
+| Last 6 months | LAST_6_MONTHS |
+| Last 3 months | LAST_3_MONTHS |
+| Last 6 bi-months | LAST_6_BIMONTHS |
+| Last 4 quarters | LAST_4_QUARTERS |
+| Last 2 six-months | LAST_2_SIXMONTHS |
+| This financial year | THIS_FINANCIAL_YEAR |
+| Last financial year | LAST_FINANCIAL_YEAR |
+| Last 5 financial years | LAST_5_FINANCIAL_YEARS |
+| Last 10 financial years | LAST_10_FINANCIAL_YEARS |
+| This week | THIS_WEEK |
+| Last week | LAST_WEEK |
+| This bi-week | THIS_BIWEEK |
+| Last bi-week | LAST_BIWEEK |
+| Last 4 weeks | LAST_4_WEEKS |
+| Last 4 bi-weeks | LAST_4_BIWEEKS |
+| Last 12 weeks | LAST_12_WEEKS |
+| Last 52 weeks | LAST_52_WEEKS |
 
 ### Custom date periods { #webapi_date_custom_date_periods }
 
@@ -526,31 +587,32 @@ In resources supporting custom date periods, there are extra query parameters th
 | `incidentDate`     | [x]                    | [x]                       |
 | `lastUpdated`      | [x]                    | [x]                       |
 
-Conditions can be expressed in the following form:
+Conditions can be expressed in the following format:
 
-`analytics/events/query/...?...&eventDate=2021&...`
+`/api/analytics/events/query/...?...&eventDate=2021&...`
 
 It's possible to combine more time fields in the same query:
 
-`analytics/events/query/...?...&eventDate=2021&incidentDate=202102&...`
+`/api/analytics/events/query/...?...&eventDate=2021&incidentDate=202102&...`
 
 All of these conditions can be combined with `pe` dimension:
 
-`analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&...`
+`/api/analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&...`
 
 Supported formats are described in "date and period format" above. An extra format is provided to express a range of dates: `yyyyMMdd_yyyyMMdd` and `yyyy-MM-dd_yyyy-MM-dd`.
 
 In the example bellow, the endpoint will return events that are scheduled to happen between 20210101 and 20210104:
 
-`analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&scheduledDate=20210101_20210104&...`
-
+`/api/analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&scheduledDate=20210101_20210104&...`
 
 ## Authorities
-System authority ids and names can be listed using:
 
-    /api/authorities
+All available system authorities can be listed with identifiers and names using the following endpoint.
+
+    GET /api/authorities
 
 It returns the following format:
+
 ```json
 {
   "systemAuthorities": [
@@ -565,4 +627,3 @@ It returns the following format:
   ]
 }
 ```
-

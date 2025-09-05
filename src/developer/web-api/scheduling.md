@@ -61,7 +61,7 @@ Table: `ANALYTICS_TABLE` job parameters
 
 | Name          | Type          | Default | Description                                      |
 |---------------|---------------|---------|--------------------------------------------------|
-| `lastYears` | int  | 0       | Number of years back to include |
+| `lastYears` | int  | empty       | Number of years back to include. No value means all years. |
 | `skipTableTypes` | array of enum  | `[]`    | Skip generation of tables; Possible values: `DATA_VALUE`, `COMPLETENESS`, `COMPLETENESS_TARGET`, `ORG_UNIT_TARGET`, `EVENT`, `ENROLLMENT`, `VALIDATION_RESULT` |
 | `skipResourceTables` | boolean | `false`   | Skip generation of resource tables |
 | `skipPrograms` | array of string | `[]`    | Optional list of programs (IDs) that should be skipped |
@@ -70,7 +70,7 @@ Table: `CONTINUOUS_ANALYTICS_TABLE` job parameters
 
 | Name          | Type          | Default | Description                                      |
 |---------------|---------------|---------|--------------------------------------------------|
-| `lastYears` | int           | `0`     | Number of years back to include |
+| `lastYears` | int | empty | Number of years back to include. No value means all years. |
 | `skipTableTypes` | array of enum | `[]`    | Skip generation of tables; Possible values: `DATA_VALUE`, `COMPLETENESS`, `COMPLETENESS_TARGET`, `ORG_UNIT_TARGET`, `EVENT`, `ENROLLMENT`, `VALIDATION_RESULT` |
 | `fullUpdateHourOfDay` | int           | `0`     | Hour of day for full update of analytics tables (0-23) |
 

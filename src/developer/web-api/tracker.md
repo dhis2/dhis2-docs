@@ -1765,7 +1765,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|filter|String|Comma separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. |
+|filter|String|Comma separated values of attribute filters.|Narrows response to tracked entities matching given filters. More on filters [here](#tracked_entity_attribute_filtering) |
 |orgUnits|String|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
 |orgUnitMode|String|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`. See [org unit modes](#webapi_tracker_orgunit_scope).|
 |program|String|Program `UID`|A tracker program `UID` for which tracked entities in the response must be enrolled into.|
@@ -1869,29 +1869,56 @@ Supported binary operators:
 | Operator | Description |
 | --- | --- |
 | eq | equal to, uses integer/numeric semantics for integer/decimal value types |
-| ieq | equal to, ignoring case |
+| ieq | equal to, ignoring case (use `eq` instead)* |
 | ge | greater than or equal to (uses integer/number semantics for integer/decimal value types) |
 | gt | greater than, uses integer/number semantics for integer/decimal value types |
 | le | less than or equal to, uses integer/number semantics for integer/decimal value types |
-| lt | less than (uses integer/number semantics for integer/decimal value types |
-| ne | not equal to (uses integer/number semantics for integer/decimal value types |
-| neq | not equal to (uses integer/number semantics for integer/decimal value types |
-| nieq | not equal to |
+| lt | less than (uses integer/number semantics for integer/decimal value types) |
+| ne | not equal to (uses integer/number semantics for integer/decimal value types) |
+| neq | not equal to (uses integer/number semantics for integer/decimal value types), use `ne` instead* |
+| nieq | not equal to, ignoring case (use `ne` instead)* |
 | in | one of multiple values separated by semicolon ";", uses integer/number semantics for integer/decimal value types |
 | like | like text match |
-| ilike | like text match, ignoring case |
-| nilike | not like |
+| ilike | like text match, ignoring case (use `like` instead)*|
 | nlike | not like |
+| nilike | not like, ignoring case (use `nlike` instead)* |
 | sw | starts with |
 | ew | ends with |
 
-Matches are case-insensitive, for example `eq` and `ieq` (`i` for `insensitive`) behave in the same way.
+*These operators are currently supported but may be removed in the future. We recommend using the operator mentioned in the description, as it provides the same functionality.
+
+Matches are case-insensitive, for example `eq` and `ieq` (`i` for `insensitive`) behave in the same way. To ensure future compatibility, always use the non-i form (eq, like, etc.).
+
+For instance, `filter=w75KJ2mc4zz:eq:Scott` would return values of the given attribute that match any variation of "Scott" regardless of case, such as SCOTT, scott, Scott...
 
 Supported unary operators:
 
 | Operator | Description |
+| --- | --- |
 | null | has no value |
 | !null | has a value |
+
+##### Tracked entity attribute filtering { #tracked_entity_attribute_filtering }
+
+Filtering by a tracked entity attribute narrows the response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs.
+
+Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. 
+
+A filter like `filter=H9IlTX2X6SL:!null` returns all entries where the given attribute has a value. 
+
+Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. 
+
+Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed.
+
+Each tracked entity attribute can be configured with:  
+  - A minimum number of characters required to perform a search (0 means no minimum)  
+  - Blocked operators
+
+The following request:
+```
+GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:EQ:John
+```
+would fail if the minimum character limit was set to 5 (since "John" has only 4 characters), or if the `EQ` operator was blocked for the specified tracked entity attribute.
 
 ##### Tracked entities response
 
@@ -1980,15 +2007,19 @@ The collection endpoint limits results in three ways:
 tracked entities in an API response, protecting database and server resources. No limit applies
 when set to 0. Configure it via `/api/systemSettings` as described in the
 [documentation](settings-and-configuration.md?#webapi_system_settings).
+
 - Max number of TEs to return in **Program or tracked entity type**: it limits results when searching **outside
 the capture scope** with a specified program or tracked entity type. The API returns an error if
 matches exceed this limit. No limit applies when searching within the capture scope
 or when set to 0.
  This limit is configurable in the maintenance app.
+
 - **Pagination**: As explained [here](#request-parameters-for-pagination).
 
 For paginated requests with non-zero `KeyTrackedEntityMaxLimit`:
+
 - If pageSize ≤ KeyTrackedEntityMaxLimit: `pageSize` is enforced
+
 - If pageSize > KeyTrackedEntityMaxLimit: The API returns an error
 
 #### Tracked entities single object endpoint
@@ -2466,7 +2497,7 @@ Returns a list of events based on the provided filters.
 |programStage|String|uid| Identifier of program stage|
 |programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the events enrollment.|
 |filter|String|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. A filter like `filter=fazCI2ygYkq:!null` returns all events where the given data element has a value. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. User needs access to the data element to filter on it.|
-|filterAttributes|String|Comma separated values of attribute filters|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filterAttributes=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filterAttributes=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
+|filterAttributes|String|Comma separated values of attribute filters|Narrows response to tracked entities matching given filters. Example: `filterAttributes=H9IlTX2X6SL:eq:John`. More on filters [here](#tracked_entity_attribute_filtering) |
 |followUp|boolean| `true`, `false` | Whether event is considered for follow up in program. Defaults to `true`|
 |trackedEntity|String|uid|Identifier of tracked entity|
 |orgUnit|String|uid|Identifier of organisation unit|

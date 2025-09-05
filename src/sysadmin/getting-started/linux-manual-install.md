@@ -134,25 +134,22 @@ Install PostgreSQL with below steps
 <!-- *exit*. -->
 ## Java installation { #install_java_installation } 
 ---
-| DHIS2 version | JDK recommended | JDK required | Tomcat Required | 
-|:--------------|:---------------:|:------------:|:---------------:|  
-| 2.41          | 17              | 17           | 8.5.50          |
-| 2.40          | 17              | 11           | 8.5.50          |
-| 2.38          | 11              | 11           | 8.5.50          |
-| 2.35          | 11              | 8            |                 |
-| Pre 2.35      | 8               | 8            |                 |
 
-The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
+| **DHIS2 Version** | **JRE (Recommended)** | **JRE (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
+| ----------------- | --------------------- | -------------------------- | ------------------ | -------------------------- |
+| 2.42              | 17                    | 17                         | 10                 | 24.04                      |
+| 2.41              | 17                    | 17                         | 9                  | 22.04                      |
+| 2.40              | 17                    | 11                         | 9                  | 22.04                      |
+| 2.38              | 11                    | 11                         | 9                  | 22.04                      |
+| 2.35              | 11                    | 8                          | 9                  | 22.04                      |
+| Pre-2.35          | 8                     | 8                          | 9                  | 22.04                      |
+
+
+To install the recommended JRE for your DHIS2 version, use the following command — replacing <jre_version> with the value from the table above:
+
 ```
-sudo apt-get install -y openjdk-17-jdk
-```
-The recommended Java JDK for DHIS2 2.35 - 2.40 is OpenJDK 11. Install it by invoking command below, 
-```
-sudo apt-get install -y openjdk-11-jdk
-```
-For dhis2 versions below 2.35, OpenJDK 8 is required. Install it by invoking command below, 
-```
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-<jre_version>-jre-headless
+
 ```
 Verify that your installation is correct by invoking:
 ```
@@ -220,18 +217,18 @@ connection.password = xxxx
    at the end for the file. 
    `sudo -u dhis vim /home/dhis/tomcat-dhis/bin/setenv.sh`
    ```
-   export JAVA_HOME='/usr/lib/jvm/java-17-openjdk-amd64/'
+   export JAVA_HOME='/usr/lib/jvm/java-<jre_version>-openjdk-amd64/'
    export JAVA_OPTS='-Xms3g -Xmx6g'
    export DHIS2_HOME='/home/dhis/config'
    ```
-      * `JAVA_HOME` sets the location of the JDK installation.
+      * `JAVA_HOME` sets the location of the JRE installation.
       * `JAVA_OPTS` passes parameters to the JVM.
          * `-Xms` sets the initial allocation of memory to the Java heap memory space.
          * `-Xmx` sets the maximum allocation of memory to the Java heap memory space. This should reflect how much memory you would like to allocate to the DHIS2 software application on your server.
       * `DHIS2_HOME` sets the location of the `dhis.conf` configuration file for DHIS2.
    Check that the path the Java binaries are correct as they might vary from
    system to system, e.g. on AMD systems you might see
-   `/java-11-openjdk-amd64`. Note that you should adjust these values to your
+   `/java-<jre_version>-openjdk-amd64`. Note that you should adjust these values to your
    environment.
 
 * DHIS2 should never be run as a privileged user. After you have modified the
@@ -311,3 +308,4 @@ connection.password = xxxx
     http://localhost:8080
 
 ## Creating systemd service to manage the instance  
+

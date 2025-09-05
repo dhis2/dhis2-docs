@@ -387,22 +387,6 @@ It is also possible to combine the identifiable filter with property-based filte
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
-### Indexable only filter for tracked entity attributes
-
-For tracked entity attributes, there is a special filter in addition to the previous mentioned filtering capabilities. 
-Some of the tracked entity attributes are candidates for creating a trigram index for better lookup performance. 
-Using the *indexableOnly* parameter set to true, the results can be filtered to include only the attributes that are trigram indexable.
-
-Example: Get all tracked entity attributes that are indexable.
-
-    /api/trackedEntityAttributtes.json?indexableOnly=true
-
-Additional filters along with the `indexableOnly` parameter can be specified.
-
-Example: Get all tracked entity attributes where *ANC* is found in any of the *name* property. The system returns the tracked entity attributes where the name matches the provided keyword as well as if the attribute is indexable.
-
-    /api/trackedEntityAttributtes.json?filter=name:like:ANC&indexableOnly=true
-
 ## Metadata field filter { #webapi_metadata_field_filter } 
 
 In many situations, the default views of the metadata can be too
