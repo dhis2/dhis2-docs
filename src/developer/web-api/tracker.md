@@ -115,16 +115,16 @@ related to whether we track a specific `Tracked Entity` or not. We sometimes ref
 PROGRAM` events as "anonymous events" or "single events" since they only represent themselves and
 not another `Tracked Entity`.
 
-In the API, the significant difference is that all events are either not connected to an
-enrollment (`EVENT PROGRAM`) or different enrollments (`TRACKER PROGRAM`). The table below will
-point out any exceptional cases between these two.
+In the API, the significant difference is that events are either not linked to any enrollment
+(`EVENT PROGRAM`) or are linked to different enrollments (`TRACKER PROGRAM`).
+The table below will point out any exceptional cases between these two.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
 | event | The identifier of the event. Generated if not supplied. | No | Yes | String:Uid | ABCDEF12345 |
 | programStage | The program stage the event represents. | Yes | No | String:Uid | ABCDEF12345 |
 | enrollment | A reference to the enrollment which owns the event. Not applicable for `EVENT PROGRAM`. | Yes | Yes | String:Uid | ABCDEF12345 |
-| program | The program stage the event represents. | No | Yes | String:Uid | ABCDEF12345 |
+| program | The program that contains the event. | No | Yes | String:Uid | ABCDEF12345 |
 | trackedEntity | Only for reading data. The tracked entity which owns the event. Not applicable for `EVENT PROGRAM`. | No | No | String:Uid | ABCDEF12345 |
 | status | Status of the event. Default is `ACTIVE`. For `EVENT PROGRAM` only `ACTIVE` and `COMPLETED` statuses are allowed. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
 | orgUnit | The organisation unit where the user registered the event. | Yes | No | String:Uid | ABCDEF12345 |
