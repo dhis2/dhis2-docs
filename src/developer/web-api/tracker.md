@@ -115,24 +115,24 @@ related to whether we track a specific `Tracked Entity` or not. We sometimes ref
 PROGRAM` events as "anonymous events" or "single events" since they only represent themselves and
 not another `Tracked Entity`.
 
-In the API, the significant difference is that all events are either connected to the same
-enrollment (`EVENT PROGRAM`) or different enrollments (`TRACKER PROGRAM`). The table below will
-point out any exceptional cases between these two.
+In the API, the significant difference is that events are either not linked to any enrollment
+(`EVENT PROGRAM`) or are linked to different enrollments (`TRACKER PROGRAM`).
+The table below will point out any exceptional cases between these two.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
 | event | The identifier of the event. Generated if not supplied. | No | Yes | String:Uid | ABCDEF12345 |
 | programStage | The program stage the event represents. | Yes | No | String:Uid | ABCDEF12345 |
 | enrollment | A reference to the enrollment which owns the event. Not applicable for `EVENT PROGRAM`. | Yes | Yes | String:Uid | ABCDEF12345 |
-| program | Only for reading data. The type of program the enrollment which owns the event has. | No | Yes | String:Uid | ABCDEF12345 |
+| program | The program that contains the event. | No | Yes | String:Uid | ABCDEF12345 |
 | trackedEntity | Only for reading data. The tracked entity which owns the event. Not applicable for `EVENT PROGRAM`. | No | No | String:Uid | ABCDEF12345 |
-| status | Status of the event. Default is `ACTIVE`. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
+| status | Status of the event. Default is `ACTIVE`. For `EVENT PROGRAM` only `ACTIVE` and `COMPLETED` statuses are allowed. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
 | orgUnit | The organisation unit where the user registered the event. | Yes | No | String:Uid | ABCDEF12345 |
 | createdAt | Only for reading data. Timestamp when the user created the event. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | createdAtClient | Timestamp when the user created the event on client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Only for reading data. Timestamp when the event was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAtClient | Timestamp when the event was last updated on client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| scheduledAt | Timestamp when the event was scheduled for. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| scheduledAt | Timestamp when the event was scheduled for. Not applicable for `EVENT PROGRAM`. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when something occurred. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedAt | Timestamp when the user completed the event. Set on the server if not set by the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedBy | Only for reading data. User that completed the event. Set on the server. | No | No | String:any | John Doe |
@@ -2493,7 +2493,7 @@ Returns a list of events based on the provided filters.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|program|String|uid| Identifier of a tracker or event program|
+|program|String|uid| Identifier of a tracker or event program. This parameter is mandatory.|
 |programStage|String|uid| Identifier of program stage|
 |programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the events enrollment.|
 |filter|String|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. A filter like `filter=fazCI2ygYkq:!null` returns all events where the given data element has a value. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. User needs access to the data element to filter on it.|
