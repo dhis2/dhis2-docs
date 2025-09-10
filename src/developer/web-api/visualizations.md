@@ -204,61 +204,77 @@ dashboard resource similar to this:
 
 ### Adding, moving and removing dashboard items and content { #webapi_adding_moving_removing_dashboard_items } 
 
-In order to add dashboard items a consumer can use the
-`/api/dashboards/<dashboard-id>/items/content` resource, where
-<dashboard-id\> should be replaced by the relevant dashboard
-identifier. The request must use the *POST* method. The URL syntax and
-parameters are described in detail in the following table.
+As *DashboardItem* is an **embedded** object of *Dashboard*, all operations must be performed through the `/api/dashboards/{uid}` endpoint.  
 
+#### Add a Visualization
+To add a visualization to a specific dashboard, send a **PUT** request to:  
 
+```
+ /api/dashboards/ChZ236jPgXs
+```
 
-Table: Items content parameters
+The request payload must include the full *Dashboard* object, including all existing and new *DashboardItems*.  
 
-| Query parameter | Description | Options |
-|---|---|---|
-| type | Type of the resource to be represented by the dashboard item | visualization &#124; map &#124; eventVisualization &#124; users &#124; reports &#124; resources &#124; app |
-| id | Identifier of the resource to be represented by the dashboard item | Resource identifier |
+```json
+{
+    "name": "test",
+    "layout": {
+        "columns": []
+    },
+    "itemConfig": {
+        "insertPosition": "END"
+    },
+    "restrictFilters": false,
+    "allowedFilters": [],
+    "favorites": [],
+    "displayName": "test",
+    "user": {
+        "id": "xE7jOejl9FI",
+        "code": null,
+        "name": "John Traore",
+        "username": "admin"
+    },
+    "id": "ChZ236jPgXs",
+    "dashboardItems": [
+        {
+            "x": 0,
+            "y": 0,
+            "w": 20,
+            "h": 29,
+            "id": "cKd9PKBuHv6",
+            "type": "VISUALIZATION",
+            "position": null,
+            "visualization": {
+                "id": "LW0O27b7TdD",
+                "name": "ANC: 1-3 dropout rate Yearly"
+            },
+            "i": "cKd9PKBuHv6",
+            "minH": 4,
+            "firstOfType": true,
+            "width": 20,
+            "height": 29
+        }
+    ],
+    "starred": false
+}
+```
 
-A *POST* request URL for adding a visualization to a specific dashboard could look like this, where the last id query parameter value is the chart resource identifier:
+#### Update an Item
+To update properties of any item inside a dashboard, send a **PUT** request to:
 
-    /api/dashboards/vQFhmLJU5sK/items/content?type=visualization&id=LW0O27b7TdD
+```
+ /api/dashboards/ChZ236jPgXs
+```
 
-When adding resource of type map, visualization and app, the API
-will create and add a new item to the dashboard. When adding a resource
-of type users, reports and resources, the API will try to
-add the resource to an existing dashboard item of the same type. If no
-item of same type or no item of same type with less than eight resources
-associated with it exists, the API will create a new dashboard item and
-add the resource to it.
+The payload must be the latest *Dashboard* object, including all its items with updated property value.
 
-In order to move a dashboard item to a new position within the list of
-items in a dashboard, a consumer can make a *POST* request to the
-following resource URL, where `<dashboard-id>` should be replaced by the
-identifier of the dashboard, `<item-id>` should be replaced by the
-identifier of the dashboard item and `<index>` should be replaced by the
-new position of the item in the dashboard, where the index is
-zero-based:
+#### Remove an Item
+To remove an item from a dashboard, remove it from the *Dashboard* payload and send a **PUT** request to:
 
-    /api/dashboards/<dashboard-id>/items/<item-id>/position/<index>
+```
+ /api/dashboards/ChZ236jPgXs
+```
 
-To remove a dashboard item completely from a specific dashboard a
-consumer can make a *DELETE* request to the below resource URL, where
-`<dashboard-id>` should be replaced by the identifier of the dashboard
-and `<item-id>` should be replaced by the identifier of the dashboard
-item. The dashboard item identifiers can be retrieved through a GET
-request to the dashboard resource URL.
-
-    /api/dashboards/<dashboard-id>/items/<item-id>
-
-To remove a specific content resource within a dashboard item a consumer
-can make a *DELETE* request to the below resource URL, where
-`<content-resource-id>` should be replaced by the identifier of a
-resource associated with the dashboard item; e.g. the identifier of a
-report or a user. For instance, this can be used to remove a single
-report from a dashboard item of type reports, as opposed to removing the
-dashboard item completely:
-
-    /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
 ### Defining a dashboard layout { #webapi_dasboard_layout } 
 
