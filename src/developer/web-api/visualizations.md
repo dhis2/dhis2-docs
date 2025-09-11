@@ -266,7 +266,7 @@ To update properties of any item inside a dashboard, send a **PUT** request to:
  /api/dashboards/ChZ236jPgXs
 ```
 
-The payload must be the latest *Dashboard* object, including all its items with updated property value.
+The payload must be the latest *Dashboard* object, including all its items with the updated property value.
 
 #### Remove an Item
 To remove an item from a dashboard, remove it from the *Dashboard* payload and send a **PUT** request to:
