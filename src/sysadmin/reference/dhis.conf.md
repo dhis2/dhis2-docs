@@ -53,7 +53,6 @@ connection.pool.initial_size = 5
 # Deprecated since v43. Determines how many connections at a time will try to acquire when the pool is exhausted.
 connection.pool.acquire_incr = 5
 
-
 #Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
 connection.pool.max_idle_time = 7200
 
@@ -86,7 +85,7 @@ db.pool.type = hikari
 # The server.base.url setting refers to the URL at which the system is accessed by end users over the network.
 server.base.url = https://play.dhis2.org/dev 
 
-# Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
+# Enable secure settings if system is deployed on HTTPS, can be 'off', 'on' (default: 'off')
 server.https = off
 # It is strongly recommended to enable the `server.https` setting and deploying DHIS 2 with an encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled
 
