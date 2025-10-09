@@ -37,6 +37,7 @@ Reference:
   - PostgreSQL: '@github(dhis2/dhis2-docs, src/sysadmin/reference/postgresql.md, master)'
   - Reverse Proxy: '@github(dhis2/dhis2-docs, src/sysadmin/reference/reverse_proxy_nginx.md, master)'
   - Monitoring: '@github(dhis2/dhis2-docs, src/sysadmin/reference/monitoring.md, master)'
+  - Analytics database: '@github(dhis2/dhis2-docs, src/sysadmin/reference/analytics-database.md, master)'
   - dhis2-server-tools Variables: '@github(dhis2/dhis2-server-tools, docs/Variables.md, main)'
   # - Oauth: '@github(dhis2/dhis2-docs, src/sysadmin/reference/oauth.md, master)'
   # - Personal-Access-Tokens: '@github(dhis2/dhis2-docs, src/sysadmin/reference/personal-access-tokens.md, master)'
