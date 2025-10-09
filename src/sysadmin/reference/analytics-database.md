@@ -13,7 +13,7 @@ The analytics database is configured in the `dhis.conf` configuration file.
 
 Apache Doris is a highly scalable data warehouse for real-time analytics. Refer to the [documentation portal](https://doris.apache.org) for installation and configuration guidance.
 
-The configuration property keyword for Apache Doris is `doris`. Apache Doris uses the MySQL communication protocol and JDBC driver, and is designed with a backend/front-end architecture which separates query coordination from data storage.
+Apache Doris uses the MySQL communication protocol and JDBC driver, and is designed with a backend/front-end architecture which separates query coordination from data storage.
 
 The connection URL pattern is `jdbc::mysql://<hostname-or-ip>:<port>/<database-name>?<property>=<value>`.
 
@@ -34,8 +34,6 @@ analytics.connection.password = xxxx
 ### ClickHouse
 
 ClickHouse is a highly scalable data warehouse for real-time analytics. Refer to the [documentation portal](https://clickhouse.com/docs) for installation and configuration guidance.
-
-The configuration property keyword for ClickHouse is `clickhouse`.
 
 The connection URL pattern is `jdbc::clickhouse://<hostname-or-ip>:<port>/<database-name>`.
 
