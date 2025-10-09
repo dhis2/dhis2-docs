@@ -25,10 +25,10 @@ analytics.database = doris
 analytics.connection.url = jdbc:mysql://192.168.1.180:9030/analytics?useUnicode=true&characterEncoding=UTF-8
 
 # Analytics database username
-# analytics.connection.username = dhis
+analytics.connection.username = dhis
 
 # Analytics database password
-# analytics.connection.password = xxxx
+analytics.connection.password = xxxx
 ```
 
 ### ClickHouse
@@ -47,7 +47,7 @@ analytics.database = clickhouse
 analytics.connection.url = jdbc:clickhouse://92.168.1.100:8123/analytics
 
 # Analytics database username
-analytics.connection.username = default
+analytics.connection.username = dhis
 
 # Analytics database password
 analytics.connection.password = admin
