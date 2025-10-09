@@ -148,7 +148,6 @@ http {
 	listen               443 ssl;
 	client_max_body_size 10M;
 
-	ssl                  on;
 	ssl_certificate      server.crt;
 	ssl_certificate_key  server.key;
 
