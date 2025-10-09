@@ -7,7 +7,7 @@ DHIS2 allows for utilizing a dedicated analytics database for analytics tables. 
 
 ## Configuration
 
-The analytics database is configured in the `dhis.conf` file.
+The analytics database is configured in the `dhis.conf` configuration file.
 
 ### Apache Doris
 
