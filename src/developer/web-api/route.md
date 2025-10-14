@@ -216,7 +216,7 @@ DHIS2 views the response originating from the upstream server as trusted. The im
 
 ## Route Manager { #route_manager_app }
 
-[Route Manager](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f08a81d78) is a DHIS2 app available from App Hub that provides a user interface for managing and testing routes:
+The [Route Manager app](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f08a81d78) is a DHIS2 app available from App Hub that provides a user interface for managing and testing routes:
 
 ![Routes Manager app](./resources/images/route-manager/route-manager-list.png)
 
