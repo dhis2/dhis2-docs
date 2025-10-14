@@ -220,6 +220,6 @@ The [Route Manager app](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f0
 
 ![Routes Manager app](./resources/images/route-manager/route-manager-list.png)
 
-Visit the [DHIS2 system maintenance guide](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/route-manager.html) to learn more about Route Manager.
+Visit the [DHIS2 system maintenance guide](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/route-manager.html) to learn more about using the Route Manager app.
 
 
