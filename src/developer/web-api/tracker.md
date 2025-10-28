@@ -2265,7 +2265,7 @@ An example JSON response.
 
 The change log type can be `CREATE`, `UPDATE`, or `DELETE`. `CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. `UPDATE` will hold two values: the previous and the current.
 
-Change logs are enabled by default and can be configured in `dhis.conf`, as explained [here](../../sysadmin/reference/logging.md#install_changelog)
+More on change log configuration [here](../../sysadmin/reference/logging.md#changelog)
 
 ### Enrollments
 
@@ -2814,7 +2814,7 @@ An example of a JSON response:
 The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
 `CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
 
-Change logs are enabled by default and can be configured in `dhis.conf`, as explained [here](https://docs.dhis2.org/en/manage/reference/logging.html#install_changelog).
+More on change log configuration [here](../../sysadmin/reference/logging.md#changelog)
 
 ### Relationships
 

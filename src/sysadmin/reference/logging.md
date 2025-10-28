@@ -88,17 +88,12 @@ Common log levels are `DEBUG`, `INFO`, `WARN` and `ERROR`.
 > 
 > Log level configuration is not supported for the embedded DHIS2 Jetty version.
 
-## Changelog { #install_changelog } 
+## Changelog
 
 DHIS2 writes entries to changelogs when certain entities were changed in the
 system. The entities fall within two categories: _Aggregate_ and _tracker_. The
 _aggregate_ category includes changes to aggregate data values. The _tracker_
 category includes changes to tracked entity attribute values and event data values.
-
-The changelog for both categories are enabled by default. You can control
-whether to enable or disable the changelog by category through the `dhis.conf`
-configuration file using the properties described below. Property options are
-`on` (default) and `off`.
 
 The benefit of the changelog is the ability to see changes which have been
 performed to the data. The benefits of disabling the changelog is a minor
@@ -106,10 +101,15 @@ performance improvement by avoiding the cost of writing changelog items to the
 database, and less database storage used. It is recommended to enable
 changelog, and great care should be taken if disabling it.
 
-```properties
+The aggregate changelog is enabled by default. You can control its behavior 
+through the `dhis.conf` configuration file using the following property. Available 
+options are `on` (default) and `off`:
+
+```property
 # Aggregate changelog, can be 'on' (default), 'off'
 changelog.aggregate = on
-
-# Tracker changelog, can be 'on' (default), 'off'
-changelog.tracker = on
 ```
+
+The tracker changelog is configured per program and tracked entity type. In the 
+maintenance app, you can enable or disable change logs individually for each program 
+and tracked entity type.
