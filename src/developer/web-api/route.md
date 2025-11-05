@@ -91,7 +91,7 @@ A number of authentication modes are supported when running routes. These authen
     }
   }
   ``` 
-  Note that this request configures the route with static headers so that these headers are included in the request sent from DHIS2. Keep in mind that DHIS2 does not store these static headers as encrypted. 
+  Note that this request configures the route with static headers so that these headers are included in the request sent from DHIS2. Keep in mind that DHIS2 does not store these static headers as encrypted.
 
 * `api-headers`: adds user-defined headers for API authentication. Here is an example creating a route configured with `api-headers` authentication:
 
@@ -180,15 +180,17 @@ For performance reasons, the maximum transfer time for a route response is 5 min
 }
 ```
 
-The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance. 
+The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance.
 
->IMPORTANT: The default route response timeout is 10 seconds for DHIS2 versions older than 42 except for the following versions which have the response timeout of 30 seconds:
->* \>= 40.8
->* \>= 41.4
+>IMPORTANT: The response timeout can be customised starting from DHIS2 v40.10 and v41.6. Earlier DHIS2 versions have a response timeout of 10 seconds, except for:
+>* 40.8 ≤ v < 40.10
+>* 41.4 ≤ v < 41.6
+>
+>These specific versions have a 30-second response timeout.
 
 ### Wildcard Routes
 
-It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service. To do this, the route URL must end with `/**`.  Sub-paths can then be specified by appending them after `/run`.
+It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service. To do this, the route URL must end with `/**`. Sub-paths can then be specified by appending them after `/run`.
 
 ```json
 {
@@ -207,3 +209,15 @@ GET /api/routes/postman-wildcard/run/get
 POST /api/routes/{id}/run/post
 POST /api/routes/postman-wildcard/run/post
 ```
+
+## Security Considerations
+
+DHIS2 views the response originating from the upstream server as trusted. The implication is that a route does not validate the data produced from the upstream server. For example, the route client could still receive invalid JSON such as JavaScript code despite the route request holding the `application/json` content type in its `Accept` header. When the upstream response is untrusted, then it is the responsibility of the route client (e.g., DHIS2 app) to validate, and possibly sanitise, the data within the route response.
+
+## Route Manager App { #route_manager_app }
+
+The [Route Manager app](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f08a81d78) is a DHIS2 app available from App Hub that provides a user interface for managing and testing routes:
+
+![Routes Manager app](./resources/images/route-manager/route-manager-list.png)
+
+Visit the [DHIS2 system maintenance guide](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/route-manager.html) to learn more about using Route Manager.
