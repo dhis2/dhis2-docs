@@ -1052,6 +1052,17 @@ A filter that uses both attributes and data elements looks like this:
 
 ## Setting up new Program disaggregation Mappings { #program_disaggregation_mapping } 
 
+## The Concept
+
+In DHIS2 v42 there is now added the ability to assign Disaggregation Category Combinations to a Program Indicator and create a mapping between the program data and each category option contained in the combination. This creates a relationship between the tracker and aggregate data models which allows for analysing individual data in the same way and alongside aggregated data.
+
+![Program links to Category](resources/images/program/Program_to_category.png){ .center width=30% }
+![tracker and Aggregate Models](resources/images/program/Tracker_to_aggregate_model.png){ .center width=30% }
+
+The Program Indicator Disaggregation mappings, defined at the Program level, provide a connection between the two data models within DHIS2. This ultimately allows a user to create disaggregated views of program data within the Data Visualizer using a single Program Indicator where previously one for each disaggregation was needed.
+
+![Table Example](resources/images/program/Table_Example.png){ .center width=30% }
+
 1. Install or update the new Maintenance app (Preview)
 
     If the your instance does not already have the new version of the maintenance app installed go to the App Management App and search for Maintenance in the App Hub and install the app. If you already have it installed, then you should update the app to the latest version. Updates to this app are continuously released so it is good to make sure that you are using the most recent release.
