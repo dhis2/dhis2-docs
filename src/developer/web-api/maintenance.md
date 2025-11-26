@@ -637,68 +637,105 @@ DELETE request:
 ## Data summary { #webapi_data_statistics}
 
 The data summary resource provides some metrics about the database and level of system usage. The metrics include: 
-
-    - Number of object types (dashboards, data elements, etc)
-    - Number of user account invitations
-    - Number of data values updated by day
-    - Number of events updated by day
-    - Number of users logged in by day
-    - Number of enrollment by day
-
 Data statistics can be accessed with a GET request to :
 
     GET /api/dataSummary
 
-A JSON response similar to the one below is provided:
+A JSON response similar to the one below is provided. We will explain the various parts of the response in the following sections.
+
+Object counts represent the number of different metadata objects in the system. These counts can be useful
+for monitoring the size and complexity of a DHIS2 instance. An example of the `objectCounts` part of the response is shown below:
+Note that these values represent the number of objects at a specific point in time and will change as data is added or removed from the system.
 
 ```json
-{
-    "objectCounts": {
-        "indicator": 77,
-        "trackedEntity": 73125,
-        "visualization": 292,
-        "period": 384,
-        "programStageInstance": 372987,
-        "organisationUnit": 1332,
-        "validationRule": 37,
-        "dataValue": 4934284,
-        "dataElement": 1037,
-        "program": 14,
-        "organisationUnitGroup": 18,
-        "enrollment": 73133,
-        "trackedEntityInstance": 73125,
-        "programInstance": 73133,
-        "indicatorType": 5,
-        "eventVisualization": 50,
-        "event": 372987,
-        "indicatorGroup": 17,
-        "map": 91,
-        "user": 131,
-        "userGroup": 34,
-        "dataSet": 26,
-        "dataElementGroup": 84,
-        "dashboard": 28
-    },
-    "activeUsers": {
-        "0": 2,
-        "1": 2,
-        "2": 2,
-        "7": 2,
-        "30": 3
-    }
-    ....
+"objectCounts": {
+"indicator": 77,
+"trackerevent": 55781,
+"trackedEntity": 73125,
+"visualization": 292,
+"period": 384,
+"organisationUnit": 1332,
+"validationRule": 37,
+"dataValue": 4935894,
+"dataElement": 1037,
+"program": 14,
+"organisationUnitGroup": 18,
+"singleevent": 317816,
+"enrollment": 73126,
+"indicatorType": 5,
+"eventVisualization": 50,
+"event": 373597,
+"indicatorGroup": 17,
+"dataSet": 26,
+"userGroup": 34,
+"user": 131,
+"dataElementGroup": 84,
+"map": 91,
+"dashboard": 27
 }
 ```
-As can been seen, various summary statistics are included in the response.Object counts refer to the current
-number of various metadata objects in the system. The `activeUsers`, `userInvitations`, `dataValueCount` and `eventCount` all represent
-values on various days. `userInvitations` provides the number
-of expired and all invitations currently in the system. The `system`
-object provides various information related to to the version, revision, build time, system ID (a UUID) and the current server date.
+
+In addition to object counts, the data summary response also includes various usage statistics related to users and data in the form of histograms.
+`activeUsers` represents the number of users who have performed an action which results in a data statistics event (opened a dashboard, viewed a report, etc.) over the past hour (0), today (1), last 2 days (2), last 7 days (7) and last 30 days (30). Note that the "today" value represents the number of unique users who have been active since midnight server time, while the "last 2 days", "last 7 days" and "last 30 days" values represent the number of unique users who have been active in the respective time periods calculated backwards from the current time. `logins` represents the number of successful user logins over the same time periods. `userInvitations` provides the number of user invitations currently in the system, both total and expired. An example of these parts of the response is shown below:
+
+
+```json
+"activeUsers": {
+"0": 1,
+"1": 1,
+"2": 1,
+"7": 2,
+"30": 2
+},
+"logins": {
+"0": 1,
+"1": 1,
+"2": 131,
+"7": 131,
+"30": 131
+},
+"userInvitations": {
+"all": 0,
+"expired": 0
+}
+```
+
+In addition, the data summary response includes information about different types of data stored in the system. `dataValueCount` represents the number of data values entered into the system over the past hour (0), today (1), last 7 days (7) and last 30 days (30). `singleEventCount` and `trackerEventCount` represents the number of single events and tracker events entered into the system over the same time periods. 
+
+```json
+"dataValueCount": {
+"0": 0,
+"1": 0,
+"7": 0,
+"30": 0
+},
+"eventCount": {
+"0": 0,
+"1": 0,
+"7": 1,
+"30": 2
+}
+....
+```
+
+Finally, the data summary response includes information about the system itself, such as the version, revision, build time, system ID and current server date. An example of the `system` part of the response is shown below:
+```json
+"system": {
+"version": "2.43-SNAPSHOT",
+"revision": "db516b5",
+"buildTime": "2025-11-18T10:53:50.000",
+"systemId": "eed3d451-4ff5-4193-b951-ffcc68954299",
+"serverDate": "2025-11-18T10:55:15.048"
+}
+```
+
 
 ## Data summary Prometheus metrics { #webapi_data_statistics_prometheus }
 
 In order to support the long-term monitoring of DHIS2 instances, a special endpoint is available
-which outputs the data summary information in the [Prometheus text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). This can be fetched from the server by making
+which outputs the data summary information in the 
+[Prometheus text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/).
+ This can be fetched from the server by making
 a GET request to :
     GET api/dataSummary/metrics
 
@@ -718,7 +755,7 @@ This endpoint provides essentially the same information as the `api/dataSummary`
 Prometheus is capable of scraping and importing. Most of the metrics represent object counts, such as the current
 number of data elements, organization units, etc.
 
-The build information metric is explained in more detail below. 
+The build information metric is explained in more detail below.
 
 ```
 # HELP data_summary_build_info Build information
