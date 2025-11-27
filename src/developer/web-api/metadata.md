@@ -2027,6 +2027,9 @@ Table: Constraints and error codes
 
 The organisation unit merge endpoint allows you to merge a number of organisation units into a target organisation unit.
 
+#### Authorisation
+The main authority required to perform an organisation unit merge is `F_ORGANISATION_UNIT_MERGE`.
+
 #### Request
 
 Merge organisation units with a POST request:
