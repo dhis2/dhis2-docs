@@ -273,7 +273,9 @@ Change roles and access:
         | Organisation unit contact | Receives program notifications via e-mail or text message.<br>         <br>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number. |
         | Users at organisation unit | All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system. |
         | User group | All members of the selected user group receive the program notifications via the internal DHIS2 messaging system |
-        | Program | TBA |
+        | Program attribute | Receives program notifications via e-mail or text message.<br>         <br>To receive a program notification, the recipient must have an e-mail address or a phone number attribute. |
+        | Data element | Receives program notifications via e-mail or text message.<br>         <br>To receive a program notification, the recipient must have an e-mail address or a phone number data element. |
+        | Web hook | TBA |
 
     3.  Click **Save**.
 
