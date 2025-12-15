@@ -325,6 +325,8 @@ resources:
 
     GET POST /api/configuration/infrastructuralPeriodType
 
+    GET POST /api/configuration/dataOutputPeriodTypes
+
     GET POST DELETE /api/configuration/selfRegistrationRole
 
     GET POST DELETE /api/configuration/selfRegistrationOrgUnit
@@ -358,6 +360,7 @@ Table: Configuration values
 | infrastructuralDataElements | Data element group ID |
 | infrastructuralIndicators | Indicator group ID |
 | infrastructuralPeriodType | Period type name (e.g. "Monthly") |
+| dataOutputPeriodTypes | JSON list of period type name (e.g. "Monthly", "Quarterly", "Yearly", etc.) |
 | selfRegistrationRole | User role ID |
 | selfRegistrationOrgUnit | Organisation unit ID |
 | smtpPassword | SMTP email server password |
