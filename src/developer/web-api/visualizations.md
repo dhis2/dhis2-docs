@@ -939,7 +939,10 @@ Table: EventVisualization attributes
 | filterDimensions | The dimensions defined for the filters. |
 | outputType | Indicates output type of the EventVisualization. It can be EVENT, ENROLLMENT or TRACKED_ENTITY_INSTANCE. |
 | collapseDataDimensions | Indicates whether to collapse all data dimensions into a single dimension. Boolean value. |
-| hideNaData | Indicates whether to hide N/A data. Boolean value. |
+| hideNaData | Indicates whether to hide N/A data. Boolean value. | 
+| hideEmptyColumns | Indicates whether to hide columns with no data values. Boolean value. |
+| fixColumnHeaders | Fixes (or not) the pivot table column headers. Boolean value. |
+| fixRowHeaders | Fixes (or not) the pivot table row headers. Boolean value. |
 
 ### Retrieving event visualizations
 <!--DHIS2-SECTION-ID:webapi_event_visualization_retrieving_event_visualizations-->
