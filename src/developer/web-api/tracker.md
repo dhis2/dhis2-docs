@@ -1912,7 +1912,7 @@ Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:
 
 Each tracked entity attribute can be configured with:  
   - A minimum number of characters required to perform a search (0 means no minimum)  
-  - Blocked operators
+  - Blocked operators. Only `SW`, `EW`, and `LIKE` can be blocked. All other operators cannot be blocked.
 
 The following request:
 ```
