@@ -3678,16 +3678,6 @@ The program message API supports querying messages using specific request parame
 GET /api/messages
 ```
 
-To get the list of sent tracker messages, the below endpoint can be used. Enrollment or Event UID has to be provided.
-
-```
-GET /api/messages/scheduled/sent?enrollment={uid}
-```
-
-```
-GET /api/messages/scheduled/sent?event={uid}
-```
-
 To retrieve a specific message.
 
 ```
@@ -3712,3 +3702,22 @@ Table: Query program messages API
 | trackedEntity | /api/messages?trackedEntity=xdfejpfLH2 |
 | organisationUnit | /api/messages?ou=Sllsjdhoe3 |
 | processedDate | /api/messages?processedDate=2016-02-01 |
+
+### Program Notification Instance
+/api/programNotificationInstances exposes program notification instances, i.e. concrete scheduled or sent notifications created from program notification templates.
+
+Returns program notification instances, optionally filtered and paginated.
+
+```
+GET /api/programNotificationInstances
+
+Table: Query program notification instance API
+
+| Name         | Type              | Required | Description                                                                                                                   |
+|-------------|-------------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
+| `scheduledAt` | `date` (ISO-8601) | no       | Returns notification instances scheduled to be sent on the given date. Example: `scheduledAt=2025-01-01`.                    |
+| `paging`      | `boolean`         | no       | Enables or disables pagination. Default is `true`. Use `paging=false` to return all matching instances without pagination.   |
+| `page`        | `integer`         | no       | Page number to return when pagination is enabled.                                                                            |
+| `pageSize`    | `integer`         | no       | Number of items per page when pagination is enabled.                                                                         |
+| `event`       | `UID`             | no       | Program notification instances attached to this enrollment.                                                                   |
+| `enrollment`  | `UID`             | no       | Program notification instances attached to this event.                                                                   |
