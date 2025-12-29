@@ -4218,7 +4218,6 @@ The `fields` parameter can be used to narrow the fields included for the shown o
 | INTEGER_POSITIVE | Value is a positive integer
 | INTEGER_NEGATIVE | Value is a negative integer
 | INTEGER_ZERO_OR_POSITIVE | Value is an positive or zero integer
-| TRACKER_ASSOCIATE | None
 | USERNAME | Value is a username of an existing `User`
 | COORDINATE | None
 | ORGANISATION_UNIT | Value is a valid UID of an existing `OrganisationUnit`
