@@ -617,7 +617,6 @@ Table: Data element objects in the Maintenance app
     | Unit interval | Any real number greater than or equal to 0 and less than or equal to 1. |
     | Text | Textual value. The maximum number of allowed characters per value is 50,000. |
     | Time | Time is stored in HH:mm format.<br>     <br>HH is a number between 0 and 23<br>     <br>mm is a number between 00 and 59 |
-    | Tracker associate | Tracked entity instance. Rendered as dialog with a list of tracked entity instances and a search field. |
     | Username | DHIS2 user. Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type |
     | Yes/No | Boolean values, renders as drop-down lists in data entry. |
     | Yes only | True values, renders as check-boxes in data entry. |

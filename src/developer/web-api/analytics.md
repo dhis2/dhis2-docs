@@ -2230,7 +2230,7 @@ the returned data dimensions are:
 - **Categories** in category combo associated with the program (derived from programStageId)
 - **Category option group sets** of type `ATTRIBUTE`
 
-All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE` and `FILE_RESOURCE`.
 
 #### Event aggregate dimensions { #webapi_event_aggregate_analytics_dimension }
 
@@ -2263,7 +2263,7 @@ The `/analytics/enrollments/query/dimensions?programId=...` resource accepts a m
 - **Data elements** of *supported types* in the program, with program stage for each data element
 - **Tracked entity attributes** of *supported types* associated with the program that are not confidential
 
-All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE` and `FILE_RESOURCE`.
 
 #### Enrollment aggregate dimensions { #webapi_enrollment_aggregate_analytics_dimension }
 
@@ -2296,7 +2296,7 @@ for each program `P` associated with a tracked entity instance of type `TET`:
 - **Tracked entity attributes** of *supported types* associated with the program that are not confidential
 - **Program attributes** of `P`
 
-All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE` and `FILE_RESOURCE`.
 
 ### Sample request and response
 
