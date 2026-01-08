@@ -275,6 +275,11 @@ Some aspects of the data synchronization feature to be aware of:
   synchronization time is tracked individually for each item as previously
   mentioned.
 
+- The data elements of ProgramStages (ProgramStageDataElement) which have an option "Skip
+  synchronization" turned on will not be synchronized. This feature allows you
+  to decide to not synchronize some sensitive or not relevant data and to keep
+  them only locally.
+
 - The authority
   `Ignore validation of required fields in Tracker and Event Capture`
   (`F_IGNORE_TRACKER_REQUIRED_VALUE_VALIDATION`) should be used when there
