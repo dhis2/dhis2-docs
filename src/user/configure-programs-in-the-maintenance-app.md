@@ -1057,12 +1057,12 @@ A filter that uses both attributes and data elements looks like this:
 
 In DHIS2 v42 there is now added the ability to assign Disaggregation Category Combinations to a Program Indicator and create a mapping between the program data and each category option contained in the combination. This creates a relationship between the tracker and aggregate data models which allows for analysing individual data in the same way and alongside aggregated data.
 
-![Program links to Category](resources/images/program/Program_to_category.png){ .center width=30% }
-![tracker and Aggregate Models](resources/images/program/Tracker_to_aggregate_model.png){ .center width=30% }
+![Program links to Category](resources/images/program/Program_to_category.png){ width=60% }
+![tracker and Aggregate Models](resources/images/program/Tracker_to_aggregate_model.png){ width=60% }
 
 The Program Indicator Disaggregation mappings, defined at the Program level, provide a connection between the two data models within DHIS2. This ultimately allows a user to create disaggregated views of program data within the Data Visualizer using a single Program Indicator where previously one for each disaggregation was needed.
 
-![Table Example](resources/images/program/Table_Example.png){ .center width=30% }
+![Table Example](resources/images/program/Table_Example.png){ width=60% }
 
 1. Install or update the new Maintenance app (Preview)
 
