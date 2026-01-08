@@ -1055,7 +1055,7 @@ A filter that uses both attributes and data elements looks like this:
 
 ## The Concept
 
-In DHIS2 v42 there is now added the ability to assign Disaggregation Category Combinations to a Program Indicator and create a mapping between the program data and each category option contained in the combination. This creates a relationship between the tracker and aggregate data models which allows for analysing individual data in the same way and alongside aggregated data.
+DHIS2 v42 introduces the ability to assign Disaggregation Category Combinations to a Program Indicator and create a mapping between the program data and each category option contained in the combination. This creates a relationship between the tracker and aggregate data models which allows for analysing individual data in the same way and alongside aggregated data.
 
 ![Program links to Category](resources/images/program/Program_to_category.png){ width=60% }
 ![tracker and Aggregate Models](resources/images/program/Tracker_to_aggregate_model.png){ width=60% }
@@ -1066,7 +1066,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
 1. Install or update the new Maintenance app (Preview)
 
-    If the your instance does not already have the new version of the maintenance app installed go to the App Management App and search for Maintenance in the App Hub and install the app. If you already have it installed, then you should update the app to the latest version. Updates to this app are continuously released so it is good to make sure that you are using the most recent release.
+    If your instance does not already have the new version of the maintenance app installed go to the App Management App and search for Maintenance in the App Hub and install the app. If you already have it installed, then you should update the app to the latest version. Updates to this app are continuously released so it is good to make sure that you are using the most recent release.
 
     ![Note Version 0.63.0 might be superseded by a newer version by the time you read this, update to the latest](resources/images/program/App_Management_Maintenance_App_Preview.png)
 
@@ -1100,7 +1100,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
    [Program Indicator functions and Variale operators](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-242/configuring-the-system/programs.html#program_indicator_functions_variables_operators)
 
     ![](resources/images/program/Disaggregation_Mappings_Expanded.png)
-    ![](resources/images/program/Program_Indicator_Filter_Expression.png){ .center width=30% }
+    ![](resources/images/program/Program_Indicator_Filter_Expression.png){ .center width=60% }
 
     This example is linking the value selected in the **Gender** data element in the Program to the category option. Since the Option set in this case is a text field the expression is set to match the text ‘Female’. The next example for age shows a different way to define the relationship.
 
@@ -1110,12 +1110,12 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
     ![](resources/images/program/PI_Disaggregation_Age_Mapping.png)
 
-10. When mappings for all the category options click Save and exit
+10. When mappings for all the category options are complete, click Save and exit
 
 
 11. Open Data Visualizer, first let’s look at how these data were previously displayed. To do this create a visualisation to show the data of the 5 existing Program indicators with the built in disaggregations shown below.
 
-    ![](resources/images/program/DV_Before.png){ .center width=30% }
+    ![](resources/images/program/DV_Before.png){ .center width=60% }
     
     ![](resources/images/program/DV_Before2.png)
 
