@@ -320,9 +320,7 @@ below.
     itself or `USER_ORGUNIT_CHILDREN` for its sub-units. You may also specify
     organization unit identifiers directly or use a combination of both.
     The authenticated user must have permission to export and analyze data
-    for the designated organization units. If no organization unit permissions
-    are explicitly granted, data capture and maintenance rights
-    will be applied instead.
+    for the designated organization units.
 
   - For the organisation unit dimension, you can specify the organisation
     hierarchy level and the boundary unit to use for the request on the
