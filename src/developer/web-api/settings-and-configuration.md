@@ -151,7 +151,7 @@ Table: System settings
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
 | keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
-| KeyTrackedEntityMaxLimit | Maximum number of tracked entities. Default: "50000" | No |
+| KeyTrackedEntityMaxLimit | Maximum number of tracked entities that are returned by `/tracker/trackedEntities`. More info [here](tracker.md#tracked-entities-collection-limits). Default: "50000" | No |
 | keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
 | keyAnalyticsPeriodYearsOffset | Defines the years' offset to be used in the analytics export process. If the year of a respective date is out of the offset the system sends back a warning message during the process. At this point, the period generation step is skipped. ie.: suppose the system user sets the offset value to `5`, and we are in the year 2023. It means that analytics will accept exporting dates from 2018 (inclusive) to 2028 (inclusive). Which translates to: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028]. NOTE: The offset will have a significant influence on resource usage. Higher values will trigger higher usage of memory RAM/HEAP and CPU. Setting negative numbers to this key will disable any kind of validation (which means no warnings) and the internal range of years will be used (1970 to current year plus 10) Default: 22 | No |
 | keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
