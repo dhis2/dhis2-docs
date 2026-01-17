@@ -74,6 +74,12 @@ connection.pool.preferred.test.query = select 1
 # Deprecated since v43. Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
+# Hikari DB pool feature. Connection pool timeout: Set the maximum number of milliseconds that a client will wait for a connection from the pool. (default: 30ms).
+connection.pool.timeout = 30
+
+# Sets the maximum number of milliseconds that the Hikari pool will wait for a connection to be validated as alive. (default: 5ms).
+connection.pool.validation_timeout = 5
+
 # Database datasource pool type. Supported pool types are: hikari (default), c3p0 (deprecated), unpooled
 db.pool.type = hikari
 
