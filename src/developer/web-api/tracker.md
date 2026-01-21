@@ -1552,6 +1552,7 @@ A complete list of the supported program rule actions is presented below.
 | SETMANDATORYFIELD | X |
 | SENDMESSAGE | X |
 | SCHEDULEMESSAGE | X |
+| SCHEDULEEVENT | X |
 
 Program rules are evaluated in the importer in the same way they are evaluated in the tracker apps.
 To summarize, the following conditions are considered when enforcing the program rules:
@@ -1569,6 +1570,7 @@ The results of the program rules depend on the actions defined in those rules:
     * When the action is assigning a value to an empty attribute/data element, a warning is generated.
     * When the action is assigning a value to an attribute/data element that already has the same value to be assigned, a warning is generated.
     * When the action is assigning a value to an attribute/data element that already has a value and the value to be assigned is different, an error is generated unless the `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is true.
+    * When the action involves scheduling an event, a warning is generated indicating the scheduled event, along with the program rule UID that triggered it.
 
 Additionally, program rules can also result in side-effects, like send and schedule messages. More
 information about side effects can be found in the following section.
