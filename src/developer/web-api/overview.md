@@ -564,6 +564,30 @@ described in the table below.
 | Last 12 weeks | LAST_12_WEEKS |
 | Last 52 weeks | LAST_52_WEEKS |
 
+It is possible retrieve the ISO representations of these relative periods
+by making a GET request to the `/api/relativePeriods/{RELATIVE_PERIOD_KEYWORD}`
+
+The endpoint supports the following parameters:
+- `startDate`:  Represents the start date to calculate the relative period from. Format: `yyyy-MM-dd`. Default is today if not provided.
+- `financialYearStart`: Should be one of FINANCIAL_YEAR_APRIL, FINANCIAL_YEAR_JULY, FINANCIAL_YEAR_OCTOBER. Default is FINANCIAL_YEAR_OCTOBER if not provided.
+
+
+As an example, to get the ISO representation of the relative period `LAST_3_MONTHS`
+from the date 2021-08-15, you can issue the following request:
+    GET /api/relativePeriods/LAST_3_MONTHS?startDate=2021-08-15
+
+The response in this case would be:
+
+```json
+{
+[
+"202105",
+"202106",
+"202107"
+]
+}
+``` 
+
 ### Custom date periods { #webapi_date_custom_date_periods }
 
 Analytics `query` resources support extra parameters to express periods.
