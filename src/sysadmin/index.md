@@ -190,27 +190,28 @@ The solution provides comprehensive Docker Compose orchestration for DHIS2 with 
 
 ### Kubernetes Deployment
 
-**Advanced container orchestration**
+**High availability container orchestration**
 
-Kubernetes is a container orchestration platform that automates the deployment, scaling, and management of containerized applications, including Docker containers.
+Kubernetes is a container orchestration platform designed for high availability deployments. It automates the deployment, scaling, and management of containerized applications across a cluster of machines. Kubernetes clusters can be deployed on-premise or consumed as a managed service from cloud providers (e.g., Amazon EKS, Google GKE, Azure AKS).
 
-> **NOTE**
->
-> There is ongoing work on the [DHIS2 Docker deployment project](https://github.com/dhis2/docker-deployment) that may serve as a foundation for Kubernetes deployments in the future.
+It is possible to run containerized DHIS2 in a Kubernetes cluster environment, including horizontally scaled setups where multiple DHIS2 instances connect to a single database. However, this type of clustered DHIS2 deployment is still experimental and not commonly used in production environments.
+
+**Advantages of Kubernetes:**
+
+- Auto-scaling based on demand
+- Self-healing capabilities (automatic container restarts)
+- Load balancing across multiple instances
+- Rolling updates with zero downtime
 
 **Important considerations:**
 
-- Kubernetes orchestrates Docker containers, so the same production readiness considerations for Docker images apply
-- Setting up and managing Kubernetes environments is non-trivial and requires specialized expertise
-- Currently available DHIS2 Docker images are primarily intended for development environments
-- Production workloads may require additional testing and hardening
-
-**Ideal for:**
-
-- Organizations with existing Kubernetes infrastructure and expertise
-- Large-scale deployments requiring advanced orchestration
-- Environments needing automated scaling and self-healing capabilities
+- There is limited real-world production experience running DHIS2 on Kubernetes, which means less community knowledge to draw from
+- Setting up and managing Kubernetes environments requires specialized expertise
+- If pursuing a Kubernetes deployment, you must also factor in critical operational aspects such as:
+    - Backup and disaster recovery strategies
+    - Monitoring and alerting infrastructure
+    - DHIS2 horizontal scaling configuration (if using multiple instances)
 
 > **NOTE**
 >
-> Kubernetes deployments for DHIS2 are considered experimental. The same production readiness caveats that apply to Docker deployments also apply here.
+> Kubernetes deployments for DHIS2 are considered experimental. If you are confident in your Kubernetes expertise and operational capabilities, this can be a viable option, but be prepared to pioneer some aspects of the setup.
