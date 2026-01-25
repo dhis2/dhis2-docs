@@ -14,95 +14,203 @@ This chapter provides a guide for setting up the above technology stack. It shou
 
 ---
 
-DHIS2 is a database intensive application and requires that your server has an appropriate amount of RAM, a good number of CPU cores and a fast disk, preferably an solid state disk (ssd). These recommendations should be considered as rules-of-thumb and not exact measures. DHIS2 scales linearly on the amount of RAM and number of CPU cores so the more you can afford, the better the application will perform.
+DHIS2 is a database-intensive application that scales linearly with RAM and CPU resources. These recommendations should be considered starting points - more resources will improve performance.
 
-- _RAM_
-  : At least 8 GB for a small instance, 16 GB for a medium instance, 64 GB or more for a large instance.
-- _CPU_
-  : 4 CPU cores for a small instance, 8 CPU cores for a medium instance, 16 CPU cores or more for a large instance.
-- _Disk_
-  : SSD is recommended as the storage device. Minimum read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is ideal. At least 100 GB storage space is recommended, but will depend entirely on the amount of data which is contained in the data value tables. Analytics tables require a significant amount of storage space. Plan ahead and ensure that your server can be upgraded with more disk space as needed. On linux, you can test disk latency and throughput with below commands
+### Hardware Requirements by Instance Size
 
-  ```
-  # disk latency
-  dd if=/dev/zero of=/tmp/test2.img bs=512 count=1000 oflag=dsync
+| Component | Small Instance | Medium Instance | Large Instance |
+|-----------|----------------|-----------------|----------------|
+| **RAM** | 8 GB minimum | 16 GB | 64 GB or more |
+| **CPU Cores** | 4 cores | 8 cores | 16+ cores |
+| **Disk Type** | SSD required | SSD required | SSD required |
+| **Storage** | 100 GB+ | 200 GB+ | 500 GB+ |
 
-  # disk throughput
-  dd if=/dev/zero of=/tmp/test1.img bs=1G count=1 oflag=dsync
+### Storage Performance Requirements
 
-  # remove /tmp/test1.img after testing
-  rm -v -i /tmp/test1.img
-  ```
+**SSD is mandatory for production deployments.** Here are the recommended read speeds:
+
+- **Minimum**: 150 Mb/s
+- **Good**: 200 Mb/s
+- **Ideal**: 350 Mb/s or better
+
+> **Important**
+>
+> Storage requirements depend heavily on your data volume. Analytics tables require significant space. Plan for expandable storage to accommodate growth.
+
+#### Testing Disk Performance on Linux
+
+You can benchmark your disk performance using these commands:
+
+```bash
+# Test disk latency
+dd if=/dev/zero of=/tmp/test2.img bs=512 count=1000 oflag=dsync
+
+# Test disk throughput
+dd if=/dev/zero of=/tmp/test1.img bs=1G count=1 oflag=dsync
+
+# Clean up test files
+rm -v -i /tmp/test1.img /tmp/test2.img
+```
 
 ## Software requirements { #install_software_requirements }
 
 ---
 
-Later DHIS2 versions require the following software versions to operate.
+### Core Components
 
-- An operating system for which a Java JDK or JRE version 8 ,11 or 17 exists. Ubuntu LTS release is recommended.
-- Java JDK. OpenJDK is recommended.
+DHIS2 requires the following software stack:
 
-  Table: DHIS2 JDK compatibility
+| Component | Version | Notes |
+|-----------|---------|-------|
+| **Operating System** | Ubuntu LTS (recommended) | Any OS with Java JRE support |
+| **Java JDK** | OpenJDK 8, 11, or 17 | Version depends on DHIS2 version (see table below) |
+| **PostgreSQL** | 13+ (16 recommended) | Primary database |
+| **PostGIS** | 2.2+ (3 recommended) | PostgreSQL spatial extension |
+| **Tomcat** | 8.5.50+ or 9+ | Servlet container |
+| **Redis** | 4+ | Optional: For cluster setups only |
 
-  | **DHIS2 Version** | **JRE (Recommended)** | **JRE (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
-| ----------------- | --------------------- | -------------------------- | ------------------ | -------------------------- |
-| 2.42              | 17                    | 17                         | 10                 | 24.04                      |
-| 2.41              | 17                    | 17                         | 9                  | 22.04                      |
-| 2.40              | 17                    | 11                         | 9                  | 22.04                      |
-| 2.38              | 11                    | 11                         | 9                  | 22.04                      |
-| 2.35              | 11                    | 8                          | 9                  | 22.04                      |
-| Pre-2.35          | 8                     | 8                          | 9                  | 22.04                      |
+### DHIS2 Version Compatibility Matrix
 
-- PostgreSQL database version 13 or later. A later PostgreSQL 16 is recommended.
-- PostGIS database extension version 2.2 or later, 3 is recommended.
-- Tomcat servlet container version 8.5.50 or 9, 9 is recommended.
-- Cluster setup only (optional): Redis data store version 4 or later.
+Table: DHIS2 version requirements
 
-So a minimal installation of DHIS2 would consist of just the tomcat server (with DHIS2 war file deployed) and a PostgreSQL database. This type of minimal setup can be suitable for a developer or experimental setup. For a production deployment there are many other factors to take into account regarding maintenance, monitoring, security, scalability and performance.
+| **DHIS2 Version** | **JRE (Recommended)** | **JRE (Minimum)** | **Tomcat** | **Ubuntu LTS** |
+|-------------------|-----------------------|-------------------|------------|----------------|
+| 2.42              | 17                    | 17                | 10         | 24.04          |
+| 2.41              | 17                    | 17                | 9          | 22.04          |
+| 2.40              | 17                    | 11                | 9          | 22.04          |
+| 2.38              | 11                    | 11                | 9          | 22.04          |
+| 2.35              | 11                    | 8                 | 9          | 22.04          |
+| Pre-2.35          | 8                     | 8                 | 9          | 22.04          |
 
-## Install approaches { #install_install_approaches }
+### Minimal vs Production Setup
 
----
+**Minimal setup** (development/testing):
+- Tomcat server with DHIS2 WAR file
+- PostgreSQL database
 
-There are many ways to get DHIS2 up and running. How you choose to install will depend on which skills and tools you are familiar with and whether the installation is for production or experimental use. We have a number of different guides which emphasize different styles of implementation. Regardless of the implementation approach you adopt, you will want to familiarize yourself with the additional reference material we provide regarding database management, reverse proxy setup, system monitoring, upgrades etc.
-
-#### [Automated Install](#getting_started_linux_automated_install) { #install_automated_install_on_linux }
-
-These tools are ansible based [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools). This tool set provides a set of ansible playbooks to automate the installation and management of DHIS2 and supporting components. It is geared towards production environments with the aim of addressing the most critical security and monitoring considerations out-of-the-box.
-
-#### [Manual Install](#getting_started_linux_manual_install)
-
-This guide provides step-by-step instructions for setting up DHIS2 on Ubuntu 22.04. For production environments, however, we highly recommend using an automated installation to ensure consistency and ease of management. Manual setup is ideal for learning and understanding how different DHIS2 components are setup and how they interconnect.
-
-### Running DHIS2 on docker
-
-#### Important Considerations for Deploying DHIS2 with Docker
-
-While Docker containers offer a potential method for running DHIS2 applications, there are important factors to consider before implementing this approach in production environments.
-
-##### Limited Production Use Cases:
-
-Currently available Docker images for DHIS2 may not be suitable for production deployments. These images haven't undergone extensive testing in real-world production settings. While they might function adequately for development purposes, their stability and performance under demanding workloads cannot be guaranteed for mission-critical applications.
-
-##### User Awareness and Testing:
-
-The decision to utilize DHIS2 within Docker containers for production environments rests solely with the user. If you choose to proceed with this approach, comprehensive security, performance, and stress testing are absolutely essential. Rigorous testing will help ensure the stability and reliability of your DHIS2 application in a production setting.
-
-For those interested in exploring DHIS2 with Docker, the following link provides information on running DHIS2 in a Docker container:
-
-[ Running DHIS2 on Docker ](https://github.com/dhis2/dhis2-core/blob/master/docker/DOCKERHUB.md)
-
-### Running DHIS2 on Kubernetes
-
-#### Leveraging Kubernetes for DHIS2 Deployment
-
-Kubernetes, a leading open-source container orchestration platform, offers a compelling approach to automate the deployment, scaling, and management of containerized applications.
+**Production setup** requires additional considerations:
+- Monitoring and alerting systems
+- Backup and disaster recovery
+- Security hardening
+- Performance optimization
+- Scalability planning
 
 > **NOTE**
 >
-> Kubernetes would still require dhis2 docker images and thus reservations made above regarding Limited Production Use Cases still holds.
+> For production deployments, refer to the [Deployment options](#install_install_approaches) section below for automated and manual installation guidance.
 
-#### Container Image Selection:
+## Deployment options { #install_install_approaches }
 
-While Kubernetes is agnostic to the container image format, successful DHIS2 deployment relies on readily available container images. Currently, available Docker images for DHIS2 are primarily intended for development environments. These images may not have undergone rigorous testing for production workloads, potentially impacting stability and performance.
+---
+
+Choose the deployment method that best fits your environment and requirements. Each option is designed for specific use cases, from production-ready automated installations to development and testing environments.
+
+---
+
+### Automated Installation with Ansible
+
+**Recommended for production deployments**
+
+Ansible-based automation framework for secure, consistent DHIS2 deployments on Ubuntu Linux servers.
+
+**What you get:**
+
+- Automated setup of PostgreSQL, DHIS2, and web proxy (Nginx/Apache2)
+- Built-in security hardening and SSL/TLS certificate management
+- Application performance monitoring (Glowroot) and server monitoring (Munin)
+- Support for single-server or distributed multi-server architectures
+- Multi-instance management capabilities
+
+**Ideal for:**
+
+- Production environments
+- Organizations deploying multiple DHIS2 instances
+- Teams requiring consistent, repeatable deployments
+
+[Get Started](#getting_started_linux_automated_install){ .md-button }
+[View on GitHub](https://github.com/dhis2/dhis2-server-tools){ .md-button }
+[Watch Video Tutorial](https://www.youtube.com/watch?v=fh3E-VY4LoY){ .md-button }
+
+---
+
+### Manual Installation
+
+**For learning and customization**
+
+Step-by-step manual installation providing complete control over the deployment process on Ubuntu 22.04.
+
+**What you get:**
+
+- Deep understanding of DHIS2 component interactions
+- Full control over every configuration aspect
+- Valuable troubleshooting knowledge
+- Flexibility for specialized requirements
+
+**Ideal for:**
+
+- Development and testing environments
+- Learning DHIS2 infrastructure
+- Custom deployment scenarios
+
+[Get Started](#getting_started_linux_manual_install){ .md-button }
+
+> **NOTE**
+>
+> For production environments, we highly recommend the automated installation approach for consistency, security, and ease of management.
+
+---
+
+### Docker Deployment
+
+**Container-based infrastructure**
+
+An ongoing project is actively developing a production-ready Docker deployment solution for DHIS2. This project is currently being tested and shows promise as a recommended approach for deploying DHIS2 in production environments.
+
+The solution provides comprehensive Docker Compose orchestration for DHIS2 with PostgreSQL, Traefik proxy, and monitoring tools.
+
+**What you get:**
+
+- Complete infrastructure orchestration with automatic SSL/TLS via Let's Encrypt
+- Optional monitoring stack: Grafana, Prometheus, Loki
+- Built-in backup and restore capabilities
+- Make-based automation for common tasks
+
+**Status:** Ready for public testing. NOT yet recommended for production or critical data.
+
+**Ideal for:**
+
+- Local development and testing
+- Proof-of-concept deployments
+- Organizations familiar with Docker infrastructure
+
+[Get Started](https://github.com/dhis2/docker-deployment){ .md-button }
+[Docker Images](https://hub.docker.com/r/dhis2/core/tags){ .md-button }
+
+---
+
+### Kubernetes Deployment
+
+**Advanced container orchestration**
+
+Kubernetes is a container orchestration platform that automates the deployment, scaling, and management of containerized applications, including Docker containers.
+
+> **NOTE**
+>
+> There is ongoing work on the [DHIS2 Docker deployment project](https://github.com/dhis2/docker-deployment) that may serve as a foundation for Kubernetes deployments in the future.
+
+**Important considerations:**
+
+- Kubernetes orchestrates Docker containers, so the same production readiness considerations for Docker images apply
+- Setting up and managing Kubernetes environments is non-trivial and requires specialized expertise
+- Currently available DHIS2 Docker images are primarily intended for development environments
+- Production workloads may require additional testing and hardening
+
+**Ideal for:**
+
+- Organizations with existing Kubernetes infrastructure and expertise
+- Large-scale deployments requiring advanced orchestration
+- Environments needing automated scaling and self-healing capabilities
+
+> **NOTE**
+>
+> Kubernetes deployments for DHIS2 are considered experimental. The same production readiness caveats that apply to Docker deployments also apply here.
