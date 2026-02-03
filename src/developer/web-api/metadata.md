@@ -1443,6 +1443,143 @@ following payload to change the style:
   }
 }
 ```
+
+## Category
+
+### Merge categories { #category_merge }
+
+The category merge endpoint allows you to merge a number of categories (sources) into a target category.
+
+> **Important**
+>
+> Categories can only be merged when: 
+> - they have identical category options
+> - source and target categories do not share category combos
+> - source categories do not share category combos with each other
+> 
+> These constraints ensure only duplicate Categories can be merged, and it helps to keep system integrity.
+
+#### Authorisation
+
+The main authority required to perform a category merge is `F_CATEGORY_MERGE`.
+
+#### Request
+
+Merge categories with a POST request:
+
+```
+POST /api/categories/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                            |
+|---------------|----------|----------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the categories to merge (the source categories)          |
+| target        | Yes      | Identifier of the category to merge the sources into (the target category)       |
+| deleteSources | No       | Whether to delete the source categories after the operation. Default is false.   |
+
+The merge operation will merge the source categories into the target category. One or many source categories can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category metadata associations to the target category.
+The following metadata get updated:
+
+| Metadata          | Property              | Action taken                                                                                                                                                                              |
+|-------------------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CategoryOption    | categories            | remove sources                                                                                                                                                                            |
+| CategoryCombo     | categories            | remove sources, add target                                                                                                                                                                |
+| CategoryDimension | dimension             | replace source with target                                                                                                                                                                |
+| User              | catDimensionConstraints | - User has one or more sources and target -> delete all source constraints<br/> - User has one or more sources, no target -> update one source to target, delete other source constraints |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                          |
+|------------|--------------------------------------------------------------------------------------|
+| E1530      | At least one source Category must be specified                                       |
+| E1531      | Target Category must be specified                                                    |
+| E1532      | Target Category cannot be a source category                                          |
+| E1533      | Source/Target Category does not exist: `{uid}`                                       |
+| E1535      | Source CategoryOptions do not match target CategoryOptions                           |
+| E1536      | Source and target Categories cannot share a CategoryCombo                            |
+| E1537      | Source Categories cannot share a CategoryCombo                                       |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "Category",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "Category merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source Category must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target Category does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "Category",
+            "sourcesDeleted": [],
+            "message": "Category merge has errors"
+        }
+    }
+}
+```
+
 ## Category Option
 
 ### Merge category options { #category_option_merge }
