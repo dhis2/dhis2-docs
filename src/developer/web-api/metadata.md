@@ -1499,12 +1499,12 @@ The merge operation will merge the source categories into the target category. O
 The merge operation will transfer all source category metadata associations to the target category.
 The following metadata get updated:
 
-| Metadata          | Property              | Action taken                  |
-|-------------------|-----------------------|-------------------------------|
-| CategoryOption    | categories            | remove sources                |
-| CategoryCombo     | categories            | remove sources, add target    |
-| CategoryDimension | dimension             | replace source with target    |
-| User              | catDimensionConstraints | remove sources, add target  |
+| Metadata          | Property              | Action taken                                                                                                                                                                              |
+|-------------------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CategoryOption    | categories            | remove sources                                                                                                                                                                            |
+| CategoryCombo     | categories            | remove sources, add target                                                                                                                                                                |
+| CategoryDimension | dimension             | replace source with target                                                                                                                                                                |
+| User              | catDimensionConstraints | - User has one or more sources and target -> delete all source constraints<br/> - User has one or more sources, no target -> update one source to target, delete other source constraints |
 
 
 #### Validation
