@@ -1453,9 +1453,10 @@ The category merge endpoint allows you to merge a number of categories (sources)
 > **Note**
 >
 > Categories can only be merged when:
-> - they have identical category options 
-> - source and target categories do not share category combos 
-> - source categories do not share category combos with each other 
+> 
+> 1. they have identical category options <br> 
+> 2. source and target categories do not share category combos <br> 
+> 3. source categories do not share category combos with each other <br> 
 >
 > These constraints ensure only duplicate Categories can be merged, and it helps to keep system integrity.
 
