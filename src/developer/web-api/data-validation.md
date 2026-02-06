@@ -185,6 +185,7 @@ This endpoint supports two algorithms for detecting outliers:
 * **Z-score:** The z-score is defined as the absolute deviation between the score and mean divided by the standard deviation. A threshold parameter referring to the number of standard deviations from the mean must be specified with the z-score algorithm to define the upper and lower boundaries for what is considered an outlier value.
 * **Modified Z-score:** Same as z-score except it uses the median instead of the mean as measure of central tendency. Parameters are same as for Z-score.
 * **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS2 based on data element, org unit and category option combination.
+* **Invalid numeric values:** This algorithm detects data values which cannot be cast to numeric values. This usually occurs when data values have been entered with a very large number of digits.
 
 The outlier values will be *ordered according to significance*, by default by the absolute deviation from the mean, with the most significant value first. This is helpful to quickly identify the outlier values which have the biggest impact on data quality and data analytics.
 
@@ -199,7 +200,7 @@ The following query parameters are supported.
 | startDate       | Start date for interval to check for outliers.               | Yes       | Date (yyyy-MM-dd).                        |
 | endDate         | End date for interval to check for outliers.                 | Yes       | Date (yyyy-MM-dd).                        |
 | ou              | Organisation unit, can be specified multiple times.          | Yes       | Organisation unit identifier.             |
-| algorithm       | Algorithm to use for outlier detection.                      | No        | `Z_SCORE`, `MIN_MAX`, `MOD_Z_SCORE`       |
+| algorithm       | Algorithm to use for outlier detection.                      | No        | `Z_SCORE`, `MIN_MAX`, `MOD_Z_SCORE`, `INVALID_NUMERIC`       |
 | threshold       | Threshold for outlier values. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Numeric, greater than zero. Default: 3.0. |
 | dataStartDate   | Start date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd). |
 | dataEndDate     | End date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).   |
