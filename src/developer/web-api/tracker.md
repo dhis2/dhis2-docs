@@ -2003,6 +2003,7 @@ F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-0
 ##### Tracked entities collection limits
 
 The collection endpoint limits results in three ways:
+
 - KeyTrackedEntityMaxLimit **in System settings**: `KeyTrackedEntityMaxLimit` defines the maximum
 tracked entities in an API response, protecting database and server resources. No limit applies
 when set to 0. Configure it via `/api/systemSettings` as described in the
