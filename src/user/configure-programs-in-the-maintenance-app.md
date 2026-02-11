@@ -1053,8 +1053,6 @@ A filter that uses both attributes and data elements looks like this:
 
 ## Setting up new Program disaggregation Mappings { #program_disaggregation_mapping } 
 
-## The Concept
-
 DHIS2 v42 introduces the ability to assign Disaggregation Category Combinations to a Program Indicator and create a mapping between the program data and each category option contained in the combination. This creates a relationship between the tracker and aggregate data models which allows for analysing individual data in the same way and alongside aggregated data.
 
 ![Program links to Category](resources/images/program/Program_to_category.png){ width=60% }
@@ -1094,7 +1092,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
     ![](resources/images/program/Disaggregation_Mappings.png)
 
 
-## Create the category mappings
+### Create the category mappings
 
 8. In the text field under each Category enter an expression using the Program Data Elements and Attributes that defines the category. The expression uses the same syntax as the Filter section of the Program Indicator creation screen.  It is recommended to open a Program Indicator within the Program you are mapping, use the Filter screen to construct the expression and then copy it into this field. This allows you to use the inbuilt expression validation of the Program Indicator filter builder.
    [Program Indicator functions and Variale operators](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-242/configuring-the-system/programs.html#program_indicator_functions_variables_operators)
@@ -1129,7 +1127,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
     You can now compare the data from the two separate program indicators and the single program indicator that has been disaggregated.
 
-# Transferring Program Indicator data via the Aggregate data exchange app
+### Transferring Program Indicator data via the Aggregate data exchange app
 
 In addition to viewing a disaggregated Program Indicator in the Data Visualiser you can now transfer the Program Data, via the Disaggregated Program indicator, into a Data Element that shares the same Category Combination.
 
@@ -1138,6 +1136,7 @@ In addition to viewing a disaggregated Program Indicator in the Data Visualiser 
 By adding the ID of a Data Element in the **Data element for aggregate data export** field and then setting up the aggregate data exchange app* to transfer data you can save Program data in the aggregate data model
 
 ![](resources/images/program/PI_Disaggregation_DE_for_Data_Exchange.png)
+
 
 ## Configure program rules { #configure_program_rule } 
 
@@ -1846,7 +1845,7 @@ programs.
 | Sum | Sum of data values in the period and organisation unit dimension. |
 | Standard deviation | Standard deviation (population-based) of data values. |
 | Variance | Variance (population-based) of data values. |
-
+program
 12. Select **Unique** to specify that the values of the tracked entity
     attribute is unique.
 
