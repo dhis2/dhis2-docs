@@ -1991,7 +1991,9 @@ or when set to 0.
 - **Pagination**: As explained [here](#request-parameters-for-pagination).
 
 For paginated requests with non-zero `KeyTrackedEntityMaxLimit`:
+
 - If pageSize ≤ KeyTrackedEntityMaxLimit: `pageSize` is enforced
+
 - If pageSize > KeyTrackedEntityMaxLimit: The API returns an error
 
 #### Tracked entities single object endpoint
