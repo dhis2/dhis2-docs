@@ -262,7 +262,8 @@ system.monitoring.password = xxxx
 # System update notifications [Optional]
 # ----------------------------------------------------------------------
 
-# System update notifications, such as new DHIS 2 releases becoming available
+# System update notifications, such as new DHIS 2 releases becoming available. The system will default send a notification in the mail inbox under the "system" category when there is a new DHIS2 patch version available for download.
+# This notification will be sent to the users who have the "ALL" authority, unless the "System update notification recipients" user group is defined, under the "General settings". It can be 'off', 'on' (default: 'on')
 system.update_notifications_enabled = on
 
 # ----------------------------------------------------------------------
