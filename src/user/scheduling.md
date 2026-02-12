@@ -275,8 +275,7 @@ Some aspects of the data synchronization feature to be aware of:
   synchronization time is tracked individually for each item as previously
   mentioned.
 
-- The attributes of TrackedEntityInstances (TrackedEntityAttribute) and the data
-  elements of ProgramStages (ProgramStageDataElement) which have an option "Skip
+- The data elements of ProgramStages (ProgramStageDataElement) which have an option "Skip
   synchronization" turned on will not be synchronized. This feature allows you
   to decide to not synchronize some sensitive or not relevant data and to keep
   them only locally.
