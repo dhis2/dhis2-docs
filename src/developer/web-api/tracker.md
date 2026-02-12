@@ -1976,15 +1976,18 @@ F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-0
 ##### Tracked entities collection limits
 
 The collection endpoint limits results in three ways:
+
 - KeyTrackedEntityMaxLimit **in System settings**: `KeyTrackedEntityMaxLimit` defines the maximum
 tracked entities in an API response, protecting database and server resources. No limit applies
 when set to 0. Configure it via `/api/systemSettings` as described in the
 [documentation](settings-and-configuration.md?#webapi_system_settings).
+
 - Max number of TEs to return in **Program or tracked entity type**: it limits results when searching **outside
 the capture scope** with a specified program or tracked entity type. The API returns an error if
 matches exceed this limit. No limit applies when searching within the capture scope
 or when set to 0.
  This limit is configurable in the maintenance app.
+
 - **Pagination**: As explained [here](#request-parameters-for-pagination).
 
 For paginated requests with non-zero `KeyTrackedEntityMaxLimit`:
