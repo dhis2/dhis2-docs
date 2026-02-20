@@ -2300,6 +2300,7 @@ Returns a list of events based on filters.
 |trackedEntity|String|`uid`| Identifier of tracked entity|
 |order|String|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
 |enrollments|String|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
+|attributeOptionCombo|String|`uid`|Attribute option combo identifier.|
 |includeDeleted|Boolean| |When true, soft deleted events will be included in your query result.|
 
 The query is case-insensitive. The only requirement is that the program parameter must be provided.
