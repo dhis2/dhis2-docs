@@ -95,7 +95,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | events | A list of events owned by the enrollment. | No | No | List of Event | See Event |
 | relationships | A list of relationships connected to the enrollment. | No | No | List of Relationship | See Relationship |
 | notes | Notes connected to the enrollment. It can only be created. | No | Yes | List of Note | See Note |
-| attributeOptionCombo | Attribute option combo for the enrollment. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
+| attributeOptionCombo | Attribute option combo for the enrollment. If not supplied, the default value defined by the program’s category combo is used. | No | No | String:Uid | ABCDEF12345
 
 > **Note**
 >
@@ -143,8 +143,8 @@ The table below will point out any exceptional cases between these two.
 | storedBy | Client reference for who stored/created the event. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
-| attributeOptionCombo | Attribute option combo for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
-| attributeCategoryOptions | Attribute category option for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
+| attributeOptionCombo | Attribute option combo for the event. If not supplied, the default value defined by the program’s category combo is used. | No | No | String:Uid | ABCDEF12345
+| attributeCategoryOptions | Attribute category option for the event. If not supplied, the default value defined by the program’s category combo is used | No | No | String:Uid | ABCDEF12345
 | assignedUser | A reference to a user who has been assigned to the event. | No | No | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | dataValues | A list of data values connected to the event. | No | No | List of TrackedEntityAttributeValue | See Attribute |
 | relationships | A list of relationships connected to the event. | No | No | List of Relationship | See Relationship |
