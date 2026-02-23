@@ -95,6 +95,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | events | A list of events owned by the enrollment. | No | No | List of Event | See Event |
 | relationships | A list of relationships connected to the enrollment. | No | No | List of Relationship | See Relationship |
 | notes | Notes connected to the enrollment. It can only be created. | No | Yes | List of Note | See Note |
+| attributeOptionCombo | Attribute option combo for the enrollment. If not supplied, the default value defined by the program’s category combo is used. | No | No | String:Uid | ABCDEF12345
 
 > **Note**
 >
@@ -142,8 +143,8 @@ The table below will point out any exceptional cases between these two.
 | storedBy | Client reference for who stored/created the event. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
-| attributeOptionCombo | Attribute option combo for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
-| attributeCategoryOptions | Attribute category option for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
+| attributeOptionCombo | Attribute option combo for the event. If not supplied, the default value defined by the program’s category combo is used. | No | No | String:Uid | ABCDEF12345
+| attributeCategoryOptions | Attribute category option for the event. If not supplied, the default value defined by the program’s category combo is used | No | No | String:Uid | ABCDEF12345
 | assignedUser | A reference to a user who has been assigned to the event. | No | No | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | dataValues | A list of data values connected to the event. | No | No | List of TrackedEntityAttributeValue | See Attribute |
 | relationships | A list of relationships connected to the event. | No | No | List of Relationship | See Relationship |
@@ -449,7 +450,8 @@ must provide a UID for the tracked entity so that the enrollment can be linked t
       "program": "IpHINAT79UW",
       "status": "ACTIVE",
       "trackedEntity": "Kj6vYde4LHh",
-      "trackedEntityType": "nEenWmSyUEp"
+      "trackedEntityType": "nEenWmSyUEp",
+      "attributeOptionCombo": "HllvX50cXC0",
     }
   ],
   "events": [
@@ -2101,6 +2103,7 @@ An example JSON response.
       "orgUnit": "DiszpKrYNg8",
       "enrolledAt": "2024-03-06T00:00:00.000",
       "occurredAt": "2024-03-04T00:00:00.000",
+      "attributeOptionCombo": "HllvX50cXC0",
       "followUp": false,
       "deleted": false,
       "events": [
@@ -2283,7 +2286,7 @@ Two endpoints are dedicated to enrollments.
 
 #### Enrollment Collection endpoint `GET /api/tracker/enrollments`
 
-Returns a list of events based on filters.
+Returns a list of enrollments based on filters.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
@@ -2300,6 +2303,7 @@ Returns a list of events based on filters.
 |trackedEntity|String|`uid`| Identifier of tracked entity|
 |order|String|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
 |enrollments|String|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
+|attributeOptionCombo|String|`uid`|Filters enrollments by the given attribute option combo. Only matching enrollments are returned.|
 |includeDeleted|Boolean| |When true, soft deleted events will be included in your query result.|
 
 The query is case-insensitive. The only requirement is that the program parameter must be provided.
@@ -2920,12 +2924,12 @@ grant metadata write access.
 One critical point with Tracker data is the need to have a holistic approach. For example, a user
 won’t be able to see the Data Element value by having read access to just the Data Element. The user
 needs to have data read to access the parent Program Stage and Program where this Data Element
-belongs. It is the same with the category option combination. In Tracker, the Event is related to
-AttributeOptionCombo, which is made up of a combination of Category Options. Therefore, for a user
-to read data of an Event, he/she needs to have data read access to all Category Options and
-corresponding Categories that constitute the AttributeOptionCombo of the Event in question. If a
-user lacks access to just one Category Option or Category, then the user has no access to the entire
-Event.
+belongs. This works the same way as for category option combinations. In Tracker, events and 
+enrollments are associated with an AttributeOptionCombo, which is composed of multiple Category 
+Options. To read an event or enrollment, a user must have data read access to all Category Options 
+and their corresponding Categories that make up the AttributeOptionCombo of that object. If the user 
+lacks access to even one of the required Category Options or Categories, they will not have access 
+to the entire event or enrollment..
 
 When it comes to accessing Enrollment data, it is essential to have access to the Tracked Entity
 first. Access to a Tracked Entity is controlled through sharing setting of Program, Tracked Entity
