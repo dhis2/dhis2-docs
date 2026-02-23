@@ -2286,7 +2286,7 @@ Two endpoints are dedicated to enrollments.
 
 #### Enrollment Collection endpoint `GET /api/tracker/enrollments`
 
-Returns a list of events based on filters.
+Returns a list of enrollments based on filters.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
