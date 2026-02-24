@@ -197,6 +197,22 @@ monitoring.uptime.enabled = on
 # CPU monitoring
 monitoring.cpu.enabled = on
 
+# Add request context as SQL comments for query attribution. When enabled,
+# every SQL statement is prefixed with a comment containing context such as
+# the controller and method that triggered the query. Can be 'on', 'off'
+# (default: 'off').
+monitoring.sql.context = off
+
+# Controls which keys are included in SQL comments. Supported keys:
+# controller, method, requestId, sessionId. SQL comments change the query
+# text, which can prevent PostgreSQL prepared statement caching. The default
+# keys (controller, method) are stable per endpoint, so the same endpoint
+# reuses its cached statements. Adding requestId or sessionId produces
+# unique SQL text per request or session, which prevents caching entirely
+# and can significantly degrade performance. Only enable those for
+# debugging. (default: controller,method)
+monitoring.sql.context.keys = controller,method
+
 # ----------------------------------------------------------------------
 # Redis [Optional]
 # ----------------------------------------------------------------------
@@ -274,6 +290,18 @@ logging.file.max_size = 200MB
 
 # Max number of rolling log archive files, default is 0
 logging.file.max_archives = 1
+
+# Enable query logging. Can be 'on', 'off' (default: 'off').
+logging.query = off
+
+# Log queries slower than this threshold in milliseconds at WARN level
+# (default: 1000).
+logging.query.slow_threshold = 1000
+
+# Add a hashed session ID to the logging context (MDC). Include it in log
+# output via %X{sessionId} in the log4j2 pattern layout. Can be 'on', 'off'
+# (default: 'on').
+logging.session_id = on
 
 # ----------------------------------------------------------------------
 # Log levels [Optional]
