@@ -372,7 +372,7 @@ to import i.e. create, update and delete
 
 The tracker importer supports the following parameters:
 
-| Parameter name | Description | Type | Allowed values | Default value |
+| Request parameter | Description | Type | Allowed values | Default value |
 |---|---|---|---|---|
 | async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `true`, `false` | `true` |
 | reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` | `ERRORS` |
@@ -826,7 +826,7 @@ the job progress based on logs:
 GET /tracker/jobs/{uid}
 ```
 
-| Parameter | Description | Example |
+| Request parameter | Description | Example |
 | --- | --- | --- |
 | uid | The UID of a tracker import job | eAjkbUGBcZ5 |
 
@@ -948,7 +948,7 @@ summary will only be available after the import has completed:
 GET /tracker/jobs/{uid}/report
 ```
 
-| Parameter| Description| Example |
+| Request parameter | Description | Example |
 | --- | --- | --- |
 | path `/{uid}` | ID of an existing tracker import job. | ABCDEF12345 |
 | reportMode | Level of detail for the report. | `FULL`, `ERRORS`, `WARNINGS` |
@@ -1196,7 +1196,7 @@ happened.
 A import summary report can be retrieved using a specific `reportMode` parameter in a `GET /tracker/jobs/{uid}/report` 
 request. By default the endpoint will return an `importSummary` with `reportMode` `ERROR`.
 
-| Parameter | Description |
+| Value | Description |
 | --- | --- |
 | FULL | Returns everything from `WARNINGS`, plus `timingsStats` |
 | WARNINGS | Returns everything from `ERRORS`, plus `warningReports` in `validationReports` |
@@ -2212,7 +2212,7 @@ GET /api/tracker/trackedEntities/{uid}/changeLogs
 
 This endpoint retrieves change logs for the attributes of a specific tracked entity. It returns a list of all tracked entity attributes that have changed over time for that entity.
 
-| Parameter | Type | Allowed values |
+| Request parameter | Type | Allowed values |
 | --- | --- | --- |
 | path `/{uid}` | String |Tracked entity `UID`. |
 |program|`String`|Program `UID` (optional). |
@@ -2746,7 +2746,7 @@ although it might have multiple rows for each data element value.
 
 This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values and event fields (`occurredAt`, `scheduledAt`, and `geometry`) that have changed over time for the specified event.
 
-|Parameter|Type|Allowed values|
+|Request parameter|Type|Allowed values|
 |---|---|---|
 |path `/{uid}`|String|Event `UID`.|
 |order|String|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `createdAt`, `change` and `username`, only one at a time. |
@@ -3414,7 +3414,7 @@ The response payload for a potential duplicate looks like this.s
 
 These are the parameters this endpoint accepts:
 
-| Parameter name | Description | Type | Allowed values |
+| Request parameter | Description | Type | Allowed values |
 |---|---|---|---|
 | trackedEntities | List of tracked entities | List of string (separated by comma)| existing tracked entity UIDs |
 | status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL` |
@@ -3454,7 +3454,7 @@ To update the status of a potential duplicate, use the following endpoint:
 PUT /api/potentialDuplicates/<id>
 ```
 
-| Parameter name | Description | Type | Allowed values |
+| Request parameter | Description | Type | Allowed values |
 | --- | --- | --- | --- |
 | status | Potential duplicate status | string | `OPEN`, `INVALID` |
 
@@ -3477,7 +3477,7 @@ use the following endpoint:
 POST /api/potentialDuplicates/<id>/merge
 ```
 
-| Parameter name | Description | Type | Allowed values |
+| Request parameter | Description | Type | Allowed values |
 | --- | --- | --- | --- |
 | mergeStrategy | Strategy to use for merging the potentialDuplicate | string | AUTO(default) or MANUAL |
 
