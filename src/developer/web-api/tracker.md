@@ -599,12 +599,12 @@ a payload as described [here](#payload).
 
 The payload must include all fields of the object you are updating, even if they have not been
 modified. The only exception is collections. Items in a collection that should not be changed can be
-omitted, as demonstrated in [update attribute values](#update-data-values) and [update data
+omitted, as demonstrated in [update attribute values](#update-attribute-values) and [update data
 values](#update-data-values).
 
 > **Note**
 >
-> Deleted tracker objects and rselationships cannot be updated.
+> Deleted tracker objects and relationships cannot be updated.
 
 #### Update attribute values
 
@@ -1182,9 +1182,9 @@ An example for `TRACKED_ENTITY`:
 }
 ```
 
-Each type of tracker object will be reported, and each has its own stats and `objectReports`. These 
-`objectReports` will provide details about each imported object, like their type, their uid, and any 
-error or warning reports is applicable.
+Each type of tracker object will be reported, and each has its own stats and `objectReports`. These
+`objectReports` will provide details about each imported object, like their type, their uid, and any
+error or warning reports if applicable.
 
 #### Message
 
@@ -1208,7 +1208,7 @@ applicable.
 ### Error codes { #webapi_tracker_error_codes }
 
 There are various error codes for different error scenarios. The following table has the list of
-error codes thrown from the new Tracker API, along with the error messages and some additional
+error codes thrown from the Tracker API, along with the error messages and some additional
 descriptions. The placeholders in the error messages (`{0}`,`{1}`,`{2}`..) are usually uids unless
 otherwise specified.
 
@@ -1239,7 +1239,7 @@ otherwise specified.
 | E1025 | Property enrolledAt is null. | EnrolledAt Date is mandatory for an Enrollment. Make sure it is not null. |
 | E1029 | Event OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Event payload uses a Program `{1}` which is not configured to be accessible by OrganisationUnit `{0}`. |
 | E1030 | Event: `{0}`, already exists. | This error is thrown when trying to add a new Event with an already existing uid. Make sure a new uid is used when adding a new Event. |
-| E1031 | Event occurredAt date is missing. | OccurredAt property is either null or has an invalidate date format in the payload. |
+| E1031 | Event occurredAt date is missing. | OccurredAt property is either null or has an invalid date format in the payload. |
 | E1032 | Event: `{0}`, do not exist. | |
 | E1033 | Event: `{0}`, Enrollment value is NULL. | |
 | E1039 | ProgramStage: `{0}`, is not repeatable and an event already exists. | An Event already exists for the ProgramStage for the specific Enrollment. Since the ProgramStage is configured to be non-repeatable, another Event for the same ProgramStage cannot be added.  |
@@ -1265,7 +1265,7 @@ otherwise specified.
 | E1076 | `{0}` `{1}` is mandatory and can't be null | |
 | E1077 | Attribute: `{0}`, text value exceed the maximum allowed length: `{0}`. | |
 | E1079 | Event: `{0}`, program: `{1}` is different from program defined in enrollment `{2}`. | |
-| E1080 | Enrollment: `{0}`, already exists. | This error is thrown when trying to create a new Enrollmentt with an already existing uid. Make sure a new uid is used when adding a new Enrollment. |
+| E1080 | Enrollment: `{0}`, already exists. | This error is thrown when trying to create a new Enrollment with an already existing uid. Make sure a new uid is used when adding a new Enrollment. |
 | E1081 | Enrollment: `{0}`, do not exist. | Error thrown when trying to fetch a non existing Enrollment with uid `{0}` . This might also mean that the user does not have read access to the Enrollment. |
 | E1082 | Event: `{0}`, is already deleted and can't be modified. | If the event is soft deleted, no modifications on it are allowed. |
 | E1083 | User: `{0}`, is not authorized to modify completed events. | Only a super user or a user with the authority "F_UNCOMPLETE_EVENT" can modify completed events. Completed Events are those Events with status as COMPLETED. |
@@ -1429,7 +1429,7 @@ This endpoint returns a map of required and optional values that the server will
 Required variables must be supplied for generation, whereas optional variables should only be provided if necessary.
 
 ```
-GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/requiredValues
+GET /api/trackedEntityAttributes/Gs1ICEQTPlG/requiredValues
 ```
 
 ```json
@@ -1452,7 +1452,7 @@ If your TextPattern includes required values, they can be passed as parameters.
 To override the expiration time, add `?expiration=<number-of-days>` to the request.
 
 ```
-GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
+GET /api/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
 ```
 
 ```json
@@ -1475,7 +1475,7 @@ registering new tracked entities. The number of IDs to generate can be specified
 To override the default expiration time of 60 days, add `?expiration=<number-of-days>` to the request.
 
 ```
-GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
+GET /api/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
 ```
 
 ```json
@@ -1563,7 +1563,7 @@ To summarize, the following conditions are considered when enforcing the program
 
 The results of the program rules depend on the actions defined in those rules:
 
-* Program rule actions may end in 2 different results: warnings or erors.
+* Program rule actions may end in 2 different results: warnings or errors.
 * Errors will make the validation fail, while the warnings will be reported as a message in the import summary.
     * `SHOWWARNING` and `WARNINGONCOMPLETION` actions can generate only warnings.
     * `SHOWERROR`, `ERRORONCOMPLETION`, and `SETMANDATORYFIELD` actions can generate only errors.
@@ -1780,8 +1780,8 @@ The endpoint returns a list of tracked entities that match the request parameter
 |enrollmentStatus|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |enrollmentEnrolledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
 |enrollmentEnrolledBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
-|enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time and time and time for occurred in the given program|
-|enrollmentOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time and time for occurred in the given program|
+|enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for when the enrollment occurred in the given program|
+|enrollmentOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for when the enrollment occurred in the given program|
 |trackedEntityType|String|UID of tracked entity type|Only returns tracked entities of given type.|
 |trackedEntities|String|Comma-separated list of tracked entity `UID`s.|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1,id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
 |assignedUserMode|String|`CURRENT`, `PROVIDED`, `NONE`, `ANY`, `ALL`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. Default is `ALL`.|
@@ -2240,10 +2240,10 @@ An example JSON response.
       "createdAt": "2024-06-20T14:51:16.433",
       "type": "UPDATE",
       "change": {
-        "dataValue": {
-          "dataElement": "bx6fsa0t90x",
-          "previousValue": "true",
-          "currentValue": "false"
+        "attributeValue": {
+          "attribute": "w75KJ2mc4zz",
+          "previousValue": "John",
+          "currentValue": "Johnny"
         }
       }
     },
@@ -2257,9 +2257,9 @@ An example JSON response.
       "createdAt": "2024-06-20T14:50:32.966",
       "type": "CREATE",
       "change": {
-        "dataValue": {
-          "dataElement": "ebaJjqltK5N",
-          "currentValue": "0"
+        "attributeValue": {
+          "attribute": "w75KJ2mc4zz",
+          "currentValue": "John"
         }
       }
     }
@@ -2291,7 +2291,7 @@ Returns a list of enrollments based on filters.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |orgUnits|String|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
-|orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|String|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`.|
+|orgUnitMode (see [orgUnitModes](#webapi_tracker_orgunit_scope))|String|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|The mode of selecting organisation units. Default is `SELECTED`.|
 |program|String|`uid`|Identifier of a tracker program the enrollment is enrolled into. This parameter is mandatory.|
 |programStatus **deprecated for removal in version 43 use `status`**|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the enrollment.|
 |status|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the enrollment.|
@@ -2476,7 +2476,7 @@ contain the following fields:
 | storedBy | Username |
 | providedElsewhere | boolean |
 | storedByDataValue | String |
-| createAtDataValue | DateTime |
+| createdAtDataValue | DateTime |
 | updatedAtDataValue | DateTime |
 
 See [Events](#webapi_tracker_objects_events) and [Data Values](#webapi_tracker_data_values) for more
@@ -2484,12 +2484,12 @@ field descriptions.
 
 #### Events GZIP
 
-The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json`
+The response is file `events.json.gz` or `events.csv.gz` containing the `events.json`
 or `events.csv` file.
 
 #### Events ZIP
 
-The response is file`events.json.gz` or `events.json.zip` containing the `events.json`
+The response is file `events.json.zip` or `events.csv.zip` containing the `events.json`
 or `events.csv` file.
 
 #### Events Collection endpoint `GET /api/tracker/events`
@@ -2518,15 +2518,15 @@ Returns a list of events based on the provided filters.
 |enrollmentStatus|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the events enrollment.|
 |enrollmentEnrolledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
 |enrollmentEnrolledBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
-|enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
-|enrollmentOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for occurred in the given program|
+|enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for when the enrollment occurred in the given program|
+|enrollmentOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for when the enrollment occurred in the given program|
 |idScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: metadata in `event.relationships` will always be exported using UIDs.**|
-|dataElementIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for data element references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|orgUnitIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|programIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|programStageIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program stage references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|categoryOptionComboIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option combo references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|categoryOptionIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|dataElementIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for data element references. Defaults to the `idScheme` parameter.|
+|orgUnitIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|
+|programIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program references. Defaults to the `idScheme` parameter.|
+|programStageIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program stage references. Defaults to the `idScheme` parameter.|
+|categoryOptionComboIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option combo references. Defaults to the `idScheme` parameter.|
+|categoryOptionIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option references. Defaults to the `idScheme` parameter.|
 |order|String|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
 |events|String|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
 |attributeCategoryCombo (see note)|String|Attribute category combo identifier. Must be combined with `attributeCategoryOptions`.|
@@ -2537,7 +2537,7 @@ Returns a list of events based on the provided filters.
 
 > **Note**
 >
-> If the query contains neither `attributeCategoryOptions` nor `attributeCategoryOptions`,
+> If the query contains neither `attributeCategoryCombo` nor `attributeCategoryOptions`,
 > the server returns events for all attribute option combos where the user has read access.
 
 ##### Example requests
@@ -2701,7 +2701,7 @@ GET /api/tracker/events/rgWr86qs0sI
 
 ##### Event response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
+The API supports CSV and JSON response for `GET /api/tracker/events/{uid}`
 
 ###### JSON
 
@@ -3010,9 +3010,9 @@ to the owner organisation unit.
 
 ### Tracker Program Ownership { #webapi_tracker_ownership }
 
-A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation
-unit association for a TrackedEntity - Program combination. We call this the Owner (or Owning)
-Organisation unit of a TrackedEntity in the context of a Program. The Owner organisation unit is
+Tracker Ownership, introduced in DHIS2 2.30, defines an organisation unit association for a
+TrackedEntity - Program combination. We call this the Owner (or Owning) Organisation unit of a
+TrackedEntity in the context of a Program. The Owner organisation unit is
 used to decide access privileges when reading and writing tracker data related to a program. This,
 along with the Program's [Access Level](#webapi_tracker_access_level) configuration, decides the access
 behavior for Program-related data (Enrollments and Events). A user can access a TrackedEntity's
@@ -3399,7 +3399,7 @@ To retrieve a list of potential duplicates, use the following endpoint:
 GET /api/potentialDuplicates
 ```
 
-The response payload for a potential duplicate looks like this.s
+The response payload for a potential duplicate looks like this.
 
 ```json
 {
@@ -3724,5 +3724,5 @@ Table: Query program notification instance API
 | `paging`      | `boolean`         | no       | Enables or disables pagination. Default is `true`. Use `paging=false` to return all matching instances without pagination.   |
 | `page`        | `integer`         | no       | Page number to return when pagination is enabled.                                                                            |
 | `pageSize`    | `integer`         | no       | Number of items per page when pagination is enabled.                                                                         |
-| `event`       | `UID`             | no       | Program notification instances attached to this enrollment.                                                                   |
-| `enrollment`  | `UID`             | no       | Program notification instances attached to this event.                                                                   |
+| `event`       | `UID`             | no       | Program notification instances attached to this event.                                                                   |
+| `enrollment`  | `UID`             | no       | Program notification instances attached to this enrollment.                                                                   |
