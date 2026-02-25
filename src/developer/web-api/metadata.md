@@ -1923,6 +1923,156 @@ A database constraint sample error response:
 
 
 
+## Category Combo
+
+### Merge category combos { #category_combo_merge }
+
+The category combo merge endpoint allows you to merge a number of category combos (sources) into a target category combo.
+
+> **Note**
+>
+> Category combos can only be merged when:
+>
+> 1. source and target category combos have identical categories <br>
+> 2. all category option combos belonging to the involved category combos are valid (correct number of options, valid option membership) <br>
+> 3. no pre-existing duplicate category option combos exist within the involved category combos <br>
+>
+> These constraints ensure only equivalent category combos can be merged and help maintain system integrity.
+
+> **Warning**
+>
+> A category combo merge will result in duplicate category option combos. These should be merged immediately after the category combo merge to maintain system integrity. Duplicates can be found using the data integrity check `category_option_combos_have_duplicates`.
+
+#### Authorisation
+
+The main authority required to perform a category combo merge is `F_CATEGORY_COMBO_MERGE`.
+
+#### Request
+
+Merge category combos with a POST request:
+
+```
+POST /api/categoryCombos/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                              |
+|---------------|----------|------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the category combos to merge (the source category combos)  |
+| target        | Yes      | Identifier of the category combo to merge the sources into (the target category combo) |
+| deleteSources | No       | Whether to delete the source category combos after the operation. Default is false. |
+
+The merge operation will merge the source category combos into the target category combo. One or many source category combos can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category combo metadata associations to the target category combo.
+The following metadata get updated:
+
+| Metadata             | Property                    | Action taken               |
+|----------------------|-----------------------------|----------------------------|
+| Category             | categoryCombos              | remove sources             |
+| CategoryOptionCombo  | categoryCombo               | set as target              |
+| DataElement          | categoryCombo               | set as target              |
+| DataSetElement       | categoryCombo               | set as target              |
+| DataSet              | categoryCombo               | set as target              |
+| Program              | categoryCombo               | set as target              |
+| Program              | enrollmentCategoryCombo     | set as target              |
+| ProgramIndicator     | categoryCombo               | set as target              |
+| ProgramIndicator     | attributeCategoryCombo      | set as target              |
+| DataApprovalWorkflow | categoryCombo               | set as target              |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                                                                       |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| E1530      | At least one source CategoryCombo must be specified                                                                               |
+| E1531      | Target CategoryCombo must be specified                                                                                            |
+| E1532      | Target CategoryCombo cannot be a source CategoryCombo                                                                             |
+| E1533      | Source/Target CategoryCombo does not exist: `{uid}`                                                                               |
+| E1545      | Source and target CategoryCombos must have identical Categories: source `{uid}` has `{categories}`                                |
+| E1546      | CategoryOptionCombo has incorrect number of CategoryOptions. Expected `{n}` but found `{m}` for COC: `{uid}`                     |
+| E1547      | CategoryOptionCombo has CategoryOptions that are not valid for the CategoryCombo categories: `{uid}`                              |
+| E1548      | Duplicate CategoryOptionCombo `{uid}` found for CategoryCombo `{uid}`. Fix this before attempting the merge.                     |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CategoryCombo",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CategoryCombo merge complete. There will be duplicate CategoryOptionCombos as a result of the merge. These should be merged immediately to help keep system integrity. Duplicates can be found using the data integrity check `category_option_combos_have_duplicates`"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source CategoryCombo must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target CategoryCombo does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CategoryCombo",
+            "sourcesDeleted": [],
+            "message": "CategoryCombo merge has errors"
+        }
+    }
+}
+```
+
+
+
 ## Data Elements
 
 ### Merge data elements { #data_element_merge }
