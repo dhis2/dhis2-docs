@@ -21,7 +21,7 @@ Together they provide a capable SSO stack with a much smaller footprint than Key
 
 The primary use cases for this stack in a DHIS2 context are:
 
-- **Protecting sensitive administrative interfaces** at the nginx layer — tools such as Glowroot, Grafana, and pgAdmin are often deployed alongside DHIS2 but lack robust built-in authentication. Authelia can enforce two-factor authentication in front of these tools without modifying the applications themselves.
+- **Protecting sensitive administrative interfaces** at the nginx layer — tools such as Glowroot, Grafana, and pgAdmin are often deployed alongside DHIS2 but lack robust built-in authentication. Authelia can enforce two-factor authentication in front of these tools without modifying the applications themselves. This is a Layer 7 (application-layer) control and is significantly better than no authentication at all — however, administrators should be aware that these endpoints remain publicly reachable on the internet. A more secure approach is to combine this with Layer 3 network controls, as described in the [Security considerations](#security-considerations) section below.
 - **Enabling two-factor authentication for DHIS2 admin users** — by configuring DHIS2 to delegate login to Authelia via OIDC, admin accounts benefit from TOTP or WebAuthn as a second factor.
 
 The number of users managed in this stack is typically small — a handful of system administrators and technical staff rather than the full DHIS2 user base. LLDAP is capable of handling larger directories, but for the bulk of DHIS2 users (who may number in the tens or hundreds of thousands in large national deployments) authentication is managed within DHIS2 itself.
@@ -553,3 +553,19 @@ This guide has covered:
 6. Creating DHIS2 users mapped to LLDAP identities
 
 Users are now managed centrally in LLDAP and authenticate through Authelia. The same Authelia instance can protect additional applications by adding further OIDC clients or configuring it as a forward-auth proxy for nginx.
+
+---
+
+## Security considerations { #security-considerations }
+
+### Layer 7 and Layer 3 — a defence-in-depth approach
+
+Authelia provides authentication at Layer 7 (the application layer). This means that even with Authelia in place, sensitive endpoints such as `/dhis-glowroot`, `/grafana`, and `/pgadmin` are still publicly reachable on the internet — an unauthenticated request will be redirected to the Authelia login page rather than served, but the surface area is still exposed.
+
+For a stronger security posture, Layer 7 authentication should be combined with Layer 3 (network-layer) controls. The recommended approach is to deploy a [WireGuard](https://www.wireguard.com/) VPN so that administrative interfaces are not reachable from the public internet at all, with Authelia providing an additional authentication layer on top. These two controls are complementary rather than alternatives — each protects against different threat vectors, and together they provide significantly stronger protection than either alone.
+
+Where full network control is not available — some hosting environments offer limited configuration options — the Layer 7 approach described in this guide is a pragmatic and worthwhile improvement over no access control at all.
+
+> **Tip**
+>
+> When evaluating whether to expose an administrative tool publicly, consider whether it needs to be accessible from arbitrary locations at all. For most DHIS2 deployments, tools like pgAdmin and Glowroot are only needed by a small number of administrators. When in doubt, keep it off the public internet and require a VPN — with Authelia providing a second layer of defence on top.
