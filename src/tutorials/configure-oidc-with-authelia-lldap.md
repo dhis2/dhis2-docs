@@ -503,7 +503,10 @@ oidc.logout.redirect_url = https://example.com/dhis
 
 oidc.provider.authelia.enable_pkce = on
 oidc.provider.authelia.display_alias = Authelia
+oidc.provider.authelia.login_image = ../../../../static/logo-cropped.png
 ```
+
+Pay special attention to the `login_image` as this need to be located on the same domain as you DHIS2 server. In this case, the DHIS2 server was running on https://myserver.com/dhis/ and the image was available at https://myserver.com/static/logo-cropped.png. You may need to experiment a bit to get this to work on your particular setup. The important point however is that the login image must specify a relative URL to the DHIS2 server. 
 
 Restart DHIS2 for the changes to take effect.
 
