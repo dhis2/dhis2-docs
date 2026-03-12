@@ -237,7 +237,7 @@ While attributes describe a tracked entity, data values describe an event.
 
 ### Notes
 
-In situations where additional information or notes about specific issues need to be recorded, these 
+In situations where additional information or notes about specific issues need to be recorded, these
 can be captured using notes.
 
 There are two types of notes: enrollment-level notes and event-level notes. An enrollment can
@@ -334,8 +334,8 @@ collections are always exported using `UID`s, except for:
 For example, metadata references in `TrackedEntity.relationships` or `enrollments` will always use
 `UID`s for import/export.
 
-The import expects metadata identifiers to only use the chosen `idScheme`. Similarly, metadata is 
-exported only using the chosen `idScheme`. If metadata lacks identifiers for the chosen `idScheme`, 
+The import expects metadata identifiers to only use the chosen `idScheme`. Similarly, metadata is
+exported only using the chosen `idScheme`. If metadata lacks identifiers for the chosen `idScheme`,
 you'll receive an error like the below.
 
 ```json
@@ -395,9 +395,9 @@ The tracker importer supports the following parameters:
 #### Sync and async
 
 The main difference for the user between synchronous and asynchronous imports is the timing of the
-API response. Synchronous imports provide an immediate [import summary](#webapi_tracker_import_summary) 
-once the import is finished. In contrast, asynchronous imports return a reference to the import job right 
-away. The progress of the import job can be tracked using this `response.location`. An example of an 
+API response. Synchronous imports provide an immediate [import summary](#webapi_tracker_import_summary)
+once the import is finished. In contrast, asynchronous imports return a reference to the import job right
+away. The progress of the import job can be tracked using this `response.location`. An example of an
 asynchronous import response is found below.
 
 ```json
@@ -523,7 +523,7 @@ automatically.
 >
 > Although nested payloads can be easier for clients to manage, the payload will always be flattened
 > before the import. For large imports, using a flat structured payload offers more control and
-> reduces overhead during the import process. However, you cannot nest new tracked entities, 
+> reduces overhead during the import process. However, you cannot nest new tracked entities,
 > enrollments or events within a relationship.
 
 ```json
@@ -1096,10 +1096,10 @@ For example, a validation error while importing a `TRACKED_ENTITY`:
 }
 ```
 
-The report contains a message and a code describing the actual error (See the [error codes](#error-codes) 
-section for more information about errors). Additionally, the report includes the `trackerType` 
-and `uid`, which aims to describe where in the data the error was found. In this case, there was a 
-`TRACKED_ENTITY` with the uid `Kj6vYde4LHh`, which had a reference to a tracked entity type that was 
+The report contains a message and a code describing the actual error (See the [error codes](#error-codes)
+section for more information about errors). Additionally, the report includes the `trackerType`
+and `uid`, which aims to describe where in the data the error was found. In this case, there was a
+`TRACKED_ENTITY` with the uid `Kj6vYde4LHh`, which had a reference to a tracked entity type that was
 not found.
 
 > **Note**
@@ -1193,7 +1193,7 @@ happened.
 
 ### Import summary report level
 
-A import summary report can be retrieved using a specific `reportMode` parameter in a `GET /tracker/jobs/{uid}/report` 
+A import summary report can be retrieved using a specific `reportMode` parameter in a `GET /tracker/jobs/{uid}/report`
 request. By default the endpoint will return an `importSummary` with `reportMode` `ERROR`.
 
 | Value | Description |
@@ -1904,16 +1904,16 @@ Supported unary operators:
 
 Filtering by a tracked entity attribute narrows the response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs.
 
-Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. 
+Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value.
 
-A filter like `filter=H9IlTX2X6SL:!null` returns all entries where the given attribute has a value. 
+A filter like `filter=H9IlTX2X6SL:!null` returns all entries where the given attribute has a value.
 
-Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. 
+Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped.
 
 Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed.
 
-Each tracked entity attribute can be configured with:  
-  - A minimum number of characters required to perform a search (0 means no minimum)  
+Each tracked entity attribute can be configured with:
+  - A minimum number of characters required to perform a search (0 means no minimum)
   - Blocked operators. Only `sw`, `ew`, and `like` can be blocked. All other operators cannot be blocked.
 
 The following request:
@@ -2435,10 +2435,10 @@ To retrieve an event with a specific ID:
 
 ```
 GET /api/tracker/events/{id}
-``` 
+```
 
-If not otherwise specified, JSON is the default response for the `GET` method. The API also 
-supports CSV export for single and collection endpoints. Furthermore, it supports compressed 
+If not otherwise specified, JSON is the default response for the `GET` method. The API also
+supports CSV export for single and collection endpoints. Furthermore, it supports compressed
 JSON and CSV for the collection endpoint.
 
 #### Events CSV
@@ -2924,11 +2924,11 @@ grant metadata write access.
 One critical point with Tracker data is the need to have a holistic approach. For example, a user
 won’t be able to see the Data Element value by having read access to just the Data Element. The user
 needs to have data read to access the parent Program Stage and Program where this Data Element
-belongs. This works the same way as for category option combinations. In Tracker, events and 
-enrollments are associated with an AttributeOptionCombo, which is composed of multiple Category 
-Options. To read an event or enrollment, a user must have data read access to all Category Options 
-and their corresponding Categories that make up the AttributeOptionCombo of that object. If the user 
-lacks access to even one of the required Category Options or Categories, they will not have access 
+belongs. This works the same way as for category option combinations. In Tracker, events and
+enrollments are associated with an AttributeOptionCombo, which is composed of multiple Category
+Options. To read an event or enrollment, a user must have data read access to all Category Options
+and their corresponding Categories that make up the AttributeOptionCombo of that object. If the user
+lacks access to even one of the required Category Options or Categories, they will not have access
 to the entire event or enrollment..
 
 When it comes to accessing Enrollment data, it is essential to have access to the Tracked Entity
@@ -3557,7 +3557,7 @@ The message and subject templates are translated into actual values and sent to 
 Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal.
 These intermediate objects will contain only the translated message and subject text.
 
-There are several configuration parameters in the Program Notification Template that are essential for 
+There are several configuration parameters in the Program Notification Template that are essential for
 the proper functioning of notifications. These parameters are explained in the table below.
 
 ```
@@ -3695,7 +3695,7 @@ To delete a message.
 DELETE /api/messages/{uid}
 ```
 
-The program message API supports querying messages using specific request parameters. You can filter messages based 
+The program message API supports querying messages using specific request parameters. You can filter messages based
 on the parameters listed below. All requests should use the GET HTTP verb to retrieve information.
 
 Table: Query program messages API
@@ -3715,14 +3715,218 @@ Returns program notification instances, optionally filtered and paginated.
 
 ```
 GET /api/programNotificationInstances
+```
 
 Table: Query program notification instance API
 
-| Name         | Type              | Required | Description                                                                                                                   |
+| Name         | Type              | Required | Description                                                                                                                  |
 |-------------|-------------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
-| `scheduledAt` | `date` (ISO-8601) | no       | Returns notification instances scheduled to be sent on the given date. Example: `scheduledAt=2025-01-01`.                    |
-| `paging`      | `boolean`         | no       | Enables or disables pagination. Default is `true`. Use `paging=false` to return all matching instances without pagination.   |
-| `page`        | `integer`         | no       | Page number to return when pagination is enabled.                                                                            |
-| `pageSize`    | `integer`         | no       | Number of items per page when pagination is enabled.                                                                         |
-| `event`       | `UID`             | no       | Program notification instances attached to this event.                                                                   |
-| `enrollment`  | `UID`             | no       | Program notification instances attached to this enrollment.                                                                   |
+| `scheduledAt` | `date` (ISO-8601) | no       | Returns notification instances scheduled to be sent on the given date. Example: `scheduledAt=2025-01-01`.                   |
+| `paging`      | `boolean`         | no       | Enables or disables pagination. Default is `true`. Use `paging=false` to return all matching instances without pagination.  |
+| `page`        | `integer`         | no       | Page number to return when pagination is enabled.                                                                           |
+| `pageSize`    | `integer`         | no       | Number of items per page when pagination is enabled.                                                                        |
+| `event`       | `UID`             | no       | Program notification instances attached to this event.                                                                      |
+| `enrollment`  | `UID`             | no       | Program notification instances attached to this enrollment.                                                                 |
+
+## Performance { #webapi_tracker_performance }
+
+This section covers general performance principles followed by endpoint-specific guidance for the
+tracker export endpoints. Further performance optimizations require knowledge of real-world access
+patterns and data distribution. If your implementation can share this information, it will help
+prioritize improvements.
+
+### General Principles
+
+Export endpoint response times are typically dominated by database query execution. The
+recommendations below focus on reducing the amount of work the database has to do.
+
+#### Query at the Right Level
+
+The tracker data model has three levels: tracked entities, enrollments, and events. Always query at
+the lowest level that satisfies your need. Use `GET /api/tracker/events` instead of `GET
+/api/tracker/trackedEntities?fields=enrollments[events]`. Querying via a parent endpoint increases
+query complexity or the number of queries.
+
+#### Use Explicit `fields`
+
+By default, all endpoints exclude nested collections such as `enrollments`, `events`, and
+`relationships`. Each additional collection increases resource utilization and response times. Only
+request the `fields` you need and avoid `fields=*`.
+
+#### Selectivity
+
+Query performance depends on how many records the database must process before returning results.
+The fewer records to scan, sort, and deduplicate, the faster the response. This is **selectivity**:
+the fraction of total records that match the query conditions.
+
+Selectivity comes from several sources, all of which compound: request parameters (such as
+`program`, `filter`, date ranges), user scope, and `orgUnitMode`.
+
+##### Filters
+
+Filters narrow the result set before sorting and pagination. They are most effective when backed by
+a database index. Broad filters (e.g., `filter=w75KJ2mc4zz:like:J`) may match a large portion of the
+dataset and provide little selectivity. Narrow filters (e.g., `filter=w75KJ2mc4zz:eq:Jerald` or a
+tight date range) reduce the working set significantly. `like` filters on tracked entity attributes
+can benefit from [trigram indexing](#scheduling_tracker_index_maintenance).
+
+The "Minimum number of attributes required to search" setting on programs and tracked entity types
+requires a minimum number of attribute filters when searching outside the user's capture scope.
+
+##### Program
+
+Specifying `program` enables ownership-based access control. Without `program`, the system must
+evaluate access rules dynamically across all programs a tracked entity is enrolled in. Always
+include `program` when querying program-specific data.
+
+Note that even with `program` specified, selectivity depends on how much data exists for that
+program. A program enrolling most tracked entities will not be very selective.
+
+#### Organisation Unit Mode { #webapi_tracker_perf_organisation_unit_mode }
+
+[`orgUnitMode`](#webapi_tracker_orgunit_scope) and the user's organisation unit scope directly affect
+how many records the database processes. Performance depends on how much data the included org units
+own. A user scoped to a single facility queries a small subset of records; a user with root-level
+access may scan the entire program. **`SELECTED` is the most efficient** as the database can seek
+directly to records owned by the specified org units.
+
+**`CHILDREN` is slow when the children do not own data.** Data is typically captured at facilities
+(the lowest level). Using `CHILDREN` at a higher level (e.g. district) returns administrative org
+units that have no events, forcing the database to scan all events in the program to confirm this.
+`CHILDREN` is fast when the children are org units that actually capture data.
+
+**`ALL`** includes no geographic restriction. **`ACCESSIBLE`** depends on the user's search scope,
+which for users with broad access can cover most of the program's data. Combine with selective
+filters to keep the working set manageable.
+
+#### Ordering
+
+The `order` parameter can significantly impact query performance. Order fields fall into performance
+tiers:
+
+* **Fast (indexed)**: The database walks an index in order and stops after filling the requested
+  page. Cost scales with page size and offset, not dataset size. This assumes the query conditions
+  allow the database to use the index, which depends on filters and `orgUnitMode`.
+* **Slow (no index)**: The database must scan and sort all matching records before returning the
+  page. Cost is dominated by the total number of matching records.
+* **Very slow (cross-resource)**: The sort value comes from a related resource (e.g., sorting tracked
+  entities by `enrolledAt` or an attribute value). The database must look up these values for every
+  matching record before sorting.
+
+**Selectivity matters more than order field choice.** With selective filters or narrow user scope,
+even slow order fields are fast because the database only sorts a small set. Note that filters
+without a backing index still reduce the sort cost but not the scan cost.
+
+See the endpoint-specific sections below for which order fields fall into which tier.
+
+#### Pagination
+
+DHIS2 uses [offset-based pagination](https://use-the-index-luke.com/no-offset). High page numbers are inherently slower because the database must compute and discard all preceding
+rows. This is a fundamental property of offset-based pagination, not specific to DHIS2.
+
+Recommendations:
+* Keep page sizes reasonable (default is 50)
+* Avoid navigating to very high page numbers
+* Avoid `totalPages=true` unless necessary as it runs an additional count query that must process all
+  matching records regardless of page size
+* Avoid `paging=false` as it returns all matching records in a single response
+
+Configure [collection limits](#tracked-entities-collection-limits) to cap the result set size and
+protect database and server resources.
+
+### `/api/tracker/trackedEntities`
+
+#### Filters
+
+Either `program` or `trackedEntityType` is required. Prefer `program` as it enables direct
+ownership-based access control.
+
+#### Ordering
+
+| Tier | Order fields | Cost |
+|------|-------------|------|
+| Fast | `trackedEntity`, `createdAt` | Proportional to `page` (offset) + `pageSize` |
+| Slow | `updatedAt`, `createdAtClient`, `updatedAtClient`, `inactive` | Proportional to total matching tracked entities |
+| Very slow | `enrolledAt`, tracked entity attribute UIDs | Proportional to total matching tracked entities + per-record lookup in related tables |
+
+`enrolledAt` additionally requires deduplication when a tracked entity has multiple enrollments in
+the same program. Programs configured with "Only enroll once" avoid this deduplication cost.
+
+### `/api/tracker/enrollments`
+
+#### Ordering
+
+| Tier | Order fields | Cost |
+|------|-------------|------|
+| Slow | `enrolledAt`, `createdAt`, `completedAt`, `updatedAt`, `createdAtClient`, `updatedAtClient` | Proportional to total matching enrollments |
+
+All enrollment order fields currently lack a composite index. The database must scan and sort all
+matching enrollments before returning the requested page.
+
+### `/api/tracker/events` (Tracker Programs)
+
+#### Filters
+
+`program` is mandatory and can be combined with `programStage` to narrow to a single stage.
+
+#### Ownership
+
+Every tracker event query must traverse enrollment and ownership records to enforce access control.
+On a program with hundreds of thousands of enrollments, broad queries (e.g., `orgUnitMode=ALL`
+without filters) must process all ownership records before any event-level work can begin. An index
+on the event table alone cannot help because the ownership check happens on a different table.
+
+The most effective way to reduce cost is to provide a narrow org unit scope. A user scoped to a
+single facility produces a small ownership set, making the rest of the query fast regardless of other
+parameters.
+
+Enrollment-level filters (`enrollmentStatus`, `followUp`, enrollment date ranges) are not backed by
+indexes. They can still reduce the result set but do not reduce the number of records the database
+scans.
+
+#### Ordering
+
+| Tier | Order fields | Cost |
+|------|-------------|------|
+| Slow | `occurredAt`, `scheduledAt`, `createdAt`, `updatedAt`, `completedAt`, `createdAtClient`, `updatedAtClient`, `enrolledAt`, data element UIDs | Proportional to total matching events (after ownership join) |
+| Very slow | tracked entity attribute UIDs | Proportional to total matching events + per-event cross-resource lookup |
+
+All tracker event order fields lack a composite index at the program level. The database must
+traverse enrollment and ownership records, collect all matching events, sort them, and return the
+requested page. Cost scales with total matching events, not page size.
+
+Specifying `programStage` does not improve ordering performance because the bottleneck is the
+ownership join, not the event-level scan.
+
+`enrolledAt` comes from the enrollment table which is already part of the ownership join, so it does
+not require an additional lookup. Attribute UIDs require a cross-resource lookup to the tracked
+entity for every matching event.
+
+### `/api/tracker/events` (Event Programs)
+
+Event programs (programs without registration) have no enrollment or ownership overhead. The database
+goes directly from the event to its org unit, making these queries structurally faster than tracker
+program queries.
+
+#### Organisation Unit Mode
+
+With the default `occurredAt` order, the database walks the sorted index and filters each event by
+org unit. This is fast when matching events appear early in the index. For `SELECTED`, `DESCENDANTS`,
+and `ACCESSIBLE`, performance depends on how the matching org units' events are distributed across
+the sort order. If matching events are rare or concentrated at the end of the index, the database
+must scan many non-matching events first.
+
+`ALL` avoids org unit filtering entirely and is fast with the default order. `CHILDREN` is slow for
+the same reasons described in the [general principles](#webapi_tracker_perf_organisation_unit_mode).
+
+Without the default `occurredAt` order, all modes require scanning and sorting all matching events.
+
+#### Ordering
+
+The default order is `occurredAt desc`. This is the most efficient order for event programs.
+
+| Tier | Order fields | Cost |
+|------|-------------|------|
+| Fast (indexed) | `occurredAt` | Proportional to `page` (offset) + `pageSize` (except with slow `orgUnitMode`, see above) |
+| Slow (no index) | `createdAt`, `updatedAt`, `completedAt`, `createdAtClient`, `updatedAtClient` | Proportional to total events for the program stage |
+| Slow (JSON extraction) | Data element UIDs | Requires extracting and sorting JSON values for every matching event |
