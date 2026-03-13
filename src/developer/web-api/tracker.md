@@ -3908,6 +3908,10 @@ Event programs (programs without registration) have no enrollment or ownership o
 goes directly from the event to its org unit, making these queries structurally faster than tracker
 program queries.
 
+#### Filters
+
+`program` is mandatory.
+
 #### Organisation Unit Mode
 
 With the default `occurredAt` order, the database walks the sorted index and filters each event by
