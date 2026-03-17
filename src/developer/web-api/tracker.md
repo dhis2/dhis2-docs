@@ -3918,7 +3918,10 @@ With the default `occurredAt` order, the database walks the sorted index and fil
 org unit. This is fast when matching events appear early in the index. For `SELECTED`, `DESCENDANTS`,
 and `ACCESSIBLE`, performance depends on how the matching org units' events are distributed across
 the sort order. If matching events are rare or concentrated at the end of the index, the database
-must scan many non-matching events first.
+must scan many non-matching events first. On program stages with millions of events where the user's
+org units cover only a small fraction, this can result in scanning large portions of the index before
+filling a single page. Adding `occurredAfter` and/or `occurredBefore` limits the scan to a bounded
+window and is recommended for high-volume program stages.
 
 `ALL` avoids org unit filtering entirely and is fast with the default order. `CHILDREN` is slow for
 the same reasons described in the [general principles](#webapi_tracker_perf_organisation_unit_mode).
@@ -3931,6 +3934,6 @@ The default order is `occurredAt desc`. This is the most efficient order for eve
 
 | Tier | Order fields | Cost |
 |------|-------------|------|
-| Fast (indexed) | `occurredAt` | Proportional to `page` (offset) + `pageSize` (except with slow `orgUnitMode`, see above) |
+| Fast (indexed) | `occurredAt` | Proportional to `page` (offset) + `pageSize`. Degrades when org unit filtering is active but matches are sparse — see [Organisation Unit Mode](#organisation-unit-mode) above. |
 | Slow (no index) | `createdAt`, `updatedAt`, `completedAt`, `createdAtClient`, `updatedAtClient` | Proportional to total events for the program stage |
 | Slow (JSON extraction) | Data element UIDs | Requires extracting and sorting JSON values for every matching event |
