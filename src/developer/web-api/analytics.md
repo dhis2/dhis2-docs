@@ -769,7 +769,7 @@ Table: Event dimensions
 | Data elements | <id\> | Data element identifiers |
 | Attributes | <id\> | Attribute identifiers |
 | Periods | pe | ISO periods and relative periods, see "date and period format" |
-| Organisation units | ou | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
+| Organisation units | ou | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. It can be staged, ie: `A03MvHHogjR.ou` |
 | Organisation unit group sets | <org unit group set id\> | Organisation unit group set identifiers |
 | Categories | <category id\> | Category identifiers (program attribute categories only) |
 
@@ -797,6 +797,62 @@ Table: Query parameters for both event query and aggregate analytics
 | rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
 | timeField | No | Time field used in aggregations/queries on events. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. For "/analytics/events/" endpoints, the default "timeField" is EVENT_DATE. | EVENT_DATE &#124; SCHEDULED_DATE &#124; <Attribute ID\> &#124; <Data element ID\> |
 
+** There are some cases where it's possible to request specific fields through the `dimension` param. They are not true dimensions, but gives a better level of flexibility. They are:
+
+#### Event Date (`EVENT_DATE`)
+
+Filters by the date an event occurred. Can be used as a root-level dimension or scoped to a specific stage.
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `{stageUid}.EVENT_DATE:{period}` | `dimension=A03MvHHogjR.EVENT_DATE:202205` | Events in stage `A03MvHHogjR` with an event date in May 2022. |
+| `{stageUid}.EVENT_DATE:{start}_{end}` | `dimension=A03MvHHogjR.EVENT_DATE:2022-05-01_2022-05-10` | Events in that stage with an event date in the given inclusive date range. |
+| `EVENT_DATE:{period}` | `dimension=EVENT_DATE:2022Sep` | Root-level event date filter using a financial year period. |
+
+#### Scheduled Date (`SCHEDULED_DATE`)
+
+Filters by the date an event was scheduled (as opposed to when it actually occurred). Also, it can be scoped to a specific stage (as `EVENT_DATE`).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `SCHEDULED_DATE:{period}` | `dimension=SCHEDULED_DATE:202107` | Events in the given stage with a scheduled date in July 2021. |
+
+#### Created Date (`CREATED`)
+
+Filters by when the enrollment record was created in the system. Also, it can be scoped to a specific stage (as `EVENT_DATE`).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `CREATED:{period}` | `dimension=CREATED:2016Sep` | Enrollments created during the financial year starting September 2016. |
+
+#### Completed Date (`COMPLETED`)
+
+Filters by when the enrollment was marked as completed.  Also, it can be scoped to a specific stage (as `EVENT_DATE`).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `COMPLETED:{period}` | `dimension=COMPLETED:2022Sep` | Enrollments completed during the financial year starting September 2022. |
+
+#### Event Status (`EVENT_STATUS`)
+
+Filters by the status of an event within a stage.
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `{stageUid}.EVENT_STATUS:{status}` | `dimension=A03MvHHogjR.EVENT_STATUS:ACTIVE` | Events in the stage with status `ACTIVE`. |
+| `{stageUid}.EVENT_STATUS:{s1};{s2}` | `dimension=edqlbukwRfQ.EVENT_STATUS:COMPLETED;ACTIVE` | Events with status `COMPLETED` **or** `ACTIVE` (OR logic). |
+
+Valid status values: `ACTIVE`, `COMPLETED`, `SCHEDULED`, `OVERDUE`, `SKIPPED`.
+
+#### Program Status (`PROGRAM_STATUS`)
+
+Filters by the status of the enrollment itself (as opposed to individual events).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `PROGRAM_STATUS:{status}` | `dimension=PROGRAM_STATUS:ACTIVE` | Only enrollments with the specified program status. |
+
+Valid status values: `ACTIVE`, `COMPLETED`, `CANCELLED`.
 
 
 Table: Query parameters for event query analytics only
@@ -824,7 +880,7 @@ Table: Query parameters for aggregate event analytics only
 
 | Query parameter | Required | Description | Options |
 |---|---|---|---|
-| value | No | Value dimension identifier. Can be a data element or an attribute which must be of numeric value type. | Data element or attribute identifier |
+| value | No | Value dimension identifier. Can be a data element or an attribute which must be of numeric value type. | Data element or attribute identifier. It can stage scoped, ie: `value=stageId.dimensionid` |
 | aggregationType | No | Aggregation type for the value dimension. Default is AVERAGE. | SUM &#124; AVERAGE &#124; AVERAGE_SUM_ORG_UNIT &#124; LAST &#124; LAST_AVERAGE_ORG_UNIT &#124; COUNT &#124; STDDEV &#124; VARIANCE &#124; MIN &#124; MAX |
 | showHierarchy | No | Display full org unit hierarchy path together with org unit name. | false &#124; true |
 | displayProperty | No | Property to display for metadata. | NAME &#124; SHORTNAME |
@@ -1553,6 +1609,21 @@ in the table below.
 | E7227      | Relationship entity type not supported |
 | E7228      | Fallback coordinate field is invalid |
 | E7229      | Operator does not allow missing value |
+| E7230      | Header param does not exist |
+| E7231      | Legacy can be updated only through event visualizations |
+| E7232      | Fallback coordinate field is invalid |
+| E7234      | Query filter is not valid for query item value type |
+| E7235      | Either programId or programStageId must be specified |
+| E7236      | Program stage is not associated to program |
+| E7237      | Sorting must have a valid dimension and a direction |
+| E7238      | Sorting dimension is not a column |
+| E7239      | Invalid operator for 'null' value |
+| E7240      | Event query with org unit ownership does not support time fields |
+| E7241      | Stage parameter cannot be used with stage-specific dimension identifiers |
+| E7242      | Period dimension cannot be used with stage-specific date dimensions (ie: EVENT_DATE, SCHEDULED_DATE) |
+| E7243      | Duplicate stage dimension identifier |
+| E7244      | Multiple stages in stage-specific dimensions are not allowed |
+| E7245      | Program stage does not belong to program |
 
 ## Enrollment analytics { #webapi_enrollment_analytics } 
 
@@ -1721,6 +1792,63 @@ Table: Query parameters for enrollment query endpoint
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
 | timeField | No | Time field used in aggregations/queries on enrollments. Applies to enrollment data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. For "/analytics/enrollments/" endpoints, the default "timeField" is ENROLLMENT_DATE. | ENROLLMENT_DATE &#124; LAST_UPDATED &#124; <Attribute ID\> &#124; <Data element ID\> |
+
+** There are some cases where it's possible to request specific fields through the `dimension` param. They are not true dimensions, but gives a better level of flexibility. They are:
+
+#### Event Date (`EVENT_DATE`)
+
+Filters by the date an event occurred. Can be used as a root-level dimension or scoped to a specific stage.
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `{stageUid}.EVENT_DATE:{period}` | `dimension=A03MvHHogjR.EVENT_DATE:202205` | Events in stage `A03MvHHogjR` with an event date in May 2022. |
+| `{stageUid}.EVENT_DATE:{start}_{end}` | `dimension=A03MvHHogjR.EVENT_DATE:2022-05-01_2022-05-10` | Events in that stage with an event date in the given inclusive date range. |
+| `EVENT_DATE:{period}` | `dimension=EVENT_DATE:2022Sep` | Root-level event date filter using a financial year period. |
+
+#### Scheduled Date (`SCHEDULED_DATE`)
+
+Filters by the date an event was scheduled (as opposed to when it actually occurred). Also, it can be scoped to a specific stage (as `EVENT_DATE`).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `SCHEDULED_DATE:{period}` | `dimension=SCHEDULED_DATE:202107` | Events in the given stage with a scheduled date in July 2021. |
+
+#### Created Date (`CREATED`)
+
+Filters by when the enrollment record was created in the system. Also, it can be scoped to a specific stage (as `EVENT_DATE`).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `CREATED:{period}` | `dimension=CREATED:2016Sep` | Enrollments created during the financial year starting September 2016. |
+
+#### Completed Date (`COMPLETED`)
+
+Filters by when the enrollment was marked as completed.  Also, it can be scoped to a specific stage (as `EVENT_DATE`).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `COMPLETED:{period}` | `dimension=COMPLETED:2022Sep` | Enrollments completed during the financial year starting September 2022. |
+
+#### Event Status (`EVENT_STATUS`)
+
+Filters by the status of an event within a stage.
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `{stageUid}.EVENT_STATUS:{status}` | `dimension=A03MvHHogjR.EVENT_STATUS:ACTIVE` | Events in the stage with status `ACTIVE`. |
+| `{stageUid}.EVENT_STATUS:{s1};{s2}` | `dimension=edqlbukwRfQ.EVENT_STATUS:COMPLETED;ACTIVE` | Events with status `COMPLETED` **or** `ACTIVE` (OR logic). |
+
+Valid status values: `ACTIVE`, `COMPLETED`, `SCHEDULED`, `OVERDUE`, `SKIPPED`.
+
+#### Program Status (`PROGRAM_STATUS`)
+
+Filters by the status of the enrollment itself (as opposed to individual events).
+
+| Value form | Example | Meaning |
+|---|---|---|
+| `PROGRAM_STATUS:{status}` | `dimension=PROGRAM_STATUS:ACTIVE` | Only enrollments with the specified program status. |
+
+Valid status values: `ACTIVE`, `COMPLETED`, `CANCELLED`.
 
 #### Response formats
 
