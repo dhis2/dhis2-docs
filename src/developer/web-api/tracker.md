@@ -3745,6 +3745,14 @@ increase latency. For bulk imports where notifications are not needed, skip them
 
     POST /api/tracker?skipSideEffects=true
 
+#### Program Rules
+
+The rule engine runs synchronously during import for every enrollment and event in the bundle,
+which can increase latency significantly for bulk imports. Skip it only if the programs have no
+rules with validations or assignments that must be enforced on import:
+
+    POST /api/tracker?skipRuleEngine=true
+
 ### Export
 
 #### General Principles
