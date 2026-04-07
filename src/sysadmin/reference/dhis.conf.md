@@ -17,6 +17,7 @@ defaults to the directory `/opt/dhis2/`.
 > as a reference for the available configuration options. Many of the
 > properties are optional.
 
+
 ```properties
 # ----------------------------------------------------------------------
 # Database connection for PostgreSQL [Mandatory]
@@ -337,6 +338,7 @@ max.sessions.per_user = 10
 # Remote servers allowed to call from the route endpoint. Default is any HTTPS URL. Wildcards are allowed. 
 # e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
 route.remote_servers_allowed = https://*
+
 ```
 
 Note that the configuration file supports environment variables. This
