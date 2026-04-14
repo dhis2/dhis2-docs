@@ -58,9 +58,25 @@ The `connection.url` property in `dhis.conf` contains the PostgreSQL hostname as
 
 ## DHIS2 Configuration
 
-Apache Doris is configured in the DHIS2 configuration file, `dhis.conf`. This file is typically located at `/opt/dhis2/dhis.conf` or in the `DHIS2_HOME` directory.
+All configuration is done in the DHIS2 configuration file, `dhis.conf`. This file is typically located at `/opt/dhis2/dhis.conf` or in the `DHIS2_HOME` directory.
 
-Add the following properties to `dhis.conf`:
+### PostgreSQL connection
+
+The standard PostgreSQL connection properties must be present in `dhis.conf`. These are used both by DHIS2 to connect to its primary database and by Doris (via the JDBC catalog) to read from PostgreSQL during analytics table generation.
+
+```properties
+connection.dialect = org.hibernate.dialect.PostgreSQLDialect
+connection.driver_class = org.postgresql.Driver
+connection.url = jdbc:postgresql://<hostname>:5432/<database>
+connection.username = <username>
+connection.password = <password>
+```
+
+> **Note:** As described in the [PostgreSQL hostname](#postgresql-hostname) section, the hostname in `connection.url` must be resolvable from both the DHIS2 server and the Doris FE node.
+
+### Analytics database connection
+
+Add the following properties to `dhis.conf` to enable Apache Doris as the analytics database:
 
 ```properties
 # Enable Apache Doris as the analytics database
