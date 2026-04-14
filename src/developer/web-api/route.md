@@ -12,7 +12,9 @@ In order to configure routes, the logged-in user must either have `ALL` authorit
 
 ![](resources/images/routes/route-authorities.png)
 
->IMPORTANT: After creating a route, all DHIS2 users are able to view and run the route therefore it is highly advisable to edit the route's sharing settings to change the default access. Starting from DHIS2 versions 40.12, 41.9, and 42.5, the default behaviour is changed such that only the user that created the route together with users having the `ALL` authority can view and run the route. Go to the [Running a route with authentication and custom authority](#running-a-route-with-authentication-and-custom-authority) section to learn how other users can run routes.
+>IMPORTANT: After creating a route, all DHIS2 users are able to view and run the route therefore it is highly advisable to edit the route's sharing settings to change the default access. 
+> 
+> Starting from DHIS2 versions 40.12, 41.9, and 42.5, the default behaviour is changed such that only the user that created the route together with users having the `ALL` authority can view and run the route. Go to the [Running a route with authentication and custom authority](#running-a-route-with-authentication-and-custom-authority) section to learn how other users can be allowed run routes.
 
 In addition to authorities, route URLs can only be added or run when the URL has a corresponding entry `route.remote_servers_allowed` setting found in the `dhis.conf` as shown below:
 
