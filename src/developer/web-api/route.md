@@ -12,6 +12,8 @@ In order to be able to configure and view the routes, the current user must eith
 
 ![](resources/images/routes/route-authorities.png)
 
+>IMPORTANT: Starting from DHIS2 v42.5, only the user that created the route together with users having the `ALL` authority can view and run the route. Go to the [Running a route with authentication and custom authority](#running-a-route-with-authentication-and-custom-authority) section to learn how other users can run routes.
+
 In addition to authorities, route URLs can only be added or run when the URL has a corresponding entry `route.remote_servers_allowed` setting found in the `dhis.conf` as shown below:
 
 ```properties
