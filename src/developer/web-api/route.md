@@ -8,11 +8,11 @@ For the examples here we will be using the [Echo API](https://learning.postman.c
 
 ### Required permissions
 
-In order to be able to configure and view the routes, the current user must either have `ALL` authority, or the `Route` authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the authorities to the user's role, and save the updates to the role.
+In order to configure routes, the logged-in user must either have `ALL` authority, or the `Route` authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the authorities to the user's role, and save the updates to the role.
 
 ![](resources/images/routes/route-authorities.png)
 
->IMPORTANT: Starting from DHIS2 v42.5, only the user that created the route together with users having the `ALL` authority can view and run the route. Go to the [Running a route with authentication and custom authority](#running-a-route-with-authentication-and-custom-authority) section to learn how other users can run routes.
+>IMPORTANT: After creating a route, all DHIS2 users are able to view and run the route therefore it is highly advisable to edit the route's sharing settings to change the default access. Starting from DHIS2 versions 40.12, 41.9, and 42.5, the default behaviour is changed such that only the user that created the route together with users having the `ALL` authority can view and run the route. Go to the [Running a route with authentication and custom authority](#running-a-route-with-authentication-and-custom-authority) section to learn how other users can run routes.
 
 In addition to authorities, route URLs can only be added or run when the URL has a corresponding entry `route.remote_servers_allowed` setting found in the `dhis.conf` as shown below:
 
