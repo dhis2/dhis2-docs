@@ -88,9 +88,12 @@ db.pool.type = hikari
 # Server [Mandatory]
 # ----------------------------------------------------------------------
 
-# Base URL to the DHIS 2 instance
-# The server.base.url setting refers to the URL at which the system is accessed by end users over the network.
-server.base.url = https://play.dhis2.org/dev 
+# Base URL to the DHIS2 instance
+# The server.base.url setting refers to the externally reachable URL at which the system is accessed by end users over the network.
+# Must be an absolute http:// or https:// URL with a valid hostname and no trailing slash.
+# Required for password recovery. Also used for OIDC and OAuth2 redirect URLs, notification emails, and interpretation links.
+# If missing, invalid, or has a trailing slash, DHIS2 logs a warning at startup. See "Server base URL" below.
+server.base.url = https://play.dhis2.org/dev
 
 # Enable secure settings if system is deployed on HTTPS, can be 'off', 'on' (default: 'off')
 server.https = off
@@ -357,6 +360,54 @@ invoke the following command which ensures only the *dhis* user is allowed to re
 ```sh
 chmod 600 dhis.conf
 ```
+
+## Server base URL { #install_server_base_url }
+
+The `server.base.url` property in `dhis.conf` defines the externally reachable base URL of the DHIS2 instance — the URL users type into their browser to access the system. Setting this value correctly is **important**: several DHIS2 features generate links from it, and a missing or malformed value breaks them.
+
+```properties
+server.base.url = https://dhis2.example.org/dhis
+```
+
+### Why it matters
+
+DHIS2 uses `server.base.url` to build absolute URLs in backend-generated content. Features that depend on it include:
+
+- **Password recovery** — the account recovery email contains a reset link built from `server.base.url`. If the property is missing or invalid, password recovery is unavailable.
+- **OIDC and OAuth2** — redirect URIs and client registration URLs are derived from this value.
+- **Notification emails** — links in interpretation, message, and subscription emails point to this base.
+- **Interpretation sharing** — shared links to dashboards, visualizations, and maps.
+- **API metadata URLs** — some system info and metadata endpoints emit absolute URLs based on this value.
+
+### Valid values
+
+The value must be an absolute URL that is reachable by your end users:
+
+- Scheme: `https://` (strongly recommended) or `http://` for non-TLS environments.
+- Hostname: a valid hostname or IP reachable from users' browsers — not `localhost` in a production deployment.
+- No trailing slash.
+- Include the context path (e.g., `/dhis`) if DHIS2 is not deployed at the server root.
+
+Examples:
+
+```properties
+# Good
+server.base.url = https://dhis2.example.org
+server.base.url = https://dhis2.example.org/dhis
+
+# Bad — trailing slash
+server.base.url = https://dhis2.example.org/
+
+# Bad — no scheme
+server.base.url = dhis2.example.org
+
+# Bad — not reachable by end users
+server.base.url = http://localhost:8080
+```
+
+### Startup validation
+
+At startup, DHIS2 validates `server.base.url` and logs a `WARN` message if the value is missing, empty, not a valid absolute URL, or has a trailing slash. DHIS2 will continue to start in this state (in degraded mode for the features listed above), but administrators should treat the warning as something to fix.
 
 ## Encryption configuration { #install_encryption_configuration } 
 
