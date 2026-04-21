@@ -921,8 +921,8 @@ information about how to create categories and category combinations,
 see section "Manage data elements and categories". Make sure that you
 set the type of categories and category combinations to "Attribute".
 
-An scenario for when categories are useful is when you need to capture a
-data entry form for a implementing partner organisation and a project.
+A scenario for when categories are useful is when you need to capture a
+data entry form for an implementing partner organisation and a project.
 In that case:
 
 1.  Create category options and categories for all partner organisations
