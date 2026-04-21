@@ -78,7 +78,8 @@ Table: `DATA_SYNC` job parameters
 
 | Name          | Type          | Default | Description                                      |
 |---------------|---------------|---------|--------------------------------------------------|
-| `pageSize` | int | `10000` | number of data values processed as a unit |
+| `pageSize` | int | `10000` | number of aggregate data values processed as a unit |
+| `pageSize` | int | `60`    | number of events or tracked entities processed as a unit |
 
 Table: `META_DATA_SYNC` job parameters
 
@@ -176,6 +177,26 @@ An example of a job with scheduling type `FIXED_DELAY` and 120 seconds delay:
   "jobParameters": {
     "fullUpdateHourOfDay": 4
   }
+}
+```
+
+An example of scheduling a job to synchronize single event data
+
+```json
+{
+  "name": "Single event data synchronization",
+  "jobType": "SINGLE_EVENT_DATA_SYNC",
+     "cronExpression": "0 * * ? * *"
+}
+```
+
+An example of scheduling a job to synchronize tracked entity data
+
+```json
+{
+  "name": "Tracked entity data synchronization",
+  "jobType": "TRACKED_ENTITY_DATA_SYNC",
+     "cronExpression": "0 * * ? * *"
 }
 ```
 
