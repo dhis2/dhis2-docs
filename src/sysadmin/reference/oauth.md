@@ -336,7 +336,7 @@ expected for third-party web apps.
 2. Set `oauth2.server.enabled = on` in `dhis.conf`.
 3. Configure a persistent keystore (see
    [Persistent signing keystore](#oauth2_keystore)); without it,
-   every server restart invalidates every device's tokens.
+   every server restart invalidates every device's tokens, but not the clients.
 4. (Optional) Restrict device enrollment to a specific user group:
    set `deviceEnrollmentAllowedUserGroups` in System Settings.
 5. Confirm the default redirect allow-list value
