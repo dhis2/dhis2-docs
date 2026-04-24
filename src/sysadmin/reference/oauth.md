@@ -73,9 +73,7 @@ not the internal `http://` URL Tomcat sees.
 
 The authorization server reads the issuer URI directly from
 `server.base.url` rather than inferring it from the incoming HTTP
-request. Without this, deployments behind SSL-terminating proxies
-issued tokens with `iss: http://...` that external clients and OIDC
-discovery rejected.
+request.
 
 `server.base.url` is normalized so that it
 is treated the same with or without a trailing slash.
