@@ -264,6 +264,9 @@ analytics.connection.pool.min_size = 5
 # Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize. (default: 5).
 analytics.connection.pool.initial_size = 5
 
+# If present, overrides the analytics.connection.url value - useful when running Apache Doris in a container (so it is not able to access Postgres via `localhost`).
+doris.catalog.connection.url =  https://doris.example.org
+
 
 # ----------------------------------------------------------------------
 # System telemetry [Optional]
