@@ -1404,7 +1404,7 @@ data entry forms for data sets.
 #### Manage grey fields in a section form
 
 You can disable data elements and category options for data entry. That
-means it wonâ€™t be possible to enter data into these fields during data
+means it won't be possible to enter data into these fields during data
 entry.
 
 ![](resources/images/datasets/section_form_grey_fields.png)
@@ -2550,7 +2550,7 @@ easily filter, organise or aggregate data by groups within a group set.
 
 5.  (Optional) Select **Data dimension**.
 
-        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of â€œPeriodâ€ and â€œOrganisation unitâ€.
+        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of "Period" and "Organisation unit".
 
 6.  (Optional) Select **Include subhierarchy in analytics**.
 
@@ -3612,7 +3612,7 @@ The main purpose of the option group set is to add more dimensionality to your c
     4. **Option set**
     5. **Data dimension**
 
-        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of â€œPeriodâ€ and â€œOrganisation unitâ€.
+        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of "Period" and "Organisation unit".
 
 4. Select option groups and assign them.
 
