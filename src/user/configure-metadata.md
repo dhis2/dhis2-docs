@@ -56,10 +56,10 @@ You may customize which columns are shown in the list for the current object. Th
 1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Manage columns**.
 3. A dialog will appear, with the default columns selected.
-3. Click any column-name in the list of **Available columns** to add them to the list of selected columns.
-4. You may reorder the selected columns by drag-and-dropping the ![](resources/images/maintenance/icon_reorder.png) icon.
-5. You may also remove any column from the view by clicking the X-icon next to the name.
-6. Click **Save** once you are satisified with your changes.
+4. Click any column-name in the list of **Available columns** to add them to the list of selected columns.
+5. You may reorder the selected columns by drag-and-dropping the ![](resources/images/maintenance/icon_reorder.png) icon.
+6. You may also remove any column from the view by clicking the X-icon next to the name.
+7. Click **Save** once you are satisfied with your changes.
 
 You may easily reset to the default values by clicking the **Reset to default** button.
 
@@ -165,7 +165,7 @@ option could be reused. This is important if particular category options
     >
     > You can automatically select all organisation units that belong to
     > an organisation unit level or organisation unit group, for example
-    > "Chiefdom" or "Urban. To do this:
+    > "Chiefdom" or "Urban". To do this:
     >
     > Select an **Organisation unit level** or **Organisation unit
     > group** and click **Select**.
@@ -211,7 +211,7 @@ you can create that category.
 
 ### Create or edit a category combination { #create_category_combination } 
 
-Category combinations lets you combine multiple categories into a
+Category combinations let you combine multiple categories into a
 related set.
 
 You can disaggregate the data element "Number of new HIV infections"
@@ -222,7 +222,7 @@ into the following categories:
   - Gender: "Male", "Female"
 
 In this example, there are two levels of disaggregation that consist of
-two separate data element categories. Each data element category consist
+two separate data element categories. Each data element category consists
 of several data element category options.
 
 In DHIS2, different data elements are disaggregated according to a
@@ -263,8 +263,8 @@ which donor supports the project. In this case, create a category
 option group set called "Donor". Each donor can be created as a category
 option group, where each category option / project is put in the
 appropriate group. In the data analysis applications, the "Donor" group
-set will appear as a data dimension, while each donor appear as
-dimension items, ready to be included in reports.
+set will appear as a data dimension, while each donor appears as a 
+dimension item, ready to be included in reports.
 
 To create a category option group:
 
@@ -322,10 +322,10 @@ dimensionality to your captured data for analysis in for example the
 When categories and category combinations have the data dimension type
 "Attribute", they can apply a common set of attributes to a related set
 of data values contained in a data set. When category combinations are
-used as a attribute, they serve as another dimension (similar to
+used as an attribute, they serve as another dimension (similar to
 "Period" and "Organisation unit") which you can use in your analysis.
 
-Suppose that a NGO is providing ART services in a given facility. They
+Suppose that an NGO is providing ART services in a given facility. They
 would need to report each month on the "ART monthly summary", which
 would contain a number of data elements. The NGO and project could
 potentially change over time. In order to attribute data to a given NGO
@@ -344,7 +344,7 @@ with each data value at the time of data entry.
     "Implementing partners and projects" category combination.
 
 When you enter data in the **Data entry** app, you can select an
-"Implementing partner" and a "Project". Each recorded data value, is
+"Implementing partner" and a "Project". Each recorded data value is
 assigned a specific combination of these categories as an attribute.
 These attributes (when specified as a dimension) can be used in the
 analysis applications similar to other dimensions, for example the
@@ -390,7 +390,7 @@ example organisation units and tracked entity attributes. These sharing
 settings control which users and users groups that can view or edit a
 metadata object.
 
-Some metadata objects also allows you to change the sharing setting of
+Some metadata objects also allow you to change the sharing setting of
 data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
@@ -792,7 +792,7 @@ many similar objects.
 
 You can assign different sharing settings to metadata objects, for
 example organisation units and tracked entity attributes. These sharing
-settings control which users and users groups that can view or edit a
+settings control which users and user groups can view or edit a
 metadata object.
 
 Some metadata objects also allows you to change the sharing setting of
@@ -950,9 +950,9 @@ Table: Data entry form types
 
 | Data entry form type | Description |
 |---|---|
-| Default form | Once you have assigned a data set to an organisation unit, a default form is created automatically. The default form is then available in the **Data entry** app for the organisation units you have assigned it to.<br> <br>A default form consist of a list of the data elements belonging to the data set together with a column for inputting the values. If your data set contains data elements with a non-default category combination, for example age groups or gender, additional columns are automatically created in the default form based on the different categories.<br> <br>If you use more than one category combination you get multiple columns in the default form with different column headings for the options. |
+| Default form | Once you have assigned a data set to an organisation unit, a default form is created automatically. The default form is then available in the **Data entry** app for the organisation units you have assigned it to.<br> <br>A default form consists of a list of the data elements belonging to the data set together with a column for inputting the values. If your data set contains data elements with a non-default category combination, for example age groups or gender, additional columns are automatically created in the default form based on the different categories.<br> <br>If you use more than one category combination you get multiple columns in the default form with different column headings for the options. |
 | Section form | If the default form doesn't meet your needs, you can modify it to create a section form. Section forms give you more flexibility when it comes to using tabular forms.<br> <br>In a section form you can, for example, create multiple tables with subheadings and disable (grey out) cells in a table.<br> <br>When you have added a section form to a data set, the section form is available in the **Data entry** app. |
-| Custom form | If the form you want to design is too complicated for default or section forms, you can create a custom form. A custom form takes more time to create than a section form, but you have full control over the design.<br> <br>You can, for example, mimic an existing paper aggregation form with a custom form. This makes data entry easier, and should reduce the number incorrectly entered data elements.<br> <br>When you have added a custom form to a data set, the custom form is available in the **Data entry** app. |
+| Custom form | If the form you want to design is too complicated for default or section forms, you can create a custom form. A custom form takes more time to create than a section form, but you have full control over the design.<br> <br>You can, for example, mimic an existing paper aggregation form with a custom form. This makes data entry easier, and should reduce the number of incorrectly entered data elements.<br> <br>When you have added a custom form to a data set, the custom form is available in the **Data entry** app. |
 
 > **Note**
 >
@@ -1404,7 +1404,7 @@ data entry forms for data sets.
 #### Manage grey fields in a section form
 
 You can disable data elements and category options for data entry. That
-means it won’t be possible to enter data into these fields during data
+means it wonâ€™t be possible to enter data into these fields during data
 entry.
 
 ![](resources/images/datasets/section_form_grey_fields.png)
@@ -2550,7 +2550,7 @@ easily filter, organise or aggregate data by groups within a group set.
 
 5.  (Optional) Select **Data dimension**.
 
-        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of “Period” and “Organisation unit”.
+        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of â€œPeriodâ€ and â€œOrganisation unitâ€.
 
 6.  (Optional) Select **Include subhierarchy in analytics**.
 
@@ -3612,7 +3612,7 @@ The main purpose of the option group set is to add more dimensionality to your c
     4. **Option set**
     5. **Data dimension**
 
-        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of “Period” and “Organisation unit”.
+        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of â€œPeriodâ€ and â€œOrganisation unitâ€.
 
 4. Select option groups and assign them.
 
