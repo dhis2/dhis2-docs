@@ -3735,25 +3735,45 @@ tracker export endpoints. Further performance optimizations require knowledge of
 patterns and data distribution. If your implementation can share this information, it will help
 prioritize improvements.
 
-### General Principles
+### Import
+
+#### Notifications
+
+Notifications are dispatched asynchronously after import but compete with concurrent requests for
+database connections, CPU, and memory. With many entities and notification templates this can
+increase latency. For bulk imports where notifications are not needed, skip them:
+
+    POST /api/tracker?skipSideEffects=true
+
+#### Program Rules
+
+The rule engine runs synchronously during import for every enrollment and event in the bundle,
+which can increase latency significantly for bulk imports. Skip it only if the programs have no
+rules with validations or assignments that must be enforced on import:
+
+    POST /api/tracker?skipRuleEngine=true
+
+### Export
+
+#### General Principles
 
 Export endpoint response times are typically dominated by database query execution. The
 recommendations below focus on reducing the amount of work the database has to do.
 
-#### Query at the Right Level
+##### Query at the Right Level
 
 The tracker data model has three levels: tracked entities, enrollments, and events. Always query at
 the lowest level that satisfies your need. Use `GET /api/tracker/events` instead of `GET
 /api/tracker/trackedEntities?fields=enrollments[events]`. Querying via a parent endpoint increases
 query complexity or the number of queries.
 
-#### Use Explicit `fields`
+##### Use Explicit `fields`
 
 By default, all endpoints exclude nested collections such as `enrollments`, `events`, and
 `relationships`. Each additional collection increases resource utilization and response times. Only
 request the `fields` you need and avoid `fields=*`.
 
-#### Selectivity
+##### Selectivity
 
 Query performance depends on how many records the database must process before returning results.
 The fewer records to scan, sort, and deduplicate, the faster the response. This is **selectivity**:
@@ -3762,7 +3782,7 @@ the fraction of total records that match the query conditions.
 Selectivity comes from several sources, all of which compound: request parameters (such as
 `program`, `filter`, date ranges), user scope, and `orgUnitMode`.
 
-##### Filters
+###### Filters
 
 Filters narrow the result set before sorting and pagination. They are most effective when backed by
 a database index. Broad filters (e.g., `filter=w75KJ2mc4zz:like:J`) may match a large portion of the
@@ -3773,7 +3793,7 @@ can benefit from [trigram indexing](#scheduling_tracker_index_maintenance).
 The "Minimum number of attributes required to search" setting on programs and tracked entity types
 requires a minimum number of attribute filters when searching outside the user's capture scope.
 
-##### Program
+###### Program
 
 Specifying `program` enables ownership-based access control. Without `program`, the system must
 evaluate access rules dynamically across all programs a tracked entity is enrolled in. Always
@@ -3782,7 +3802,7 @@ include `program` when querying program-specific data.
 Note that even with `program` specified, selectivity depends on how much data exists for that
 program. A program enrolling most tracked entities will not be very selective.
 
-#### Organisation Unit Mode { #webapi_tracker_perf_organisation_unit_mode }
+##### Organisation Unit Mode { #webapi_tracker_perf_organisation_unit_mode }
 
 [`orgUnitMode`](#webapi_tracker_orgunit_scope) and the user's organisation unit scope directly affect
 how many records the database processes. Performance depends on how much data the included org units
@@ -3799,7 +3819,7 @@ units that have no events, forcing the database to scan all events in the progra
 which for users with broad access can cover most of the program's data. Combine with selective
 filters to keep the working set manageable.
 
-#### Ordering
+##### Ordering
 
 The `order` parameter can significantly impact query performance. Order fields fall into performance
 tiers:
@@ -3819,7 +3839,7 @@ without a backing index still reduce the sort cost but not the scan cost.
 
 See the endpoint-specific sections below for which order fields fall into which tier.
 
-#### Pagination
+##### Pagination
 
 DHIS2 uses [offset-based pagination](https://use-the-index-luke.com/no-offset). High page numbers are inherently slower because the database must compute and discard all preceding
 rows. This is a fundamental property of offset-based pagination, not specific to DHIS2.
@@ -3834,14 +3854,14 @@ Recommendations:
 Configure [collection limits](#tracked-entities-collection-limits) to cap the result set size and
 protect database and server resources.
 
-### `/api/tracker/trackedEntities`
+#### `/api/tracker/trackedEntities`
 
-#### Filters
+##### Filters
 
 Either `program` or `trackedEntityType` is required. Prefer `program` as it enables direct
 ownership-based access control.
 
-#### Ordering
+##### Ordering
 
 | Tier | Order fields | Cost |
 |------|-------------|------|
@@ -3852,9 +3872,9 @@ ownership-based access control.
 `enrolledAt` additionally requires deduplication when a tracked entity has multiple enrollments in
 the same program. Programs configured with "Only enroll once" avoid this deduplication cost.
 
-### `/api/tracker/enrollments`
+#### `/api/tracker/enrollments`
 
-#### Ordering
+##### Ordering
 
 | Tier | Order fields | Cost |
 |------|-------------|------|
@@ -3863,13 +3883,13 @@ the same program. Programs configured with "Only enroll once" avoid this dedupli
 All enrollment order fields currently lack a composite index. The database must scan and sort all
 matching enrollments before returning the requested page.
 
-### `/api/tracker/events` (Tracker Programs)
+#### `/api/tracker/events` (Tracker Programs)
 
-#### Filters
+##### Filters
 
 `program` is mandatory and can be combined with `programStage` to narrow to a single stage.
 
-#### Ownership
+##### Ownership
 
 Every tracker event query must traverse enrollment and ownership records to enforce access control.
 On a program with hundreds of thousands of enrollments, broad queries (e.g., `orgUnitMode=ALL`
@@ -3884,7 +3904,7 @@ Enrollment-level filters (`enrollmentStatus`, `followUp`, enrollment date ranges
 indexes. They can still reduce the result set but do not reduce the number of records the database
 scans.
 
-#### Ordering
+##### Ordering
 
 | Tier | Order fields | Cost |
 |------|-------------|------|
@@ -3902,17 +3922,17 @@ ownership join, not the event-level scan.
 not require an additional lookup. Attribute UIDs require a cross-resource lookup to the tracked
 entity for every matching event.
 
-### `/api/tracker/events` (Event Programs)
+#### `/api/tracker/events` (Event Programs)
 
 Event programs (programs without registration) have no enrollment or ownership overhead. The database
 goes directly from the event to its org unit, making these queries structurally faster than tracker
 program queries.
 
-#### Filters
+##### Filters
 
 `program` is mandatory.
 
-#### Organisation Unit Mode
+##### Organisation Unit Mode
 
 With the default `occurredAt` order, the database walks the sorted index and filters each event by
 org unit. This is fast when matching events appear early in the index. For `SELECTED`, `DESCENDANTS`,
@@ -3928,7 +3948,7 @@ the same reasons described in the [general principles](#webapi_tracker_perf_orga
 
 Without the default `occurredAt` order, all modes require scanning and sorting all matching events.
 
-#### Ordering
+##### Ordering
 
 The default order is `occurredAt desc`. This is the most efficient order for event programs.
 
