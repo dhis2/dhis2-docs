@@ -211,11 +211,6 @@ Table: System settings
 | syncMaxAttempts | Specifies max attempts for synchronization jobs | No |
 | syncDelayBetweenRemoteServerAvailabilityCheckAttempts | Delay between remote server availability checks | No |
 | lastSuccessfulDataStatistics | Keeps timestamp of last successful data analytics | No |
-| keyHideDailyPeriods | Hides daily periods in analysis tools. Removed in DHIS2 2.43; use `dataOutputPeriodTypes` instead. | No |
-| keyHideWeeklyPeriods | Hides weekly periods in analysis tools. Removed in DHIS2 2.43; use `dataOutputPeriodTypes` instead. | No |
-| keyHideBiWeeklyPeriods | Hides bi-weekly periods in analysis tools. Removed in DHIS2 2.43; use `dataOutputPeriodTypes` instead. | No |
-| keyHideMonthlyPeriods | Hides monthly periods in analysis tools. Removed in DHIS2 2.43; use `dataOutputPeriodTypes` instead. | No |
-| keyHideBiMonthlyPeriods | Hides bi-monthly periods in analysis tools. Removed in DHIS2 2.43; use `dataOutputPeriodTypes` instead. | No |
 | keyGatherAnalyticalObjectStatisticsInDashboardViews | Whether to gather analytical statistics on objects when they are viewed within a dashboard | No |
 | keyCountPassiveDashboardViewsInUsageAnalytics | Counts "passive" dashboard views (not selecting a particular dashboard) in usage analytics | No |
 | keyDashboardContextMenuItemSwitchViewType | Allow users to switch dashboard favorites' view type | Yes |
