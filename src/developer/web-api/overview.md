@@ -569,7 +569,7 @@ by making a GET request to the `/api/relativePeriods/{RELATIVE_PERIOD_KEYWORD}`
 
 The endpoint supports the following parameters:
 - `startDate`:  Represents the start date to calculate the relative period from. Format: `yyyy-MM-dd`. Default is today if not provided.
-- `financialYearStart`: Should be one of FINANCIAL_YEAR_APRIL, FINANCIAL_YEAR_JULY, FINANCIAL_YEAR_OCTOBER. Default is FINANCIAL_YEAR_OCTOBER if not provided.
+- `financialYearStart`: Should be one of FINANCIAL_YEAR_APRIL, FINANCIAL_YEAR_JULY, FINANCIAL_YEAR_OCTOBER. From DHIS2 2.43, FINANCIAL_YEAR_FEBRUARY, FINANCIAL_YEAR_AUGUST and FINANCIAL_YEAR_SEPTEMBER are also valid. Default is FINANCIAL_YEAR_OCTOBER if not provided.
 
 
 As an example, to get the ISO representation of the relative period `LAST_3_MONTHS`
