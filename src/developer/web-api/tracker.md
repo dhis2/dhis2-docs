@@ -3735,7 +3735,7 @@ tracker export endpoints. Further performance optimizations require knowledge of
 patterns and data distribution. If your implementation can share this information, it will help
 prioritize improvements.
 
-For tracker performance changes introduced in a specific release, see the corresponding release
+For tracker performance improvements relative to previous releases, see the corresponding release
 note, e.g.
 [2.43](https://dhis2.github.io/dhis2-releases/releases/2.43/ReleaseNote-2.43.html#tracker).
 
