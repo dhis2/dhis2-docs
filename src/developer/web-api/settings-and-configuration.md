@@ -211,6 +211,11 @@ Table: System settings
 | syncMaxAttempts | Specifies max attempts for synchronization jobs | No |
 | syncDelayBetweenRemoteServerAvailabilityCheckAttempts | Delay between remote server availability checks | No |
 | lastSuccessfulDataStatistics | Keeps timestamp of last successful data analytics | No |
+| keyHideDailyPeriods | Not in use | No |
+| keyHideWeeklyPeriods || No |
+| keyHideBiWeeklyPeriods | Boolean flag used to hide/show bi-weekly periods | No |
+| keyHideMonthlyPeriods || No |
+| keyHideBiMonthlyPeriods || No |
 | keyGatherAnalyticalObjectStatisticsInDashboardViews | Whether to gather analytical statistics on objects when they are viewed within a dashboard | No |
 | keyCountPassiveDashboardViewsInUsageAnalytics | Counts "passive" dashboard views (not selecting a particular dashboard) in usage analytics | No |
 | keyDashboardContextMenuItemSwitchViewType | Allow users to switch dashboard favorites' view type | Yes |
