@@ -3,10 +3,10 @@
 ## About programs { #about_program_maintenance_app } 
 
 Traditionally, public health information systems have been reporting
-aggregated data of service provision across its health programs. This
+aggregated data of service provision across their health programs. This
 does not allow you to trace the people provided with these services. In
 DHIS2, you can define your own programs with stages. These programs are
-a essential part of the "tracker" functionality which lets you track
+an essential part of the "tracker" functionality which lets you track
 individual records. You can also track other ‘entities’ such as wells or
 insurances. You can create two types of programs:
 
@@ -64,13 +64,13 @@ Table: Types of data entry forms for event programs
 
 > **Note**
 >
->   - Custom forms takes precedence over section forms if both are
+>   - Custom forms take precedence over section forms if both are
 >     present.
 >
->   - If no custom or section form are defined, the basic form will be
+>   - If no custom or section form is defined, the basic form will be
 >     used.
 >
->   - The Android apps only supports section forms.
+>   - The Android apps only support section forms.
 
 You can create *program notifications* for event programs. The
 notifications are sent either via the internal DHIS2 messaging system,
@@ -169,12 +169,12 @@ the user in the **Event Capture** app.
     3.  Add data elements by clicking the plus sign next to the data
         elements' names.
 
-    4.  Repeat above steps until you've all the sections you need.
+    4.  Repeat the above steps until you have all the sections you need.
 
     5.  Change the section order: click the options menu, then drag the
         section to the place you want.
 
-5.  To create a **Custom** data entry from: Use the WYSIWYG editor to
+5.  To create a **Custom** data entry form: Use the WYSIWYG editor to
     create a completely customized form. If you select **Source**, you
     can paste HTML code directly in the editing area. You can also
     insert images for example flags or logos.
@@ -192,7 +192,7 @@ available in the **Access** tab.
 Assign organization units:
 
 1.  In the organisation tree, double-click the organisation units you
-    want to add to the program to.
+    want to add to the program.
 
     You can locate an organisation unit in the tree by expanding the
     branches (click on the arrow symbol), or by searching for it by
@@ -292,7 +292,7 @@ Change roles and access:
 >   - Click **Run now** to send the program notifications immediately.
 >
 >   - Select a time and click **Start** to schedule the program
->     notifications to be send at a specific
+>     notifications to be sent at a specific
 time.
 
 ### Reference information: Program notification parameters { #reference_information_event_program_notification_parameters } 
@@ -387,7 +387,7 @@ program. A program needs several types of metadata that you create in the **Main
   1. In the list of **Available program tracked entity attributes**, double-click the
         attributes you want to assign to the program.
 
-  2. (Opptional) For each assigned attribute, add additional settings:
+  2. (Optional) For each assigned attribute, add additional settings:
 
 | Setting | Description |
 |---|---|
@@ -420,12 +420,12 @@ program. A program needs several types of metadata that you create in the **Main
 
 #### Create program stages { #create_program_stages } 
 
-A program consist of program stages. A program stage defines which
+A program consists of program stages. A program stage defines which
 actions should be taken at each stage.
 
 > **Note**
 >
-> Changes to a program stage is not saved until you save the program.
+> Changes to a program stage are not saved until you save the program.
 
 1. Click the plus sign to create a program stage.
 2. Enter program stage details:
@@ -433,7 +433,7 @@ actions should be taken at each stage.
     2.  (Optional) select a **Color** and an **Icon** that will be used
 by the data capture apps to identify this program stage.
     3. Enter a **Description**.
-    4. Enter the required number of days into the **Scheduled days from start** field: The first event in this program stage will be scheduled this many days after the enrollment or the incident date, depending on the configuration. If **Show incident date** in **Enrollment details** is configured, the system will use incident date as start. If **Genereate events based on enrollment date** in **Program stage details** is configured the system will use enrollment date as start.
+    4. Enter the required number of days into the **Scheduled days from start** field: The first event in this program stage will be scheduled this many days after the enrollment or the incident date, depending on the configuration. If **Show incident date** in **Enrollment details** is configured, the system will use incident date as start. If **Generate events based on enrollment date** in **Program stage details** is configured the system will use enrollment date as start.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
     2. Select a **Period type**.
@@ -505,12 +505,12 @@ by the data capture apps to identify this program stage.
        3.  Add data elements by clicking the plus sign next to the data
            elements' names.
 
-       4.  Repeat above steps until you've all the sections you need.
+       4.  Repeat the above steps until you have all the sections you need.
 
        5.  Change the section order: click the options menu, then drag the
            section to the place you want.
 
-   5.  To create a **Custom** data entry from: Use the WYSIWYG editor to
+   5.  To create a **Custom** data entry form: Use the WYSIWYG editor to
            create a completely customized form. If you select **Source**, you
            can paste HTML code directly in the editing area. You can also
            insert images for example flags or logos.
@@ -529,7 +529,7 @@ available in the **Access** tab.
 Assign organization units:
 
 1.  In the organisation tree, double-click the organisation units you
-    want to add to the program to.
+    want to add to the program.
 
     You can locate an organisation unit in the tree by expanding the
     branches (click on the arrow symbol), or by searching for it by
@@ -615,9 +615,9 @@ template.
     |---|---|---|
     | Program enrollment | The program notification is sent when the TEI enrols in the program. | - |
     | Program completion | The program notification is sent when the program of TEI is completed | - |
-    | Days scheduled (incident date) | The program notification is sent XX number of days before or after the incident date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
-    | Days scheduled (enrollment date) | The program notification is sent XX number of days before or after the enrollment date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
-    | Program Rule | Notification will be triggered as a result of program rule exeuction. | Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful. |
+    | Days scheduled (incident date) | The program notification is sent XX number of days before or after the incident date | You need to enter the number of days before or after the scheduled date that the notification will be sent. |
+    | Days scheduled (enrollment date) | The program notification is sent XX number of days before or after the enrollment date | You need to enter the number of days before or after the scheduled date that the notification will be sent. |
+    | Program Rule | Notification will be triggered as a result of program rule execution. | Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful. |
 
 
 7.  In the **Who-to-send-it** field, select who should receive the
@@ -678,7 +678,7 @@ template.
     | Trigger | Description | Note |
     |---|---|---|
     | Program stage completion | The program stage notification is sent when the program stage is completed | - |
-    | Days scheduled (due date) | The program stage notification is sent XX number of days before or after the due date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
+    | Days scheduled (due date) | The program stage notification is sent XX number of days before or after the due date | You need to enter the number of days before or after the scheduled date that the notification will be sent. |
     | Program Rule | Notification will be triggered as a result of program rule execution. | Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful. |
 
     1. **Allow notification to be sent multiple times**
@@ -699,7 +699,7 @@ template.
     | Parent OrgUnit Only | Send notification only to those users who belong to parent organisation unit. | - |
     | Data Element | Data Element associated with ProgramStage can be selected as recipient. | Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL. |
     | Tracked Entity Attribute | Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient. | Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL. |
-    | Web Hook | Web hooks are automated HTTP messages sent to an external URL configured in web hook URL field. Notificaiton template variables will be sent as key-value pairs in the HTTP request. | - |
+    | Web Hook | Web hooks are automated HTTP messages sent to an external URL configured in web hook URL field. Notification template variables will be sent as key-value pairs in the HTTP request. | - |
 
 
 10.  Click **Save**.
@@ -804,7 +804,7 @@ objects:
 
 5.  Select an **Aggregation type**.
 
-6.  Select a if you want to **Display in form**.
+6.  Select if you want to **Display in form**.
 
 7.  Assign one or multiple **Legend**s.
 
@@ -1089,7 +1089,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
     Loading this category combination will display the Mapping selection drop down for each of the categories defined, as this is the first time these categories have been selected there are no mappings currently available.
 
-7. Under the Disaggregation categories section you should see both of the categories from the combination added as suggestion. Click **Add category** for both both **Gender** and **U5y**
+7. Under the Disaggregation categories section you should see both of the categories from the combination added as suggestion. Click **Add category** for both **Gender** and **U5y**
 
     ![](resources/images/program/Disaggregation_Mappings.png)
 
@@ -1143,7 +1143,7 @@ By adding the ID of a Data Element in the **Data element for aggregate data expo
 
 ### About program rules { #about_program_rules } 
 
-Program rules allows you to create and control dynamic behaviour of the
+Program rules allow you to create and control dynamic behaviour of the
 user interface in the **Tracker Capture** and **Event Capture** apps.
 During data entry, the program rules expressions are evaluated each time
 the user interface is displayed, and each time a data element is
@@ -1195,7 +1195,7 @@ objects:
 
 3.  Select a **Program** and enter a **Name**
 
-    Please note that the name of the program may not contain any of the following exlcuded keywords:
+    Please note that the name of the program may not contain any of the following excluded keywords:
     - `and`
     - `or`
     - `not`
@@ -1223,7 +1223,7 @@ objects:
     | **Data element from the newest event in the current program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>     <br>This source type is populated slightly differently in **Tracker Capture** and **Event Capture** apps:<br>     <br>**Tracker Capture**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.<br>     <br>**Event Capture**: the program rule variable will be populated with the current events data. <br>**NB** Future dates are "newer" than current or past dates. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
     | **Data element in current event** | Program rule variables with this source type will contain the data value from the same event that the user currently has open.<br>     <br>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules. |
     | **Data element from previous event** | Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.<br>     <br>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.<br>     <br>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered. |
-    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintanable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. |
+    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. |
     | **Tracked entity attribute** | Populates the program rule variable with a specified tracked entity attribute for the current enrollment.<br>     <br>Use this is the source type to create program rules that evaluate data values entered during registration.<br>     <br>This source type is also useful when you create program rules that compare data in events to data entered during registration.<br>     <br>This source type is only used for tracker programs (programs with registration). |
 
 6.  Click **Save**.
@@ -1304,7 +1304,7 @@ objects:
         | **Warning on complete** | **Data element to display warning next to**<br>         <br>**Tracked entity attribute to display warning next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to give the user a warning if he/she tries to complete inconsistent data, but at the same time to allow the user to continue. The warning is shown in a dialog when the user completes the form.<br>         <br>**Static text** defines the message shown to the user when the expression is true and the action is triggered. This field is mandatory.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error. |
         | **Send Message** | **Message template to send** | Send Message triggers a notification based on provided message template. This action will be taken immediately. The message template will be parsed and variables will be substituted with actual values. |
         | **Schedule Message** | **Message template to send**<br>         <br>**Data field which contains expression to evaluate the date which notification should be sent at. If this expression results in any value other than Date, then resultant will be discarded and notification will not get scheduled.** | Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below<br>         d2:addDays( '2018-04-20', '2' )         <br>Message template will be parsed and variables will be substituted with actual values. |
-        | **Hide option** | **Data element to hide option for**<br>         <br>**Tracked entity attribute to hide option for**<br>         <br>**Option that should be hidden** | Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option** takes presedence. |
+        | **Hide option** | **Data element to hide option for**<br>         <br>**Tracked entity attribute to hide option for**<br>         <br>**Option that should be hidden** | Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option** takes precedence. |
         | **Hide option group** | **Data element to hide option group for**<br>         <br>**Tracked entity attribute to hide option group for**<br>         <br>**Option group that should be hidden** | Used to hide all options in a given option group and data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option group** takes precedence. |
         | **Show option group** | **Data element to show option group for**<br>         <br>**Tracked entity attribute to show option group for**<br>         <br>**Option group that should be shown** | Used to show only options from a given option group in a given data element/tracked entity attribute. To show an option group implicitly hides all options that is not part of the group(s) that is shown. |
 
@@ -1321,7 +1321,7 @@ objects:
 > You can view all examples on the demo server:
 > <https://play.dhis2.org/dev/dhis-web-maintenance/#/list/programSection/programRule>
 
-This example shows how to configure a program rule which calculate
+This example shows how to configure a program rule which calculates
 number of weeks and days in a pregnancy and display the result in the
 format the clinician is used to see it in. The calculation is based on
 previous recorded
@@ -1691,9 +1691,9 @@ Table: Standard variables to use in program rule expressions
 | V{event_count} | (number) | Contains the total number of events in the enrollment. |
 | V{enrollment_date} | (date) | Contains the enrollment date of the current enrollment. Will not have a value for single event programs. |
 | V{incident_date} | (date) | Contains the incident date of the current enrollment. Will not have a value for single event programs. |
-| V{enrollment_id} | (string) | Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs. |
+| V{enrollment_id} | (string) | Universal identifier string (UID) of the current enrollment. Will not have a value for single event programs. |
 | V{enrollment_status} | (string) | Contains status of the current enrollment. <br>It can be ACTIVE, COMPLETED or CANCELLED. Example expression to check status is:<br> `V{enrollment_status} == 'COMPLETED'` |
-| V{event_id} | (string) | Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form. |
+| V{event_id} | (string) | Universal identifier string (UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form. |
 | V{orgunit_code} | (string) | Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead. <br>Example expression to check whether orgunit code starts with WB_:<br> `d2:left(V{orgunit_code},3) == 'WB_'` |
 | V{environment} | (string) | Contains a code representing the current runtime environment for the rules. The possible values is "WebClient", "AndroidClient" and "Server". Can be used when a program rule is only supposed to run in one or more of the client types. |
 | V{program_stage_id} | (string) | Contains the ID of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty. |
@@ -1733,13 +1733,13 @@ For more information about configuration and the meaning of 'From constraint' an
 
 6. (Optional) Select whether the relationship should be bidirectional
 
-7. Provide **Relationship name seen from inititating entity**. This is the name of the relationship that will be shown in the Data Entry app at the 'left' side of the relationship. E.g. in a Mother-child relationship this could be 'Mother of'.
+7. Provide **Relationship name seen from initiating entity**. This is the name of the relationship that will be shown in the Data Entry app at the 'left' side of the relationship. E.g. in a Mother-child relationship this could be 'Mother of'.
 
 8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
 9.  Select a 'From constraint'. This limits what kind of entities can be included in the relationship. [Relationship model](#relationship_model_relationship_type). After selecting a 'From constraint', you have the option to choose which attributes or data elements should be shown in the relationship widget in Tracker Capture and Capture for the "From constraint". The list will vary based on the constraint:
     * When selecting “Tracked Entity Instance”, then a Tracked Entity Type only, choose between the configured Tracked Entity Type Attributes
-    * When selecting “Tracked Entity Instance”, then a Tracked Entity Type and a Program, choose between the the attributes that have been configured for both the Tracked Entity Type and for the Program
+    * When selecting “Tracked Entity Instance”, then a Tracked Entity Type and a Program, choose between the attributes that have been configured for both the Tracked Entity Type and for the Program
     * When selecting “Enrollment in program”, choose between the attributes that have been configured for the Program
     * When selecting “Event in program or program stage”, choose between the data elements that have been configured for that Event program or Program stage
 
@@ -1751,13 +1751,13 @@ For more information about configuration and the meaning of 'From constraint' an
 
 ### About tracked entity types { #about_tracked_entity } 
 
-A tracked entity is a types of entities which can be tracked through the
+A tracked entity is a type of entity which can be tracked through the
 system. It can be anything from persons to commodities, for example a
 medicine or a person.
 
 A program must have one tracked entity. To enroll a tracked entity
-instance into a program, the tracked entity type and tracked
-entity type of a program must be the same.
+instance into a program, the tracked entity type of the instance and
+the tracked entity type of the program must be the same.
 
 Tracked entity attributes are used to register extra information for a
 tracked entity. Tracked entity attributes can be shared between
@@ -1933,7 +1933,7 @@ search for tracked entity instances outside their data capture
 organisation units.
 
 Searching can be done either in the context of a program, or in the
-context of a tracked entity type. To be give users the option of
+context of a tracked entity type. To give users the option of
 searching in the context of a program, it is necessary to configure
 which of the programs tracked entity attributes is searchable. To give
 users the option of searching in the context of a tracked entity type,
@@ -1956,7 +1956,7 @@ searchable.
 
 5.  Set the attribute searchable
 
-Searchable program attributes will assigned to a search group.
+Searchable program attributes will be assigned to a search group.
 
   - Unique group. One group per unique program attribute. Unique
     attributes cannot be combined with other program attributes in a
@@ -2006,7 +2006,7 @@ searchable.
 
 4.  Set the attribute searchable
 
-Searchable TET attributes will assigned to a search group.
+Searchable TET attributes will be assigned to a search group.
 
   - Unique group. One group per unique TET attribute. Unique attributes
     cannot be combined with other TET attributes in a search. The result
@@ -2034,7 +2034,7 @@ There are two limits that can be set for a TET search
 To be able to search in other organisation units than the users data
 capture organisation units, the user must be assigned with search
 organisation units. Giving a user a search organisation unit will also
-give it access to search in all children of that organisation unit.
+give them access to search in all children of that organisation unit.
 
 1.  Open **Users app**
 
@@ -2089,7 +2089,7 @@ example organisation units and tracked entity attributes. These sharing
 settings control which users and users groups that can view or edit a
 metadata object.
 
-Some metadata objects also allows you to change the sharing setting of
+Some metadata objects also allow you to change the sharing setting of
 data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
