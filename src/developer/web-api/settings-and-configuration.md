@@ -147,7 +147,8 @@ Table: System settings
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
 | globalShellEnabled | When this property is enabled (set to true), apps will be displayed as iframes within a global shell. This global shell provides a consistent header bar across the system which has expanded functionalities compared to the original header bar. Default: true. | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
-| analyticsFinancialYearStart | Set financial year start. Default: October | No |
+| analyticsFinancialYearStart | Set financial year start. Options: FINANCIAL_YEAR_FEBRUARY, FINANCIAL_YEAR_APRIL, FINANCIAL_YEAR_JULY, INANCIAL_YEAR_AUGUST, FINANCIAL_YEAR_SEPTEMBER, FINANCIAL_YEAR_OCTOBER. Default: FINANCIAL_YEAR_OCTOBER | No |
+| analyticsWeeklyStart | Set weekly relative period start day. Options: WEEKLY (Monday), WEEKLY_WEDNESDAY, WEEKLY_THURSDAY, WEEKLY_FRIDAY, WEEKLY_SATURDAY, WEEKLY_SUNDAY. Default: WEEKLY (Monday) | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
 | keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
 | KeyTrackedEntityMaxLimit | Maximum number of tracked entities that are returned by `/tracker/trackedEntities`. More info [here](tracker.md#tracked-entities-collection-limits). Default: "50000" | No |
