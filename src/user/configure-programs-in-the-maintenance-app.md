@@ -1756,7 +1756,7 @@ system. It can be anything from persons to commodities, for example a
 medicine or a person.
 
 A program must have one tracked entity. To enroll a tracked entity
-instance into a program, the tracked entity type of the instance and
+instance into a program, the tracked entity type of the entity and
 the tracked entity type of the program must be the same.
 
 Tracked entity attributes are used to register extra information for a
