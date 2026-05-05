@@ -93,7 +93,7 @@ A number of authentication modes are supported when running routes. These authen
     }
   }
   ``` 
-  Note that this request configures the route with static headers so that these headers are included in the request sent from DHIS2. Keep in mind that DHIS2 does not store these static headers as encrypted. 
+  Note that this request configures the route with static headers so that these headers are included in the request sent from DHIS2. Keep in mind that DHIS2 does not store these static headers as encrypted.
 
 * `api-headers`: adds user-defined headers for API authentication. Here is an example creating a route configured with `api-headers` authentication:
 
@@ -182,7 +182,7 @@ For performance reasons, the maximum transfer time for a route response is 5 min
 }
 ```
 
-The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance. 
+The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance.
 
 >IMPORTANT: The response timeout can be customised starting from DHIS2 v40.10 and v41.6. Earlier DHIS2 versions have a response timeout of 10 seconds, except for:
 >* 40.8 ≤ v < 40.10
@@ -223,5 +223,3 @@ The [Route Manager app](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f0
 ![Routes Manager app](./resources/images/route-manager/route-manager-list.png)
 
 Visit the [DHIS2 system maintenance guide](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/route-manager.html) to learn more about using Route Manager.
-
-
