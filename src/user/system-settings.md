@@ -97,7 +97,7 @@ Table: Appearance settings
 | **Login page theme** | This lets you select between the default layout, the sidebar layout, or a custom layout for the login app. If you select a custom layout, you need to provide a custom template in the "Login page template" section. |
 | **Login page template** | Here you can paste the HTML to define the layout  and style of the login page. More details for how to define the template are available in the developer documentation. |
 | **Enable Global Shell** | When this property is enabled (set to true, the default), the Global Shell provides a common interface and navigation tools across all DHIS2 web applications.<br> <br>More technical details about the Global Shell can be found [in the Developer Portal](https://developers.dhis2.org/docs/references/global-shell). |
-| **Enable custom translations** | With this option enabled, apps can take advantage of custom translations that are set in the datastore. Read more in the [Localization of DHIS2](https://docs.dhis2.org/en/implement/maintenance-and-use/localization-of-dhis2.html) page. |
+| **Enable custom translations** | With this option enabled, apps can take advantage of custom translations that are set in the datastore. Read more in the [Localization of DHIS2](#custom_translations_using_the_datastore) page. |
 
 ## Email settings { #system_email_settings } 
 
