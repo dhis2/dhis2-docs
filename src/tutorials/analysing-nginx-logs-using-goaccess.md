@@ -18,7 +18,7 @@ For more information about installing on all operating systems, see https://goac
 To configure GoAccess for nginx (or Apache) you simply need to uncomment a few settings in the GoAccess configuration file:
 
 ```
-sudo vi /etc/goaccess.conf
+sudo vi /etc/goaccess/goaccess.conf
 ```
 
 The settings you need to uncomment are these:

@@ -387,22 +387,6 @@ It is also possible to combine the identifiable filter with property-based filte
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
-### Indexable only filter for tracked entity attributes
-
-For tracked entity attributes, there is a special filter in addition to the previous mentioned filtering capabilities. 
-Some of the tracked entity attributes are candidates for creating a trigram index for better lookup performance. 
-Using the *indexableOnly* parameter set to true, the results can be filtered to include only the attributes that are trigram indexable.
-
-Example: Get all tracked entity attributes that are indexable.
-
-    /api/trackedEntityAttributtes.json?indexableOnly=true
-
-Additional filters along with the `indexableOnly` parameter can be specified.
-
-Example: Get all tracked entity attributes where *ANC* is found in any of the *name* property. The system returns the tracked entity attributes where the name matches the provided keyword as well as if the attribute is indexable.
-
-    /api/trackedEntityAttributtes.json?filter=name:like:ANC&indexableOnly=true
-
 ## Metadata field filter { #webapi_metadata_field_filter } 
 
 In many situations, the default views of the metadata can be too
@@ -1459,6 +1443,144 @@ following payload to change the style:
   }
 }
 ```
+
+## Category
+
+### Merge categories { #category_merge }
+
+The category merge endpoint allows you to merge a number of categories (sources) into a target category.
+
+> **Note**
+>
+> Categories can only be merged when:
+> 
+> 1. they have identical category options <br> 
+> 2. source and target categories do not share category combos <br> 
+> 3. source categories do not share category combos with each other <br> 
+>
+> These constraints ensure only duplicate Categories can be merged, and it helps to keep system integrity.
+
+#### Authorisation
+
+The main authority required to perform a category merge is `F_CATEGORY_MERGE`.
+
+#### Request
+
+Merge categories with a POST request:
+
+```
+POST /api/categories/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                            |
+|---------------|----------|----------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the categories to merge (the source categories)          |
+| target        | Yes      | Identifier of the category to merge the sources into (the target category)       |
+| deleteSources | No       | Whether to delete the source categories after the operation. Default is false.   |
+
+The merge operation will merge the source categories into the target category. One or many source categories can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category metadata associations to the target category.
+The following metadata get updated:
+
+| Metadata          | Property              | Action taken                                                                                                                                                                              |
+|-------------------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CategoryOption    | categories            | remove sources                                                                                                                                                                            |
+| CategoryCombo     | categories            | remove sources, add target                                                                                                                                                                |
+| CategoryDimension | dimension             | replace source with target                                                                                                                                                                |
+| User              | catDimensionConstraints | - User has one or more sources and target -> delete all source constraints<br/> - User has one or more sources, no target -> update one source to target, delete other source constraints |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                          |
+|------------|--------------------------------------------------------------------------------------|
+| E1530      | At least one source Category must be specified                                       |
+| E1531      | Target Category must be specified                                                    |
+| E1532      | Target Category cannot be a source category                                          |
+| E1533      | Source/Target Category does not exist: `{uid}`                                       |
+| E1535      | Source CategoryOptions do not match target CategoryOptions                           |
+| E1536      | Source and target Categories cannot share a CategoryCombo                            |
+| E1537      | Source Categories cannot share a CategoryCombo                                       |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "Category",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "Category merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source Category must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target Category does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "Category",
+            "sourcesDeleted": [],
+            "message": "Category merge has errors"
+        }
+    }
+}
+```
+
 ## Category Option
 
 ### Merge category options { #category_option_merge }
@@ -1587,6 +1709,32 @@ Sample error response looks like:
 ```
 
 ## Category Option Combo
+
+### Import Validation { #category_option_combo_import_validation }
+
+`CategoryOptionCombo`s are unique in that they are auto-generated by the system, most of the time (imports are allowed with specific expectations, mentioned below). They are generated based on their category model:  
+- `CategoryOption`
+- `Category` (has category options)
+- `CategoryCombo` (has categories)
+
+There will be a `CategoryOptionCombo` created for each combination of `Category` `CategoryOption`.
+
+#### Generated CategoryOptionCombo Example { #gen_category_option_combo_example }
+- There is 1 `CategoryCombo` [CC1]  
+- CC1 has 2 Categories CC1=[C1, C2]
+- Each `Category` has 2 `CategoryOption`s C1=[CO1, CO2], C2=[CO3, CO4]
+- The Generated `CategoryOptionCombo`s from this category model would produce 4 `CategoryOptionCombo`s:  
+  - COC1=[CO1, CO3]
+  - COC2=[CO1, CO4]
+  - COC3=[CO2, CO3]
+  - COC4=[CO2, CO4]
+
+This is important to understand when trying to import `CategoryOptionCombo`s. Validation is performed when importing `CategoryOptionCombo`s to ensure that the provided set of `CategoryOptionCombo`s matches the expected generated set of `CategoryOptionCombo`s. This is to ensure no invalid state/relationships can enter the system, which prevent all sorts of issues (orphaned data, hidden relationships in the DB not exposed in the API etc.).
+
+> **Note**
+>
+> This validation is performed using the `UID`s of the `CategoryOptionCombo`s. No other `idScheme` is supported.
+
 
 ### Merge category option combos { #category_option_combo_merge }
 
@@ -1770,6 +1918,156 @@ A database constraint sample error response:
   "httpStatusCode": 409,
   "status": "ERROR",
   "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
+}
+```
+
+
+
+## Category Combo
+
+### Merge category combos { #category_combo_merge }
+
+The category combo merge endpoint allows you to merge a number of category combos (sources) into a target category combo.
+
+> **Note**
+>
+> Category combos can only be merged when:
+>
+> 1. source and target category combos have identical categories <br>
+> 2. all category option combos belonging to the involved category combos are valid (correct number of options, valid option membership) <br>
+> 3. no pre-existing duplicate category option combos exist within the involved category combos <br>
+>
+> These constraints ensure only equivalent category combos can be merged and help maintain system integrity.
+
+> **Warning**
+>
+> A category combo merge will result in duplicate category option combos. These should be merged immediately after the category combo merge to maintain system integrity. Duplicates can be found using the data integrity check `category_option_combos_have_duplicates`.
+
+#### Authorisation
+
+The main authority required to perform a category combo merge is `F_CATEGORY_COMBO_MERGE`.
+
+#### Request
+
+Merge category combos with a POST request:
+
+```
+POST /api/categoryCombos/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                              |
+|---------------|----------|------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the category combos to merge (the source category combos)  |
+| target        | Yes      | Identifier of the category combo to merge the sources into (the target category combo) |
+| deleteSources | No       | Whether to delete the source category combos after the operation. Default is false. |
+
+The merge operation will merge the source category combos into the target category combo. One or many source category combos can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category combo metadata associations to the target category combo.
+The following metadata get updated:
+
+| Metadata             | Property                    | Action taken               |
+|----------------------|-----------------------------|----------------------------|
+| Category             | categoryCombos              | remove sources             |
+| CategoryOptionCombo  | categoryCombo               | set as target              |
+| DataElement          | categoryCombo               | set as target              |
+| DataSetElement       | categoryCombo               | set as target              |
+| DataSet              | categoryCombo               | set as target              |
+| Program              | categoryCombo               | set as target              |
+| Program              | enrollmentCategoryCombo     | set as target              |
+| ProgramIndicator     | categoryCombo               | set as target              |
+| ProgramIndicator     | attributeCategoryCombo      | set as target              |
+| DataApprovalWorkflow | categoryCombo               | set as target              |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                                                                       |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| E1530      | At least one source CategoryCombo must be specified                                                                               |
+| E1531      | Target CategoryCombo must be specified                                                                                            |
+| E1532      | Target CategoryCombo cannot be a source CategoryCombo                                                                             |
+| E1533      | Source/Target CategoryCombo does not exist: `{uid}`                                                                               |
+| E1545      | Source and target CategoryCombos must have identical Categories: source `{uid}` has `{categories}`                                |
+| E1546      | CategoryOptionCombo has incorrect number of CategoryOptions. Expected `{n}` but found `{m}` for COC: `{uid}`                     |
+| E1547      | CategoryOptionCombo has CategoryOptions that are not valid for the CategoryCombo categories: `{uid}`                              |
+| E1548      | Duplicate CategoryOptionCombo `{uid}` found for CategoryCombo `{uid}`. Fix this before attempting the merge.                     |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CategoryCombo",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CategoryCombo merge complete. There will be duplicate CategoryOptionCombos as a result of the merge. These should be merged immediately to help keep system integrity. Duplicates can be found using the data integrity check `category_option_combos_have_duplicates`"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source CategoryCombo must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target CategoryCombo does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CategoryCombo",
+            "sourcesDeleted": [],
+            "message": "CategoryCombo merge has errors"
+        }
+    }
 }
 ```
 
@@ -2547,6 +2845,9 @@ Table: Constraints and error codes
 
 The organisation unit merge endpoint allows you to merge a number of organisation units into a target organisation unit.
 
+#### Authorisation
+The main authority required to perform an organisation unit merge is `F_ORGANISATION_UNIT_MERGE`.
+
 #### Request
 
 Merge organisation units with a POST request:
@@ -2772,6 +3073,143 @@ To run a single predictor you can make a POST request to the run
 resource for a predictor:
 
     POST /api/predictors/AG10KUJCrRk/run
+
+## Programs { #webapi_programs }
+
+To retrieve programs you can make a GET request to the programs resource like this:
+
+    /api/programs
+
+### Program category mappings { #webapi_program_category_mappings }
+
+Starting in version 2.42, a program may optionally define one of more category mappings.
+These mappings can be used to add disaggregations to program indicators for the program.
+A program indicator for this program can choose which mappings to use for
+the categories in its category combination and/or attribute combination.
+
+This allows program indicator data to be viewed by category and category option
+such as in the Data Visualizer.
+It also allows an Aggregate data exchange to generate values from the program indicator
+that contain a category option combination and/or an attribute option combination.
+
+These category mappings can be generated by the Maintenance (Preview) App
+or they can be added using the Web API.
+This section describes the format of the category mappings if you are using the Web API.
+
+A new program has no category mappings.
+In the Web API this looks like:
+
+```json
+"categoryMappings": []
+```
+
+To add category mappings to the program, you can edit this part of the program
+definition and then import the result back into DHIS2.
+Here is an example of how the edited field could look:
+
+```json
+"categoryMappings": [
+  {
+    "id": "goor7Li4See",
+    "categoryId": "cX5k9anHEHd",
+    "mappingName": "standard Gender mapping",
+    "optionMappings": [
+      {
+        "optionId": "apsOixVZlf1",
+        "filter": "#{Zj7UnCAulEk.oZg33kd9taw} == 'Female'"
+      },
+      {
+        "optionId": "jRbMi0aBjYn",
+        "filter": "#{Zj7UnCAulEk.oZg33kd9taw} == 'Male'"
+      }
+    ]
+  },
+  {
+    "id": "ESesheeva1i",
+    "categoryId": "VPqYge5RB93",
+    "mappingName": "standard Outcome mapping",
+    "optionMappings": [
+      {
+        "optionId": "e3oqm527jBS",
+        "filter": "#{Zj7UnCAulEk.sAg4Niej9bo} == 'Managed at PHU'"
+      },
+      {
+        "optionId": "rSdQZYDmHJm",
+        "filter": "#{Zj7UnCAulEk.sAg4Niej9bo} == 'Referred'"
+      }
+    ]
+  },
+  {
+    "id": "laiHaid9eit",
+    "categoryId": "fkAkrdC7eJF",
+    "mappingName": "Referrals Age at event",
+    "optionMappings": [
+      {
+        "optionId": "K4gwuiVvW3z",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{event_date})<5"
+      },
+      {
+        "optionId": "oaFqxkefkPs",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{event_date})>=5"
+      }
+    ]
+  },
+  {
+    "id": "SeNg0bohFah",
+    "categoryId": "fkAkrdC7eJF",
+    "mappingName": "Referrals Age at analyitcs period start",
+    "optionMappings": [
+      {
+        "optionId": "K4gwuiVvW3z",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{analytics_period_start})<5"
+      },
+      {
+        "optionId": "oaFqxkefkPs",
+        "filter": "d2:yearsBetween(#{wYTF0YCHMWr.AZLp9Shoab9},V{analytics_period_start})>=5"
+      }
+    ]
+  }
+]
+```
+
+In this example, the program defines four category mappings that can be used
+by the program indicators assigned to the program:
+- A mapping for the `Gender` category
+- A mapping for the `Outcome` category
+- Two mappings for the `Referrals Age` category. A program indicator can choose which mapping
+it wants to use depending on whether it wants to show the age at the event date
+or the age at the analytics period start.
+
+The `categoryMappings` fields are:
+
+| name | description
+|---|---|
+| id | An 11 character UID that uniquely identifies the mapping. The first character must be an upper or lower case letter, followed by 10 characters each being an upper or lower case letter or a digit. The id should be chosen so that it is unique. This UID is used by program indicators for the mappings they choose. |
+| categoryId | The UID of the category to be mapped. In this example they are the UIDs for Gender, Outcome, and Referrals Age. |
+| mappingName | A name you assign to the mapping. If you define more than one mapping for a category, the name must be unique within the mappings for that category in that program. |
+| optionMappings | These specify a filter for each category option within the category. |
+| optionId | The UID of the category option to which this filter applies. |
+| filter | The filter to use for this category option. The filter must have the same syntax as the filter expression for a program indicator in the program. **Tip:** You can use the Maintenance App to generate and validate the filter: construct it as a filter expression for a new or existing program indicator for the program, make sure it's valid, and then copy-and-paste it into the metadata. (You don't have to save the program indicator with this filter.) |
+
+A program indicator may select which program mappings to use in its `categoryMappingIds` field.
+A new program indicator has no category mapping ids.
+In the Web API this looks like:
+
+```json
+"categoryMappingIds": [],
+```
+
+You can replace this with the category mappings that you want the program indicator to use.
+For example, if the program indicator has selected a category combination that combines
+`Gender` and `Outcome`, this field could be edited to contain the mapping ids for these
+categories such as defined in the above `categoryMappings` example:
+
+```json
+"categoryMappingIds": [
+    "goor7Li4See",
+    "ESesheeva1i"
+],
+```
 
 ## Program rules { #webapi_program_rules } 
 
@@ -4068,7 +4506,6 @@ The `fields` parameter can be used to narrow the fields included for the shown o
 | INTEGER_POSITIVE | Value is a positive integer
 | INTEGER_NEGATIVE | Value is a negative integer
 | INTEGER_ZERO_OR_POSITIVE | Value is an positive or zero integer
-| TRACKER_ASSOCIATE | None
 | USERNAME | Value is a username of an existing `User`
 | COORDINATE | None
 | ORGANISATION_UNIT | Value is a valid UID of an existing `OrganisationUnit`

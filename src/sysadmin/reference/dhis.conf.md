@@ -17,6 +17,7 @@ defaults to the directory `/opt/dhis2/`.
 > as a reference for the available configuration options. Many of the
 > properties are optional.
 
+
 ```properties
 # ----------------------------------------------------------------------
 # Database connection for PostgreSQL [Mandatory]
@@ -37,64 +38,70 @@ connection.username = dhis
 # Database password (sensitive)
 connection.password = xxxx
 
-# Max size of connection pool (default: 40)
-connection.pool.max_size = 40
-
 # ----------------------------------------------------------------------
 # Database connection for PostgreSQL [Optional]
 # ----------------------------------------------------------------------
 
-# Minimum number of Connections a pool will maintain at any given time (default: 5).
-connection.pool.min_size=5
+# Max size of connection pool (default: 80)
+connection.pool.max_size = 80
 
-# Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
-connection.pool.initial_size=5
+# Deprecated since v43. Minimum number of connections a pool will maintain at any given time (default: 5).
+connection.pool.min_size = 5
 
-#Determines how many connections at a time will try to acquire when the pool is exhausted.
-connection.pool.acquire_incr=5
+# Deprecated since v43. Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
+connection.pool.initial_size = 5
+
+# Deprecated since v43. Determines how many connections at a time will try to acquire when the pool is exhausted.
+connection.pool.acquire_incr = 5
 
 #Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
-connection.pool.max_idle_time=7200
+connection.pool.max_idle_time = 7200
 
-#Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
-connection.pool.max_idle_time_excess_con=0
+# Deprecated since v43. Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
+connection.pool.max_idle_time_excess_con = 0
 
-#If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
-connection.pool.idle.con.test.period=0
+# Deprecated since v43. If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
+connection.pool.idle.con.test.period = 0
 
-#If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
-connection.pool.test.on.checkout=false
+# Deprecated since v43. If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+connection.pool.test.on.checkout = false
 
-#If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
-connection.pool.test.on.checkin=on
+# Deprecated since v43. If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+connection.pool.test.on.checkin = on
 
-#Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
-connection.pool.preferred.test.query=select 1
+# Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
+connection.pool.preferred.test.query = select 1
 
-#Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
-connection.pool.num.helper.threads=3
+# Deprecated since v43. Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+connection.pool.num.helper.threads = 3
 
-# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
-db.pool.type = c3p0
+# Hikari DB pool feature. Connection pool timeout: Set the maximum number of milliseconds that a client will wait for a connection from the pool. (default: 30ms).
+connection.pool.timeout = 30
+
+# Sets the maximum number of milliseconds that the Hikari pool will wait for a connection to be validated as alive. (default: 5ms).
+connection.pool.validation_timeout = 5
+
+# Database datasource pool type. Supported pool types are: hikari (default), c3p0 (deprecated), unpooled
+db.pool.type = hikari
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
 
-# Base URL to the DHIS 2 instance
-# The server.base.url setting refers to the URL at which the system is accessed by end users over the network.
-server.base.url = https://play.dhis2.org/dev 
+# Base URL to the DHIS2 instance
+# The server.base.url setting refers to the externally reachable URL at which the system is accessed by end users over the network.
+# Must be an absolute http:// or https:// URL with a valid hostname and no trailing slash.
+# Required for password recovery. Also used for OIDC and OAuth2 redirect URLs, notification emails, and interpretation links.
+# If missing, invalid, or has a trailing slash, DHIS2 logs a warning at startup. See "Server base URL" below.
+server.base.url = https://play.dhis2.org/dev
 
-# Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
+# Enable secure settings if system is deployed on HTTPS, can be 'off', 'on' (default: 'off')
 server.https = off
 # It is strongly recommended to enable the `server.https` setting and deploying DHIS 2 with an encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled
 
 # ----------------------------------------------------------------------
 # System [Optional]
 # ----------------------------------------------------------------------
-
-# System identifier
-system.id = hmis1.country.org
 
 # System mode for database read operations only, can be 'off', 'on'. (default: 'off').
 system.read_only_mode = off
@@ -194,6 +201,22 @@ monitoring.uptime.enabled = on
 # CPU monitoring
 monitoring.cpu.enabled = on
 
+# Add request context as SQL comments for query attribution. When enabled,
+# every SQL statement is prefixed with a comment containing context such as
+# the controller and method that triggered the query. Can be 'on', 'off'
+# (default: 'off').
+monitoring.sql.context = off
+
+# Controls which keys are included in SQL comments. Supported keys:
+# controller, method, requestId, sessionId. SQL comments change the query
+# text, which can prevent PostgreSQL prepared statement caching. The default
+# keys (controller, method) are stable per endpoint, so the same endpoint
+# reuses its cached statements. Adding requestId or sessionId produces
+# unique SQL text per request or session, which prevents caching entirely
+# and can significantly degrade performance. Only enable those for
+# debugging. (default: controller,method)
+monitoring.sql.context.keys = controller,method
+
 # ----------------------------------------------------------------------
 # Redis [Optional]
 # ----------------------------------------------------------------------
@@ -226,11 +249,24 @@ analytics.connection.url = jdbc:postgresql:analytics
 # Analytics database username
 analytics.connection.username = analytics
 
-# Analytics database password
+# Analytics database password (sensitive)
 analytics.connection.password = xxxx
 
 # Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
+
+# Analytics Max size of connection pool (default: 80).
+analytics.connection.pool.max_size = 80
+
+# Analytics Minimum number of connections a pool will maintain at any given time (default: 5).
+analytics.connection.pool.min_size = 5
+
+# Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize. (default: 5).
+analytics.connection.pool.initial_size = 5
+
+# If present, overrides the analytics.connection.url value - useful when running Apache Doris in a container (so it is not able to access Postgres via `localhost`).
+doris.catalog.connection.url =  https://doris.example.org
+
 
 # ----------------------------------------------------------------------
 # System telemetry [Optional]
@@ -249,7 +285,8 @@ system.monitoring.password = xxxx
 # System update notifications [Optional]
 # ----------------------------------------------------------------------
 
-# System update notifications, such as new DHIS 2 releases becoming available
+# System update notifications, such as new DHIS 2 releases becoming available. The system will default send a notification in the mail inbox under the "system" category when there is a new DHIS2 patch version available for download.
+# This notification will be sent to the users who have the "ALL" authority, unless the "System update notification recipients" user group is defined, under the "General settings". It can be 'off', 'on' (default: 'on')
 system.update_notifications_enabled = on
 
 # ----------------------------------------------------------------------
@@ -261,6 +298,18 @@ logging.file.max_size = 200MB
 
 # Max number of rolling log archive files, default is 0
 logging.file.max_archives = 1
+
+# Enable query logging. Can be 'on', 'off' (default: 'off').
+logging.query = off
+
+# Log queries slower than this threshold in milliseconds at WARN level
+# (default: 1000).
+logging.query.slow_threshold = 1000
+
+# Add a hashed session ID to the logging context (MDC). Include it in log
+# output via %X{sessionId} in the log4j2 pattern layout. Can be 'on', 'off'
+# (default: 'on').
+logging.session_id = on
 
 # ----------------------------------------------------------------------
 # Log levels [Optional]
@@ -276,9 +325,10 @@ logging.level.org.springframework = INFO
 # App Hub [Optional]
 # ----------------------------------------------------------------------
 
-# Base URL to the DHIS2 App Hub service
-apphub.base.url = https://apps.dhis2.org"
-# Base API URL to the DHIS2 App Hub service, used for app updates
+# Base URL to the DHIS2 App Hub service (default: https://apps.dhis2.org)
+apphub.base.url = https://apps.dhis2.org
+
+# Base API URL to the DHIS2 App Hub service, used for app updates (default: https://apps.dhis2.org)
 apphub.api.url = https://apps.dhis2.org/api
 
 # ----------------------------------------------------------------------
@@ -295,6 +345,7 @@ max.sessions.per_user = 10
 # Remote servers allowed to call from the route endpoint. Default is any HTTPS URL. Wildcards are allowed. 
 # e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
 route.remote_servers_allowed = https://*
+
 ```
 
 Note that the configuration file supports environment variables. This
@@ -313,6 +364,54 @@ invoke the following command which ensures only the *dhis* user is allowed to re
 ```sh
 chmod 600 dhis.conf
 ```
+
+## Server base URL { #install_server_base_url }
+
+The `server.base.url` property in `dhis.conf` defines the externally reachable base URL of the DHIS2 instance — the URL users type into their browser to access the system. Setting this value correctly is **important**: several DHIS2 features generate links from it, and a missing or malformed value breaks them.
+
+```properties
+server.base.url = https://dhis2.example.org/dhis
+```
+
+### Why it matters
+
+DHIS2 uses `server.base.url` to build absolute URLs in backend-generated content. Features that depend on it include:
+
+- **Password recovery** — the account recovery email contains a reset link built from `server.base.url`. If the property is missing or invalid, password recovery is unavailable.
+- **OIDC and OAuth2** — redirect URIs and client registration URLs are derived from this value.
+- **Notification emails** — links in interpretation, message, and subscription emails point to this base.
+- **Interpretation sharing** — shared links to dashboards, visualizations, and maps.
+- **API metadata URLs** — some system info and metadata endpoints emit absolute URLs based on this value.
+
+### Valid values
+
+The value must be an absolute URL that is reachable by your end users:
+
+- Scheme: `https://` (strongly recommended) or `http://` for non-TLS environments.
+- Hostname: a valid hostname or IP reachable from users' browsers — not `localhost` in a production deployment.
+- No trailing slash.
+- Include the context path (e.g., `/dhis`) if DHIS2 is not deployed at the server root.
+
+Examples:
+
+```properties
+# Good
+server.base.url = https://dhis2.example.org
+server.base.url = https://dhis2.example.org/dhis
+
+# Bad — trailing slash
+server.base.url = https://dhis2.example.org/
+
+# Bad — no scheme
+server.base.url = dhis2.example.org
+
+# Bad — not reachable by end users
+server.base.url = http://localhost:8080
+```
+
+### Startup validation
+
+At startup, DHIS2 validates `server.base.url` and logs a `WARN` message if the value is missing, empty, not a valid absolute URL, or has a trailing slash. DHIS2 will continue to start in this state (in degraded mode for the features listed above), but administrators should treat the warning as something to fix.
 
 ## Encryption configuration { #install_encryption_configuration } 
 

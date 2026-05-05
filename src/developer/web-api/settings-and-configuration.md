@@ -147,7 +147,8 @@ Table: System settings
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
 | globalShellEnabled | When this property is enabled (set to true), apps will be displayed as iframes within a global shell. This global shell provides a consistent header bar across the system which has expanded functionalities compared to the original header bar. Default: true. | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
-| analyticsFinancialYearStart | Set financial year start. Default: October | No |
+| analyticsFinancialYearStart | Set financial year start. Options: FINANCIAL_YEAR_FEBRUARY, FINANCIAL_YEAR_APRIL, FINANCIAL_YEAR_JULY, INANCIAL_YEAR_AUGUST, FINANCIAL_YEAR_SEPTEMBER, FINANCIAL_YEAR_OCTOBER. Default: FINANCIAL_YEAR_OCTOBER | No |
+| analyticsWeeklyStart | Set weekly relative period start day. Options: WEEKLY (Monday), WEEKLY_WEDNESDAY, WEEKLY_THURSDAY, WEEKLY_FRIDAY, WEEKLY_SATURDAY, WEEKLY_SUNDAY. Default: WEEKLY (Monday) | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
 | keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
 | KeyTrackedEntityMaxLimit | Maximum number of tracked entities that are returned by `/tracker/trackedEntities`. More info [here](tracker.md#tracked-entities-collection-limits). Default: "50000" | No |
@@ -226,6 +227,8 @@ Table: System settings
 | jobsMaxCronDelayHours | A CRON expression triggered job will only trigger in the window between its target time of the day and this amount of hours later. If it wasn't able to run in that window the execution is skipped and next execution according to the CRON expression is the next target execution | No |
 | jobsLogDebugBelowSeconds | A job with an execution interval below this number of seconds logs its information on debug rather than info | No |
 | keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
+| orgUnitCentroidsInEventsAnalytics | If true, the analytics event tables are created with a centroid value for each Data Element or TEA of type OU or OU Geometry. Default: false | No |
+
 
 ## User settings { #webapi_user_settings } 
 
@@ -323,6 +326,8 @@ resources:
 
     GET POST /api/configuration/infrastructuralPeriodType
 
+    GET POST /api/configuration/dataOutputPeriodTypes
+
     GET POST DELETE /api/configuration/selfRegistrationRole
 
     GET POST DELETE /api/configuration/selfRegistrationOrgUnit
@@ -356,6 +361,7 @@ Table: Configuration values
 | infrastructuralDataElements | Data element group ID |
 | infrastructuralIndicators | Indicator group ID |
 | infrastructuralPeriodType | Period type name (e.g. "Monthly") |
+| dataOutputPeriodTypes | JSON list of period type name (e.g. "Monthly", "Quarterly", "Yearly", etc.) |
 | selfRegistrationRole | User role ID |
 | selfRegistrationOrgUnit | Organisation unit ID |
 | smtpPassword | SMTP email server password |

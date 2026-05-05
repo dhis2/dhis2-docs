@@ -223,11 +223,11 @@ oidc.provider.helseid.extra_request_parameters = acr_values lvl4,other_key value
 # [Optional] This is the alias/name displayed on the login button in the DHIS2 login page
 oidc.provider.helseid.display_alias = HelseID
 
-# [Optional] Link to an url for a logo. (Can use absolute or relative URLs)
-oidc.provider.helseid.logo_image = ../security/btn_helseid.svg
+# [Optional] Link to a url for a logo. (Only relative paths are supported)
+oidc.provider.helseid.login_image = ../security/btn_helseid.svg
 
 # [Optional] CSS padding for the logo image
-oidc.provider.helseid.logo_image_padding = 0px 1px
+oidc.provider.helseid.login_image_padding = 0px 1px
 ```
 
 ## JWT bearer token authentication
