@@ -85,7 +85,7 @@ Table: Appearance settings
 | **Application notification** | Sets a notification which will be visible on the front page under the login area. |
 | **Application left-side footer** | Sets a text in the left-side footer area of the login page. (When using a language written in a right-to-left script, such as Arabic, this will be in the right-footer area of the login page.) |
 | **Application right-side footer** | Sets a text in the right-side footer area of the login page. ((When using a language written in a right-to-left script, such as Arabic, this will be in the left-footer area of the login page.) |
-| **Theme Color** | This setting influences the style (look and feel) of the DHIS2 interface. This style applies to all web apps and the android app. |
+| **Theme color** | This color picker sets the color used in the DHIS2 header bar in all web apps and for the theme in the Android app. Upon setting a color, refresh the page to see the change. The Global Shell must be enabled to see the custom color in the header bar on web. If a color is set, click the Remove color button to return to the default color. |
 | **Start page** | Sets the page or app which the user will be redirected to after log in.<br> <br>Recommended setting: the **Dashboard** app. |
 | **Enable light-weight start page** | Instructs apps to render a light-weight and fast landing page. Recommended in low-bandwidth environments. |
 | **Help page link** | Defines the URL which users will see when they click **Profile** \>**Help**. |
@@ -97,6 +97,7 @@ Table: Appearance settings
 | **Login page theme** | This lets you select between the default layout, the sidebar layout, or a custom layout for the login app. If you select a custom layout, you need to provide a custom template in the "Login page template" section. |
 | **Login page template** | Here you can paste the HTML to define the layout  and style of the login page. More details for how to define the template are available in the developer documentation. |
 | **Enable Global Shell** | When this property is enabled (set to true, the default), the Global Shell provides a common interface and navigation tools across all DHIS2 web applications.<br> <br>More technical details about the Global Shell can be found [in the Developer Portal](https://developers.dhis2.org/docs/references/global-shell). |
+| **Enable custom translations** | With this option enabled, apps can take advantage of custom translations that are set in the datastore. Read more in the [Localization of DHIS2](https://docs.dhis2.org/en/implement/maintenance-and-use/localization-of-dhis2.html) page. |
 
 ## Email settings { #system_email_settings } 
 
