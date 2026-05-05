@@ -2,7 +2,7 @@
 
 > **Note**
 >
-> The Mobile configuration module was removed in 2.36 and is now replaced by the SMS configuration app which provides a modern and more user-friendly user interface and additional options > for configuring SMS in DHIS2.
+> The Mobile configuration module was removed in version 2.36 and replaced by the SMS configuration app which provides a modern and more user-friendly user interface and additional options for configuring SMS in DHIS2.
 
 
 
