@@ -1214,10 +1214,9 @@ otherwise specified.
 
 | Error Code | Error Message | Description |
 |:--|:----|:----|
-| E1000 | User: `{0}`, has no write access to OrganisationUnit: `{1}`. | This typically means that the OrganisationUnit `{1}` is not in the capture scope of the user `{0}` for the write operation to be authorized. |
+| E1000 | User: `{0}`, has no capture scope access to OrganisationUnit: `{1}`. | |
 | E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`
 | E1002 | TrackedEntity: `{0}`, already exists. | This error is thrown when trying to create a new TrackedEntity with an already existing uid. Make sure a new uid is used when adding a new TrackedEntity. |
-| E1003 | User: `{0}`, has no write access to TrackedEntity: `{1}`. | |
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
 | E1006 | Attribute: `{0}`, does not exist. | Error thrown when the system was not able to find a matching TrackedEntityAttribute with uid `{0}`. This might also mean that the user does not have access to the TrackedEntityAttribute. |
 | E1007 | Error validating attribute value type: `{0}`; Error: `{1}`. | Mismatch between value type of a TrackedEntityAttribute and its provided attribute value. The actual validation error will be displayed in `{1}`. |
@@ -1231,7 +1230,7 @@ otherwise specified.
 | E1015 | TrackedEntity: `{0}`, already has an active Enrollment in Program `{1}`. | Cannot enroll into a Program if another active enrollment already exists for the Program. The active enrollment will have to be completed first at least.|
 | E1016 | TrackedEntity: `{0}`, already has an active enrollment in Program: `{1}`, and this program only allows enrolling one time. | As per the Program `{1}` configuration, a TrackedEntity can only be enrolled into that Program once. It looks like the TrackedEntity `{0}` already has either an ACTIVE or COMPLETED enrollment in that Program. Hence another enrollment cannot be added. |
 | E1018 | Attribute: `{0}`, is mandatory in program `{1}` but not declared in enrollment `{2}`. | Attribute value is missing in payload, for an attribute that is defined as mandatory for a Program. Make sure that attribute values for mandatory attributes are provided in the payload.  |
-| E1019 | Only Program attributes is allowed for enrollment; Non valid attribute: `{0}`. | Attribute uid `{0}` specified in the enrollment payload is not associated with the Program.  |
+| E1019 | Only Program attributes are allowed for enrollment; invalid attribute: `{0}`. | Attribute uid `{0}` specified in the enrollment payload is not associated with the Program.  |
 | E1020 | Enrollment date: `{0}`, cannot be a future date. | Cannot enroll into a future date unless the Program allows for it in its configuration. |
 | E1021 | Incident date: `{0}`, cannot be a future date. | Incident date cannot be a future date unless the Program allows for it in its configuration. |
 | E1022 | TrackedEntity: `{0}`, must have same TrackedEntityType as Program `{1}`. | The Program is configured to accept TrackedEntityType uid that is different from what is provided in the enrollment payload. |
@@ -1240,7 +1239,7 @@ otherwise specified.
 | E1029 | Event OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Event payload uses a Program `{1}` which is not configured to be accessible by OrganisationUnit `{0}`. |
 | E1030 | Event: `{0}`, already exists. | This error is thrown when trying to add a new Event with an already existing uid. Make sure a new uid is used when adding a new Event. |
 | E1031 | Event occurredAt date is missing. | OccurredAt property is either null or has an invalid date format in the payload. |
-| E1032 | Event: `{0}`, do not exist. | |
+| E1032 | Event: `{0}` does not exist. | |
 | E1033 | Event: `{0}`, Enrollment value is NULL. | |
 | E1039 | ProgramStage: `{0}`, is not repeatable and an event already exists. | An Event already exists for the ProgramStage for the specific Enrollment. Since the ProgramStage is configured to be non-repeatable, another Event for the same ProgramStage cannot be added.  |
 | E1041 | Enrollment OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Enrollment payload contains a Program `{1}` which is not configured to be accessible by the OrganisationUnit  `{0}`. |
@@ -1274,11 +1273,14 @@ otherwise specified.
 | E1091 | User: `{0}`, has no data write access to Program: `{1}`. | The Program sharing configuration is such that, the user does not have write access for this Program. |
 | E1095 | User: `{0}`, has no data write access to ProgramStage: `{1}`. | The ProgramStage sharing configuration is such that, the user does not have write access for this ProgramStage.  |
 | E1096 | User: `{0}`, has no data read access to Program: `{1}`. | The Program sharing configuration is such that, the user does not have read access for this Program. |
+| E1097 | User: `{0}`, has no data read access to ProgramStage: `{1}`. | The ProgramStage sharing configuration is such that, the user does not have read access for this ProgramStage. |
+| E1098 | User: `{0}`, has no read access to CategoryOption: `{1}`. | The CategoryOption sharing configuration is such that, the user does not have read access for this CategoryOption. |
 | E1099 | User: `{0}`, has no write access to CategoryOption: `{1}`. | The CategoryOption sharing configuration is such that, the user does not have write access for this CategoryOption |
 | E1100 | User: `{0}`, is lacking 'F_TEI_CASCADE_DELETE' authority to delete TrackedEntity: `{1}`. | There exists undeleted Enrollments for this TrackedEntity. If the user does not have 'F_TEI_CASCADE_DELETE' authority, then these Enrollments has to be deleted first explicitly to be able to delete the TrackedEntity. |
 | E1102 | User: `{0}`, does not have access to the tracked entity: `{1}`, Program: `{2}`, combination. | This error is thrown when the user's OrganisationUnit does not have the ownership of this TrackedEntity for this specific Program. The owning OrganisationUnit of the TrackedEntity-Program combination should fall into the capture scope (in some cases the search scope) of the user. |
 | E1103 | User: `{0}`, is lacking 'F_ENROLLMENT_CASCADE_DELETE' authority to delete Enrollment : `{1}`. | There exists undeleted Events for this Enrollment. If the user does not have 'F_ENROLLMENT_CASCADE_DELETE' authority, then these Events has to be deleted first explicitly to be able to delete the Enrollment. |
 | E1104 | User: `{0}`, has no data read access to program: `{1}`, TrackedEntityType: `{2}`. | The sharing configuration of the TrackedEntityType associated with the Program is such that, the user does not have data read access to it. |
+| E1105 | User: `{0}`, has no search scope access to OrganisationUnit: `{1}`. | |
 | E1112 | Attribute value: `{0}`, is set to confidential but system is not properly configured to encrypt data. | Either JCE files is missing or the configuration property `encryption.password` might be missing in `dhis.conf`. |
 | E1113 | Enrollment: `{0}`, is already deleted and can't be modified. | If the Enrollment is soft deleted, no modifications on it are allowed. |
 | E1114 | TrackedEntity: `{0}`, is already deleted and can't be modified. | If the TrackedEntity is soft deleted, no modifications on it are allowed. |
@@ -1286,16 +1288,19 @@ otherwise specified.
 | E1116 | Could not find CategoryOption: `{0}`. | This might also mean the CategoryOption is not accessible to the user.|
 | E1117 | CategoryOptionCombo does not exist for given category combo and category options: `{0}`. | |
 | E1118 | Assigned user `{0}` is not a valid uid. | |
-| E1119 | A Tracker Note with uid `{0}` already exists. | |
+| E1119 | A Note with uid `{0}` already exists. | |
 | E1120 | ProgramStage `{0}` does not allow user assignment | Event payload has assignedUserId but the ProgramStage is not configured to allow user assignment. |
 | E1121 | Missing required tracked entity property: `{0}`. | |
 | E1122 | Missing required enrollment property: `{0}`. | |
 | E1123 | Missing required event property: `{0}`. | |
 | E1124 | Missing required relationship property: `{0}`. | |
 | E1125 | Value `{0}` is not a valid option code in option set `{1}` | |
-| E1126 | Not allowed to update Tracked Entity property: {0}. | |
-| E1127 | Not allowed to update Enrollment property: {0}. | |
-| E1128 | Not allowed to update Event property: {0}. | |
+| E1126 | Not allowed to update Tracked Entity property: `{0}`. | |
+| E1127 | Not allowed to update Enrollment property: `{0}`. | |
+| E1128 | Not allowed to update Event property: `{0}`. | |
+| E1129 | CategoryOptionCombo not found for CategoryCombo `{0}`. | |
+| E1130 | AttributeOptionCombo `{0}` is not in the program enrollment CategoryCombo `{1}`. | |
+| E1131 | User: `{0}` has no data read access to TrackedEntityType: `{1}`. | |
 | E1300 | Generated by program rule (`{0}`) - `{1}` | |
 | E1301 | Generated by program rule (`{0}`) - Mandatory DataElement `{1}` is not present | |
 | E1302 | DataElement `{0}` is not valid: `{1}` | |
@@ -1307,22 +1312,30 @@ otherwise specified.
 | E1308 | Generated by program rule (`{0}`) - DataElement `{1}` is being replaced in event `{2}` | |
 | E1309 | Generated by program rule (`{0}`) - Unable to assign value to attribute `{1}`. The provided value must be empty or match the calculated value `{2}` | |
 | E1310 | Generated by program rule (`{0}`) - Attribute `{1}` is being replaced in te `{2}` | |
-| E1313 | Event {0} of an enrollment does not point to an existing tracked entity. The data in your system might be corrupted | Indicates an anomaly in the existing data whereby enrollments might not reference a tracked entity |
+| E1313 | Event {0} of an enrollment does not reference a TrackedEntity. The data in your system might be corrupted | Indicates an anomaly in the existing data whereby enrollments might not reference a tracked entity |
 | E1314 | Generated by program rule (`{0}`) - DataElement `{1}` is mandatory and cannot be deleted. | |
 | E1315 | Status `{0}` does not allow defining data values. Statuses that do allow defining data values are: {1}| |
 | E1316 | No event can transition from status `{0}` to status `{1}`. | |
 | E1317 | Generated by program rule (`{0}`) - Attribute `{1}` is mandatory and cannot be deleted. | |
+| E1318 | Status `{0}` is not applicable for single events. | The status used in the Event payload is not valid for a single event. |
+| E1320 | Generated by program rule (`{0}`) - Event (`{1}`) was automatically scheduled at `{2}`. | |
+| E1321 | Generated by program rule (`{0}`) - User (`{1}`) does not have write access to ProgramStage `{2}`, where an event was auto-scheduled using SCHEDULEEVENT rule action. | |
+| E1322 | Generated by program rule (`{0}`) - Event for programStage (`{1}`) and enrollment (`{2}`) already exists. | |
+| E1323 | User: `{0}` has no write access to any program. | |
+| E1324 | User `{0}` has no ownership access to any program for the provided TrackedEntity: `{1}`. | |
+| E1325 | User: `{0}` has no read access to any program. | |
 | E4000 | Relationship: `{0}` cannot link to itself | |
-| E4001 | Relationship Item `{0}` for Relationship `{1}` is invalid: an Item can link only one Tracker entity. | |
+| E4001 | Relationship Item `{0}` for Relationship `{1}` is invalid: an Item can link only one Tracker entity, Enrollment or Event. | |
 | E4006 | Could not find relationship Type: `{0}`. | |
 | E4010 | Relationship Type `{0}` constraint requires a {1} but a {2} was found. | |
 | E4012 | Could not find `{0}`: `{1}`, linked to Relationship. | |
 | E4014 | Relationship type `{0}` constraint requires a tracked entity having type `{1}` but `{2}` was found. | |
 | E4015 | Relationship: `{0}`, already exists. | |
-| E4016 | Relationship: `{0}`, do not exist. | |
+| E4016 | Relationship: `{0}`, does not exist. | |
 | E4017 | Relationship: `{0}`, is already deleted and cannot be modified. | |
 | E4018 | Relationship: `{0}`, linking {1}: `{2}` to {3}: `{4}` already exists. | |
-| E4020 | User: `{0}`, has no write access to relationship: `{1}`. | |
+| E4019 | User: `{0}` has no data read access to RelationshipType: `{1}`. | |
+| E4020 | User: `{0}` has no data write access to RelationshipType: `{1}`. | |
 | E5000 | "{0}" `{1}` cannot be persisted because "{2}" `{3}` referenced by it cannot be persisted. | The importer can't persist a tracker object because a reference cannot be persisted. |
 | E9999 | N/A | Undefined error message. |
 
