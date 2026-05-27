@@ -46,7 +46,6 @@ In this section, we will show and describe each of the objects used in the Track
 | deleted | Indicates whether the tracked entity has been deleted. It can only change when deleting. | No | No | Boolean | false until deleted |
 | potentialDuplicate | Indicates whether the tracked entity is a potential duplicate. | No | No | Boolean | Default: false |
 | geometry | A  geographical representation of the tracked entity. Based on the "featureType" of the TrackedEntityType. | No | Yes | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the tracked entity. | No | Yes | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values owned by the tracked entity. | No | Yes | List of TrackedEntityAttributeValue | See Attribute |
@@ -88,7 +87,6 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | followUp | Indicates whether the enrollment requires follow-up. False if not supplied. | No | No | Boolean | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the enrollment. Based on the "featureType" of the program. | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the enrollment. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values connected to the enrollment. | No | No | List of TrackedEntityAttributeValue | See Attribute |
@@ -140,7 +138,6 @@ The table below will point out any exceptional cases between these two.
 | followUp | Only for reading data. Indicates whether the event has been flagged for follow-up. | No | No | Boolean | False, True |
 | deleted | Only for reading data. Indicates whether the event has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the event. Based on the "featureType" of the program stage. | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the event. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributeOptionCombo | Attribute option combo for the event. If not supplied, the default value defined by the program’s category combo is used. | No | No | String:Uid | ABCDEF12345
@@ -199,7 +196,7 @@ entity ultimately owns the attribute value.
 | displayName | Only for reading data. The displayName of the tracked entity attribute. | No | No | String:Any | Name |
 | createdAt | Timestamp when the value was added. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the value was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the value. Set on the server | No | Yes | String:Any | John Doe |
 | valueType | Only for reading data. The type of value the attribute represents. | No | No | Enum | TEXT, INTEGER, and more |
 | value | The value of the tracked entity attribute. | No | No | String:Any | John Doe |
 
@@ -226,7 +223,6 @@ While attributes describe a tracked entity, data values describe an event.
 | providedElsewhere | Indicates whether the user provided the value elsewhere or not. False if not supplied. | No | No | Boolean | False or True |
 | createdAt | Timestamp when the user added the value. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the value was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 
@@ -295,7 +291,6 @@ enrollment payload. A sample payload is found below.
 | note | The reference of the note. Generated if empty | No | Yes | String:Uid | ABCDEF12345 |
 | value | The content of the note. | Yes | Yes | String:Any | This is a note |
 | storedAt | Timestamp when the user added the note. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| storedBy | Client reference for who stored/created the note. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 
 ### Users
@@ -801,8 +796,8 @@ in that event.
 Your CSV file can look like:
 
 ```csv
-event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geometry,latitude,longitude,followUp,deleted,createdAt,createdAtClient,updatedAt,updatedAtClient,completedBy,completedAt,updatedBy,attributeOptionCombo,attributeCategoryOptions,assignedUser,dataElement,value,storedBy,providedElsewhere,storedByDataValue,updatedAtDataValue,createdAtDataValue
-A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",admin,false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
+event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geometry,latitude,longitude,followUp,deleted,createdAt,createdAtClient,updatedAt,updatedAtClient,completedBy,completedAt,updatedBy,attributeOptionCombo,attributeCategoryOptions,assignedUser,dataElement,value,providedElsewhere,storedByDataValue,updatedAtDataValue,createdAtDataValue
+A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
 ```
 
 See [Events CSV](#events-csv) in the export section for a more detailed definition of the CSV fields.
@@ -1754,7 +1749,6 @@ contain the following fields:
   - attrUpdatedAt (Attribute last update Datetime)
   - valueType (String)
   - value (String)
-  - storedBy (String)
   - createdBy (Username of user)
   - updatedBy (Username of user)
 
@@ -2009,10 +2003,10 @@ A JSON response looks like the following:
 A CSV response looks like the following:
 
 ```
-trackedEntity,trackedEntityType,createdAt,createdAtClient,updatedAt,updatedAtClient,orgUnit,inactive,deleted,potentialDuplicate,geometry,latitude,longitude,storedBy,createdBy,updatedBy,attrCreatedAt,attrUpdatedAt,attribute,displayName,value,valueType
-F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.477Z,2019-08-21T11:25:38.477Z,B6TnnFMgmCk,"Age (years)",30,INTEGER_ZERO_OR_POSITIVE
-F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.066Z,2019-08-21T11:25:38.067Z,TfdH5KvFmMy,"First Name",Sarah,TEXT
-F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.388Z,2019-08-21T11:25:38.388Z,aW66s2QSosT,"Last Name",Johnson,TEXT
+trackedEntity,trackedEntityType,createdAt,createdAtClient,updatedAt,updatedAtClient,orgUnit,inactive,deleted,potentialDuplicate,geometry,latitude,longitude,createdBy,updatedBy,attrCreatedAt,attrUpdatedAt,attribute,displayName,value,valueType
+F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,2019-08-21T11:25:38.477Z,2019-08-21T11:25:38.477Z,B6TnnFMgmCk,"Age (years)",30,INTEGER_ZERO_OR_POSITIVE
+F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,2019-08-21T11:25:38.066Z,2019-08-21T11:25:38.067Z,TfdH5KvFmMy,"First Name",Sarah,TEXT
+F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,2019-08-21T11:25:38.388Z,2019-08-21T11:25:38.388Z,aW66s2QSosT,"Last Name",Johnson,TEXT
 ```
 
 ##### Tracked entities collection limits
@@ -2382,7 +2376,6 @@ The JSON response can look like the following.
       "occurredAt": "2023-11-13T00:00:00.000",
       "followUp": false,
       "deleted": false,
-      "storedBy": "healthworker1",
       "notes": []
     }
   ]
@@ -2486,7 +2479,6 @@ contain the following fields:
 | assignedUser | Username |
 | dataElement | ID |
 | value | String |
-| storedBy | Username |
 | providedElsewhere | boolean |
 | storedByDataValue | String |
 | createdAtDataValue | DateTime |
@@ -2651,7 +2643,6 @@ The JSON response can look like the following:
         {
           "createdAt": "2016-12-06T18:22:34.438",
           "updatedAt": "2016-12-06T18:22:34.438",
-          "storedBy": "bjorn",
           "providedElsewhere": false,
           "dataElement": "F3ogKBuviRA",
           "value": "[-11.4880220438585,7.50978830548003]"
@@ -2659,7 +2650,6 @@ The JSON response can look like the following:
         {
           "createdAt": "2013-12-30T14:23:57.423",
           "updatedAt": "2013-12-30T14:23:57.423",
-          "storedBy": "lars",
           "providedElsewhere": false,
           "dataElement": "eMyVanycQSC",
           "value": "2018-02-07"
@@ -2667,7 +2657,6 @@ The JSON response can look like the following:
         {
           "createdAt": "2013-12-30T14:23:57.382",
           "updatedAt": "2013-12-30T14:23:57.382",
-          "storedBy": "lars",
           "providedElsewhere": false,
           "dataElement": "oZg33kd9taw",
           "value": "Male"
@@ -2685,10 +2674,10 @@ The JSON response can look like the following:
 The CSV response can look like the following:
 
 ```csv
-event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geometry,latitude,longitude,followUp,deleted,createdAt,createdAtClient,updatedAt,updatedAtClient,completedBy,completedAt,updatedBy,attributeOptionCombo,attributeCategoryOptions,assignedUser,dataElement,value,storedBy,providedElsewhere,storedByDataValue,updatedAtDataValue,createdAtDataValue
-A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",admin,false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
-A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,eMyVanycQSC,2018-02-07,admin,false,,2013-12-30T13:23:57.423Z,2013-12-30T13:23:57.423Z
-A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,msodh3rEMJa,2018-02-13,admin,false,,2013-12-30T13:23:57.467Z,2013-12-30T13:23:57.467Z
+event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geometry,latitude,longitude,followUp,deleted,createdAt,createdAtClient,updatedAt,updatedAtClient,completedBy,completedAt,updatedBy,attributeOptionCombo,attributeCategoryOptions,assignedUser,dataElement,value,providedElsewhere,storedByDataValue,updatedAtDataValue,createdAtDataValue
+A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
+A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,eMyVanycQSC,2018-02-07,false,,2013-12-30T13:23:57.423Z,2013-12-30T13:23:57.423Z
+A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,msodh3rEMJa,2018-02-13,false,,2013-12-30T13:23:57.467Z,2013-12-30T13:23:57.467Z
 ```
 
 #### Events single object endpoint `GET /api/tracker/events/{uid}`
@@ -2738,7 +2727,6 @@ The API supports CSV and JSON response for `GET /api/tracker/events/{uid}`
     {
       "createdAt": "2015-10-20T12:09:19.640",
       "updatedAt": "2015-10-20T12:09:19.640",
-      "storedBy": "system",
       "providedElsewhere": false,
       "dataElement": "HyJL2Lt37jN",
       "value": "12"
