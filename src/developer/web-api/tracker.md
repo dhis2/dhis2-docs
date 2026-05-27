@@ -46,7 +46,7 @@ In this section, we will show and describe each of the objects used in the Track
 | deleted | Indicates whether the tracked entity has been deleted. It can only change when deleting. | No | No | Boolean | false until deleted |
 | potentialDuplicate | Indicates whether the tracked entity is a potential duplicate. | No | No | Boolean | Default: false |
 | geometry | A  geographical representation of the tracked entity. Based on the "featureType" of the TrackedEntityType. | No | Yes | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the tracked entity. | No | Yes | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the tracked entity. Set on the server. | No | Yes | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values owned by the tracked entity. | No | Yes | List of TrackedEntityAttributeValue | See Attribute |
@@ -88,7 +88,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | followUp | Indicates whether the enrollment requires follow-up. False if not supplied. | No | No | Boolean | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the enrollment. Based on the "featureType" of the program. | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the enrollment. | No | No | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the enrollment. Set on the server. | No | Yes | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values connected to the enrollment. | No | No | List of TrackedEntityAttributeValue | See Attribute |
@@ -139,7 +139,7 @@ point out any exceptional cases between these two.
 | followUp | Only for reading data. Indicates whether the event has been flagged for follow-up. | No | No | Boolean | False, True |
 | deleted | Only for reading data. Indicates whether the event has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the event. Based on the "featureType" of the program stage. | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the event. | No | No | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the event. Set on the server. | No | Yes | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributeOptionCombo | Attribute option combo for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
@@ -198,7 +198,7 @@ entity ultimately owns the attribute value.
 | displayName | Only for reading data. The displayName of the tracked entity attribute. | No | No | String:Any | Name |
 | createdAt | Timestamp when the value was added. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the value was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the value. Set on the server. | No | Yes | String:Any | John Doe |
 | valueType | Only for reading data. The type of value the attribute represents. | No | No | Enum | TEXT, INTEGER, and more |
 | value | The value of the tracked entity attribute. | No | No | String:Any | John Doe |
 
@@ -225,7 +225,7 @@ While attributes describe a tracked entity, data values describe an event.
 | providedElsewhere | Indicates whether the user provided the value elsewhere or not. False if not supplied. | No | No | Boolean | False or True |
 | createdAt | Timestamp when the user added the value. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the value was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the value. Set on the server. | No | Yes | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 
@@ -294,7 +294,7 @@ enrollment payload. A sample payload is found below.
 | note | The reference of the note. Generated if empty | No | Yes | String:Uid | ABCDEF12345 |
 | value | The content of the note. | Yes | Yes | String:Any | This is a note |
 | storedAt | Timestamp when the user added the note. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| storedBy | Client reference for who stored/created the note. | No | No | String:Any | John Doe |
+| storedBy | Client reference for who stored/created the note. Set on the server. | No | Yes | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 
 ### Users
@@ -799,8 +799,8 @@ in that event.
 Your CSV file can look like:
 
 ```csv
-event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geometry,latitude,longitude,followUp,deleted,createdAt,createdAtClient,updatedAt,updatedAtClient,completedBy,completedAt,updatedBy,attributeOptionCombo,attributeCategoryOptions,assignedUser,dataElement,value,storedBy,providedElsewhere,storedByDataValue,updatedAtDataValue,createdAtDataValue
-A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",admin,false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
+event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geometry,latitude,longitude,followUp,deleted,createdAt,createdAtClient,updatedAt,updatedAtClient,completedBy,completedAt,updatedBy,attributeOptionCombo,attributeCategoryOptions,assignedUser,dataElement,value,providedElsewhere,storedByDataValue,updatedAtDataValue,createdAtDataValue
+A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
 ```
 
 See [Events CSV](#events-csv) in the export section for a more detailed definition of the CSV fields.
