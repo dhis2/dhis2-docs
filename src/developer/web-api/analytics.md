@@ -2387,7 +2387,7 @@ The `/analytics/enrollments/query/dimensions?programId=...` resource accepts a m
 
 - **Program indicators** connected to the program
 - **Data elements** of *supported types* in the program, with program stage for each data element
-- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+- **Tracked entity attributes** of *supported types* in the program that are not marked to be skipped from Analytics.
 
 All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE` and `FILE_RESOURCE`.
 
@@ -2396,7 +2396,7 @@ All value types for data elements and tracked entity attributes are considered *
 The `/analytics/enrollments/aggregate/dimensions?programId=...` resource accepts a mandatory id of a tracker program, referring to a program with registration, and returns the following data dimensions:
 
 - **Data elements** of *supported types* in the program, with program stage for each data element
-- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+- **Tracked entity attributes** of *supported types* in the program that are not marked to be skipped from Analytics.
 
 Data elements and tracked entity attributes are considered *supported types* if their value type is one of the following:
 
@@ -2419,7 +2419,7 @@ The `/analytics/teis/query/dimensions?trackedEntityType=TET` resource accepts a 
 for each program `P` associated with a tracked entity instance of type `TET`:
 - **Program indicators** associated to `P`
 - **Data elements** of *supported types* in `P`, with program stage for each data element
-- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+- **Tracked entity attributes** of *supported types* in `P` that are not marked to be skipped from Analytics.
 - **Program attributes** of `P`
 
 All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE` and `FILE_RESOURCE`.
