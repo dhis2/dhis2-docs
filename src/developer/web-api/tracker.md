@@ -747,10 +747,10 @@ POST /api/tracker?async=false&importStrategy=DELETE
 {
   "events": [
     {
-      "event": "ZwwuwNp6gVd",
+      "event": "ZwwuwNp6gVd"
     },
     {
-      "event": "XwwuwNp6gVE",
+      "event": "XwwuwNp6gVE"
     }
   ]
 }
@@ -767,10 +767,10 @@ POST /api/tracker?async=false&importStrategy=DELETE
 {
   "trackedEntities": [
     {
-      "trackedEntity": "Kj6vYde4LHh",
+      "trackedEntity": "Kj6vYde4LHh"
     },
     {
-      "trackedEntity": "Gjaiu3ea38E",
+      "trackedEntity": "Gjaiu3ea38E"
     }
   ]
 }
