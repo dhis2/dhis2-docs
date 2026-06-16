@@ -80,12 +80,22 @@ Table: `DATA_SYNC` job parameters
 |---------------|---------------|---------|--------------------------------------------------|
 | `pageSize` | int | `10000` | number of data values processed as a unit |
 
+Table: `SINGLE_EVENT_DATA_SYNC` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `pageSize` | int | `60` | number of events processed as a unit. Minimum `5`, maximum `200`. |
+
+Table: `TRACKED_ENTITY_DATA_SYNC` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `pageSize` | int | `60` | number of tracked entities processed as a unit. Minimum `5`, maximum `200`. |
+
 Table: `META_DATA_SYNC` job parameters
 
 | Name          | Type          | Default | Description                                      |
 |---------------|---------------|---------|--------------------------------------------------|
-| `trackerProgramPageSize` | int | `20` | number of tracked entities processed as a unit |
-| `eventProgramPageSize` | int | `60` | number of events processed as a unit           |
 | `dataValuesPageSize` | int | `10000` | number of data values processed as a unit  |
 
 Table: `MONITORING` (Validation rule analysis) job parameters
