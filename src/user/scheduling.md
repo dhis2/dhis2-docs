@@ -228,7 +228,7 @@ These are the steps to enable data synchronization:
   >
   > These two job types replace the "Event Programs Data Sync" and "Tracker
   > Programs Data Sync" jobs available in versions prior to 2.42. There is no
-  > automatic migration: when upgrading from 2.41, any existing tracker or event
+  > automatic migration: when upgrading from 2.41 or earlier, any existing tracker or event
   > program synchronization jobs are not carried over, and you must create a new
   > job configuration for each of them using the new job types.
 
