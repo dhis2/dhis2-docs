@@ -220,12 +220,17 @@ These are the steps to enable data synchronization:
   password field will be empty after the refresh, since this value is encrypted,
   so you can consider it saved.
 
-- Using the Scheduler app, create a new job using the "Event Programs Data Sync"
-  and/or "Tracker Programs Data Sync" job type. Make sure it is enabled when you
-  finish. (Note: If the "Program Data Synchronization" job, available in
-  previous versions, was set up in Scheduler app before, it was automatically
-  replaced by the two new jobs "Event Programs Data Sync" and "Tracker Programs
-  Data Sync" with the identical settings. )
+- Using the Scheduler app, create a new job using the "Single events data
+  synchronization" and/or "Tracked entities data synchronization" job type. Make
+  sure it is enabled when you finish.
+
+  > **Note**
+  >
+  > These two job types replace the "Event Programs Data Sync" and "Tracker
+  > Programs Data Sync" jobs available in versions prior to 2.42. There is no
+  > automatic migration: when upgrading from 2.41 or earlier, any existing tracker or event
+  > program synchronization jobs are not carried over, and you must create a new
+  > job configuration for each of them using the new job types.
 
 Some aspects of the data synchronization feature to be aware of:
 
@@ -306,13 +311,13 @@ Some aspects of the data synchronization feature to be aware of:
   Therefore, if you need to synchronize the old data, you should change the
   `SettingKey`.
 
-- Both Tracker Programs and Event Programs synchronization job supports paging
-  in order to avoid timeouts and to deal with unstable network. Default page
-  size for "Event Programs Data Sync" job is set to 60. Default page size for
-  "Tracker Programs Data Sync" job is set to 20.
+- Both the "Single events data synchronization" and "Tracked entities data
+  synchronization" jobs support paging in order to avoid timeouts and to deal
+  with unstable network. The default page size for both jobs is 60.
 
-  If default values do not fit your purpose, own page size can be specified via
-  parameter in particular sync job in Scheduler app.
+  If the default value does not fit your purpose, your own page size can be
+  specified via the parameter in the particular sync job in the Scheduler app.
+  The allowed page size ranges from a minimum of 5 to a maximum of 200.
 
 ### Metadata Synchronization Scheduling { #scheduling_metadata_sync }
 
