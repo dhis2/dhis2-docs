@@ -328,7 +328,7 @@ logging.level.org.springframework = INFO
 # Base URL to the DHIS2 App Hub service (default: https://apps.dhis2.org)
 apphub.base.url = https://apps.dhis2.org
 
-# Base API URL to the DHIS2 App Hub service, used for app updates (default: https://apps.dhis2.org)
+# Base API URL to the DHIS2 App Hub service, used for app updates (default: https://apps.dhis2.org/api)
 apphub.api.url = https://apps.dhis2.org/api
 
 # ----------------------------------------------------------------------
