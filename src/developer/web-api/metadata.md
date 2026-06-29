@@ -638,7 +638,23 @@ request to the endpoint + id:
 curl -X DELETE -u user:password "http://server/api/constants/ID"
 ```
 
-A successful delete should return HTTP status 204 (no content).
+A successful delete returns HTTP status `200 OK` with a `WebMessage`
+response body wrapping an `ObjectReport` for the deleted object, for
+example:
+
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "response": {
+    "responseType": "ObjectReport",
+    "uid": "abc123",
+    "klass": "org.hisp.dhis.constant.Constant",
+    "errorReports": []
+  }
+}
+```
 
 ### Adding and removing objects in collections { #webapi_adding_removing_objects_collections } 
 
