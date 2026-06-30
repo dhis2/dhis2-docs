@@ -270,7 +270,7 @@ DELETE /api/aggregateDataExchanges/{id}
 ##### Response
 
 ```
-204 No Content
+200 OK
 ```
 
 ```json
