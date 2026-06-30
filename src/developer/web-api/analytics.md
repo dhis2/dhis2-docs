@@ -864,6 +864,7 @@ Table: Query parameters for event query analytics only
 | desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
 | coordinateOuFallback | No | Program instance geometry is applied whenever organization unit geometry is missing. | false &#124; true |
+| coordinateField | No | Field to base geospatial event analytics on. Can be set to `EVENT` (default), `ENROLLMENT` or `TRACKER`, or to the identifier of a data element or attribute of value type coordinate or organisation unit. For organisation unit value type items, the organisation unit geometry is used (represented by its centroid). The raw geometry column names `eventgeometry`, `enrollmentgeometry`, `tegeometry` and `ougeometry` are also accepted. | `EVENT` &#124; `ENROLLMENT` &#124; `TRACKER` &#124; `ougeometry` &#124; <attribute-id\> &#124; <dataelement-id\> |
 | dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
@@ -902,9 +903,19 @@ Table: Query parameters for cluster event analytics only
 | Query parameter | Required | Description | Options |
 |---|---|---|---|
 | clusterSize | Yes | Size of clusters in meters. | Numeric positive value |
-| coordinateField | No | Field to base geospatial event analytics on. Default is event. Can be set to identifiers of attributes and data elements of value type coordinate. | EVENT &#124; <attribute-id\> &#124; <dataelement-id\> |
+| coordinateField | No | Field to base geospatial event analytics on. Can be set to `EVENT` (default), `ENROLLMENT` or `TRACKER`, or to the identifier of a data element or attribute of value type coordinate or organisation unit. For organisation unit value type items, the organisation unit geometry is used (represented by its centroid). The raw geometry column names `eventgeometry`, `enrollmentgeometry`, `tegeometry` and `ougeometry` are also accepted. | `EVENT` &#124; `ENROLLMENT` &#124; `TRACKER` &#124; `ougeometry` &#124; <attribute-id\> &#124; <dataelement-id\> |
 | bbox | Yes | Bounding box / area of events to include in the response on the format "min longitude, min latitude, max longitude , max latitude". | String |
 | includeClusterPoints | No | Include information about underlying points for each cluster, be careful if cluster represent a very high number of points. | false &#124; true |
+
+> **Note**
+>
+> When `coordinateField` references a data element or tracked entity attribute of value type
+> *organisation unit*, the organisation unit's own geometry is used, represented by its centroid.
+> In addition to the `EVENT`, `ENROLLMENT` and `TRACKER` keywords, the raw analytics geometry column
+> names `eventgeometry`, `enrollmentgeometry`, `tegeometry` and `ougeometry` are accepted directly
+> (`tegeometry` only for programs with registration). The aliases `pigeometry` (enrollment),
+> `psigeometry` (event) and `teigeometry` (tracked entity) are deprecated, retained only for
+> backwards compatibility, and will be removed in a future release.
 
 ### Event query analytics { #webapi_event_query_analytics } 
 
@@ -1788,6 +1799,7 @@ Table: Query parameters for enrollment query endpoint
 | asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return enrollments which have coordinates. | false &#124; true |
+| coordinateField | No | Field to base geospatial enrollment analytics on. Can be set to `EVENT`, `ENROLLMENT` (default) or `TRACKER`, or to the identifier of a data element or attribute of value type coordinate or organisation unit. For organisation unit value type items, the organisation unit geometry is used (represented by its centroid). The raw geometry column names `eventgeometry`, `enrollmentgeometry`, `tegeometry` and `ougeometry` are also accepted. | `EVENT` &#124; `ENROLLMENT` &#124; `TRACKER` &#124; `ougeometry` &#124; <attribute-id\> &#124; <dataelement-id\> |
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
