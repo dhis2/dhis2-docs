@@ -1062,14 +1062,14 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
 ![Table Example](resources/images/program/Table_Example.png){ width=60% }
 
-1. Install or update the new Maintenance app (Preview)
+1. Install or update the new Metadata Management app
 
-    If your instance does not already have the new version of the maintenance app installed go to the App Management App and search for Maintenance in the App Hub and install the app. If you already have it installed, then you should update the app to the latest version. Updates to this app are continuously released so it is good to make sure that you are using the most recent release.
+    If your instance does not already have the Metadata Management app installed go to the App Management App and search for Metadata Management in the App Hub and install the app. If you already have it installed, then you should update the app to the latest version. Updates to this app are continuously released so it is good to make sure that you are using the most recent release.
 
     ![Note Version 0.63.0 might be superseded by a newer version by the time you read this, update to the latest](resources/images/program/App_Management_Maintenance_App_Preview.png)
 
 
-2. Load the Program Disaggregation section of the Maintenance (Preview) App by selecting Program Disaggregations under the Programs section or browsing to _yourinstanceurl_/apps/maintenance-preview#/programDisaggregations/
+2. Load the Program Disaggregation section of the Metadata Management app by selecting Program Disaggregations under the Programs section or browsing to _yourinstanceurl_/apps/metadata-management#/programDisaggregations/
 
     ![Program Disaggregation screen](resources/images/program/Maintenance_App_PI_Disaggregation.png){ width=100% }
 
