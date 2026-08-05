@@ -1085,6 +1085,9 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
     ![](resources/images/program/Disaggregation_Category.png)
 
+    > [!NOTE]
+    > If you are setting up this configuration directly via the metadata API (for example in a scripted or automated import) rather than through this screen, setting `categoryMappings` on the Program and `categoryMappingIds` on the Program Indicator is enough for the mapping to be used in analytics, such as in the Data Visualizer. However, the Program Indicator's own `categoryCombo` (or `attributeCombo`, for attribute-type mappings) must also be set to a Category Combination that contains the mapped Category. This screen uses that field to work out which mappings to display and let you manage. If it is left as the `default` Category Combination, the mapping still works in analytics but shows as "None" here and cannot be edited through this screen.
+
     Loading this category combination will display the Mapping selection drop down for each of the categories defined, as this is the first time these categories have been selected there are no mappings currently available.
 
 7. Under the Disaggregation categories section you should see both of the categories from the combination added as suggestion. Click **Add category** for both **Gender** and **U5y**
