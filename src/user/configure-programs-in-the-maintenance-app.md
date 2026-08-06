@@ -1087,6 +1087,13 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 
     > [!NOTE]
     > If you are setting up this configuration directly via the metadata API (for example in a scripted or automated import) rather than through this screen, setting `categoryMappings` on the Program and `categoryMappingIds` on the Program Indicator is enough for the mapping to be used in analytics, such as in the Data Visualizer. However, the Program Indicator's own `categoryCombo` (or `attributeCombo`, for attribute-type mappings) must also be set to a Category Combination that contains the mapped Category. This screen uses that field to work out which mappings to display and let you manage. If it is left as the `default` Category Combination, the mapping still works in analytics but shows as "None" here and cannot be edited through this screen.
+    >
+    > **This screen prevents you from creating an invalid or ambiguous configuration, but the metadata API does not.** There is currently no server-side validation when you create or update a Program or Program Indicator via the API — an incomplete or conflicting configuration will save successfully and only fail later, when a query actually runs against it in analytics. In particular:
+    >
+    > - Every Category in the Program Indicator's `categoryCombo`/`attributeCombo` must have a corresponding entry in `categoryMappingIds`. A missing one causes an analytics query error at query time, not at save time.
+    > - A Program's `categoryMappings` can contain more than one mapping for the same Category (for example two different "Gender" mappings, each with its own filter logic). If a Program Indicator's `categoryMappingIds` ends up referencing more than one mapping for the same Category, analytics queries that need that Category will fail with an unhandled server error rather than a clear validation message.
+    >
+    > If you configure this via the API, make sure each Program Indicator's `categoryMappingIds` includes exactly one mapping per Category, covering every Category in its `categoryCombo`/`attributeCombo`, and verify with a real query (for example in Data Visualizer) before relying on it.
 
     Loading this category combination will display the Mapping selection drop down for each of the categories defined, as this is the first time these categories have been selected there are no mappings currently available.
 
