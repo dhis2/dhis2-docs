@@ -1105,7 +1105,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
 ### Create the category mappings
 
 8. In the text field under each Category enter an expression using the Program Data Elements and Attributes that defines the category. The expression uses the same syntax as the Filter section of the Program Indicator creation screen.  It is recommended to open a Program Indicator within the Program you are mapping, use the Filter screen to construct the expression and then copy it into this field. This allows you to use the inbuilt expression validation of the Program Indicator filter builder.
-   [Program Indicator functions and Variable operators](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-242/configuring-the-system/programs.html#program_indicator_functions_variables_operators)
+   [Program Indicator functions and Variable operators](#program_indicator_functions_variables_operators)
 
     ![](resources/images/program/Disaggregation_Mappings_Expanded.png){ width=100% }
     ![](resources/images/program/Program_Indicator_Filter_Expression.png){ .center width=60% }
