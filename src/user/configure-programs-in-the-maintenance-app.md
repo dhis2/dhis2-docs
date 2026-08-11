@@ -1108,7 +1108,7 @@ The Program Indicator Disaggregation mappings, defined at the Program level, pro
    [Program Indicator functions and Variable operators](#program_indicator_functions_variables_operators)
 
     ![](resources/images/program/Disaggregation_Mappings_Expanded.png){ width=100% }
-    ![](resources/images/program/Program_Indicator_Filter_Expression.png){ .center width=60% }
+    ![](resources/images/program/Program_Indicator_Filter_Expression.png){ width=100% }
 
     This example is linking the value selected in the **Gender** data element in the Program to the category option. Since the Option set in this case is a text field the expression is set to match the text ‘Female’. The next example for age shows a different way to define the relationship.
 
