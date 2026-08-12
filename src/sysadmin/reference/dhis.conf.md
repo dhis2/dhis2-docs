@@ -154,7 +154,7 @@ filestore.secret = xxxx
 # LDAP [Optional]
 # ----------------------------------------------------------------------
 
-# LDAP server URL
+# LDAP server URL (default: ldaps://0:1)
 ldap.url = ldaps://300.20.300.20:636
 
 # LDAP manager user distinguished name
@@ -166,7 +166,7 @@ ldap.manager.password = xxxx
 # LDAP entry distinguished name search base
 ldap.search.base = dc=hisp,dc=org
 
-# LDAP entry distinguished name filter
+# LDAP entry distinguished name filter (default: (cn={0}))
 ldap.search.filter = (cn={0})
 
 # ----------------------------------------------------------------------
