@@ -325,11 +325,15 @@ query using the id property of the associated data element groups:
 
     /api/dataElements.json?filter=dataElementGroups.id:eq:qfxEYY9xAl6
 
-To get data elements with a particular attribute value for a metadata 
-attribute, a filter for the attribute ID and the attribute value can be 
-specified using the same collection query syntax:
+To get data elements with a particular value for a metadata attribute,
+use the attribute's ID as the property name in the filter:
 
-    /api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
+    /api/dataElements.json?filter=n2xYlNbsfko:eq:AFP
+
+To get data elements which have any value for a metadata attribute, use
+the `!null` operator with the attribute's ID as the property name:
+
+    /api/dataElements.json?filter=n2xYlNbsfko:!null
 
 Get data elements which have any option set:
 
