@@ -15,6 +15,14 @@ analysis purposes is valid. Each of the data integrity checks that are
 performed by the system will be described, along with general procedures
 that can be performed to resolve these issues.
 
+In the **Data Administration** app, the checks are organized into two
+tabs: **Standard checks** and **Slow checks**. Slow checks can take
+significant time and resources to complete on large databases (for
+example, checks that query the `datavalues` table directly), so they
+must be run individually rather than all at once. On the **Standard
+checks** tab, use **Run all standard checks** to run every standard
+check in one go.
+
 ### Data elements without data set
 
 Each data element must be assigned to a data set. Values for data
@@ -376,15 +384,19 @@ re-process.
 
 2.  Select the parts of the analytics process you want to skip:
 
-      - **Skip generation of resource tables**
-
       - **Skip generation of aggregate data and completeness data**
+
+      - **Skip generation of resource tables**
 
       - **Skip generation of event data**
 
       - **Skip generation of enrollment data**
 
       - **Skip generation of organisation unit ownership data**
+
+      - **Skip generation of tracked entity data** (checked by default)
+
+      - **Skip generation of outlier data** (checked by default)
 
 3.  Select **Number of last years of data to include**.  (If 0 is selected,
 then you will run latest or continuous analytics, as defined in
@@ -427,6 +439,32 @@ In the example above, a data lock exception would be created for "Bo" for the
 "ART monthly summary" dataset for "February 2014".
 
 In order to run this function, no extra authority is needed.
+
+### Deleting a lock exception
+
+1. Open the **Data Administration** app and click **Lock Exception**.
+2. In the list, find the lock exception for the organisation unit, data set
+   and period you want to remove, and click its remove icon.
+3. Click **Yes, remove lock exception** to confirm, or **No, cancel** to
+   keep it.
+
+This removes the lock exception for that single organisation unit only.
+
+### Batch deletion
+
+If the same data set and period combination has lock exceptions across many
+organisation units (for example, a lock exception applied to 100
+organisation units for the same data set and period), you can remove all of
+them in one action instead of one at a time.
+
+1. Open the **Data Administration** app and click **Lock Exception**.
+2. Click **Batch deletion** at the top of the page.
+3. Find the desired data set and period combination in the list, and click
+   its remove icon.
+4. Click **Yes, remove lock exception** to confirm.
+
+This removes the lock exception for that data set and period across *all*
+organisation units it applies to, not just one.
 
 ## Min-Max Value Generation { #data_admin_min_max_value_generation }
 
