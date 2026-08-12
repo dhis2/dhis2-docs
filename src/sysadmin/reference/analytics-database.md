@@ -31,13 +31,13 @@ When a dedicated analytics database is enabled, some analytics features are not 
 
 * **Spatial features**: features which rely on the PostGIS extension of PostgreSQL are not supported. For the Maps app, this means that event layers are currently not supported when using an analytics database.
 * **Outlier detection**: outlier detection analytics are not supported. The analytics tables which support outlier detection cannot be generated in the analytics database, and analytics table generation will fail if it is attempted. Analytics table generation must therefore be run with the **Skip generation of outlier data** option enabled, both when started manually from the Data Administration app and when scheduled through the Scheduler app.
-* **Tracked entity analytics**: analytics for tracked entities continue to use PostgreSQL as the underlying analytics database. These analytics tables are not exported to the analytics database, and queries against them are served by PostgreSQL. No configuration is required, but the PostgreSQL database will still carry the query load for tracked entity analytics.
 * **Subexpressions**: indicators which use [subexpressions](#indicator_subexpressions) are not supported. Support for subexpressions in the analytics database is being added, and is expected in 2.43.
 
 > **Important**
 >
 > The DHIS2 user interface does not currently hide or disable the features listed above when an analytics database is in use. Unsupported features remain visible and selectable, and will typically fail with a generic error message rather than an explanation that the feature is unavailable. Server administrators should therefore make implementers and users aware of these limitations.
 
+Tracked entity analytics continue to use PostgreSQL as the underlying analytics database. These analytics tables are not exported to the analytics database, and queries against them are served by PostgreSQL. No configuration is required, but the PostgreSQL database will still carry the query load for tracked entity analytics.
 
 ## Configuration
 
