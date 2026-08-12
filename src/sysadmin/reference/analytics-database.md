@@ -13,7 +13,7 @@ DHIS2 always uses PostgreSQL as its primary database. Metadata, data entry, trac
 When an analytics database is configured, the analytics tables are moved out of PostgreSQL and into the analytics database:
 
 1. **Analytics table generation** reads the transactional data from PostgreSQL, transforms it, and writes the resulting analytics tables into the analytics database. Some of the queries which build these tables join data in the analytics database with tables which remain in PostgreSQL. The analytics database must therefore be able to connect back to the PostgreSQL server, in addition to DHIS2 being able to connect to both.
-2. **Analytics queries**, such as those made by the Data Visualizer, Maps and Pivot Table apps, and by the analytics Web API endpoints, are executed against the analytics database rather than against PostgreSQL.
+2. **Analytics queries**, such as those made by the Data Visualizer and Maps apps, and by the analytics Web API endpoints, are executed against the analytics database rather than against PostgreSQL.
 
 The effect is to move the read-intensive analytical workload off the PostgreSQL server, allowing it to be dedicated to transactional operations. For large databases, where analytics queries against PostgreSQL become slow due to data volume, this can significantly improve query performance.
 
@@ -27,7 +27,7 @@ Not all analytics tables are moved to the analytics database, and some analytics
 
 ## Limitations { #analytics_database_limitations }
 
-When a dedicated analytics database is enabled, a number of analytics features are not available, because they depend on capabilities which exist only in PostgreSQL.
+When a dedicated analytics database is enabled, some analytics features are not available, because they depend on capabilities which exist only in PostgreSQL.
 
 * **Spatial features**: features which rely on the PostGIS extension of PostgreSQL are not supported. For the Maps app, this means that event layers are currently not supported when using an analytics database.
 * **Outlier detection**: outlier detection analytics are not supported. The analytics tables which support outlier detection cannot be generated in the analytics database, and analytics table generation will fail if it is attempted. Analytics table generation must therefore be run with the **Skip generation of outlier data** option enabled, both when started manually from the Data Administration app and when scheduled through the Scheduler app.
@@ -36,7 +36,7 @@ When a dedicated analytics database is enabled, a number of analytics features a
 
 > **Important**
 >
-> The DHIS2 user interface does not currently hide or disable the features listed below when an analytics database is in use. Unsupported features remain visible and selectable, and will typically fail with a generic error message rather than an explanation that the feature is unavailable. Server administrators should therefore make implementers and users aware of these limitations.
+> The DHIS2 user interface does not currently hide or disable the features listed above when an analytics database is in use. Unsupported features remain visible and selectable, and will typically fail with a generic error message rather than an explanation that the feature is unavailable. Server administrators should therefore make implementers and users aware of these limitations.
 
 
 ## Configuration
