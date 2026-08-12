@@ -31,7 +31,7 @@ When a dedicated analytics database is enabled, some analytics features are not 
 
 * **Spatial features**: features which rely on the PostGIS extension of PostgreSQL are not supported. For the Maps app, this means that event layers are currently not supported when using an analytics database.
 * **Outlier detection**: outlier detection analytics are not supported. The analytics tables which support outlier detection cannot be generated in the analytics database, and analytics table generation will fail if it is attempted. Analytics table generation must therefore be run with the **Skip generation of outlier data** option enabled, both when started manually from the Data Administration app and when scheduled through the Scheduler app.
-* **Subexpressions**: indicators which use [subexpressions](#indicator_subexpressions) are not supported. Support for subexpressions in the analytics database is being added, and is expected in 2.43.
+* **Subexpressions**: indicators which use [subexpressions](#indicator_subexpressions) are not supported. Support for subexpressions in the analytics database is being added, and is expected in a 2.43 patch release.
 
 > **Important**
 >
