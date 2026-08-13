@@ -1222,7 +1222,7 @@ objects:
     | **Data element from the newest event in the current program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>     <br>This source type is populated slightly differently in **Tracker Capture** and **Event Capture** apps:<br>     <br>**Tracker Capture**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.<br>     <br>**Event Capture**: the program rule variable will be populated with the current events data. <br>**NB** Future dates are "newer" than current or past dates. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
     | **Data element in current event** | Program rule variables with this source type will contain the data value from the same event that the user currently has open.<br>     <br>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules. |
     | **Data element from previous event** | Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.<br>     <br>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.<br>     <br>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered. |
-    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. |
+    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. This is the recommended way to pass a value from one program rule to another: unlike a value assigned to a data element or tracked entity attribute, a calculated value is available to the other program rules immediately. |
     | **Tracked entity attribute** | Populates the program rule variable with a specified tracked entity attribute for the current enrollment.<br>     <br>Use this is the source type to create program rules that evaluate data values entered during registration.<br>     <br>This source type is also useful when you create program rules that compare data in events to data entered during registration.<br>     <br>This source type is only used for tracker programs (programs with registration). |
 
 6.  Click **Save**.
@@ -1274,6 +1274,37 @@ objects:
 
         3.  Program rules L - P.
 
+        **Note — one rule can't react to a value another rule just filled
+        in.** When a program rule fills in a data element or tracked entity
+        attribute, the other program rules don't notice that new value
+        right away. They only pick it up the next time the user changes
+        something in the form.
+
+        For example:
+
+          - Rule 1: when *First name* has a value, fill in *Last name*.
+
+          - Rule 2: show a warning when *Last name* is empty.
+
+        Even though Rule 1 just filled in *Last name*, Rule 2 still sees it
+        as empty and shows the warning. Priority doesn't fix this: priority
+        controls the order the rules run in, but a value filled into a
+        field still isn't shared back to the other rules in the same run.
+
+        What to do instead: if one rule needs to react to a value that
+        another rule works out, store that value in a **Calculated value**
+        program rule variable. Calculated values are shared between the
+        rules immediately. Give the rule that fills in the calculated value
+        a lower priority number than the rule that uses it, and base the
+        second rule's condition on the calculated value rather than on the
+        field. You can still also assign the value to the real field so the
+        user sees it.
+
+        Often there's an even simpler option: base the second rule's
+        condition on the original field. In the example above, *Last name*
+        is only ever filled in when *First name* has a value, so Rule 2
+        could simply check *First name* directly.
+
 4.  Click **Enter program rule expression** and create the program rule
     expression with the help of variables, functions and operators.
 
@@ -1290,7 +1321,7 @@ objects:
 
         | Action type | Required settings | Description |
         |---|---|---|
-        | **Assign value** | **Data element to assign value to**<br> <br> **Tracked entity attribute to assign value to**<br>          <br>**Program rule variable to assign value to**<br>         <br>**Expression to evaluate and assign** | Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.<br>         <br>When a field is assigned a value, the user sees the value but the user can't edit it.<br> <br>  NOTE: To assign a value to a tracked entity attribute, the user needs to open the tracked entity profile widget for the rule to trigger.   <br>     <br>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.<br>         <br>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the "Calculated value" program rule variable. |
+        | **Assign value** | **Data element to assign value to**<br> <br> **Tracked entity attribute to assign value to**<br>          <br>**Program rule variable to assign value to**<br>         <br>**Expression to evaluate and assign** | Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.<br>         <br>When a field is assigned a value, the user sees the value but the user can't edit it.<br> <br>  NOTE: To assign a value to a tracked entity attribute, the user needs to open the tracked entity profile widget for the rule to trigger.   <br>     <br>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.<br>         <br>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the "Calculated value" program rule variable. Do this when another program rule needs to react to the result: a value assigned to a normal data element or tracked entity attribute is shown to the user but isn't shared with the other program rules until the user next edits the form, whereas a calculated value is shared straight away. |
         | **Display text** | **Display widget**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to display information that is not an error or a warning, for example feedback to the user. You can also use this action to display important information, for example the patient's allergies, to the user. |
         | **Display key/value pair** | **Display widget**<br>         <br>**Key label**<br>         <br>**Expression to evaluate and display as value** | Used to display information that is not an error or a warning.<br>         <br>Example: calculate number of weeks and days in a pregnancy and display it in the format the clinician is used to see it in. The calculation is based on previous recorded data. |
         | **Error on complete** | **Data element to display error next to**<br>         <br>**Tracked entity attribute to display error next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used whenever you've cross-consistencies in the form that must be strictly adhered to. This action prevents the user from continuing until the error is resolved.<br>         <br>This action differs from the regular **Show error** since the error is not shown until the user tries to actually complete the form.<br>         <br>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error. |
