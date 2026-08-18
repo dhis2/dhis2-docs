@@ -1502,7 +1502,7 @@ Users are able to display custom text before and/or after a section. This is hel
 >
 > Support for JavaScript in custom forms has changed in the new version of the
 > **Data Entry** app. See
-> [Features not supported in the beta version](#aggregate_data_entry_app.unsupported_features)
+> [Support for JavaScript in custom forms](#support-for-javascript-in-custom-forms)
 > for details.
 
 
