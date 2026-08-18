@@ -17,10 +17,8 @@ In the **Metadata Management** app you configure all the metadata objects you ne
 * Data sets and data entry forms
 * Indicators and Predictors
 * Organisation units
-* Programs
 * Option sets
 * Validations
-* Data Approvals
 * Attributes
 * Constants
 * Legends
@@ -31,6 +29,11 @@ In the **Metadata Management** app you configure all the metadata objects you ne
 > **Note**
 >
 > The functions you have access to depend on your user role's access permissions.
+
+The app's sidebar also has **Programs** and **Data approval** sections, which this chapter
+does not cover. For those, see
+[Configure programs in the Maintenance app](#configure_programs_in_maintenance_app) and
+[Data approval overview](#data_approval_overview).
 
 > **Note**
 >
@@ -44,11 +47,11 @@ The Metadata Management app is a complete modernisation of the legacy Maintenanc
 
 ### Navigating metadata objects { #mm_navigating_metadata }
 
-![Metadata management app overview showing the left-hand navigation sidebar and object type cards grouped by section](resources/images/metadata-management/overview.png)
+![Metadata Management app overview: the left-hand sidebar listing every metadata section, and the main area showing object type cards grouped by section](resources/images/metadata-management/sidebar-full.png)
 
 The left-hand sidebar lists all available metadata sections. Click any section to expand it and see the individual object types it contains, as shown below.
 
-![Left-hand sidebar with the Categories and Data elements sections expanded, showing all sub-items and the full list of available sections](resources/images/metadata-management/sidebar-full.png)
+![Left-hand sidebar with the Indicators and Predictors and Programs sections expanded, showing their individual object types](resources/images/metadata-management/overview.png)
 
 When you open the **Metadata Management** app, the left-hand sidebar displays the metadata object categories. Click a category to expand its object types, then click an object type to view its list.
 
@@ -191,7 +194,7 @@ DHIS2 provides functionality for translations of database content. You can trans
 >
 > You can only delete a metadata object if no data is associated with it.
 
-If a metadata object has data attached, deletion isn't just discouraged — DHIS2 blocks it outright, with no built-in way to force it. If you need to stop people from seeing it, use [Sharing settings](#mm_common_actions_sharing) to restrict access instead of trying to delete it; the object and its data will still exist, but users without access won't see them.
+Where deletion is blocked, or where you would rather retire an object than lose its history, use [Sharing settings](#mm_common_actions_sharing) to restrict access instead. The object and its data still exist, but users without access won't see them. Some object types offer a dedicated alternative — an organisation unit can be closed rather than deleted, for example.
 
 > **Warning**
 >
@@ -204,8 +207,6 @@ If a metadata object has data attached, deletion isn't just discouraged — DHIS
 One object type carries an extra risk beyond the general note above:
 
 * **Data sets** — deleting a data set also irrevocably deletes any data entry forms and section forms built for it. Make sure you have a backup of your database before deleting a data set, in case you need to restore it later.
-
-<!-- This data-set-specific warning was previously duplicated, word for word, into the Delete sections for Organisation units, Constants, Option sets, Legends and Predictor groups -- none of which are data sets, and none of which have data entry/section forms. Consolidated here, to its correct home. If Organisation units, Constants, Option sets, Legends or Predictor groups turn out to have their own genuine object-specific deletion caveats, those still need to be verified against the live app rather than assumed -- the previous text was a copy-paste error, not a verified caveat for those object types. -->
 
 ### Clone { #mm_common_actions_clone }
 
@@ -220,11 +221,29 @@ Clone is available for most object types in this chapter. It is **not** availabl
 
 ### Merge { #mm_common_actions_merge }
 
-Merging consolidates two duplicate objects into one: it reassigns all references from a source object to a target object, then deletes the source. Unlike the actions above, merge is only available for a small number of object types, and the navigation path and required authority differ by object type, so each has its own procedure:
+Merging consolidates two duplicate objects into one: it reassigns all references from a source object to a target object, then deletes the source. Unlike the actions above, merge is available for only some object types, and the navigation path and required authority differ by type.
 
-* [Merge category options](#mm_merge_category_options)
-* [Merge indicators](#mm_merge_indicators)
-* [Merge indicator types](#mm_merge_indicator_types)
+The Metadata Management app provides a merge screen for eight object types:
+
+Table: Object types that support merging
+
+| Object type | Procedure |
+| --- | --- |
+| Categories | Same pattern as below |
+| Category combinations | Same pattern as below |
+| Category option combinations | Same pattern as below |
+| Category options | [Merge category options](#mm_merge_category_options) |
+| Data elements | Same pattern as below |
+| Indicators | [Merge indicators](#mm_merge_indicators) |
+| Indicator types | [Merge indicator types](#mm_merge_indicator_types) |
+| Organisation units | Same pattern as below |
+
+All eight work the same way: open the object type's list, choose **Merge**, select the
+source object or objects to be removed and the target object to keep, review the summary
+of changes, then confirm. Each merge screen requires its own authority, and merging is
+irreversible — the sources are deleted and every reference is repointed at the target.
+Three are written out in full below; the rest follow the same pattern from their own
+list view.
 
 ---
 
@@ -234,20 +253,11 @@ Many sections below ask you to assign one type of object to another — category
 
 ![Transfer list component showing the Available and Selected panels, with the "Show only unassigned items" checkbox visible above the Available list](resources/images/metadata-management/transfer-list.png)
 
-<!-- Screenshot is cropped above the arrow buttons and both list bodies -- needs a fuller capture showing the arrows, double-arrows and populated lists before this goes to PR. -->
-
 **Available (left) panel**
 
 * Lists every object of that type that could be assigned, whether or not it's already assigned elsewhere.
 * Some object types add a **Show only unassigned items** checkbox above this list, which narrows the choice to items that do not already belong to another object of the same type. It is most useful when assigning members to groups.
 * Each panel also has its own filter box above the list, so you can search the Available and Selected lists independently.
-
-<!-- VERIFY IN APP: the checkbox was confirmed live on data element groups and predictor
-     groups (31 July 2026). It is believed to appear on the other group-assignment
-     transfers too (category option groups, indicator groups, organisation unit groups,
-     option groups), but that has not been checked one by one -- hence "some object
-     types" rather than a definitive list. Confirm and name them at the next
-     screenshot pass. -->
 
 **Moving items to Selected**
 
@@ -309,7 +319,7 @@ Table: Category objects in the Metadata Management app
 
 When possible, reuse category options. For instance, there might be two categories which share a particular category option (for example "< 1 year of age"). When creating the categories, this category option can be reused. This is important if particular category options (or category option combinations) need to be analysed together.
 
-1. Open the **Metadata Management** app and click **Category** > **Category option**.
+1. Open the **Metadata Management** app and click **Categories** > **Category options**.
 2. Click the **+ New** button to add a new category option, or click the options menu next to an existing one and select **Edit**.
 3. Fill in **Name**, **Short name**, **Code**, **Form name**, **Description**, **Start date** and **End date** — see [Common metadata object fields](#mm_common_metadata_fields). Only **Name** is required.
 4. Select organisation units and assign them.
@@ -324,7 +334,7 @@ When possible, reuse category options. For instance, there might be two categori
 
 When you have created all category options for a particular category, you can create that category.
 
-1. Open the **Metadata Management** app and click **Category** > **Category**.
+1. Open the **Metadata Management** app and click **Categories** > **Categories**.
 2. Click the **+ New** button.
 3. Fill in **Name**, **Short name**, **Code** and **Description** — see [Common metadata object fields](#mm_common_metadata_fields).
 4. Select a **Data dimension type** — **Disaggregation** for a category used to break data elements into components, or **Attribute** to let the category be used to assign a combination of categories to data recorded through a data set.
@@ -345,7 +355,7 @@ In this example, there are two levels of disaggregation that consist of two sepa
 
 In DHIS2, different data elements are disaggregated according to a common set of categories. By combining these different categories into a category combination and assigning these combinations to data elements, you can apply the appropriate disaggregation levels quickly to a large number of data elements.
 
-1. Open the **Metadata Management** app and click **Category** > **Category combination**.
+1. Open the **Metadata Management** app and click **Categories** > **Category combinations**.
 2. Click the **+ New** button.
 3. Fill in **Name** and **Code** — see [Common metadata object fields](#mm_common_metadata_fields).
 4. Select a **Data dimension type** — **Disaggregation** or **Attribute**.
@@ -361,7 +371,7 @@ Consider a system where data is collected by "projects", and projects are modell
 
 Category option groups allow you to classify category options into groups that work together.
 
-1. Open the **Metadata Management** app and click **Category** > **Category option group**.
+1. Open the **Metadata Management** app and click **Categories** > **Category option groups**.
 2. Click the **+ New** button.
 3. Fill in **Name**, **Short name**, **Code** and **Description** — see [Common metadata object fields](#mm_common_metadata_fields).
 4. Select a **Category option group usage** — **Disaggregation** or **Attribute**. This works the same way as Data dimension type; see [Common metadata object fields](#mm_common_metadata_fields).
@@ -372,7 +382,7 @@ Category option groups allow you to classify category options into groups that w
 
 You can group category option groups in category option group sets. The main purpose of the category option group set is to add more dimensionality to your captured data for analysis in for example the **Pivot table** or **Data Visualizer** apps.
 
-1. Open the **Metadata Management** app and click **Category** > **Category option group set**.
+1. Open the **Metadata Management** app and click **Categories** > **Category option group sets**.
 2. Click the **+ New** button.
 3. Fill in the **Name** and **Description** fields — see [Common metadata object fields](#mm_common_metadata_fields).
 4. Select a **Data dimension type**.
@@ -416,7 +426,7 @@ See the [Manage data sets](#mm_manage_data_set) section for more on assigning a 
 
 The system creates the category option combinations automatically, so they do not need to be created. You can assign a code to category option combinations. This makes data exchange between DHIS2 and external systems easier.
 
-1. Open the **Metadata Management** app and click **Category** > **Category option combination**.
+1. Open the **Metadata Management** app and click **Categories** > **Category option combinations**.
 2. In the object list, click the options menu and select **Edit**.
 3. In the **Code** field, type a code.
 4. Click **Save**.
@@ -431,7 +441,7 @@ Merging allows you to consolidate two duplicate category options into one, reass
 
 ![Merge Category options selection](resources/images/metadata-management/catoption-merge-select.png)
 
-1. Open the **Metadata Management** app and click **Category** > **Category option**.
+1. Open the **Metadata Management** app and click **Categories** > **Category options**.
 2. Navigate to **Category options** > **Merge Category options** (or go directly to `#/categoryOptions/merge`).
 3. Search for and select the **source** category option (the one to be removed).
 4. Search for and select the **target** category option (the one to keep).
@@ -444,7 +454,7 @@ Merging allows you to consolidate two duplicate category options into one, reass
 >
 > Merging is irreversible. The source category option will be permanently deleted and all references will be updated to point to the target.
 
-For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). All category objects support these except **Category option combination**, which only supports Edit and Show details — it's generated automatically by the system rather than created directly. Category options are one of only three object types in this chapter that support merging; see [Merge category options](#mm_merge_category_options) above.
+For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). All category objects support these except **Category option combination**, which only supports Edit and Show details — it's generated automatically by the system rather than created directly. Categories, category combinations, category option combinations and category options all support merging; see [Merge](#mm_common_actions_merge).
 
 ---
 
@@ -477,7 +487,7 @@ Table: Data element objects in the Metadata Management app
 
 ![New data element form showing Basic information and Data collection sections](resources/images/metadata-management/new-data-element.png)
 
-1. Open the **Metadata Management** app and click **Data elements** > **Data element**.
+1. Open the **Metadata Management** app and click **Data elements** > **Data elements**.
 2. Click the **+ New** button to add a new data element, or click the options menu next to an existing one and select **Edit**.
 3. In the **Name** field, define the precise name of the data element. Each data element must have a unique name.
 4. In the **Short name** field, define a short name for the data element. Typically, the short name is an abbreviation of the full data element name. This attribute is often used in reports where space is limited.
@@ -584,20 +594,6 @@ Table: Data element objects in the Metadata Management app
     > count of events — stock on hand, staff in post, population. Summing snapshots across
     > periods double-counts them.
 
-    <!-- VERIFY IN APP (13 Aug 2026): the two-axis behaviour in columns 2 and 3 comes from the
-         AggregationType enum in dhis2-core and is not in doubt. The operator *labels* in
-         column 1 are the legacy chapter's wording for the common ones and the enum's own
-         naming for the six org-unit-hierarchy variants (Min/Max sum in org unit hierarchy,
-         First/Last average in org unit hierarchy, Last value in period x2), which were not
-         read off the app's dropdown -- so the exact wording may differ. Confirm at the next
-         screenshot pass.
-
-         The enum also contains LAST_LAST_ORG_UNIT and FIRST_FIRST_ORG_UNIT, which take a
-         "first/last" along the organisation unit axis. That axis has no inherent order the
-         way periods do, so what DHIS2 actually does there has NOT been established. Those
-         two are deliberately omitted rather than guessed. Establish the behaviour from the
-         analytics SQL or a live test before adding rows for them. -->
-
 14. In the **Store zero data values** field, select if you want to save zero values, or if the system should ignore them.
 
     By default, DHIS2 does not store zero values. If you have a data element where a zero value is meaningful, for example if you want to track the number of vaccine doses administered and zero is a valid entry, select this option.
@@ -612,7 +608,7 @@ Table: Data element objects in the Metadata Management app
 
 Data element groups allow you to group related data elements for reporting and analysis purposes.
 
-1. Open the **Metadata Management** app and click **Data elements** > **Data element group**.
+1. Open the **Metadata Management** app and click **Data elements** > **Data element groups**.
 2. Click the **+ New** button.
 3. Fill in the **Name** and (optionally) **Short name** and **Code** fields — see [Common metadata object fields](#mm_common_metadata_fields).
 4. Select data elements and assign them.
@@ -622,7 +618,7 @@ Data element groups allow you to group related data elements for reporting and a
 
 Data element group sets allow you to classify multiple data element groups.
 
-1. Open the **Metadata Management** app and click **Data elements** > **Data element group set**.
+1. Open the **Metadata Management** app and click **Data elements** > **Data element group sets**.
 2. Click the **+ New** button.
 3. Fill in the **Name** and **Description** fields — see [Common metadata object fields](#mm_common_metadata_fields).
 4. If you want to use the data element group set in analytics, select **Data dimension**.
@@ -691,7 +687,7 @@ You need to have data elements and categories before creating data sets and data
 
 ![New data set form showing the section sidebar (Setup, Data, Periods, Validation, Organisation Units, Form, Advanced) and the Configure data elements picker](resources/images/metadata-management/new-data-set.png)
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. Click the **+ New** button.
 3. In the **Name** field, type the precise name of the data set.
 4. In the **Short name** field, type a short name for the data set. The short name must be unique.
@@ -734,7 +730,7 @@ Notifications can be sent to:
 
 You can override the category combination of a data element within a specific data set. This allows you to use a different disaggregation for the same data element in different data sets.
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, click the options menu and select **Edit**.
 3. In the **Data elements** section, click the override option next to the data element whose category combination you want to override.
 4. Select the replacement category combination.
@@ -744,7 +740,7 @@ You can override the category combination of a data element within a specific da
 
 You can mark specific data elements in a data set as compulsory. Users will be prompted before completing the data set if compulsory data elements have not been filled in.
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, click the options menu and select **Edit compulsory data elements**.
 3. Select the data elements you want to mark as compulsory.
 4. Click **Save**.
@@ -753,18 +749,12 @@ You can mark specific data elements in a data set as compulsory. Users will be p
 
 #### Create a section form
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage sections**.
 3. Click **+ New** to add a new section.
 4. Enter a **Name** for the section, and (optionally) a **Code** and a **Description**.
 5. Select the data elements to include in this section.
 6. Click **Save section**.
-
-<!-- FOLLOW-UP (found while fixing DHIS2-20720, not part of that ticket): the real
-     section form also has an indicators transfer, row/column totals checkboxes,
-     an automatic-grouping checkbox, a display mode choice, and before/after
-     content text areas. None of these are documented in this section yet --
-     worth a fuller pass. -->
 
 > **Note**
 >
@@ -772,7 +762,7 @@ You can mark specific data elements in a data set as compulsory. Users will be p
 
 #### Edit a section form
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage sections**.
 3. Click the section you want to edit.
 4. Modify the section as needed.
@@ -782,7 +772,7 @@ You can mark specific data elements in a data set as compulsory. Users will be p
 
 You can disable (grey out) specific cells in a section form to prevent data entry for particular combinations.
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage sections**.
 3. Click **Manage grey fields** for the section you want to modify.
 4. Click on the cells you want to grey out.
@@ -790,19 +780,19 @@ You can disable (grey out) specific cells in a section form to prevent data entr
 
 #### Change section display order in a section form
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage sections**.
 3. Drag and drop the sections to reorder them.
 
 #### Delete a section in a section form
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage sections**.
 3. Click the delete icon next to the section you want to remove.
 
 #### Translate a section in a section form
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage sections**.
 3. Click the translate icon next to the section.
 4. Select a locale and enter a translated name.
@@ -816,7 +806,7 @@ You can disable (grey out) specific cells in a section form to prevent data entr
 
 #### Create a custom form
 
-1. Open the **Metadata Management** app and click **Data set** > **Data set**.
+1. Open the **Metadata Management** app and click **Data sets** > **Data sets**.
 2. In the object list, open the relevant data set and navigate to **Manage form**.
 3. Select **Custom** as the form type.
 4. Use the HTML editor to design your custom form. Data elements can be inserted as input fields.
@@ -873,18 +863,6 @@ Table: Indicator elements
 
 You can use the following functions in an indicator formula:
 
-<!-- This table was rebuilt on 13 Aug 2026 against the authoritative source: the
-     INDICATOR_EXPRESSION_ITEMS map in dhis2-core
-     (dhis-2/dhis-services/dhis-service-core/.../expression/DefaultExpressionService.java)
-     plus COMMON_EXPRESSION_ITEMS in ParserUtils.java, cross-checked against the
-     published master user guide. The previous version of this table listed
-     abs, acos, asin, atan, avg, ceil, cos, count, exp, floor, max, min,
-     percentileCont, round, sin, sqrt, stddev, sum, tan, variance and zcScore --
-     none of which exist as indicator functions in DHIS2. Several real functions
-     (containsItems, is, null, [periodInYear], .aggregationType, .maxDate,
-     .minDate, .periodOffset, .yearToDate) were missing. Do not reintroduce the
-     old list. -->
-
 Table: Indicator functions
 
 | Indicator function | Arguments | Description |
@@ -929,14 +907,6 @@ Alongside these functions you can use:
 > * The `orgUnit.ancestor()`, `orgUnit.dataSet()`, `orgUnit.group()` and `orgUnit.program()` functions belong to **validation rule** and **predictor** expressions.
 > * The `d2:` functions and `V{...}` variables belong to **program indicator** expressions and **program rules**. See [Reference information: Functions, variables and operators to use in program indicator expressions and filters](#program_indicator_functions_variables_operators).
 > * `subExpression()`, `.aggregationType()`, `.periodOffset()`, `.yearToDate()`, `[periodInYear]`, `[yearlyPeriodCount]` and indicator references are accepted **only** in indicator expressions.
-
-<!-- The per-type subsets above are taken from the four registration maps in dhis2-core
-     (BASE / VALIDATION_RULE / PREDICTOR / INDICATOR _EXPRESSION_ITEMS in
-     DefaultExpressionService, plus ExpressionMapBuilder for program indicators),
-     verified identical on branch 2.43 and master on 13 Aug 2026. The shared grammar is
-     the separate org.hisp.dhis.parser:dhis-antlr-expression-parser artifact, pinned at
-     1.0.39 in both branches -- so "in the grammar" is not the same as "allowed here",
-     which is the trap this note exists to head off. -->
 
 The aggregation types you can pass to `.aggregationType()` are:
 
@@ -1004,20 +974,21 @@ Notes on SubExpressions:
 
 -   The 1s and 0s are only summed if the data element's aggregation type is SUM. If it has a different aggregation type and you want them summed, override the aggregation type inside the sub-expression:
 
-```
-subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) ).aggregationType(SUM)
-```
+    ```
+    subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) ).aggregationType(SUM)
+    ```
 
 -   A sub-expression may reference only one data element, but it may reference it more than once. For example:
 
-```
-subExpression( if( #{nYahlae7fe6} > 10 && #{nYahlae7fe6} <= 20, 1, 0 ) )
-```
+    ```
+    subExpression( if( #{nYahlae7fe6} > 10 && #{nYahlae7fe6} <= 20, 1, 0 ) )
+    ```
 
 -   A sub-expression may reference a data element with a category option combination and/or an attribute option combination, but it must be exactly the same reference each time. For example:
-```
-subExpression( if( #{nYahlae7fe6.beec4Dewah8} > 10 && #{nYahlae7fe6.beec4Dewah8} <= 20, 1, 0 ) )
-```
+
+    ```
+    subExpression( if( #{nYahlae7fe6.beec4Dewah8} > 10 && #{nYahlae7fe6.beec4Dewah8} <= 20, 1, 0 ) )
+    ```
 
 -   To evaluate an expression before aggregation that involves program data, or more than one data element, category option combination or attribute option combination, use a [predictor](#mm_manage_predictor) instead and store the result as a separate data element. You can then reference that predicted data element in an indicator or directly in analytics.
 
@@ -1062,7 +1033,7 @@ If data is missing for some of the periods in a year-to-date calculation, the re
 
 Indicator types define the factor by which indicator values are multiplied when shown in reports or exported to analytics. A "Per cent" indicator type, for example, multiplies values by 100.
 
-1. Open the **Metadata Management** app and click **Indicator** > **Indicator type**.
+1. Open the **Metadata Management** app and click **Indicators and Predictors** > **Indicator types**.
 2. Click the **+ New** button.
 3. In the **Name** field, type the name of the indicator type, for example "Per cent".
 4. In the **Factor** field, type the factor. For a percentage indicator, type 100.
@@ -1073,18 +1044,11 @@ Indicator types define the factor by which indicator values are multiplied when 
 
 ![New indicator form showing the section sidebar (Basic information, Calculation details, Legends, Mapping settings, Attributes) and the Numerator and Denominator fields](resources/images/metadata-management/new-indicator.png)
 
-1. Open the **Metadata Management** app and click **Indicator** > **Indicator**.
+1. Open the **Metadata Management** app and click **Indicators and Predictors** > **Indicators**.
 2. Click the **+ New** button, or click the options menu next to an existing indicator and select **Edit**.
 3. In the **Name** field, type the full name of the indicator, for example "Incidence of confirmed malaria cases per 1000 population".
-4. In the **Short name** field, type an abbreviated name, for example "Inc conf. malaria per 1000 pop". The short name must be unique.
+4. In the **Short name** field, type an abbreviated name, for example "Inc conf. malaria per 1000 pop". The short name must be unique and 50 characters or less.
 
-   <!-- VERIFY IN APP: the legacy Maintenance chapter claimed a 25-character limit here.
-        The API schema (BaseNameableObject.getShortName, @PropertyRange max = 50) and the
-        CSV import reference both give 50 characters for indicator short names, so the
-        25-character figure looks like stale legacy text. The specific number has been
-        removed rather than replaced with an unverified one -- confirm what the
-        Metadata Management app's form actually enforces at the next screenshot pass,
-        then state it here. -->
 5. (Optional) In the **Code** field, assign a code.
 6. (Optional) In the **Color** field, assign a color to represent the indicator.
 7. (Optional) In the **Icon** field, assign an icon to illustrate the meaning of the indicator.
@@ -1109,7 +1073,7 @@ Indicator types define the factor by which indicator values are multiplied when 
 
 ### Create or edit an indicator group { #mm_create_indicator_group }
 
-1. Open the **Metadata Management** app and click **Indicator** > **Indicator group**.
+1. Open the **Metadata Management** app and click **Indicators and Predictors** > **Indicator groups**.
 2. Click the **+ New** button.
 3. Type a **Name**.
 4. Select indicators and assign them.
@@ -1117,7 +1081,7 @@ Indicator types define the factor by which indicator values are multiplied when 
 
 ### Create or edit an indicator group set { #mm_create_indicator_group_set }
 
-1. Open the **Metadata Management** app and click **Indicator** > **Indicator group set**.
+1. Open the **Metadata Management** app and click **Indicators and Predictors** > **Indicator group sets**.
 2. Click the **+ New** button.
 3. Fill in the **Name**, **Short name** and **Description** fields — see [Common metadata object fields](#mm_common_metadata_fields).
 4. If you want to use the indicator group set as a dimension in analytics, select **Data dimension**.
@@ -1159,7 +1123,7 @@ Merging consolidates two duplicate indicators into one, reassigning all referenc
 4. Review the summary of changes.
 5. Click **Confirm merge**.
 
-For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). Indicators and indicator types are the other two object types in this chapter that support merging; see [Merge indicators](#mm_merge_indicators) and [Merge indicator types](#mm_merge_indicator_types) above.
+For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). Indicators and indicator types both support merging; see [Merge](#mm_common_actions_merge).
 
 ---
 
@@ -1215,7 +1179,7 @@ Table: Organisation unit objects in the Metadata Management app
 
 ![New organisation unit form showing the Placement in hierarchy tree and Basic information fields](resources/images/metadata-management/new-organisation-unit.png)
 
-1. Open the **Metadata Management** app and click **Organisation unit** > **Organisation unit**. 
+1. Open the **Metadata Management** app and click **Organisation units** > **Organisation units**. 
    On the left side of the screen, a tree displays the existing organisation unit hierarchy. Click on an organisation unit in the tree to select it; it will be highlighted. When you add a new organisation unit, it is created as a child of the currently selected organisation unit.
 
 2. Click the **+ New** button.
@@ -1229,7 +1193,7 @@ Table: Organisation unit objects in the Metadata Management app
 
 Organisation unit groups allow you to classify organisation units for analysis and reporting.
 
-1. Open the **Metadata Management** app and click **Organisation unit** > **Organisation unit group**.
+1. Open the **Metadata Management** app and click **Organisation units** > **Organisation unit groups**.
 2. Click the **+ New** button.
 3. Fill in the **Name**, **Short name** and (optionally) **Code** and **Description** fields — see [Common metadata object fields](#mm_common_metadata_fields).
 4. (Optional) Assign a **Symbol** for use on maps.
@@ -1241,7 +1205,7 @@ Organisation unit groups allow you to classify organisation units for analysis a
 
 Organisation unit group sets allow you to classify multiple organisation unit groups into a single dimension, for example "Type of facility" (comprising groups such as "Hospital", "Health centre" and "Community health post").
 
-1. Open the **Metadata Management** app and click **Organisation unit** > **Organisation unit group set**.
+1. Open the **Metadata Management** app and click **Organisation units** > **Organisation unit group sets**.
 2. Click the **+ New** button.
 3. Fill in the **Name** and **Description** fields — see [Common metadata object fields](#mm_common_metadata_fields).
 4. Select **Compulsory** if you want every organisation unit to be required to be a member of a group in this group set.
@@ -1253,7 +1217,7 @@ Organisation unit group sets allow you to classify multiple organisation unit gr
 
 When you have created your organisation unit hierarchy, you can assign names to each level. For example, in a national hierarchy, Level 1 might be named "National", Level 2 "Province", Level 3 "District" and Level 4 "Facility".
 
-1. Open the **Metadata Management** app and click **Organisation unit** > **Organisation unit level**.
+1. Open the **Metadata Management** app and click **Organisation units** > **Organisation unit levels**.
 2. For each level in the list, type a name.
 3. Click **Save**.
 
@@ -1263,7 +1227,7 @@ You can move organisation units within the hierarchy by changing the parent of a
 
 ![The Move organisation units page, showing the Organisation units to move tree on the left and the Move into tree on the right](resources/images/metadata-management/move-organisation-units.jpg)
 
-1. Open the **Metadata Management** app and click **Organisation unit** > **Hierarchy operations** in the left-hand sidebar.
+1. Open the **Metadata Management** app and click **Organisation units** > **Hierarchy operations** in the left-hand sidebar.
 2. In the left-hand **Organisation units to move** tree, select the organisation unit or units you want to move. Hold **Shift** or **Ctrl** to select more than one.
 
    > **Note**
@@ -1279,25 +1243,14 @@ You can move organisation units within the hierarchy by changing the parent of a
 
 When you close an organisation unit, you cannot register or edit events for this organisation unit in the **Event Capture** and **Tracker Capture** apps.
 
-1. Open the **Metadata Management** app and click **Organisation unit** > **Organisation unit**.
+1. Open the **Metadata Management** app and click **Organisation units** > **Organisation units**.
 2. In the object list, click the options menu and select **Edit**.
 3. Enter a **Closed date**.
 4. Click **Save**.
 
 For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). Organisation unit levels are the exception — they only support assigning names and translating (via the Translate icon directly, since they have no options menu); they don't support Show details, Sharing settings, Delete or Clone.
 
-<!-- The Delete note/warning previously here ("You can only delete a data element..."; "Any data set you delete...") was a copy-paste error -- it described data elements and data sets, not organisation units, and has been removed. The data-set-specific version of that warning now lives at Common actions > Delete. Organisation units may have their own genuine delete caveat (e.g. what happens to data recorded against a deleted org unit) but that hasn't been verified against the live app, so nothing has been invented here to replace it. -->
-
 ---
-
-<!-- ============================================================
-     All 18 sections are ported. The three former stubs at the end of the
-     file were resolved on 13 Aug 2026: Manage push reports now states that
-     push analytics does not exist in this app, Manage external map layers
-     points at the planned move to the Maps app, and Edit multiple object
-     groups at once has been rewritten as "Manage group membership" -- the
-     Metadata group editor screen is not being replaced.
-     ============================================================ -->
 
 ## Manage validation rules { #mm_manage_validation_rule }
 
@@ -1383,14 +1336,6 @@ individual messages for high-priority disease outbreaks, and summaries
 for low-priority routine data validation errors.
 
 #### About validation rule functions
-
-<!-- DHIS2-20720 flagged that contains, containsItems, removeZeros, orgUnit.ancestor,
-     orgUnit.dataSet, orgUnit.group and orgUnit.program don't appear to be
-     selectable from the in-app expression-builder function list, and asked for
-     clarification on whether they're deprecated. These are documented, supported
-     validation rule functions (confirmed against the DHIS2 developer manual), so
-     they're kept in the table below -- but whether the app's function picker
-     surfaces all of them is worth confirming at the next screenshot run-through. -->
 
 You can use the following functions in a validation rule left side
 or right side:
@@ -1585,8 +1530,6 @@ Table: Validation Rule functions
 
 For Show details, Translate, Delete and Clone, see [Common actions](#mm_common_actions). Validation rule groups additionally support Sharing settings (also in [Common actions](#mm_common_actions)).
 
-<!-- The object table above ("What you can do") doesn't list Sharing settings for Validation rule or Validation notification, only for Validation rule group -- kept as-is rather than assumed to be an omission, since it wasn't verified live this pass. Worth confirming at the next screenshot run-through. -->
-
 ## Manage attributes { #mm_manage_attribute }
 
 ### About attributes { #mm_about_attribute }
@@ -1691,8 +1634,6 @@ For Show details, Sharing settings, Translate, Delete and Clone, see [Common act
 
 ## Manage option sets { #mm_manage_option_set }
 
-<!-- Nav path and screenshots verified 31 July 2026 against stable-2-43-0-1. -->
-
 ### About option sets { #mm_about_option_set }
 
 Option sets provide a pre-defined drop-down (enumerated) list for use in
@@ -1780,8 +1721,6 @@ The main purpose of the option group set is to add more dimensionality to your c
 For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions).
 
 ## Manage legends { #mm_manage_legend }
-
-<!-- Nav path and screenshot verified 31 July 2026 against stable-2-43-0-1. -->
 
 ### About legends { #mm_about_legend }
 
@@ -1871,11 +1810,6 @@ For Show details, Sharing settings, Translate, Delete and Clone, see [Common act
   - [Using the GIS app](#using_gis)
 
 ## Manage predictors { #mm_manage_predictor }
-
-<!-- Nav path verified 31 July 2026 against stable-2-43-0-1. The app's generator
-     expression editor has Org unit counts and Reporting rates panels that the legacy
-     text did not mention; the "Organisation unit counts are not yet supported" line
-     has been removed from Create or edit a predictor accordingly (13 Aug 2026). -->
 
 ### About predictors
 
@@ -2279,13 +2213,6 @@ Project A data for "Male under 5", a prediction for Project B data for "Female u
         attributes or indicators, organisation unit counts, constants or
         reporting rates.
 
-        <!-- The legacy Maintenance chapter said "Organisation unit counts are not yet
-             supported." The Metadata Management app's generator expression editor has
-             both an Org unit counts and a Reporting rates panel (observed live on
-             stable-2-43-0-1, 31 July 2026), and the backend has always accepted OUG{}
-             and R{} in predictor expressions (see the Predictors section of the
-             developer manual). The stale limitation has been removed. -->
-
         To use sampled, past period data, you should enclose any items you select in one of the following aggregate functions (note that these function names are case-sensitive):
 
         | Aggregate function | Means |
@@ -2517,7 +2444,7 @@ For Show details, Sharing settings, Translate, Delete and Clone, see [Common act
 
 7.  Click **Save**.
 
-For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). (Sharing settings for predictor groups wasn't previously documented anywhere in this file, even though it's confirmed available live — same set of actions as individual predictors: Edit, Clone, Show details, Run now, Sharing settings, Translate, Delete.)
+For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). Predictor groups support the same actions as individual predictors, including **Run now**.
 
 ## Manage push reports { #mm_manage_push_report }
 
@@ -2527,21 +2454,13 @@ For Show details, Sharing settings, Translate, Delete and Clone, see [Common act
 > configure them in the legacy Maintenance app — see
 > [Manage push reports](#manage_push_report).
 
-<!-- OPEN QUESTION for David before PR: is push analytics being retired, moved to
-     another app, or simply not ported yet? If it is retired, delete this section
-     outright rather than shipping a pointer to the legacy chapter. The wording above
-     is deliberately factual about what was observed rather than making a claim about
-     the roadmap. -->
-
 ## Manage external map layers { #mm_manage_external_maplayer }
 
 > **Note**
 >
-> The functionality to manage external is planned to move to withing the **Maps** app and will not be replicated in the Metadata Management app. External map layers can still be configured in the legacy Maintenance app — see [Manage external map layers](#manage_external_maplayer).
+> Managing external map layers is planned to move into the **Maps** app and will not be replicated in the Metadata Management app. External map layers can still be configured in the legacy Maintenance app — see [Manage external map layers](#manage_external_maplayer).
 
 ## Manage SQL views { #mm_manage_sql_view }
-
-<!-- Nav path and screenshot verified 31 July 2026 against stable-2-43-0-1. The app added a "Cache strategy" field not documented in the legacy text -- worth a follow-up sentence. -->
 
 The SQL View functionality of DHIS2 will store the SQL view definition
 internally, and then materialize the view when requested.
@@ -2633,8 +2552,6 @@ results**.
 
 For Clone, see [Common actions](#mm_common_actions).
 
-<!-- Show details, Sharing settings, Translate and Delete for SQL views aren't documented anywhere in this file. SQL views do have a sharing schema (confirmed via DHIS2-20987, which lists SqlView among the object types affected by the externalAccess removal), so Sharing settings almost certainly applies the same as in Common actions; Show details, Translate and Delete are standard on effectively every other object type in this chapter. None of the four has been verified live for SQL views specifically though, so nothing has been added here beyond Clone -- worth a quick live check at the next screenshot run-through. -->
-
 > **Tip**
 >
 > If you have a view which depends on another view, be careful about how the
@@ -2645,16 +2562,7 @@ For Clone, see [Common actions](#mm_common_actions).
 > on "ViewA". If you name them the other way round, analytics may fail because
 > the dependency will not exist yet when the dependent view is recreated.
 
-<!-- Corrected 13 Aug 2026. This Tip previously stated the opposite ordering
-     ("dropped in alphabetical order, then recreated in reverse alphabetical order")
-     and so directly contradicted the paragraph at the top of this section. Verified
-     against dhis2-core DefaultResourceTableService: createAllSqlViews() sorts with
-     .sorted() (natural/alphabetical) and dropAllSqlViews() sorts with
-     .sorted(reverseOrder()). The paragraph at the top of the section was right. -->
-
 ## Manage analytics table hooks { #mm_manage_analytics_table_hooks }
-
-<!-- Nav path verified 31 July 2026 against stable-2-43-0-1. -->
 
 The Analytics Table Hooks functionality of DHIS2 stores SQL code that
 is run during different phases of the analytics table generation process.
@@ -2670,8 +2578,6 @@ the **+ New** button.
 Press "Save" to store the analytics table hook.
 
 ## Manage Locales { #mm_manage_locale_management }
-
-<!-- Nav path and screenshot verified 31 July 2026 against stable-2-43-0-1. -->
 
 It is possible to create custom locales in DHIS2. In addition to the
 locales available through the system, you might want to add a custom
@@ -2713,7 +2619,7 @@ option groups, indicator groups, organisation unit groups, option groups and pre
 groups, and their corresponding group sets.
 
 To see or change which objects are currently in a group, open the group's list from the
-left-hand sidebar — for example **Data elements** > **Data element group** — and edit the
+left-hand sidebar — for example **Data elements** > **Data element groups** — and edit the
 group you want.
 
 > **Tip**
