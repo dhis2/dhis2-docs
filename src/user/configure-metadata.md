@@ -1,4 +1,8 @@
-# Configure metadata { #maintenance_app } 
+# Configure metadata (Maintenance App) { #maintenance_app } 
+
+> **Note**
+>
+> This page documents the legacy **Maintenance app**. If you are using the **Metadata Management app** see [Configure metadata in the Metadata Management app](#metadata_management_app) available from the [DHIS2 App Hub](https://apps.dhis2.org/app/3c6d0723-904c-4c7a-bbd6-35f3c3aa356b) and compatible from version 41.
 
 ## About the Maintenance app { #about_maintenance_app } 
 
@@ -1493,6 +1497,14 @@ Users are able to display custom text before and/or after a section. This is hel
 ### Manage custom forms { #manage_customform } 
 
 #### Create a custom form
+
+> **Note**
+>
+> Support for JavaScript in custom forms has changed in the new version of the
+> **Data Entry** app. See
+> [Support for JavaScript in custom forms](#support-for-javascript-in-custom-forms)
+> for details.
+
 
 You design custom forms in a built-in WYSIWYG HTML editor. If you select
 **Source**, you can paste HTML code directly in the editing area. For a
