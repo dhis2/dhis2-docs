@@ -509,6 +509,104 @@ Table: Period format
 | Financial Year July | yyyyJuly | 2004July | July 2004-June 2005 |
 | Financial Year Oct | yyyyOct | 2004Oct | Oct 2004-Sep 2005 |
 
+### Period types { #webapi_period_types }
+
+The period types available in DHIS2 can be listed from the following
+resource:
+
+    GET /api/periodTypes
+
+The `fields` query parameter is supported and defaults to all fields.
+
+Table: Period type properties
+
+| Property | Description | Writable |
+|---|---|---|
+| name | Internal, hard-coded name of the period type, e.g. `FinancialFeb`. Identifies the period type. | No |
+| displayName | Translated, human-friendly name of the period type. | No |
+| isoDuration | Duration of the period type in ISO 8601 notation, e.g. `P1Y`. | No |
+| isoFormat | Format used for period identifiers of this type, as listed in the table above, e.g. `yyyyFeb`. | No |
+| frequencyOrder | Approximate number of days covered by the period type, used for ordering period types by frequency. | No |
+| label | Custom label for the period type. `null` when no custom label has been set. | Yes |
+| displayLabel | Label intended for display in client applications. Currently mirrors `label`. | No |
+
+An entry in the response looks like this:
+
+```json
+{
+  "name": "FinancialFeb",
+  "displayName": "Financial Year (February)",
+  "isoDuration": "P1Y",
+  "isoFormat": "yyyyFeb",
+  "frequencyOrder": 365,
+  "label": null,
+  "displayLabel": null
+}
+```
+
+#### Custom period type labels { #webapi_period_type_label }
+
+A period type can be given a custom label, which allows you to rename a
+period type across client applications, for example to present *Financial
+Year (February)* as *Academic Year (February)*. Client applications should
+render `displayLabel`, and fall back to `displayName` when no custom label
+has been set.
+
+Period types are predefined and cannot be created or deleted, so `POST` and
+`DELETE` are not supported. The `label` property is the only writable one;
+all other properties are immutable and are ignored if they are included in
+the request body.
+
+To set a label, send a PUT request containing the `name` of the period type
+to update and the new `label`. The period type is identified by `name` in
+the request body, not by a path parameter:
+
+    PUT /api/periodTypes
+
+```json
+{
+  "name": "FinancialFeb",
+  "label": "Academic Year (February)"
+}
+```
+
+A successful request returns:
+
+```json
+{
+  "status": "OK",
+  "message": "FinancialFeb updated successfully."
+}
+```
+
+The period type will then be returned with both `label` and `displayLabel`
+set:
+
+```json
+{
+  "name": "FinancialFeb",
+  "displayName": "Financial Year (February)",
+  "isoDuration": "P1Y",
+  "isoFormat": "yyyyFeb",
+  "frequencyOrder": 365,
+  "label": "Academic Year (February)",
+  "displayLabel": "Academic Year (February)"
+}
+```
+
+To remove a custom label, set `label` to an empty string:
+
+```json
+{
+  "name": "FinancialFeb",
+  "label": ""
+}
+```
+
+A request with a `name` which does not match an existing period type is
+rejected with `400 Bad Request` and the message *"FinancialFeb does not
+exist."*. Updating a period type label requires the `ALL` authority.
+
 ### Relative Periods { #webapi_date_relative_period_values } 
 
 In some parts of the API, like for the analytics resource, you can
