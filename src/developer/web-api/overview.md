@@ -594,14 +594,23 @@ set:
 }
 ```
 
-To remove a custom label, set `label` to an empty string:
+To remove a custom label, set `label` to `null`:
 
 ```json
 {
   "name": "FinancialFeb",
-  "label": ""
+  "label": null
 }
 ```
+
+An empty string is accepted as well, and also stops the custom label from
+being displayed. Note that it is stored as given, so `label` is then
+returned as `""` rather than `null`, while `displayLabel` is `null` in both
+cases. Sending `null` is therefore the way to restore a period type to its
+original, unlabelled state.
+
+Because the label is taken from the request body as it is given, a request
+which leaves `label` out entirely also clears it.
 
 A request with a `name` which does not match an existing period type is
 rejected with `400 Bad Request` and the message *"FinancialFeb does not
