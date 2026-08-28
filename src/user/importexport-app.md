@@ -302,7 +302,9 @@ Metadata export.
 
 4.  Decide whether to check _Skip sharing and access settings_
 
-5.  Click **Export metadata** which will open a new web-browser window
+5. Under advanced options, the Inclusion strategy can be modified (controls which properties are included)
+
+6.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
 ### Metadata Export with Dependencies { #metadata_export_dependencies }
