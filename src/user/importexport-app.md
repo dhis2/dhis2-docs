@@ -47,27 +47,24 @@ Metadata Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: _JSON_ , _CSV_, or _XML_
+2.  Select a format: _JSON_ , or _CSV_
 
 3.  Select the appropriate settings for:
 
-    - Identifier
-    - Import report mode
-    - Preheat mode
-    - Import strategy
-    - Atomic mode
-    - Merge mode
+    - Identifier (whether to match existing metadata on UID or code)
+    - Import report mode (level of detail reported after import has finished)
+    - Import strategy (how values should be imported)
+    - Atomic mode (controls what happens when some objects in the import are invalid)
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Flush mode
-    - Skip sharing
-    - Skip validation
-    - Async
-    - Inclusive strategy
+    - Flush mode (controls when to flush the internal cache)
+    - Skip sharing (whether to include or ignore sharing on import)
+    - Skip validation (whether to bypass validation checks during import)
+    - Async (whether import is performed asynchronously)
 
-5.  Click on the **Import** button which will upload the file and start the
+5.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -87,7 +84,7 @@ Metadata Import.
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
-identifier called called a "code". When the importer is trying to search
+identifier called a "code". When the importer is trying to search
 for references (like the one above), it will first go to the UID field,
 and then to the code field. This allows you to import from legacy
 systems without having a UID for every meta-data object. I.e. if you are
@@ -110,8 +107,9 @@ Import.
 
 3.  Select the appropriate settings for:
 
-    - Strategy
-    - Preheat cache
+    - Strategy (how values should be imported)
+    - Preheat cache (speed up import by using a temporary cache map)
+    - Skip audit (disabling audit can speed up import)
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
@@ -119,9 +117,9 @@ Import.
     - Data element ID scheme
     - Org unit ID scheme
     - ID scheme
-    - Skip existing check
+    - Skip existing check (can improve performance but is recommended for empty databases or where you are sure data does not exist)
 
-5.  Click on the **Import** button which will upload the file and start the
+5.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -153,12 +151,11 @@ Import.
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Event ID scheme
     - Data element ID scheme
     - Org unit ID scheme
     - ID scheme
 
-3.  Click on the **Import** button which will upload the file and start the
+3.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 ### Earth Engine Import { #ee_import }
@@ -223,13 +220,13 @@ recommended format and can also be used to import associated geometries
 2.  By default the GeoJSON feature id should match the organisation unit id.
 
 3.  Check **Match GeoJSON property to organisation unit scheme** to match by
-    a feature propery. Type the GeoJSON property name and select the
+    a feature property. Type the GeoJSON property name and select the
     Organisation unit ID scheme (_Id_, _Code_ or _Name_).
 
 4.  Check **Import as associated geometry** to import the GeoJSON features
     as associated geometries the organisation units (e.g. catchment areas).
     Select at geometry attribute where the data should be imported. This requires
-    an attribure of type _GeoJSON_ applied to _Organisatiot unit_. This
+    an attribure of type _GeoJSON_ applied to _Organisation unit_. This
     attribute can be defined in the Maintenance app.
 
 5.  Click on the **Start import** button which will upload the file and start the
@@ -261,26 +258,25 @@ clicking on Tracked entity import.
 
 1.  Select the appropriate settings for:
 
-    - Identifier
-    - Import report mode
-    - Preheat mode
-    - Import strategy
-    - Atomic mode
-    - Merge mode
+    - Identifier (whether to match existing metadata on UID or code)
+    - Import report mode (level of detail reported after import has finished)
+    - Preheat mode (controls how system preloads/caches metadata before import)
+    - Import strategy (how values should be imported)
+    - Atomic mode (controls what happens when some objects in the import are invalid)
+    - Merge mode (strategy when merging objects)
 
 1.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Flush mode
-    - Skip sharing
-    - Skip validation
-    - Inclusion strategy
+    - Flush mode (controls when to flush the internal cache)
+    - Skip sharing (whether to include or ignore sharing on import)
+    - Skip validation (whether to bypass validation checks during import)
+    - Inclusion strategy (controls which properties to include)
     - Data element ID scheme
-    - Event ID scheme
     - Org unit ID scheme
     - ID scheme
 
-1.  Click on the **Import** button which will upload the file and start the
+1.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -465,7 +461,6 @@ You can export tracked entities in JSON, or CSV format.
     - Filter by assigned user
     - Include deleted
     - Data element ID scheme
-    - Event ID scheme
     - Organisation unit ID scheme
     - ID scheme
 
