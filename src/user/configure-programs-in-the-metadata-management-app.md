@@ -94,7 +94,7 @@ Table: Program metadata objects in the Metadata Management app
 | Program stage notification | Automated message reminder<br> <br>Set reminders to be automatically sent whenever a program stage is completed, or before or after the due date. | Create, edit and delete |
 | Program disaggregation | Define expressions to map individual data to category options<br> <br>Create disaggregation category mappings for a program and assign to program indicators| Create, edit and delete |
 
-## Configure event programs in the Maintenance app { #mmp_configure_event_program_in_maintenance_app } 
+## Configure event programs in the Metadata Management app { #mmp_configure_event_program_in_mma_app } 
 
 ### About event programs { #mmp_about_event_program } 
 
