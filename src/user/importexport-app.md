@@ -206,46 +206,73 @@ Once the data element and category option combos have been selected, the Preview
 
 ### Organisation Unit Geometry Import { #geometry_import }
 
-Accessed from the sidebar by clicking on _Org Unit geometry import_. Two
-geometry formats are supported: GeoJSON and GML. GeoJSON is the
-recommended format and can also be used to import associated geometries
-(catchment areas).
+Accessed from the sidebar by clicking **Org unit geometry import**.
+
+Two geometry formats are supported: **GeoJSON** and **GML**. GeoJSON is the recommended format, and it is the only format that can be used to import associated geometries (e.g. catchment areas). GML support is limited to version 2.0 and is kept for convenience, it is not planned to be extended or enhanced in future releases.
+
+See also the [Maps configuration guide](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/maps.html) for preparing your source data before import (converting to GeoJSON/GML, required coordinate reference system, simplifying complex geometries) and for troubleshooting common import errors.
 
 #### GeoJSON import { #geojson_import }
 
 ![](resources/images/import_export/geojson_import.png)
 
-1.  Upload a file using the GeoJSON format.
+1. Upload a file in GeoJSON format. By default, the import matches each GeoJSON feature's `id` to the corresponding organisation unit ID.
 
-2.  By default the GeoJSON feature id should match the organisation unit id.
+2. Before importing, it's strongly recommended to check **Dry run** to preview the changes without applying them — this keeps you in control of any changes to your organisation unit geometries.
 
-3.  Check **Match GeoJSON property to organisation unit scheme** to match by
-    a feature property. Type the GeoJSON property name and select the
-    Organisation unit ID scheme (_Id_, _Code_ or _Name_).
+3. Click **Start import** to upload the file and begin the import process.
 
-4.  Check **Import as associated geometry** to import the GeoJSON features
-    as associated geometries the organisation units (e.g. catchment areas).
-    Select at geometry attribute where the data should be imported. This requires
-    an attribure of type _GeoJSON_ applied to _Organisation unit_. This
-    attribute can be defined in the Maintenance app.
+##### Optional settings
 
-5.  Click on the **Start import** button which will upload the file and start the
-    importing process.
+These settings change how the import behaves, and can be combined with the steps above as needed:
 
-> **Tip**
->
-> **It is highly recommend to use the Dry run option** to test before
-> importing data; to make sure you keep control over any changes to
-> your organisation unit geometries.
+- **Match by a different property:** By default, matching is done on the organisation unit ID, using the GeoJSON feature's top-level `id` member (not a property inside `"properties"`). To match on a different property instead, check **Match GeoJSON property to organisation unit scheme**. Enter the GeoJSON property name and select the organisation unit ID scheme to match against (**ID**, **Code**, or **Name**).
+
+- **Import as associated geometry:** To import the GeoJSON features as associated geometries (e.g. catchment areas) rather than the organisation unit's main geometry, check **Import as associated geometry** and select the geometry attribute to import the data into. This requires an attribute of type **GeoJSON** assigned to the Organisation unit type, which can be created in the Metadata management app (formerly the Maintenance app).
+
+##### GeoJSON structure examples
+
+Default matching, where the feature's top-level `id` refers to the organisation unit ID:
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "O6uvpzGd5pu",
+      "geometry": { "type": "Point", "coordinates": [12.34, 56.78] }
+    }
+  ]
+}
+```
+
+Matching by a property (e.g. Code), where the identifier is placed inside `"properties"` instead:
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "code": "OU1_CODE" },
+      "geometry": { "type": "Point", "coordinates": [12.34, 56.78] }
+    }
+  ]
+}
+```
 
 #### GML import { #gml_import }
 
 ![](resources/images/import_export/gml_import.png)
 
-1.  Upload a file using the GML (Geographic Markup Language) format.
+1. Upload a file in **GML 2.0** format. Only GML 2.0 is supported.
 
-2.  Click on the **Import** button which will upload the file and start the
-    importing process.
+2. Before importing, it's strongly recommended to check **Dry run** to preview the changes without applying them — this keeps you in control of any changes to your organisation unit geometries.
+
+3. Click **Start import** to upload the file and begin the import process.
+
+> **Note:** GML support is retained for convenience but is not being actively developed going forward. **GeoJSON is the recommended format** for organisation unit geometry import.
 
 ### Tracked Entities Import { #tei_import }
 
