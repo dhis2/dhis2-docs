@@ -132,7 +132,7 @@ Table: Common metadata object fields
 | Form name | Data elements, category options and similar objects | An alternative name shown as a column header in data entry forms instead of the display Name. Use it when the display Name is too long or phrased differently from what should appear on a data entry form. |
 | Description | All objects | Worth filling in even where marked optional. Explain what the object measures or represents and why, in enough detail that someone unfamiliar with the project could understand it without asking you. |
 | Start date / End date | Category options and other time-bound objects | Restricts when the object is available, for example a category option that only applies during a specific project phase. |
-| Color / Icon | Data elements, indicators, options | Optional visual styling shown in data capture apps (Tracker Capture, Event Capture) to help users tell objects apart at a glance. |
+| Color / Icon | Data elements, indicators, options | Optional visual styling shown in data capture apps (Capture, DHIS2 Android Capture) to help users tell objects apart at a glance. |
 | Data dimension / Data dimension type | Categories, category combinations, category option groups and sets, data element and indicator group sets | Controls whether the object becomes available as a selectable dimension in analytics apps such as Pivot Table and Data Visualizer, alongside built-ins like Period and Organisation unit. Where the object offers a choice such as **Disaggregation** vs **Attribute**, that choice is specific to how the object is used — see the object's own section below. |
 
 ---
@@ -499,7 +499,7 @@ Table: Data element objects in the Metadata Management app
 
    > **Note**
    >
-   > Field masks are currently implemented in the DHIS2 Android Capture app; not in the Capture and Tracker Capture web apps.
+   > Field masks are currently implemented in the DHIS2 Android Capture app; not in the Capture web app.
 
    The following special characters can be used in the mask:
 
@@ -1148,7 +1148,7 @@ The organisation unit hierarchy is built up by parent-child relations. In DHIS2,
 * An organisation unit can only be a member of a single organisation unit group within an organisation unit group set.
 * An organisation unit group can be part of multiple organisation unit group sets.
 * The organisation unit hierarchy is the main vehicle for data aggregation on the geographical dimension.
-* When you close an organisation unit, you cannot register or edit events to this organisation unit in the **Event Capture** and **Tracker Capture** apps.
+* When you close an organisation unit, you cannot register or edit events to this organisation unit in the **Capture** app.
 
 > **Important**
 >
@@ -1241,7 +1241,7 @@ You can move organisation units within the hierarchy by changing the parent of a
 
 ### Close an organisation unit { #mm_close_organisation_unit }
 
-When you close an organisation unit, you cannot register or edit events for this organisation unit in the **Event Capture** and **Tracker Capture** apps.
+When you close an organisation unit, you cannot register or edit events for this organisation unit in the **Capture** app.
 
 1. Open the **Metadata Management** app and click **Organisation units** > **Organisation units**.
 2. In the object list, click the options menu and select **Edit**.
@@ -1687,7 +1687,7 @@ Table: Option set objects in the Metadata Management app
 You can group and classify **options** within an **option set** by using **option groups**.
 This way you can create a subset of options in an option set. The main purpose of this is to be able to filter huge option sets into smaller, related parts.
 
-Options that are grouped can be hidden or shown together in tracker and event capture through program rules.
+Options that are grouped can be hidden or shown together in the **Capture** app through program rules.
 
 > **Note**
 >

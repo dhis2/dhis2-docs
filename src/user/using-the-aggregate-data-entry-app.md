@@ -2,7 +2,7 @@
 
 ## About the Data Entry app { #aggregate_data_entry_app.about }
 
-The Data Entry app is used to enter aggregate data in DHIS2. Aggregate data is collected at a group level and doesn't belong to any one individual. Looking to enter individual-level data? Check out the [Tracker Capture app](#tracker_capture_app).   
+The Data Entry app is used to enter aggregate data in DHIS2. Aggregate data is collected at a group level and doesn't belong to any one individual. Looking to enter individual-level data? Check out the [Capture app](#capture_app).   
 
 ## What makes a data entry form? { #aggregate_data_entry_app.what_makes_a_form }
 

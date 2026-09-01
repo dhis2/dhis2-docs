@@ -571,7 +571,7 @@ Table: Data element objects in the Maintenance app
 
      > **NOTE**
      >
-     > So far this is only implemented in the DHIS2 Android Capture app; not in the Capture and Tracker Capture web apps.
+     > So far this is only implemented in the DHIS2 Android Capture app; not in the Capture web app.
 
    The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
 
@@ -2315,8 +2315,7 @@ hospitals. Therefore, you can create skewed organisation trees in DHIS2.
     aggregation on the geographical dimension.
 
   - When you close an organisation unit, you can't register or edit
-    events to this organisation unit in the **Event Capture** and
-    **Tracker Capture** apps.
+    events to this organisation unit in the **Capture** app.
 
 > **Important**
 >
@@ -2695,8 +2694,7 @@ parent of a selected organisation unit.
 ### Close an organisation unit { #close_organisation_unit } 
 
 When you close an organisation unit, you can't register or edit events
-to this organisation unit in the **Event Capture** and **Tracker
-Capture** apps.
+to this organisation unit in the **Capture** app.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
     **Organisation unit**.
@@ -3584,7 +3582,7 @@ Table: Option set objects in the Maintenance app
 You can group and classify **options** within an **option set** by using **option groups**.
 This way you can create a subset of options in an option set. The main purpose of this is to be able to filter huge option sets into smaller, related parts.
 
-Options that are grouped can be hidden or shown together in tracker and event capture through program rules.
+Options that are grouped can be hidden or shown together in the **Capture** app through program rules.
 
 > **Note**
 >
