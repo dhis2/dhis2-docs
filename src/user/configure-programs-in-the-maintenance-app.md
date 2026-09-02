@@ -32,7 +32,7 @@ Table: Program metadata objects in the Maintenance app
 | Event program | A program to record single event without registration | Create, edit, share, delete, show details and translate |
 | Tracker program | A program to record single or multiple events with registration | Create, edit, share, delete, show details and translate |
 | Program indicator | An expression based on data elements and attributes of tracked entities which you use to calculate values based on a formula. | Create, edit, clone, share, delete, show details and translate |
-| Program rule | Allows you to create and control dynamic behaviour of the user interface in the **Tracker Capture** and **Event Capture** apps. | Create, edit, clone, delete, show details and translate |
+| Program rule | Allows you to create and control dynamic behaviour of the user interface in the **Capture** app. | Create, edit, clone, delete, show details and translate |
 | Program rule variable | Variables you use to create program rule expressions. | Create, edit, clone, delete, show details and translate |
 | Relationship type | Defines the relationship between tracked entity A and tracked entity B, for example mother and child. | Create, edit, clone, share, delete, show details and translate |
 | Tracked entity type | Types of entities which can be tracked through the system. Can be anything from persons to commodities, for example a medicine or a person.<br> <br>A program must have one tracked entity. To enrol a tracked entity instance into a program, the tracked entity of an entity and tracked entity of a program must be the same.<br>      <br>    **Note**<br>     <br>    A program must be specified with only one tracked entity. Only tracked entity as same as the tracked entity of program can enroll into that program. | Create, edit, clone, share, delete, show details and translate |
@@ -150,7 +150,7 @@ attributes and program parameters.
 #### Create data entry forms { #create_data_entry_forms } 
 
 The data entry forms decide how the data elements will be displayed to
-the user in the **Event Capture** app.
+the user in the **Capture** app.
 
 1.  Click **Create data entry form**.
 
@@ -350,15 +350,15 @@ program. A program needs several types of metadata that you create in the **Main
 | Field | Description |
 |---|---|
 | **Name** | The name of the program. |
-| **Color** | Color used for this program in Tracker capture. |
-| **Icon** | Icon used for this program in Tracker capture |
+| **Color** | Color used for this program in the Capture app. |
+| **Icon** | Icon used for this program in the Capture app |
 | **Short name** |  A short name of the program. The short name is used as the default chart or table title in the analytics apps.  |
 | **Description** | A detailed description of the program. |
 | **Version** |  The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program.  |
 | **Tracked Entity Type** |  The tracked entity type you want to use. A program can only have one type of tracked entity.  |
 | **Category combination** |  The category combination you want to use. The default setting is **None**.  |
 | **Open days after category option end date** | If you selected a category combination other than None, you may enter zero or a positive number. This lets you enter data for this program for a category option up to the specified number of days after that category option's end date.    |
-| **Display front page list** |  Select checkbox to display a list of Tracked Entity Instances in Tracker Capture. If not selected, the Search will be displayed.  |
+| **Display front page list** |  Select checkbox to display a list of Tracked Entity Instances in the Capture app. If not selected, the Search will be displayed.  |
 | **First stage appears on registration page** |  Select checkbox to display the first program stage together with the registration (enrollment).  |
 | **Access level** | Choose the access level of the program. |
 | **Completed events expiry days** |  Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked. <br> <br> If you set "Completed events expiry days" to 10", an event is locked ten days after the completion date. After this date you can no longer edit the event.  |
@@ -391,7 +391,7 @@ program. A program needs several types of metadata that you create in the **Main
 
 | Setting | Description |
 |---|---|
-| **Display in list** |                          Displays the value of this attribute in the list of tracked                         entity instances in Tracker capture.                      |
+| **Display in list** |                          Displays the value of this attribute in the list of tracked                         entity instances in the Capture app.                      |
 | **Mandatory** |                          The value of this attribute must be filled into data entry                         form before you can complete the event.                      |
 | **Date in future** |                          Will allow user to select a date in future for date                         attributes.                      |
 | **Mobile render type** |                          Can be used to select different render types for mobile                         devices. Available options vary depending on the attribute's                         value type. For example, for a numerical value you may                         select "Default", "Value",                         "Slider", "Linear scale", and                         "Spinner".                      |
@@ -399,7 +399,7 @@ program. A program needs several types of metadata that you create in the **Main
 
 3. Create registration form
 
-    The registration form defines how the attributes will be displayed to the user in consuming apps, such as Android and Tracker Capture.
+    The registration form defines how the attributes will be displayed to the user in consuming apps, such as the Capture and DHIS2 Android Capture apps.
 
     1. Click **Create registration form**.
 
@@ -452,7 +452,7 @@ by the data capture apps to identify this program stage.
  | **Auto-generate event** |  Clear check box to prevent creating an event of this program  stage automatically when a entity is enrolled in the program.  |
  | **Open data entry form after enrollment** |  Select check box to automatically open the event of this  stage as soon as the entity has enrolled into the program.  |
  | **Report date to use** | If you have selected the  **Open data entry form after enrollment** check  box, also select a **Report date to use**:  **Date of incident** or  **Date of enrollment**.  <br>  This is the date used as report date for an event that has  been opened automatically.  <br>  <br>  If the **Report date to use** is selected as  one of those two ('incident date'/'enrollment date'), in  Dashboard, the 'Report date' of the event will be set as one  of those two.  |
- | **User assignment of events** |  Select check box to enable user assignment of the program  stage.  <br>  <br>  This means that in Tracker capture there will be a list of  users to which the event can be assigned.  |
+ | **User assignment of events** |  Select check box to enable user assignment of the program  stage.  <br>  <br>  This means that in the Capture app there will be a list of  users to which the event can be assigned.  |
  | **Block entry form after completed** |  Select check box to block the entry form after completion of  the event of this stage.  <br>  <br>  This means that the data in the entry form can't be changed  until you reset the status to incomplete.  |
  | **Ask user to complete program when stage is   completed** |  Select check box to trigger a pop-up which asks the user if  he/she wants to create the event of next stage.  |
  | **Ask user to create new event when stage is   complete** |  Select check box to trigger a pop-up which asks the users if  he/she wants to create a new event of this stage when an  event of this stage is completed.  <br>  <br>  This property is active only if you have selected  **Repeatable**.  |
@@ -486,7 +486,7 @@ by the data capture apps to identify this program stage.
 6. Create data entry forms for program stage
 
     The data entry forms decide how the data elements will be displayed to
-    the user in the **Tracker Capture** app.
+    the user in the **Capture** app.
 
    1.  Click **Create data entry form**.
 
@@ -1143,12 +1143,11 @@ By adding the ID of a Data Element in the **Data element for aggregate data expo
 ### About program rules { #about_program_rules } 
 
 Program rules allow you to create and control dynamic behaviour of the
-user interface in the **Tracker Capture** and **Event Capture** apps.
+user interface in the **Capture** app.
 During data entry, the program rules expressions are evaluated each time
 the user interface is displayed, and each time a data element is
 changed. Most types of actions will take effect immediately when the
-user enters values in the **Tracker Capture** and **Event Capture**
-apps.
+user enters values in the **Capture** app.
 
 
 
@@ -1182,7 +1181,7 @@ objects:
 
     3.  Define the program rule actions.
 
-3.  In the **Tracker Capture** or **Event Capture** apps, verify that
+3.  In the **Capture** app, verify that
     the program rule behaves as expected.
 
 ### Create or edit a program rule variable { #create_program_rule_variable } 
@@ -1219,7 +1218,7 @@ objects:
     | Source type | Description |
     |---|---|
     | **Data element from the newest event for a program stage** | This source type works the same way as **Data element from the newest event in the current program**, except that it only evaluates values from one program stage.<br>     <br>This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
-    | **Data element from the newest event in the current program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>     <br>This source type is populated slightly differently in **Tracker Capture** and **Event Capture** apps:<br>     <br>**Tracker Capture**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.<br>     <br>**Event Capture**: the program rule variable will be populated with the current events data. <br>**NB** Future dates are "newer" than current or past dates. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
+    | **Data element from the newest event in the current program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>     <br>This source type is populated slightly differently for tracker programs and event programs:<br>     <br>**Tracker programs**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.<br>     <br>**Event programs**: the program rule variable will be populated with the current events data. <br>**NB** Future dates are "newer" than current or past dates. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
     | **Data element in current event** | Program rule variables with this source type will contain the data value from the same event that the user currently has open.<br>     <br>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules. |
     | **Data element from previous event** | Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.<br>     <br>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.<br>     <br>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered. |
     | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. |
@@ -1341,8 +1340,7 @@ previous recorded
 ![](resources/images/maintenance/pg_rule_ex/keyvaluepair_result.png)
 
 This example shows how to configure a program rule to display text in
-the Feedback widget in the **Tracker Capture**
-    app.
+the Feedback widget in the **Capture** app.
 
 1.  ![](resources/images/maintenance/pg_rule_ex/displaytext_pgrule_variable.png)
 
@@ -1355,7 +1353,7 @@ the Feedback widget in the **Tracker Capture**
 ![](resources/images/maintenance/pg_rule_ex/displaytext_result.png)
 
 This example shows how to configure a program rule to always display
-certain data in the Feedback widget in the **Tracker Capture** app. This
+certain data in the Feedback widget in the **Capture** app. This
 is useful when you want to make sure that vital data, for example
 medicine allergies, is always
     visible.
@@ -1737,7 +1735,7 @@ For more information about configuration and the meaning of 'From constraint' an
 
 8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
-9.  Select a 'From constraint'. This limits what kind of entities can be included in the relationship. [Relationship model](#relationship_model_relationship_type). After selecting a 'From constraint', you have the option to choose which attributes or data elements should be shown in the relationship widget in Tracker Capture and Capture for the "From constraint". The list will vary based on the constraint:
+9.  Select a 'From constraint'. This limits what kind of entities can be included in the relationship. [Relationship model](#relationship_model_relationship_type). After selecting a 'From constraint', you have the option to choose which attributes or data elements should be shown in the relationship widget in the Capture app for the "From constraint". The list will vary based on the constraint:
     * When selecting “Tracked Entity Instance”, then a Tracked Entity Type only, choose between the configured Tracked Entity Type Attributes
     * When selecting “Tracked Entity Instance”, then a Tracked Entity Type and a Program, choose between the attributes that have been configured for both the Tracked Entity Type and for the Program
     * When selecting “Enrollment in program”, choose between the attributes that have been configured for the Program
@@ -1781,7 +1779,7 @@ programs.
 6.  (Optional) Type a **Description**.
 
 7. (Optional) In the **Field mask** field, you may type a template that's used to provide
-   hints for correct formatting of the attribute. **NOTE: So far only implemented in the DHIS2 Android Capture app, not in the Capture and Tracker Capture web apps.**
+   hints for correct formatting of the attribute. **NOTE: So far only implemented in the DHIS2 Android Capture app, not in the Capture web app.**
    The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
 
    | Character     |    Match       |
