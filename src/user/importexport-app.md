@@ -47,27 +47,24 @@ Metadata Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: _JSON_ , _CSV_, or _XML_
+2.  Select a format: _JSON_ , or _CSV_
 
 3.  Select the appropriate settings for:
 
-    - Identifier
-    - Import report mode
-    - Preheat mode
-    - Import strategy
-    - Atomic mode
-    - Merge mode
+    - Identifier (whether to match existing metadata on UID or code)
+    - Import report mode (level of detail reported after import has finished)
+    - Import strategy (how values should be imported)
+    - Atomic mode (controls what happens when some objects in the import are invalid)
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Flush mode
-    - Skip sharing
-    - Skip validation
-    - Async
-    - Inclusive strategy
+    - Flush mode (controls when to flush the internal cache)
+    - Skip sharing (whether to include or ignore sharing on import)
+    - Skip validation (whether to bypass validation checks during import)
+    - Async (whether import is performed asynchronously)
 
-5.  Click on the **Import** button which will upload the file and start the
+5.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -87,7 +84,7 @@ Metadata Import.
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
-identifier called called a "code". When the importer is trying to search
+identifier called a "code". When the importer is trying to search
 for references (like the one above), it will first go to the UID field,
 and then to the code field. This allows you to import from legacy
 systems without having a UID for every meta-data object. I.e. if you are
@@ -110,8 +107,9 @@ Import.
 
 3.  Select the appropriate settings for:
 
-    - Strategy
-    - Preheat cache
+    - Strategy (how values should be imported)
+    - Preheat cache (speed up import by using a temporary cache map)
+    - Skip audit (disabling audit can speed up import)
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
@@ -119,9 +117,9 @@ Import.
     - Data element ID scheme
     - Org unit ID scheme
     - ID scheme
-    - Skip existing check
+    - Skip existing check (can improve performance but is recommended for empty databases or where you are sure data does not exist)
 
-5.  Click on the **Import** button which will upload the file and start the
+5.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -153,12 +151,11 @@ Import.
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Event ID scheme
     - Data element ID scheme
     - Org unit ID scheme
     - ID scheme
 
-3.  Click on the **Import** button which will upload the file and start the
+3.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 ### Earth Engine Import { #ee_import }
@@ -209,46 +206,73 @@ Once the data element and category option combos have been selected, the Preview
 
 ### Organisation Unit Geometry Import { #geometry_import }
 
-Accessed from the sidebar by clicking on _Org Unit geometry import_. Two
-geometry formats are supported: GeoJSON and GML. GeoJSON is the
-recommended format and can also be used to import associated geometries
-(catchment areas).
+Accessed from the sidebar by clicking **Org unit geometry import**.
+
+Two geometry formats are supported: **GeoJSON** and **GML**. GeoJSON is the recommended format, and it is the only format that can be used to import associated geometries (e.g. catchment areas). GML support is limited to version 2.0 and is kept for convenience, it is not planned to be extended or enhanced in future releases.
+
+See also the [Maps configuration guide](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/maps.html) for preparing your source data before import (converting to GeoJSON/GML, required coordinate reference system, simplifying complex geometries) and for troubleshooting common import errors.
 
 #### GeoJSON import { #geojson_import }
 
 ![](resources/images/import_export/geojson_import.png)
 
-1.  Upload a file using the GeoJSON format.
+1. Upload a file in GeoJSON format. By default, the import matches each GeoJSON feature's `id` to the corresponding organisation unit ID.
 
-2.  By default the GeoJSON feature id should match the organisation unit id.
+2. Before importing, it's strongly recommended to check **Dry run** to preview the changes without applying them — this keeps you in control of any changes to your organisation unit geometries.
 
-3.  Check **Match GeoJSON property to organisation unit scheme** to match by
-    a feature propery. Type the GeoJSON property name and select the
-    Organisation unit ID scheme (_Id_, _Code_ or _Name_).
+3. Click **Start import** to upload the file and begin the import process.
 
-4.  Check **Import as associated geometry** to import the GeoJSON features
-    as associated geometries the organisation units (e.g. catchment areas).
-    Select at geometry attribute where the data should be imported. This requires
-    an attribure of type _GeoJSON_ applied to _Organisatiot unit_. This
-    attribute can be defined in the Maintenance app.
+##### Optional settings
 
-5.  Click on the **Start import** button which will upload the file and start the
-    importing process.
+These settings change how the import behaves, and can be combined with the steps above as needed:
 
-> **Tip**
->
-> **It is highly recommend to use the Dry run option** to test before
-> importing data; to make sure you keep control over any changes to
-> your organisation unit geometries.
+- **Match by a different property:** By default, matching is done on the organisation unit ID, using the GeoJSON feature's top-level `id` member (not a property inside `"properties"`). To match on a different property instead, check **Match GeoJSON property to organisation unit scheme**. Enter the GeoJSON property name and select the organisation unit ID scheme to match against (**ID**, **Code**, or **Name**).
+
+- **Import as associated geometry:** To import the GeoJSON features as associated geometries (e.g. catchment areas) rather than the organisation unit's main geometry, check **Import as associated geometry** and select the geometry attribute to import the data into. This requires an attribute of type **GeoJSON** assigned to the Organisation unit type, which can be created in the Metadata management app (formerly the Maintenance app).
+
+##### GeoJSON structure examples
+
+Default matching, where the feature's top-level `id` refers to the organisation unit ID:
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "O6uvpzGd5pu",
+      "geometry": { "type": "Point", "coordinates": [12.34, 56.78] }
+    }
+  ]
+}
+```
+
+Matching by a property (e.g. Code), where the identifier is placed inside `"properties"` instead:
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "code": "OU1_CODE" },
+      "geometry": { "type": "Point", "coordinates": [12.34, 56.78] }
+    }
+  ]
+}
+```
 
 #### GML import { #gml_import }
 
 ![](resources/images/import_export/gml_import.png)
 
-1.  Upload a file using the GML (Geographic Markup Language) format.
+1. Upload a file in **GML 2.0** format. Only GML 2.0 is supported.
 
-2.  Click on the **Import** button which will upload the file and start the
-    importing process.
+2. Before importing, it's strongly recommended to check **Dry run** to preview the changes without applying them — this keeps you in control of any changes to your organisation unit geometries.
+
+3. Click **Start import** to upload the file and begin the import process.
+
+> **Note:** GML support is retained for convenience but is not being actively developed going forward. **GeoJSON is the recommended format** for organisation unit geometry import.
 
 ### Tracked Entities Import { #tei_import }
 
@@ -261,26 +285,25 @@ clicking on Tracked entity import.
 
 1.  Select the appropriate settings for:
 
-    - Identifier
-    - Import report mode
-    - Preheat mode
-    - Import strategy
-    - Atomic mode
-    - Merge mode
+    - Identifier (whether to match existing metadata on UID or code)
+    - Import report mode (level of detail reported after import has finished)
+    - Preheat mode (controls how system preloads/caches metadata before import)
+    - Import strategy (how values should be imported)
+    - Atomic mode (controls what happens when some objects in the import are invalid)
+    - Merge mode (strategy when merging objects)
 
 1.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Flush mode
-    - Skip sharing
-    - Skip validation
-    - Inclusion strategy
+    - Flush mode (controls when to flush the internal cache)
+    - Skip sharing (whether to include or ignore sharing on import)
+    - Skip validation (whether to bypass validation checks during import)
+    - Inclusion strategy (controls which properties to include)
     - Data element ID scheme
-    - Event ID scheme
     - Org unit ID scheme
     - ID scheme
 
-1.  Click on the **Import** button which will upload the file and start the
+1.  Click on the **Start import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -306,7 +329,9 @@ Metadata export.
 
 4.  Decide whether to check _Skip sharing and access settings_
 
-5.  Click **Export metadata** which will open a new web-browser window
+5. Under advanced options, the Inclusion strategy can be modified (controls which properties are included)
+
+6.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
 ### Metadata Export with Dependencies { #metadata_export_dependencies }
@@ -465,7 +490,6 @@ You can export tracked entities in JSON, or CSV format.
     - Filter by assigned user
     - Include deleted
     - Data element ID scheme
-    - Event ID scheme
     - Organisation unit ID scheme
     - ID scheme
 
