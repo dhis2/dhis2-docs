@@ -32,7 +32,7 @@ In the **Metadata Management** app you configure all the metadata objects you ne
 
 The app's sidebar also has **Programs** and **Data approval** sections, which this chapter
 does not cover. For those, see
-[Configure programs in the Maintenance app](#configure_programs_in_maintenance_app) and
+[Configure programs (Metadata Management app)](#mmp_configure_programs) and
 [Data approval overview](#data_approval_overview).
 
 > **Note**
