@@ -1,6 +1,6 @@
 # Reporting functionality in the Beta Reports app { #using_the_beta_reports_app } 
 
-A new Reports app (Beta) is introduced in release 2.32 and serves as an optional replacement of the original [Reports app](#using_reporting), offering a more intuitive and user-friendly interface. Unlike the previous Reports app, however, it does not support Data Approvals.
+A new Reports app (Beta) is introduced in release 2.32 and serves as an optional replacement of the original [Reports app](#using_the_reports_app), offering a more intuitive and user-friendly interface. Unlike the previous Reports app, however, it does not support Data Approvals.
 
 ## Using standard reports { #standard_reports_in_the_beta_reports_app } 
 
