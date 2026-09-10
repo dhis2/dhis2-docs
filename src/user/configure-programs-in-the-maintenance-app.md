@@ -1,5 +1,9 @@
 # Configure programs in the Maintenance app { #configure_programs_in_maintenance_app } 
 
+> **Note**
+>
+> This page documents the legacy **Maintenance app**. If you are using the **Metadata Management app** see [Configure programs (Metadata Management app)](#mmp_configure_programs), available from the [DHIS2 App Hub](https://apps.dhis2.org/app/3c6d0723-904c-4c7a-bbd6-35f3c3aa356b) and compatible from version 41. The reference material on this page for program indicator expressions, program rule expressions, tracked entity types, tracked entity attributes and relationship types remains accurate for the Metadata Management app — only the program-creation and program-stage screens themselves changed.
+
 ## About programs { #about_program_maintenance_app } 
 
 Traditionally, public health information systems have been reporting
