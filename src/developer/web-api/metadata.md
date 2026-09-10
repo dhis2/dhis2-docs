@@ -980,6 +980,7 @@ Table: Export parameters
 | locale | <locale\> | Change from user locale, to your own custom locale. |
 | defaults | INCLUDE/EXCLUDE | Should auto-generated category object be included or not in the payload. If you are moving metadata between 2 non-synced instances, it might make sense to set this to EXCLUDE to ease the handling of these generated objects. |
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| skipCreatedAndLastUpdated | false/true | Enabling this will strip the *created*, *lastUpdated*, *createdBy* and *lastUpdatedBy* properties from the exported objects. These are stripped at every level of the exported object graph, including from embedded objects such as the program stage data elements of a program stage. This takes precedence over the `fields` parameter, so a property named here is omitted even if `fields` asks for it. |
 | inclusionStrategy | NON_NULL, ALWAYS, NON_EMPTY | *NON_NULL* includes properties which are not null, *ALWAYS* includes all properties, *NON_EMPTY* includes non empty properties (will not include strings of 0 length or empty collections) |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
@@ -1005,6 +1006,13 @@ Export id and displayName for all data elements, ordered by displayName:
 Export data elements and indicators where name starts with "ANC":
 
     /api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
+
+Export all metadata without the *created*, *lastUpdated*, *createdBy* and
+*lastUpdatedBy* properties. This is useful when comparing metadata between
+instances, as these properties differ between instances even when the metadata
+is otherwise identical:
+
+    /api/metadata?skipCreatedAndLastUpdated=true
 
 ### Metadata export with dependencies { #webapi_dataset_program_export_dependencies } 
 
@@ -1035,6 +1043,7 @@ Table: Export parameters
 | Name | Options | Description |
 |---|---|---|
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| skipCreatedAndLastUpdated | false/true | Enabling this will strip the *created*, *lastUpdated*, *createdBy* and *lastUpdatedBy* properties from the exported objects. These are stripped at every level of the exported object graph, including from embedded objects such as the program stage data elements of a program stage. |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
 ## Metadata import { #webapi_metadata_import } 
