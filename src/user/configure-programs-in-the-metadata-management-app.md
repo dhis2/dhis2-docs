@@ -33,7 +33,7 @@ Two related object types are **not** under the Programs section. They live under
 
 The way programs are created and edited changed more fundamentally than most other object types covered in [Configure metadata (Metadata Management app)](#metadata_management_app). The underlying program model (event vs. tracker programs, program stages, tracked entity types, program rules) is unchanged. The editing experience, however, is not a like-for-like port of the Maintenance app's screens. The main differences:
 
-Table: Programs — Maintenance app vs. Metadata Management app
+Table: Programs, Maintenance app vs. Metadata Management app
 
 | | Maintenance app | Metadata Management app |
 |---|---|---|
@@ -45,7 +45,7 @@ Table: Programs — Maintenance app vs. Metadata Management app
 | Program stages | A table you can only populate once the program itself has been saved (wizard step 4 shows "Save"/"Cancel" until the program exists). | A **Program Stages** section listing existing stages, with an **Add a program stage** action that opens a dedicated stage editor (its own left-hand section list: Basic information, Data entry options, Creation and scheduling, Data, Program stage form, Customization). The app explicitly warns that saving a stage does not save other changes to the program. Stage edits and program edits are separate save actions. |
 | Program rules / program rule variables | A 3-step wizard (program rule details → expression → actions) reached from the **PROGRAM** top tab. | A 3-section scrollable page (Basic information, Expression, Actions) reached from **Programs → Program rules**. Same fields, same wizard-to-scroll pattern change as programs themselves. |
 | Program disaggregations | Documented in this chapter as ["Setting up new program disaggregation mappings"](#mmp_program_disaggregation_mapping). Reached indirectly. | A first-class **Program disaggregations** page under the Programs section, listing programs that already have a mapping (with **Edit**/**Delete** actions) and a **Select a Program** picker to add one. |
-| Program indicators, program rule expression/filter reference (functions, variables, operators) | Documented in this chapter, under **INDICATOR** in the Maintenance app. | Unchanged: still under **Indicators and Predictors**, not Programs, in both apps. The expression language itself (functions, variables, operators) has not changed — see the reference tables under [Program indicators](#mmp_program_indicators) below. |
+| Program indicators, program rule expression/filter reference (functions, variables, operators) | Documented in this chapter, under **INDICATOR** in the Maintenance app. | Unchanged: still under **Indicators and Predictors**, not Programs, in both apps. The expression language itself (functions, variables, operators) has not changed. See the reference tables under [Program indicators](#mmp_program_indicators) below. |
 
 None of this changes what a program *is* - a program still has the same settings, the same program stage model, and the same rule engine. What changed is where each setting lives on the screen and whether you reach it through a wizard or a scrolling page.
 
@@ -143,8 +143,8 @@ attributes and program parameters.
 5. Fill in **Program Details**.
 6. Fill in **Program Settings**.
 7. Assign data elements under **Data**.
-8. Choose a form type under **Form**.
-9. Click **Save** (notifications and full sharing options only become available once the program has been saved at least once).
+8. Click **Save** (notifications, full sharing options, and the **Section form** / **Custom form** types under **Form** only become available once the program has been saved at least once).
+9. Choose a form type under **Form**, if you want something other than the default **Basic form**.
 10. Add notifications, if needed.
 11. Set organisation unit and role access under **Access and Sharing**.
 12. Override labels under **Customization**, if needed.
@@ -154,57 +154,59 @@ attributes and program parameters.
 
 ### Program Details { #mmp_single_event_program_details }
 
-![New program — Program Details section](resources/images/metadata-management/mma-new-program-details.jpg)
+![New program, Program Details section](resources/images/metadata-management/mma-new-program-details.jpg)
 
 Set up the basic information for the program:
 
-* **Name** and **Short name** (required) — see [Common metadata object fields](#mm_common_metadata_fields).
-* **Code**, **Description**, **Visual configuration** (color and icon) — as described in [Common metadata object fields](#mm_common_metadata_fields).
-* **Version** — a manually incremented number. Click **New version** to increment it. This is informational only and is not used to enforce compatibility.
-* **Location type** — **Point**, **Polygon/Area**, or **Do not collect location data**, for the event's location. In the Maintenance app, this field was called **Feature type**.
-* **Event category combination** — assign a category combination to disaggregate this program's events. The default is **None**. In the Maintenance app, this field was called **Category combination**.
+* **Name** and **Short name** (required). See [Common metadata object fields](#mm_common_metadata_fields).
+* **Code**, **Description**, **Visual configuration** (color and icon). As described in [Common metadata object fields](#mm_common_metadata_fields).
+* **Version**. A manually incremented number. Click **New version** to increment it. This is informational only and is not used to enforce compatibility.
+* **Location type**. **Point**, **Polygon/Area**, or **Do not collect location data**, for the event's location. In the Maintenance app, this field was called **Feature type**.
+* **Event category combination**. Assign a category combination to disaggregate this program's events. The default is **None**. In the Maintenance app, this field was called **Category combination**.
 
-![New program — Program Details section, with an event category combination selected and the expiry and lock checkboxes expanded](resources/images/metadata-management/mma-single-event-program-details-expiry.jpg)
+![New program, Program Details section, with an event category combination selected and the expiry and lock checkboxes expanded](resources/images/metadata-management/mma-single-event-program-details-expiry.jpg)
 
-Once you assign an event category combination, two checkboxes below it let you close data entry and lock events on a schedule. A third checkbox appears only after you pick a category combination other than **None**:
+The following two checkboxes are always available, letting you close data entry and lock events on a schedule. A third checkbox appears only after you pick an event category combination other than **None**:
 
-* **Close data entry a number of days after a period ends** — reveals a **Number of days** field and an **Expiry period type** field (for example **Daily** or **Monthly**). In the Maintenance app, these were the **Expiry period type** and **Expiry days** fields.
-* **Lock events a number of days after completion** — reveals a **Number of days** field. Once that many days pass after an event is completed, you can no longer edit it. In the Maintenance app, this was **Completed events expiry days**.
-* **Close data entry a number of days after end date of *[category combination name]*** — named after the event category combination you picked, for example **Close data entry a number of days after end date of Implementing Partner**. Reveals a **Number of days** field. In the Maintenance app, this was **Open days after category option end date**.
+* **Close data entry a number of days after a period ends**. Reveals a **Number of days** field and an **Expiry period type** field (for example **Daily** or **Monthly**). In the Maintenance app, these were the **Expiry period type** and **Expiry days** fields.
+* **Lock events a number of days after completion**. Reveals a **Number of days** field. Once that many days pass after an event is completed, you can no longer edit it. In the Maintenance app, this was **Completed events expiry days**.
+* **Close data entry a number of days after end date of *[category combination name]***. Named after the event category combination you picked, for example **Close data entry a number of days after end date of Implementing Partner**. Reveals a **Number of days** field. In the Maintenance app, this was **Open days after category option end date**.
+
+Once an event falls outside one of these windows, it can no longer be edited. Only a user with the **Edit expired data** authority can still change it.
 
 ### Program Settings { #mmp_single_event_program_settings }
 
-![New program — Program Settings section](resources/images/metadata-management/mma-program-settings.jpg)
+![New program, Program Settings section](resources/images/metadata-management/mma-program-settings.jpg)
 
 Configure how data is collected for events in this program:
 
-* **Allow events to be assigned to users** — lets a user role assign individual events to a specific user.
-* **Block data entry after completion** — once an event is marked complete, its values can no longer be edited.
-* **Generate offline event IDs** — generates event identifiers locally when working offline, instead of requesting them from the server.
-* **Validation strategy** — choose whether validation rules run **On update and insert** or **On complete**.
+* **Allow events to be assigned to users**. Lets a user role assign individual events to a specific user.
+* **Block data entry after completion**. Once an event is marked complete, its values can no longer be edited.
+* **Generate offline event IDs**. Generates event identifiers locally when working offline, instead of requesting them from the server.
+* **Validation strategy**. Choose whether validation rules run **On update and insert** or **On complete**.
 
 ### Data { #mmp_single_event_program_data }
 
-![New program — Data section, showing the data element transfer list and the Configure data items table](resources/images/metadata-management/mma-program-data.jpg)
+![New program, Data section, showing the data element transfer list and the Configure data items table](resources/images/metadata-management/mma-program-data.jpg)
 
 1. Use the **Available data elements** / **Selected data elements** transfer list to choose which data elements this program collects. See [Using a transfer list component](#mm_transfer_list_component).
 2. In the **Configure data items** table below the transfer list, set, per data element, the options described below.
-3. Click **Add new** above the available-elements list to create a new data element without leaving the program editor.
+3. Click **Add new** in the footer of the available data elements list, next to **Refresh list**, to create a new data element without leaving the program editor.
 
 Data elements can be collected in different ways, with different options:
 
-![New program — Configure data items table, with data elements of different value types](resources/images/metadata-management/mma-program-data-configure-items.jpg)
+![New program, Configure data items table, with data elements of different value types](resources/images/metadata-management/mma-program-data-configure-items.jpg)
 
-Table: Configure data items — column reference
+Table: Configure data items, column reference
 
 | Column | Description |
 |---|---|
-| **Required** | The data element's value must be filled in before the event can be completed. |
+| **Required** | The data element's value must be filled in before the event can be saved or completed, depending on the program's **Validation strategy** setting. |
 | **Allow provided elsewhere** | Marks that this value can come from a facility other than the one where the event is entered, rather than from this facility's own data entry. |
-| **Display in reports** | Shows the data element's value in the Event Capture app's data entry list. |
+| **Display in reports** | Controls whether this data element shows as a column in working lists and similar list views. |
 | **Skip in analytics** | Excludes the data element from analytics tables. |
 | **Skip sync** | Excludes the data element's values from data synchronization jobs, for example when running the Android app offline. |
-| **Allow future dates** | Only appears for a **Date** data element. Allows a user to pick a date in the future. |
+| **Allow future dates** | Appears in the table once any selected data element is of Date type; the checkbox is shown disabled on rows for other value types. Allows a user to pick a date in the future. |
 | **Desktop Display** | Chooses how the field renders in the web Capture app. |
 | **Mobile Display** | Chooses how the field renders in the Android Capture app. |
 
@@ -214,38 +216,49 @@ The **Desktop Display** and **Mobile Display** options offered for a data elemen
 * A **Number** data element offers **Default**, **Value**, **Slider** and **Linear scale**.
 * An **option set**-backed data element offers **Default**, **Dropdown**, **radio button and checkbox layouts**, **Shared header radiobuttons**, and **Icons as buttons**.
 
+If the option is not supported by a client, it falls back to its own default.
+
 Other value types (for example plain text) may offer only **Default**. In the Maintenance app, these same per-data-element settings were labelled **Compulsory**, **Allow provided elsewhere**, **Display in reports**, **Date in future**, **Skip synchronization**, **Mobile render type** and **Desktop render type** - the Metadata Management app renames a few of them but keeps the same underlying options.
 
 ### Form { #mmp_single_event_program_form }
 
-![New program — Form section, with Basic form / Section form / Custom form tabs](resources/images/metadata-management/mma-program-form.jpg)
+![New program, Form section, with Basic form / Section form / Custom form tabs](resources/images/metadata-management/mma-program-form.jpg)
 
 Choose how the data entry form for this program's events is laid out:
 
-* **Basic form** — an auto-generated list of the data elements defined for the program, in the order they were added. Use **Edit or rearrange the data elements** to change that order.
-* **Section form** — group data elements into named sections.
-* **Custom form** — write your own HTML/CSS form layout.
+* **Basic form**. An auto-generated list of the data elements defined for the program, in the order they were added. Use **Edit or rearrange the data elements** to change that order.
+* **Section form**. Group data elements into named sections.
+* **Custom form**. Write your own HTML/CSS form layout.
 
 These three options replace the Maintenance app's separate "Create data entry forms" step. The underlying form types (basic, section, custom) are unchanged.
 
+Once the program has been saved and has at least one data element assigned, an info box at the top of the section reports which form type is currently in effect, separately for **Web** and **Android**.
+
 ### Notifications { #mmp_single_event_program_notifications }
 
-The program must be saved at least once before notifications can be added. See [Notifications](#mmp_notifications) below — the **Add a notification** flow is identical for single event and tracker programs, except that a single event program has no stage to send a stage-scoped notification about.
+The program must be saved at least once before notifications can be added. Click **Add a notification** to open the notification editor, which has its own section list:
+
+* **Basic information**. Name (required) and Code. A single event program has no stage to notify about, so there is no notification type choice here.
+* **Message content**. The message subject and body templates, with variables you can insert.
+* **Notification timing**. When the notification fires relative to the relevant date.
+* **Recipient**. Who receives the notification.
+
+The footer warns that **"Saving a notification does not save other changes to the program"**.
 
 ### Access and Sharing { #mmp_single_event_program_access }
 
-![New program — Access and Sharing section: organisation unit tree](resources/images/metadata-management/mma-program-orgunit-access.jpg)
+![New program, Access and Sharing section: organisation unit tree](resources/images/metadata-management/mma-program-orgunit-access.jpg)
 
-![New program — Access and Sharing section: Role access panel](resources/images/metadata-management/mma-program-orgunit-access-2.jpg)
+![New program, Access and Sharing section: Role access panel](resources/images/metadata-management/mma-program-orgunit-access-2.jpg)
 
 1. Under **Organisation unit access**, select which organisation units can collect data for this program, using the tree, the search box, or **Select/deselect by group or level**.
-2. Under **Role access**, choose which user roles can access this program. Full sharing settings (equivalent to the Maintenance app's sharing dialog) are only available once the program has been saved.
+2. Under **Role access**, click **Edit access** to open the sharing dialog (equivalent to the Maintenance app's sharing dialog) and choose which user roles can access this program. The whole **Role access** panel is disabled until the program has been saved at least once, showing **"Save the program first to set up sharing."**
 
 ### Customization { #mmp_single_event_program_customization }
 
-![New program — Customization section: custom label for report date](resources/images/metadata-management/mma-program-customization.jpg)
+![New program, Customization section: custom label for report date](resources/images/metadata-management/mma-program-customization.jpg)
 
-Override default labels with program-specific terms — for a single event program, this is limited to a custom label for **"report date"** (the label shown for the event date in the Capture app).
+Override default labels with program-specific terms. For a single event program, this is limited to a custom label for **"report date"** (the label shown for the event date in the Capture app).
 
 ## Creating a tracker program { #mmp_create_tracker_program }
 
@@ -258,9 +271,9 @@ Override default labels with program-specific terms — for a single event progr
 5. Fill in **Program Details**.
 6. Fill in **Enrollment: Settings**, including the required **Tracked entity type**.
 7. Assign tracked entity attributes under **Enrollment: Data**.
-8. Choose an enrollment form type under **Enrollment: Form**.
-9. Click **Save**.
-10. Add one or more program stages under **Program Stages** — see [Create or edit a program stage](#mmp_create_program_stage).
+8. Click **Save** (program stages, notifications, full sharing options, and the **Section form** / **Custom form** enrollment form types only become available once the program has been saved at least once).
+9. Choose an enrollment form type under **Enrollment: Form**, if you want something other than the default **Basic form**.
+10. Add one or more program stages under **Program Stages**. See [Create or edit a program stage](#mmp_create_program_stage).
 11. Add notifications, if needed.
 12. Set the access level, organisation unit access and role access under **Access and Sharing**.
 13. Override labels under **Customization**, if needed.
@@ -269,129 +282,152 @@ Override default labels with program-specific terms — for a single event progr
 
 ### Program Details { #mmp_tracker_program_details }
 
-![Tracker program editor — Program Details section](resources/images/metadata-management/mma-tracker-program-details.jpg)
+![Tracker program editor, Program Details section](resources/images/metadata-management/mma-tracker-program-details.jpg)
 
-See [Program Details](#mmp_single_event_program_details) above.
-Differences from the event program details:
- A tracker program has no **Location type** field at this level. The **Tracked entity type** field, and the location type for the enrollment itself, sit in **Enrollment: Settings** instead — see below.
+Set up the basic information for the program:
 
-![Tracker program editor — Program Details section, showing the search and start-page fields below the expiry checkboxes](resources/images/metadata-management/mma-tracker-program-details-expiry.jpg)
+* **Name** and **Short name** (required). See [Common metadata object fields](#mm_common_metadata_fields).
+* **Code**, **Description**, **Visual configuration** (color and icon). As described in [Common metadata object fields](#mm_common_metadata_fields).
+* **Version**. A manually incremented number. Click **New version** to increment it. This is informational only and is not used to enforce compatibility.
+* **Event category combination**. Assign a category combination to disaggregate this program's events. The default is **None**. In the Maintenance app, this field was called **Category combination**.
+
+A tracker program has no **Location type** field at this level. The **Tracked entity type** field, and the location type for the enrollment itself, sit in **Enrollment: Settings** instead.
+
+The following two checkboxes are always available, letting you close data entry and lock events on a schedule. A third checkbox appears only after you pick an event category combination other than **None**:
+
+* **Close data entry a number of days after a period ends**. Reveals a **Number of days** field and an **Expiry period type** field (for example **Daily** or **Monthly**). In the Maintenance app, these were the **Expiry period type** and **Expiry days** fields.
+* **Lock events a number of days after completion**. Reveals a **Number of days** field. Once that many days pass after an event is completed, you can no longer edit it. In the Maintenance app, this was **Completed events expiry days**.
+* **Close data entry a number of days after end date of *[category combination name]***. Named after the event category combination you picked, for example **Close data entry a number of days after end date of Implementing Partner**. Reveals a **Number of days** field. In the Maintenance app, this was **Open days after category option end date**.
+
+Once an event falls outside one of these windows, it can no longer be edited. Only a user with the **Edit expired data** authority can still change it.
+
+![Tracker program editor, Program Details section, showing the search and start-page fields below the expiry checkboxes](resources/images/metadata-management/mma-tracker-program-details-expiry.jpg)
 
 A tracker program also has three fields to manage tracked entity search options:
 
-* **Minimum number of attributes required to search** — how many tracked entity attributes a user must fill in before they can search for a tracked entity. In the Maintenance app, this field had the same name.
-* **Maximum number of search results to display** — enter **0** to show all search results. In the Maintenance app, this was **Maximum number of tracked entities to return in search**.
-* **Start page in web Capture app** — **Search form** or **List of enrolled tracked entities**. In the Maintenance app, this was a checkbox, **Display front page list**.
+* **Minimum number of attributes required to search**. How many tracked entity attributes a user must fill in before they can search for a tracked entity. In the Maintenance app, this field had the same name.
+* **Maximum number of search results to display.** For a search outside the user's capture scope, the server rejects the search with an error if it would match more tracked entities than this, rather than returning a partial list. It has no effect on searches within capture scope. Enter **0** to disable the limit. In the Maintenance app, this was **Maximum number of tracked entities to return in search**.
+* **Start page in web Capture app**. **Search form** or **List of enrolled tracked entities**. In the Maintenance app, this was a checkbox, **Display front page list**.
 
 ### Enrollment: Settings { #mmp_tracker_enrollment_settings }
 
-![Tracker program editor — Enrollment: Settings section](resources/images/metadata-management/mma-tracker-enrollment-settings.jpg)
+![Tracker program editor, Enrollment: Settings section](resources/images/metadata-management/mma-tracker-enrollment-settings.jpg)
 
-* **Tracked entity type** (required) — the type of entity (Person, and so on) this program enrolls. Use the **+** button to create a new tracked entity type without leaving the program editor.
-* **Location type** — **Point**, **Polygon/Area**, or **Do not collect location data**, for the enrollment location. In the Maintenance app, this field was called **Feature type**.
-* **Limit to one lifetime enrollment** — a tracked entity instance can only enroll in the program once, ever.
+* **Tracked entity type** (required). The type of entity (Person, and so on) this program enrolls. Use the **+** button to create a new tracked entity type without leaving the program editor.
+* **Location type**. **Point**, **Polygon/Area**, or **Do not collect location data**, for the enrollment location. In the Maintenance app, this field was called **Feature type**.
+* **Limit to one lifetime enrollment**. A tracked entity instance can only enroll in the program once, ever.
 * **Allow enrollment dates in the future**.
-* **Collect an incident date** — a date distinct from the enrollment date, for example date of onset of a condition.
+* **Collect an incident date**. A date distinct from the enrollment date, for example date of onset of a condition.
+* **Allow incident dates in the future**. Only shown once **Collect an incident date** is ticked; unticking it clears this setting again.
 * **Show first program stage during enrollment**.
 * **Do not create overdue events when automatically creating program stage events**.
 
 ### Enrollment: Data { #mmp_tracker_enrollment_data }
 
-![Tracker program editor — Enrollment: Data section, with tracked entity attribute transfer list and Manage attributes table](resources/images/metadata-management/mma-tracker-enrollment-data.jpg)
+![Tracker program editor, Enrollment: Data section, with tracked entity attribute transfer list and Manage attributes table](resources/images/metadata-management/mma-tracker-enrollment-data.jpg)
 
-1. Use the **Available Tracked entity attributes** / **Selected Tracked entity attributes** transfer list to choose which attributes are collected at enrollment. See [Using a transfer list component](#mm_transfer_list_component). Attributes already marked as **Unique ID** for the tracked entity type (for example a system-generated ID) appear pre-selected and greyed out.
-2. In the **Manage attributes** table, set, per attribute: **Required**, **Searchable**, **Display in list**, **Desktop Display** and **Mobile Display**.
+1. Use the **Available Tracked entity attributes** / **Selected Tracked entity attributes** transfer list to choose which attributes are collected at enrollment. See [Using a transfer list component](#mm_transfer_list_component). Attributes already assigned to the tracked entity type appear pre-selected and greyed out.
+2. In the **Manage attributes** table, each row shows the attribute's **Name** alongside **Required**, **Searchable**, **Display in list**, **Desktop Display** and **Mobile Display**. For an attribute that is mandatory at the tracked entity type level, **Required** is already checked and disabled; for one marked unique at the tracked entity type level, **Searchable** is already checked and disabled. An **Allow future dates** column also appears once any selected attribute is of Date type.
 
 ### Enrollment: Form { #mmp_tracker_enrollment_form }
 
-![Tracker program editor — Enrollment: Form section](resources/images/metadata-management/mma-tracker-enrollment-form.jpg)
+![Tracker program editor, Enrollment: Form section](resources/images/metadata-management/mma-tracker-enrollment-form.jpg)
 
-Same three form types as for a single event program's **Form** section (Basic, Section, Custom) — see [Form](#mmp_single_event_program_form) above, applied here to the enrollment form rather than an event form. An info box at the top of the section reports the form type currently in effect separately for **Web** and **Android**.
+Choose how the data entry form for enrollment is laid out:
+
+* **Basic form**. An auto-generated list of the tracked entity attributes assigned to enrollment, in the order they were added. Use **Manage attributes** to change that order.
+* **Section form**. Group attributes into named sections.
+* **Custom form**. Write your own HTML/CSS form layout.
+
+Once the program has been saved and has at least one tracked entity attribute assigned, an info box at the top of the section reports which form type is currently in effect, separately for **Web** and **Android**.
 
 ### Program Stages { #mmp_tracker_program_stages }
 
-![Tracker program editor — Program Stages section, listing existing stages](resources/images/metadata-management/mma-tracker-program-stages-list.jpg)
+![Tracker program editor, Program Stages section, listing existing stages](resources/images/metadata-management/mma-tracker-program-stages-list.jpg)
 
-The **Program Stages** section lists the program's existing stages, each with a **...** menu for further actions (for example reordering or deleting). Click **Add a program stage** to create a new one, or **Reorder stages** to change the order stages appear in.
+The **Program Stages** section lists the program's existing stages, each with a **...** menu offering **Edit**, **Translate**, **Copy ID** and **Delete**. Click **Add a program stage** to create a new one, or **Reorder stages** to open a dialog where you move stages up or down one at a time and confirm with **Save program stage ordering**.
 
 #### Create or edit a program stage { #mmp_create_program_stage }
 
 Adding or editing a stage opens a dedicated editor with its own left-hand section list, separate from the program's own sections:
 
-![Program stage editor — Basic information](resources/images/metadata-management/mma-stage-basic-info.jpg)
+![Program stage editor, Basic information](resources/images/metadata-management/mma-stage-basic-info.jpg)
 
-* **Basic information** — Name (required), Description, Visual configuration (color and icon).
+* **Basic information**. Name (required), Description, Visual configuration (color and icon).
 
-![Program stage editor — Data entry options](resources/images/metadata-management/mma-stage-data-entry-options.jpg)
+![Program stage editor, Data entry options](resources/images/metadata-management/mma-stage-data-entry-options.jpg)
 
 **Data entry options**:
 
-* **Location type** — **Point**, **Polygon/Area**, or **Do not collect location data**, for this stage's events. In the Maintenance app, this field was called **Feature type**.
-* **Allow events to be assigned to users**.
-* **Allow multiple events in this stage**.
-* **Period type** — restricts events to one per period rather than one per date. Not supported by the web Capture app.
-* **Validation strategy** — **On complete**, or **On update and insert**.
+* **Location type**. **Point**, **Polygon/Area**, or **Do not collect location data**, for this stage's events. In the Maintenance app, this field was called **Feature type**.
+* **Allow events to be assigned to users**. Adds an assigned-user field to events in this stage, so a specific user can be made responsible for it.
+* **Allow multiple events in this stage**. Once ticked, reveals **Standard interval days** (the number of days between repeated events) and **Default next scheduled date** (pick one of the stage's Date-type data elements to seed the next event's scheduled date, or **None**).
+* **Period type**. Restricts events in this stage to one per period (for example one per month) rather than one per exact date.
+* **Validation strategy** (DHIS2 2.42 and later). **On complete**, or **On update and insert**.
 * **Generate offline event IDs**.
-* **Completion options** — choose whether completing an event should prompt the user to create a new event, complete the enrollment, or block further data entry.
+* **Completion options**. Three independent checkboxes controlling what happens after a user completes this event: **Ask user to create a new event after completion**, **Ask user to complete enrollment after completion**, and **Block data entry after completion**.
 
-![Program stage editor — Creation and scheduling](resources/images/metadata-management/mma-stage-creation-scheduling.jpg)
+![Program stage editor, Creation and scheduling](resources/images/metadata-management/mma-stage-creation-scheduling.jpg)
 
-* **Creation and scheduling** — whether to create an event in this stage automatically on enrollment. How many days after the reference date (enrollment date or incident date) the event should be scheduled. Whether to hide the scheduled date from the Android Capture app. Web Capture still allows manual scheduling, but does not let you edit the scheduled date itself.
+* **Creation and scheduling**:
+  * **Create an event in this stage on enrollment**. Once ticked, reveals **Open data entry form after enrollment**, which in turn reveals **Date to use for created event report date** (**Enrollment date**, **Incident date**, or **None**, leaving the report date empty).
+  * **Scheduled days from reference date**. How many days after the reference date the event should be scheduled. Defaults to 0.
+  * **Reference date for scheduling**. **Enrollment date** or **Incident date**.
+  * **Hide scheduled date**. Android Capture disables all scheduling. Web Capture still allows manual scheduling, but does not let you edit the scheduled date itself.
 
-![Program stage editor — Data](resources/images/metadata-management/mma-stage-data.jpg)
+![Program stage editor, Data](resources/images/metadata-management/mma-stage-data.jpg)
 
-* **Data** — the same data-element transfer list and **Configure data items** table used for single event programs, scoped to this stage. See [Data](#mmp_single_event_program_data) above.
+* **Data**. Use the **Available data elements** / **Selected data elements** transfer list to choose which data elements this stage collects. See [Using a transfer list component](#mm_transfer_list_component). Set, per data element, in the **Configure data items** table below the transfer list: **Required** (must be filled in before the event can be saved or completed, depending on the program's **Validation strategy** setting), **Display in reports** (shows as a column in working lists and similar list views), **Skip in analytics**, **Skip sync**, **Allow future dates** (appears once any selected data element is of Date type), **Desktop Display** and **Mobile Display** (how the field renders in the web and Android Capture apps respectively). There is no **Allow provided elsewhere** column here. Click **Add new** in the footer of the available data elements list to create a new data element; this opens the full data element creation page in a new tab.
 
-![Program stage editor — Program stage form](resources/images/metadata-management/mma-stage-form.jpg)
+![Program stage editor, Program stage form](resources/images/metadata-management/mma-stage-form.jpg)
 
-* **Program stage form** — the same Basic / Section / Custom form choice as elsewhere, scoped to this stage's own event form.
+* **Program stage form**. The same Basic / Section / Custom form choice as elsewhere. On **Basic form**, use **Edit or rearrange the data elements** to jump to this stage's **Data** section. Once the program has been saved and has at least one data element assigned, an info box at the top of the section reports which form type is currently in effect, separately for **Web** and **Android**.
 
-![Program stage editor — Customization](resources/images/metadata-management/mma-stage-customization.jpg)
+![Program stage editor, Customization](resources/images/metadata-management/mma-stage-customization.jpg)
 
-* **Customization** — custom labels for **"report date"**, **"due date"**, **"program stage"** and **"event"**, scoped to this stage.
+* **Customization**. Custom labels for **"report date"**, **"due date"**, **"program stage"** and **"event"**, scoped to this stage. DHIS2 2.43.2 and later also adds a plural label for **"event"**.
 
-The editor's footer reads **"Saving a stage does not save other changes to the program."** Use **Save stage** or **Save stage and close** to save the stage on its own. This action does not save other pending changes elsewhere on the program page. Save those changes separately, using the program's own **Save** or **Save and close** buttons.
+The editor's footer reads **"Saving a stage does not save other changes to the program"**. Use **Save stage** or **Save stage and close** to save the stage on its own. This action does not save other pending changes elsewhere on the program page. Save those changes separately, using the program's own **Save** or **Save and close** buttons.
 
-### Notifications { #mmp_notifications }
+### Notifications { #mmp_tracker_program_notifications }
 
-![New notification dialog — Basic information, with Program / Stage notification type](resources/images/metadata-management/mma-new-notification.jpg)
+![New notification dialog, Basic information, with Program / Stage notification type](resources/images/metadata-management/mma-new-notification.jpg)
 
-Click **Add a notification** to open the notification editor, which has its own section list:
+The program must be saved at least once before notifications can be added. Click **Add a notification** to open the notification editor, which has its own section list:
 
-* **Basic information** — Name (required), Code, and **Notification type**: **Program** ("Send when there is activity in the program or enrollment") or **Stage** ("Send when there is activity in a specific stage"). This single choice replaces the Maintenance app's two separate tabs, **Program notifications** and **Program stage notifications**.
-* **Message content** — the message subject and body templates, with variables you can insert.
-* **Notification timing** — when the notification fires relative to the relevant date.
-* **Recipient** — who receives the notification.
+* **Basic information**. Name (required), Code, and **Notification type**: **Program** ("Send when there is activity in the program or enrollment") or **Stage** ("Send when there is activity in a specific stage"). This single choice replaces the Maintenance app's two separate tabs, **Program notifications** and **Program stage notifications**.
+* **Message content**. The message subject and body templates, with variables you can insert.
+* **Notification timing**. When the notification fires relative to the relevant date.
+* **Recipient**. Who receives the notification.
 
-As with program stages, the footer warns that **"Saving a notification does not save other changes to the program."**
+The footer warns that **"Saving a notification does not save other changes to the program"**.
 
 ### Access and Sharing { #mmp_tracker_program_access }
 
-![Tracker program editor — Notifications section and the start of Access level](resources/images/metadata-management/mma-tracker-notifications-access-level.jpg)
+![Tracker program editor, Notifications section and the start of Access level](resources/images/metadata-management/mma-tracker-notifications-access-level.jpg)
 
 This section covers three things that were split across different places in the Maintenance app:
 
-* **Access level** — **Open** (users can open tracked entities in their search or capture scope), **Audited** (same as Open, but opening a tracked entity outside the capture scope is logged), **Protected** (users must give a reason for temporary access to open a tracked entity outside their capture scope but within their search scope. All access is logged), or **Closed** (users can only open tracked entities within their capture scope). In the Maintenance app, this setting was part of the first wizard step, **Program details**. Here, it opens the **Access and Sharing** section instead.
-* **Organisation unit access** and **Role access** — the same organisation unit tree and role picker as for a single event program. See [Access and Sharing](#mmp_single_event_program_access) above.
+* **Access level**. **Open** (users can open tracked entities in their search or capture scope), **Audited** (same as Open, but opening a tracked entity outside the capture scope is logged), **Protected** (users must give a reason for temporary access to open a tracked entity outside their capture scope but within their search scope. All access is logged), or **Closed** (users can only open tracked entities within their capture scope). In the Maintenance app, this setting was part of the first wizard step, **Program details**. Here, it opens the **Access and Sharing** section instead.
+* **Organisation unit access**. Select which organisation units can collect data for this program, using the tree, the search box, or **Select/deselect by group or level**.
+* **Role access**. Choose which user roles can access this program and its stages. The whole **Role access** panel is disabled until the program has been saved at least once, showing **"Save the program first to set up sharing."** Once saved, it shows one sharing box per program stage in addition to the program's own: the program's box has an **Edit access** button (opens the sharing dialog, equivalent to the Maintenance app's sharing dialog) and an **Apply to all stages** button that copies its sharing onto every stage; each stage's box has **Edit data access** and **Apply program access rules** (copies the program's sharing onto that one stage only).
 
 ### Customization { #mmp_tracker_program_customization }
 
-Override default labels with program-specific terms. For a tracker program this includes labels for **"report date"**, **"due date"**, **"program stage"**, **"event"**, **"incident date"**, **"enrollment date"** and **"enrollment"** — the same custom-label fields the Maintenance app mixed into its **Program details** and **Enrollment details** wizard steps, now gathered into one section. Stage-specific labels are set separately, per stage, in that stage's own **Customization** tab — see [Create or edit a program stage](#mmp_create_program_stage) above.
+Override default labels with program-specific terms. For a tracker program this includes labels for **"incident date"**, **"enrollment date"**, **"enrollment"**, **"event"**, **"program stage"**, **"follow-up"**, **"registering unit"**, **"relationship"**, **"note"** and **"attribute"**. DHIS2 2.43.2 and later adds a plural label for each of **"enrollment"**, **"event"**, **"program stage"**, **"relationship"**, **"note"** and **"attribute"**. Custom labels for **"report date"** and **"due date"** are set separately, per stage, in that stage's own **Customization** tab, since each stage can use its own terms for its own dates. See [Create or edit a program stage](#mmp_create_program_stage) above.
 
 ## Program rules { #mmp_program_rules }
 
-Reached from **Programs → Program rules** and **Programs → Program rule variables**. Program rules let you create and control dynamic behaviour of the user interface in the Tracker Capture and Event Capture apps. Program rule variables are the values you reference from a program rule expression. The concepts, the expression language, and the available operators and functions are covered below.
+Reached from **Programs → Program rules** and **Programs → Program rule variables**. Program rules let you create and control dynamic behaviour of the user interface in the Capture app. Program rule variables are the values you reference from a program rule expression. The concepts, the expression language, and the available operators and functions are covered below.
 
 ![Program rules list](resources/images/metadata-management/mma-program-rules-list.jpg)
 ### About program rules { #mmp_about_program_rules } 
 
 Program rules allow you to create and control dynamic behaviour of the
-user interface in the **Tracker Capture** and **Event Capture** apps.
-During data entry, the program rules expressions are evaluated each time
-the user interface is displayed, and each time a data element is
-changed. Most types of actions will take effect immediately when the
-user enters values in the **Tracker Capture** and **Event Capture**
-apps.
+user interface in the Capture app. During data entry, the program rule
+expressions are evaluated each time the user interface is displayed,
+and each time a data element is changed. Most types of actions take
+effect immediately as the user enters values.
 
 Table: Program rule components
 
@@ -416,13 +452,13 @@ You manage the following program rule objects:
 
 The editing pattern for program rules has also changed from a horizontal layout in the Maintenance app to a vertical layout in the Metadata Management App:
 
-![New program rule — Basic information](resources/images/metadata-management/mma-new-program-rule-basic.png)
+![New program rule, Basic information](resources/images/metadata-management/mma-new-program-rule-basic.png)
 
 
 
-* **Basic information** — Name, Description, Program (required), Priority.
-* **Expression** — click **Set up condition expression** to open the expression editor. As in the Maintenance app, the rule must be saved before actions can be added.
-* **Actions** — set up the actions the rule triggers when its expression evaluates to true.
+* **Basic information**. Name, Description, **Program** (required), **Program stage to trigger rule** (tracker programs only), Priority.
+* **Expression**. Click **Set up condition expression** to open the expression editor. As in the Maintenance app, the rule must be saved before actions can be added.
+* **Actions**. Set up the actions the rule triggers when its expression evaluates to true.
 
 <!-- -->
 
@@ -433,16 +469,13 @@ The editing pattern for program rules has also changed from a horizontal layout 
 3. Enter the program rule Basic information. These fields are not shown to the
     end user, they are only meant for the program administrator.
 
-      - **Program**
-
-      - **Trigger rule only for program stage**
-
-        If a program stage is selected, the program rule will only run for the selected program stage,
-        as opposed to being run for every program stage in the program.
-
       - **Name**
 
       - **Description**
+
+      - **Program** (required)
+
+      - **Program stage to trigger rule**. Only shown for tracker programs. If a program stage is selected, the program rule only runs for that stage, instead of running for every stage in the program.
 
       - **Priority**
 
@@ -484,18 +517,18 @@ The editing pattern for program rules has also changed from a horizontal layout 
         |---|---|---|
         | **Assign value** | **Data element to assign value to**<br> <br> **Tracked entity attribute to assign value to**<br>          <br>**Program rule variable to assign value to**<br>         <br>**Expression to evaluate and assign** | Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.<br>         <br>When a field is assigned a value, the user sees the value but the user can't edit it.<br> <br>  NOTE: To assign a value to a tracked entity attribute, the user needs to open the tracked entity profile widget for the rule to trigger.   <br>     <br>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.<br>         <br>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the "Calculated value" program rule variable. |
         | **Display text** | **Display widget**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to display information that is not an error or a warning, for example feedback to the user. You can also use this action to display important information, for example the patient's allergies, to the user. |
-        | **Display key/value pair** | **Display widget**<br>         <br>**Key label**<br>         <br>**Expression to evaluate and display as value** | Used to display information that is not an error or a warning.<br>         <br>Example: calculate number of weeks and days in a pregnancy and display it in the format the clinician is used to see it in. The calculation is based on previous recorded data. |
+        | **Display key-value pair** | **Display widget**<br>         <br>**Key label**<br>         <br>**Expression to evaluate and display as value** | Used to display information that is not an error or a warning.<br>         <br>Example: calculate number of weeks and days in a pregnancy and display it in the format the clinician is used to see it in. The calculation is based on previous recorded data. |
         | **Error on complete** | **Data element to display error next to**<br>         <br>**Tracked entity attribute to display error next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used whenever you've cross-consistencies in the form that must be strictly adhered to. This action prevents the user from continuing until the error is resolved.<br>         <br>This action differs from the regular **Show error** since the error is not shown until the user tries to actually complete the form.<br>         <br>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error. |
         | **Hide field** | **Data element to hide**<br>         <br>**Tracked entity attribute to hide**<br>         <br>**Custom message for blanked field** | Used when you want to hide a field from the user.<br>         <br>**Custom message for blanked field** allows you to define a custom message displayed to the user in case the program rule hides and blanks out the field after the user typed in or selected a value.<br>         <br>If a hide field action hides a field that contains a value, the field will always removed. If no message is defined, a standard message will be displayed to alert the user. |
         | **Hide section** | **Program stage section to hide** | Used when you want to hide a section in a program stage from the user.  |
-        | **Prevent adding new events to stage** | **Program stage where users will not be able to add new events** | Used when you do not want users to add any more events to a program stage. Existing events will not be hidden. |
-        | **Make field mandatory** | **Data element to make mandatory**<br>         <br>**Tracked entity attribute to make mandatory** | Used when you want to make a data element or tracked entity attribute mandatory so they have to be filled out before the form can be saved. |
+        | **Hide program stage** | **Program stage where users will not be able to add new events** | Used when you do not want users to add any more events to a program stage. Existing events will not be hidden. |
+        | **Set mandatory field** | **Data element to make mandatory**<br>         <br>**Tracked entity attribute to make mandatory** | Used when you want to make a data element or tracked entity attribute mandatory so they have to be filled out before the form can be saved. |
         | **Show error** | **Data element to display error next to**<br>         <br>**Tracked entity attribute to display error next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used whenever there are rules which must strictly be adhered to. The show error action prevents the user from continuing until the error is resolved.<br>         <br>Such a strict validation should only be used when it's certain that the evaluated expression is never true unless the user has made a mistake in data entry.<br>         <br>It's mandatory to define a message that is shown to the user when the expression is true and the action is triggered.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change. |
         | **Show warning** | **Data element to display warning next to**<br>         <br>**Tracked entity attribute to display warning next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to give the user a warning about the entered data, but at the same time to allow the user to save and continue.<br>         <br>You can use warnings to help the user avoid errors in the entered data, while at the same time allow the user to consciously disregard the warnings and save a value that is outside preset expectations.<br>         <br>**Static text** defines the message shown to the user when the expression is true and the action is triggered.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change. |
         | **Warning on complete** | **Data element to display warning next to**<br>         <br>**Tracked entity attribute to display warning next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to give the user a warning if he/she tries to complete inconsistent data, but at the same time to allow the user to continue. The warning is shown in a dialog when the user completes the form.<br>         <br>**Static text** defines the message shown to the user when the expression is true and the action is triggered. This field is mandatory.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error. |
-        | **Send Message** | **Message template to send** | Send Message triggers a notification based on provided message template. This action will be taken immediately. The message template will be parsed and variables will be substituted with actual values. |
-        | **Schedule Message** | **Message template to send**<br>         <br>**Data field which contains expression to evaluate the date which notification should be sent at. If this expression results in any value other than Date, then resultant will be discarded and notification will not get scheduled.** | Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below<br>         d2:addDays( '2018-04-20', '2' )         <br>Message template will be parsed and variables will be substituted with actual values. |
-        | **Schedule event** | **Program stage to schedule event for**<br>         <br>**Expression to evaluate the scheduled date** | Automatically schedules a new event for the specified program stage on the date returned by the expression. The expression must evaluate to a valid date; if it does not, no event will be scheduled.<br>         <br>The event is only scheduled once — if the rule condition evaluates to true again, no duplicate event is created.<br>         <br>Useful for programs where the timing of the next visit or follow-up can be derived from existing data, for example scheduling a second vaccination dose a fixed number of days after the first.<br>         <br>Example expression that schedules an event 28 days after a recorded date:<br>         `d2:addDays(#{dateOfFirstDose}, 28)` |
+        | **Send message** | **Message template to send** | Executed on the server, not by a client app: sends a notification based on the provided message template as soon as the rule condition is true. The message template is parsed and variables are substituted with actual values. |
+        | **Schedule message** | **Message template to send**<br>         <br>**Data field which contains expression to evaluate the date which notification should be sent at. If this expression results in any value other than Date, then resultant will be discarded and notification will not get scheduled.** | Executed on the server, not by a client app: schedules a notification for the date returned by the expression in the data field. Sample expression:<br>         d2:addDays( '2018-04-20', '2' )         <br>Message template will be parsed and variables will be substituted with actual values. |
+        | **Schedule event** | **Program stage**<br>         <br>**Expression to evaluate the scheduled date** (the field is captioned **Program rule variable for scheduled date**, but it still opens the same expression editor used elsewhere) | Automatically schedules a new event for the specified program stage on the date returned by the expression. The expression must evaluate to a valid date; if it does not, no event will be scheduled.<br>         <br>The event is only scheduled once. If the rule condition evaluates to true again, no duplicate event is created.<br>         <br>Useful for programs where the timing of the next visit or follow-up can be derived from existing data, for example scheduling a second vaccination dose a fixed number of days after the first.<br>         <br>Example expression that schedules an event 28 days after a recorded date:<br>         `d2:addDays(#{dateOfFirstDose}, 28)` |
         | **Hide option** | **Data element to hide option for**<br>         <br>**Tracked entity attribute to hide option for**<br>         <br>**Option that should be hidden** | Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option** takes precedence. |
         | **Hide option group** | **Data element to hide option group for**<br>         <br>**Tracked entity attribute to hide option group for**<br>         <br>**Option group that should be hidden** | Used to hide all options in a given option group and data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option group** takes precedence. |
         | **Show option group** | **Data element to show option group for**<br>         <br>**Tracked entity attribute to show option group for**<br>         <br>**Option group that should be shown** | Used to show only options from a given option group in a given data element/tracked entity attribute. To show an option group implicitly hides all options that is not part of the group(s) that is shown. |
@@ -516,38 +549,30 @@ The editing pattern for program rules has also changed from a horizontal layout 
 
 2. Click the **+ New** button.
 
-3.  Select a **Program** and enter a **Name**
+3.  Under **Basic information**, enter a **Name**.
 
     Please note that the name of the program rule variable may not contain any of the following excluded keywords:
     - `and`
     - `or`
     - `not`
-      
-4.  Select if you want to **Use code for option set**.
 
-    This option is only effective when the data element or tracked
-    entity attribute is connected to an option set. If you don't select
-    this option, the program rule variable will be populated with the
-    option set's name. If you select the option, the program rule
-    variable will be populated with the option set's code instead.
-
-5.  Select a **Source type** and enter the required information.
-
-    Depending on the source type, you'll have to select, for example, a
-    **Program stage,** **Data element** or **Tracked entity attribute**.
-
-    The source types determine how the program rule variable is
-    populated with a value.
-
+4.  Under **Configuration**, select a **Program** and a **Source type**, then enter the information that source type requires (for example a **Program stage**, **Data element** or **Tracked entity attribute**). The source type determines how the program rule variable is populated with a value.
 
     | Source type | Description |
     |---|---|
-    | **Data element from the newest event for a program stage** | This source type works the same way as **Data element from the newest event in the current program**, except that it only evaluates values from one program stage.<br>     <br>This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
-    | **Data element from the newest event in the current program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>     <br>This source type is populated slightly differently in **Tracker Capture** and **Event Capture** apps:<br>     <br>**Tracker Capture**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.<br>     <br>**Event Capture**: the program rule variable will be populated with the current events data. <br>**NB** Future dates are "newer" than current or past dates. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
-    | **Data element in current event** | Program rule variables with this source type will contain the data value from the same event that the user currently has open.<br>     <br>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules. |
+    | **Data element in newest event in program stage** | This source type works the same way as **Data element in newest event in program**, except that it only evaluates values from one program stage.<br>     <br>This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage. <br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
+    | **Data element in newest event in program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open. It is populated with the newest data value collected for the given data element across the whole enrollment (or, for a single event program, with the current event's data). Future dates are "newer" than current or past dates.<br>     <br>In order to know what event is the newest, the report date (event date) is used. If you have many events with the same report date, the system choose the one with the latest createdAt property of the event.|
+    | **Data element from current event** | Program rule variables with this source type will contain the data value from the same event that the user currently has open.<br>     <br>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules. |
     | **Data element from previous event** | Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.<br>     <br>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.<br>     <br>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered. |
-    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. |
+    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rule's **Assign value** action.<br>     <br>This variable will be used for making preliminary calculations, having an **Assign value** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.<br>     <br>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value. |
     | **Tracked entity attribute** | Populates the program rule variable with a specified tracked entity attribute for the current enrollment.<br>     <br>Use this is the source type to create program rules that evaluate data values entered during registration.<br>     <br>This source type is also useful when you create program rules that compare data in events to data entered during registration.<br>     <br>This source type is only used for tracker programs (programs with registration). |
+
+    If **Source type** is **Calculated value**, also select a **Value type**. Every other source type takes its value type from the data element or attribute it is linked to, but a calculated value has no such source of its own; it defaults to **Text**.
+
+5.  Select **"Show option set code instead of display name (when selection is linked to an option set)"** if you want the program rule variable populated with an option's code rather than its display name.
+
+    This option is only effective when the data element or tracked
+    entity attribute is connected to an option set.
 
 6.  Click **Save**.
 
@@ -562,7 +587,7 @@ This example shows how to configure a program rule which calculates the number o
 weeks and days in a pregnancy and displays the result in the format the clinician
 is used to seeing it in. The calculation is based on previously recorded data.
 
-![New program rule, Basic information — Show current gestational age (w+d)](resources/images/metadata-management/pg_rule_ex/mma-keyvaluepair-basic-information.png)
+![New program rule, Basic information, Show current gestational age (w+d)](resources/images/metadata-management/pg_rule_ex/mma-keyvaluepair-basic-information.png)
 
 ![Program rule Expression section](resources/images/metadata-management/pg_rule_ex/mma-keyvaluepair-expression.png)
 
@@ -571,30 +596,30 @@ The full expression in the **Data** field:
     d2:concatenate(d2:weeksBetween(#{lmp}, V{current_date}), '+',
     d2:modulus(d2:daysBetween(#{lmp}, V{current_date}), 7))
 
-![Program rule Actions section — Display key-value pair](resources/images/metadata-management/pg_rule_ex/mma-keyvaluepair-actions.png)
+![Program rule Actions section, Display key-value pair](resources/images/metadata-management/pg_rule_ex/mma-keyvaluepair-actions.png)
 
 This example shows how to configure a program rule to display text in the
 Feedback widget in the **Capture** app.
 
-![Program rule variable — penicillinAllergy](resources/images/metadata-management/pg_rule_ex/mma-pgrule-variable-penicillinallergy.png)
+![Program rule variable, penicillinAllergy](resources/images/metadata-management/pg_rule_ex/mma-pgrule-variable-penicillinallergy.png)
 
-![New program rule, Basic information — Show feedback if woman is registered with penicillin allergy](resources/images/metadata-management/pg_rule_ex/mma-displaytext-basic-information.png)
+![New program rule, Basic information, Show feedback if woman is registered with penicillin allergy](resources/images/metadata-management/pg_rule_ex/mma-displaytext-basic-information.png)
 
 ![Program rule Expression section](resources/images/metadata-management/pg_rule_ex/mma-displaytext-expression.png)
 
-![Program rule Actions section — Display text](resources/images/metadata-management/pg_rule_ex/mma-displaytext-actions.png)
+![Program rule Actions section, Display text](resources/images/metadata-management/pg_rule_ex/mma-displaytext-actions.png)
 
 This example shows how to configure a program rule to always display certain
 data in the Feedback widget in the **Capture** app. This is useful when you want
 to make sure that vital data, for example medicine allergies, is always visible.
 
-![Program rule variable — othermedicineallergy](resources/images/metadata-management/pg_rule_ex/mma-pgrule-variable-othermedicineallergy.png)
+![Program rule variable, othermedicineallergy](resources/images/metadata-management/pg_rule_ex/mma-pgrule-variable-othermedicineallergy.png)
 
-![New program rule, Basic information — Show feedback if the woman is registered with medicine allergy](resources/images/metadata-management/pg_rule_ex/mma-displaytext2-basic-information.png)
+![New program rule, Basic information, Show feedback if the woman is registered with medicine allergy](resources/images/metadata-management/pg_rule_ex/mma-displaytext2-basic-information.png)
 
 ![Program rule Expression section](resources/images/metadata-management/pg_rule_ex/mma-displaytext2-expression.png)
 
-![Program rule Actions section — Display text](resources/images/metadata-management/pg_rule_ex/mma-displaytext2-actions.png)
+![Program rule Actions section, Display text](resources/images/metadata-management/pg_rule_ex/mma-displaytext2-actions.png)
 
 Both feedback messages together, as they appear in the Capture app:
 
@@ -605,11 +630,11 @@ By using a program rule of type "Assign value" you can calculate the
 configure the program rule to calculate "Gestational age at visit" based on
 either "LMP date" or "Ultrasound estimated due date".
 
-![New program rule, Basic information — Calculate gestational age from LMP](resources/images/metadata-management/pg_rule_ex/mma-assign-basic-information.png)
+![New program rule, Basic information, Calculate gestational age from LMP](resources/images/metadata-management/pg_rule_ex/mma-assign-basic-information.png)
 
 ![Program rule Expression section](resources/images/metadata-management/pg_rule_ex/mma-assign-expression.png)
 
-![Program rule Actions section — Assign value](resources/images/metadata-management/pg_rule_ex/mma-assign-actions.png)
+![Program rule Actions section, Assign value](resources/images/metadata-management/pg_rule_ex/mma-assign-actions.png)
 
 The calculated value filled into the data entry form:
 
@@ -933,80 +958,82 @@ Table: Standard variables to use in program rule expressions
 
 ![Program disaggregations page, listing programs with existing mappings](resources/images/metadata-management/mma-program-disaggregations.jpg)
 
-Reached from **Programs → Program disaggregations**. This page lists every program that already has a disaggregation mapping, each with **Edit** and **Delete** actions, plus a **Select a Program** picker to start a mapping for a program that does not have one yet. The mapping mechanics themselves — mapping category option combinations onto program indicator data for aggregate reporting — are described below.
+Reached from **Programs → Program disaggregations**. This page lists every program that already has a disaggregation mapping, each with **Edit** and **Delete** actions, plus a **Select a Program** picker to start a mapping for a program that does not have one yet. The mapping mechanics themselves (mapping category option combinations onto program indicator data for aggregate reporting) are described below.
 
 ### Setting up new program disaggregation mappings { #mmp_program_disaggregation_mapping }
 
-DHIS2 v42 introduces the ability to assign Disaggregation Category Combinations to a Program Indicator and create a mapping between the program data and each category option contained in the combination. This creates a relationship between the tracker and aggregate data models which allows for analysing individual data in the same way and alongside aggregated data.
+Available in DHIS2 2.42 and later; the **Program disaggregations** page does not appear in the Metadata Management app on an older server. This feature lets you assign a disaggregation category combination to a program indicator and map each category option in that combination onto program data, connecting the tracker and aggregate data models so individual program data can be analysed alongside aggregated data, using a single program indicator instead of one per disaggregation.
 
 ![Program links to Category](resources/images/program/Program_to_category.png){ width=60% }
 ![tracker and Aggregate Models](resources/images/program/Tracker_to_aggregate_model.png){ width=60% }
 
-The Program Indicator Disaggregation mappings, defined at the Program level, provide a connection between the two data models within DHIS2. This ultimately allows a user to create disaggregated views of program data within the Data Visualizer using a single Program Indicator where previously one for each disaggregation was needed.
+The program indicator disaggregation mappings, defined at the program level, provide a connection between the two data models within DHIS2. This ultimately allows a user to create disaggregated views of program data within the Data Visualizer using a single program indicator where previously one for each disaggregation was needed.
 
 ![Table Example](resources/images/program/Table_Example.png){ width=60% }
 
-1. Open the **Metadata Management** app, go to **Programs → Program disaggregations**, and use the **Select a Program** picker to add a mapping for a program — for this example we will use the **Inpatient morbidity and mortality** program.
+1. Open the **Metadata Management** app, go to **Programs → Program disaggregations**, and use the **Select a Program** picker to add a mapping for a program. For this example we will use the **Inpatient morbidity and mortality** program.
 
-2. This loads the Program Indicator Mapping and Categories definition screen.
+2. This loads the program indicator mapping screen.
 
     ![Program Indicator Selection](resources/images/program/Edit_PI_DIsaggregation.png)
 
-3. Select a Program Indicator from the drop down list, in this example we will use **BMI**
+3. Under **Program indicator selection**, use the **Add a program indicator** picker to add the program indicator you want to map, in this example **BMI**.
 
-4. Under Disaggregation category combination Select **Gender and U5y** (you may need to create a new category combination containing the categories **Gender** and **Under 5/5 and above of age** if not present)
+4. Under **Disaggregation category mappings**, select a **Disaggregation category combination**, for example **Gender and U5y** (you may need to create a new category combination containing the categories **Gender** and **Under 5/5 and above of age** if not present).
 
     ![](resources/images/program/Disaggregation_Category.png)
 
-    Loading this category combination will display the Mapping selection drop down for each of the categories defined, as this is the first time these categories have been selected there are no mappings currently available.
+    As this is the first time these categories have been selected, there are no mappings currently available for them yet.
 
-5. Under the Disaggregation categories section you should see both of the categories from the combination added as suggestion. Click **Add category** for both **Gender** and **U5y**
+5. The categories from the combination appear as suggestions. Click **Add category** for both **Gender** and **U5y** (or use **Add a category** / **Add categories from a category combo** to add others), then click **Add mapping** on each category.
 
     ![](resources/images/program/Disaggregation_Mappings.png)
 
 
 #### Create the category mappings
 
-6. In the text field under each Category enter an expression using the Program Data Elements and Attributes that defines the category. The expression uses the same syntax as the Filter section of the Program Indicator creation screen.  It is recommended to open a Program Indicator within the Program you are mapping, use the Filter screen to construct the expression and then copy it into this field. This allows you to use the inbuilt expression validation of the Program Indicator filter builder.
-   [Program Indicator functions and variable operators](#mmp_program_indicator_functions_variables_operators)
+6. For each category, click **Set up filter** to open the expression editor and enter an expression using the program's data elements and attributes that defines the category. This uses the same expression language as a program indicator's own **Filter** section. It is recommended to open a program indicator within the program you are mapping, use its **Filter** section to construct the expression and then copy it into this field, so you can use that section's inbuilt expression validation.
+   See [Functions, variables and operators](#mmp_program_indicator_functions_variables_operators).
 
     ![](resources/images/program/Disaggregation_Mappings_Expanded.png)
     ![](resources/images/program/Program_Indicator_Filter_Expression.png){ .center width=60% }
 
-    This example is linking the value selected in the **Gender** data element in the Program to the category option. Since the Option set in this case is a text field the expression is set to match the text ‘Female’. The next example for age shows a different way to define the relationship.
+    This example links the value selected in the **Gender** data element in the program to the category option. Since the option set in this case is a text field, the expression is set to match the text 'Female'. The next example for age shows a different way to define the relationship.
 
     ![](resources/images/program/PI_Disaggregation_Gender_Mapping.png)
 
-    To add the mapping for the Under 5 years and 5 years and above, since it is a numerical field you can use the operators `>` `>=` `<` `<=` `==` `!=` to define the relationship
+    To add the mapping for the Under 5 years and 5 years and above category options, since it is a numerical field you can use the operators `>` `>=` `<` `<=` `==` `!=` to define the relationship instead.
 
     ![](resources/images/program/PI_Disaggregation_Age_Mapping.png)
 
-7. When mappings for all the category options are complete, click Save and exit
+    If the program indicator also needs an attribute category combination mapped (rather than, or in addition to, the disaggregation category combination above), repeat this process under **Attribute category mappings**, selecting an **Attribute category combination** instead.
+
+7. When mappings for all the category options are complete, click **Save and close** (or **Save** to save without leaving the page).
 
 
-8. Open Data Visualizer, first let’s look at how these data were previously displayed. To do this create a visualisation to show the data of the 5 existing Program indicators with the built in disaggregations shown below.
+8. Open Data Visualizer. First, let's look at how this data was previously displayed. Create a visualisation showing the data of the 5 existing program indicators with the built-in disaggregations shown below.
 
     ![](resources/images/program/DV_Before.png){ .center width=60% }
     
     ![](resources/images/program/DV_Before2.png)
 
-9. Now remove the 4 Program Indicators with disaggregations specified and leave only the BMI Program Indicator.
+9. Now remove the 4 program indicators with disaggregations specified and leave only the BMI program indicator.
 
     ![](resources/images/program/DV_only_PI.png)
 
-10. You can now add **Gender** and **Under 5/5 and above of age** as disaggregation categories from the Your Dimensions column for the Program Indicator, click update and see the results.
+10. You can now add **Gender** and **Under 5/5 and above of age** as disaggregation categories from the Your Dimensions column for the program indicator, click update and see the results.
 
     ![](resources/images/program/DV_PI_Disaggregated.png)
 
     You can now compare the data from the two separate program indicators and the single program indicator that has been disaggregated.
 
-#### Transferring Program Indicator data via the Aggregate data exchange app
+#### Transferring program indicator data via the Aggregate data exchange app
 
-In addition to viewing a disaggregated Program Indicator in the Data Visualiser you can now transfer the Program Data, via the Disaggregated Program indicator, into a Data Element that shares the same Category Combination.
+In addition to viewing a disaggregated program indicator in Data Visualizer, you can transfer the program data, via the disaggregated program indicator, into a data element that shares the same category combination.
 
 ![](resources/images/program/PI_Disaggregation_Data_Exchange.png)
 
-By adding the ID of a Data Element in the **Data element for aggregate data export** field and then setting up the aggregate data exchange app* to transfer data you can save Program data in the aggregate data model
+By adding the ID of a data element in the **Data element for aggregate data export** field, and then setting up the Aggregate Data Exchange app to transfer data, you can save program data in the aggregate data model.
 
 ![](resources/images/program/PI_Disaggregation_DE_for_Data_Exchange.png)
 
@@ -1018,7 +1045,7 @@ By adding the ID of a Data Element in the **Data element for aggregate data expo
 
 Program indicators and program indicator groups are reached from **Indicators and Predictors → Program indicators** / **Program indicator groups** in the Metadata Management app, just as they were reached from the **INDICATOR** top-level tab in the Maintenance app.
 
-The concepts, the create/edit form, and — most importantly — the full reference tables of functions, variables and operators available in program indicator expressions and filters are unchanged, and documented below.
+The concepts, the create/edit form, and (most importantly) the full reference tables of functions, variables and operators available in program indicator expressions and filters are unchanged, and documented below.
 
 ### About program indicators { #mmp_about_program_indicators } 
 
@@ -1042,10 +1069,10 @@ expression and filter. The order of evaluation is:
 
 Table: Program indicator components
 
-| Program rule component | Description |
+| Program indicator component | Description |
 |---|---|
 | Aggregation type | The aggregation type determines how the program indicator will be aggregated. The following aggregation types are available:<br> * Average<br> * Average (number)<br> * Average (number, disaggregation)<br> * Average (sum in organisation unit hierarchy)<br> * Average (sum of numbers)<br> * Average (sum of numbers, disaggregation)<br> * Average (Yes/No)<br> * Count<br> * Custom<br> The "custom" aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation types are applied to the entire expression.<br> Using the "custom" aggregation type might lead to an exception of the order of evaluation described above where individual parts of the expression can be evaluated and aggregated, as opposed to the entire expression being evaluated prior to aggregation.<br> * Default<br> * Max<br> * Min<br> * None<br> * Standard deviation<br> * Sum<br> * Variance |
-| Analytics type | The available analytics types are *event* and *enrollment*.<br> <br>The analytics type defines whether the program indicator is calculated based on events or program enrollments. This has an impact on what type of calculations can be made.<br> * Events implies a data source where each event exists as an independent row. This is suitable for performing aggregations such as counts and sums.<br> * Enrollments implies a data source where all events for a single enrollment is combined on the same row. This allows for calculations which can compare event data from various program stages within a program enrollment. |
+| Analytics type | The available analytics types are *event* and *enrollment*. In the Metadata Management app, this field is labelled **Data source**.<br> <br>The analytics type defines whether the program indicator is calculated based on events or program enrollments. This has an impact on what type of calculations can be made.<br> * Events implies a data source where each event exists as an independent row. This is suitable for performing aggregations such as counts and sums.<br> * Enrollments implies a data source where all events for a single enrollment is combined on the same row. This allows for calculations which can compare event data from various program stages within a program enrollment. |
 | Organisation unit field | Determines which organisation unit is assigned to program indicator values.<br><br> For Event programs (without registration) the options are:<br> * Event organisation unit (default): where the event took place<br> * any data elements of value type Organisation Unit (if any) assigned to the program<br><br> For Tracker programs (with registration) and analytics type *Enrollment* the options are:<br> * Registration organisation unit: where the tracked entity instance was created<br> * Enrollment organisation unit (default): where the tracked entity instance was enrolled in this program<br> * Owner at start organisation unit: where the tracked entity instance was owned at the start of the reporting period<br> * Owner at end organisation unit: where the tracked entity instance was owned at the end of the reporting period<br><br> For Tracker programs (with registration) and analytics type *Event* the options are:<br> * Event organisation unit (default): where the event took place<br>  * any data elements of value type Organisation Unit (if any) assigned to the program<br> * Registration organisation unit: where the tracked entity instance was created<br> * Enrollment organisation unit: where the tracked entity instance was enrolled in this program<br> * Owner at start organisation unit: where the tracked entity instance was owned at the start of the reporting period<br> * Owner at end organisation unit: where the tracked entity instance was owned at the end of the reporting period |
 | Analytics period boundaries | Defines the boundaries for the program indicator calculation. The boundaries determine which events or enrollments gets included in aggregations, always relative to the aggregate reporting period start and end. When creating the program indicator, the default boundaries will get preselected based on analytics type.<br> * For analytics type *event*, the default boundaries will be configured to encapsulate any events with an event date after the reporting period starts and before the reporting period ends.<br> * For analytics type *enrollment*, the default boundaries will encapsulate all enrollments with an enrollment date after the reporting date starts and before the reporting period ends. In addition, the default enrollment program indicator evaluates the newest event for all program stages regardless of date.<br> <br>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returning all data before or after a certain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.<br> * Boundary target: Can be *incident date*, *event date*, *enrollment date* or *custom*. Designates what is being constrained by the boundary.<br> <br> *custom* is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:<br> - Data element of type date: #{programStageUid.dataElementUid}.<br> `#{A03MvHHogjR.a3kGcGDCuk6}` <br> - Tracked entity attribute of type date: #{attributeUid}.<br> `A{GPkGfbmArby}` <br> - Presence of one event in a specific program stage: PS_EVENTDATE:programStageUid.<br> `PS_EVENTDATE:A03MvHHogjR`  <br> **Note**  This boundary target is only applicable to  Analytics type Enrollment <br> * Analytics period boundary type: Defines whether the boundary is an end boundary - starting with "before...", or a start boundary - "after...". Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.<br> * Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort program indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with "-1" and "Years"<br> * Period type: See above. Can be any period, e.g. *Weekly* or *Quarterly*. |
 | Expression | The expression defines how the indicator is being calculated. The expression can contain references to various entities which will be substituted with a related values when the indicator is calculated:<br> * Data elements: Will be substituted with the value of the data element for the time period and organisation unit for which the calculation is done. Refers to both program stage and data element.<br> * Attributes: Will be substituted with the value of the attribute for the person / tracked entity for which the calculation is done.<br> * Variables: Will be substituted with special values linked to the program, including incident date and date of enrollment for the person, current date and count of values in the expression for the time period and organisation unit for which the calculation is done.<br> * Constants: Will be substituted with the value of the constant.<br> <br>The expression is a mathematical expression and can also contain operators.<br> <br>For single event programs and tracker programs with analytics type *event*, the expression will be evaluated *per event*, then aggregated according to its aggregation type.<br> <br>For tracker programs with analytics type *enrollment*, the expression will be evaluated *per enrollment*, then aggregated according to its aggregation type. |
@@ -1065,58 +1092,23 @@ You manage the following program indicator objects:
 >
 > A program indicator belongs to exactly one program.
 
-1.  Open the **Metadata Management** app and click **Indicators and Predictors** \> **Program indicators**.
+Open the **Metadata Management** app and click **Indicators and Predictors** \> **Program indicators**, then click **New** (or select an existing program indicator to edit). The editor has its own section list:
 
-2.  Click the add button.
+* **Basic information**. Name, Short name, Code, Description, **Visual configuration** (color and icon).
+* **Configuration**. **Program**, **Aggregation type**, **Data source** (**Event** or **Enrollment**, the analytics type described above), **Organisation unit field** (only shown once applicable to the program and data source chosen), and **Decimal places in output**.
+* **Expression**. Click **Set up expression** (or **Edit expression** once one exists) to create the expression, based on mathematical operators and the attributes, variables and constants listed to the right.
+* **Filter**. Click **Set up filter** (or **Edit filter** once one exists) to create the filter, the same way.
+* **Period boundaries**. Click **Add a period boundary** to add one, with **Boundary target**, **Custom boundary text** (only for a **Custom** target), **Analytics period boundary type**, **Offset period by amount** and **Period type**. Existing boundaries can be edited or removed.
+* **Advanced options**. **Show in data entry forms**, (optional) **Category option combination for aggregate data export**, (optional) **Attribute option combination for aggregate data export**, and (optional, DHIS2 2.42 and later) **Data element for aggregate data export**.
+* **Legends**. **Legend sets**, a transfer list letting you assign more than one.
 
-3.  Select a **Program** and enter:
-
-      - **Name**
-
-      - **Short name**
-
-      - **Code**
-
-      - **Color**
-
-      - **Icon**
-
-      - **Description**
-4.  Select number of **Decimals in data output**.
-
-5.  Select an **Aggregation type**.
-
-6.  Select if you want to **Display in form**.
-
-7.  Assign one or multiple **Legend**s.
-
-8.  (Optional) Enter a **Category option combination for aggregate data
-    export**.
-
-9.  (Optional) Enter an **Attribute option combination for aggregate
-    data export**.
-
-10. Create the expression.
-
-    1.  Click **Edit expression**.
-
-    2.  Create the expression based on mathematical operators and the
-        attributes, variables and constants listed to the right.
-
-11. Create the filter.
-
-    1.  Click **Edit filter**.
-
-    2.  Create the expression based on mathematical operators and the
-        attributes, variables and constants listed to the right.
-
-12. Click **Save**.
+Click **Save and close** when done.
 
 ### Create or edit a program indicator group { #mmp_create_program_indicator_group } 
 
 1.  Open the **Metadata Management** app and click **Indicators and Predictors** \> **Program indicator groups**.
 
-2.  Click the add button.
+2.  Click **New**.
 
 3.  Enter **Name** and **Code**.
 
@@ -1339,24 +1331,24 @@ A filter that uses both attributes and data elements looks like this:
 
 ![Relationship types list](resources/images/metadata-management/mma-relationship-types-list.jpg)
 
-Reached from **Programs → Tracked entity types**, **Programs → Tracked entity attributes**, and **Programs → Relationship types**. These list and edit screens follow the same shared conventions as every other object type in the app — see [Common metadata object fields](#mm_common_metadata_fields), [Common actions](#mm_common_actions) and [Using a transfer list component](#mm_transfer_list_component) in [Configure metadata (Metadata Management app)](#metadata_management_app) 
+Reached from **Programs → Tracked entity types**, **Programs → Tracked entity attributes**, and **Programs → Relationship types**. These list and edit screens follow the same shared conventions as every other object type in the app. See [Common metadata object fields](#mm_common_metadata_fields), [Common actions](#mm_common_actions) and [Using a transfer list component](#mm_transfer_list_component) in [Configure metadata (Metadata Management app)](#metadata_management_app) 
 For what a tracked entity type, tracked entity attribute, or relationship type configures, see below.
 
 ### About relationship types { #mmp_about_relationship_types } 
 
-A relationship represents a link between two entities in the Tracker-model. A relationship is considered data in DHIS2 and is based on a Relationship Type, similar to how a Tracked Entity is based on a Tracked Entity Type.
+A relationship represents a link between two entities in the tracker model. A relationship is considered data in DHIS2 and is based on a relationship type, similar to how a tracked entity is based on a tracked entity type.
 
-Relationships always include two entities, and these entities can include Tracked Entities, Enrollments and Events, and any combination of these. 
+Relationships always include two entities, and these entities can include tracked entities, enrollments and events, and any combination of these.
 
 > [!NOTE]
-> Note that not all of these combinations are available in the current apps. Currently in the Capture app, you can create:
-> * Tracked Entity to Tracked Entity Relationships
-> * Event in Event Programs to Tracked Entity Relationships (Only from the Event side)
-> * Event in one Program Stage to Event in another Program Stage in the same Program (Related stages - see more information [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-241/tracking-individual-level-data/capture.html#related-stages-and-linked-events-for-tracker-programs))
+> Not all of these combinations are available in the current apps. Currently in the Capture app, you can create:
+> * Tracked entity to tracked entity relationships
+> * Event in event programs to tracked entity relationships (only from the event side)
+> * Event in one program stage to event in another program stage in the same program (related stages - see more information [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-241/tracking-individual-level-data/capture.html#related-stages-and-linked-events-for-tracker-programs))
 
-In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these requires different levels of access to create. Unidirectional relationships requires the user to have data write access to the “from” entity and data read access for the “to” entity, while bidirectional relationships require data write access for both sides.
+In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these require different levels of access to create. Unidirectional relationships require the user to have data write access to the "from" entity and data read access for the "to" entity, while bidirectional relationships require data write access for both sides.
 
-For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](#relationship_model_relationship_type).
+For more information about the underlying model, see [Relationship model](#relationship_model_relationship_type).
 
 ### Create or edit a relationship type { #mmp_create_relationship_type } 
 
@@ -1364,27 +1356,26 @@ For more information about configuration and the meaning of 'From constraint' an
 
 2. Click the **+ New** button.
 
-3.  Type a **Name** of the relationship type.
+3. Type a **Name** for the relationship type.
 
-4.  (Optional) Assign a **Code**.
+4. (Optional) Assign a **Code**.
 
-5.  (Optional) Provide a **Description** of the relationship.
+5. (Optional) Provide a **Description**.
 
-6. (Optional) Select whether the relationship should be bidirectional
+6. (Optional) Select **"Bidirectional: relationship can be created from both sides"**.
 
-7. Provide **Relationship name seen from initiating entity**. This is the name of the relationship that will be shown in the Data Entry app at the 'left' side of the relationship. E.g. in a Mother-child relationship this could be 'Mother of'.
+7. Provide a **Name shown for initiating entity**. Required. For example, in a mother-child relationship this could be 'Mother of'.
 
-8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
+8. If the relationship is bidirectional, also provide a **Name shown for receiving entity**, for example 'Mother'. This field only appears once **Bidirectional** is ticked, and is required in that case; unticking **Bidirectional** hides it again.
 
-9.  Select a 'From constraint'. This limits what kind of entities can be included in the relationship. [Relationship model](#relationship_model_relationship_type). After selecting a 'From constraint', you have the option to choose which attributes or data elements should be shown in the relationship widget in Tracker Capture and Capture for the "From constraint". The list will vary based on the constraint:
-    * When selecting “Tracked Entity Instance”, then a Tracked Entity Type only, choose between the configured Tracked Entity Type Attributes
-    * When selecting “Tracked Entity Instance”, then a Tracked Entity Type and a Program, choose between the attributes that have been configured for both the Tracked Entity Type and for the Program
-    * When selecting “Enrollment in program”, choose between the attributes that have been configured for the Program
-    * When selecting “Event in program or program stage”, choose between the data elements that have been configured for that Event program or Program stage
+9. Under **Initiating side (From)**, choose what kind of entity this side of the relationship constrains: **Event**, **Enrollment**, or **Tracked entity**. See [Relationship model](#relationship_model_relationship_type).
+    * **Tracked entity**. Choose a **Tracked entity type**, then optionally a **Program**. Reveals a transfer list, **"Choose which tracked entity attributes are shown when viewing the relationship"**, sourced from the tracked entity type's (and, if chosen, the program's) attributes.
+    * **Enrollment**. Choose a **Program** (required). Reveals the same kind of tracked entity attributes transfer list, sourced from the program's attributes.
+    * **Event**. Choose a **Program** (required), then a **Program stage** once a tracker program is picked. Reveals a transfer list of data elements instead, **"Choose which data elements are shown when viewing the relationship"**, sourced from the program stage's data elements.
 
-10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type). Repeat the selection of attributes or data elements that should be shown in the relationship widget for the "To constraint".
+10. Under **Receiving side (To)**, repeat the same choice for the other side of the relationship.
 
-11. Click **Save**.
+11. Click **Save and close**, or **Save** to save without leaving the page.
 
 ### About tracked entity types { #mmp_about_tracked_entity_type } 
 
@@ -1403,8 +1394,8 @@ programs.
 ### Create or edit a tracked entity attribute { #mmp_create_tracked_entity_attribute }
 
 The Metadata Management app splits this form
-into tabs (Basic information, Data collection, Data handling, Search performance, Legends) —
-several fields moved tabs and a few are new compared with the Maintenance app's single linear
+into tabs (Basic information, Data collection, Data handling, Search performance, Legends).
+Several fields moved tabs and a few are new compared with the Maintenance app's single linear
 form.
 
 1. Open the **Metadata Management** app and click **Programs** > **Tracked entity attributes**.
@@ -1412,7 +1403,7 @@ form.
 2. Click the **+ New** button.
 
 3. On the **Basic information** tab, fill in **Name**, **Form name**, **Short name**, **Code**
-   and **Description** — see [Common metadata object fields](#mm_common_metadata_fields) in
+   and **Description**. See [Common metadata object fields](#mm_common_metadata_fields) in
    [Configure metadata (Metadata Management app)](#metadata_management_app). Only **Name** and
    **Short name** are required.
 
@@ -1421,7 +1412,7 @@ form.
    1. (Optional) Select an **Option set**. This overrides the **Value type** selection to match
       the option set.
 
-   2. Select a **Value type** — the type of data that the tracked entity attribute will record.
+   2. Select a **Value type**. The type of data that the tracked entity attribute will record.
 
       Table: Value types
 
@@ -1430,8 +1421,8 @@ form.
       | Age | Dates rendered as calendar widget OR by entering number of years, months and/or days which calculates the date value based on current date. The date will be saved in the backend. |
       | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
       | Date | Dates render as calendar widget in data entry. |
-      | Date & time | Is a combination of the **DATE** and **TIME** data elements. |
-      | E-mail | Valid email address. |
+      | Date and time | Is a combination of the **DATE** and **TIME** data elements. |
+      | Email | Valid email address. |
       | File | A file resource where you can store external files, for example documents and photos. |
       | Image | A file resource where you can store photos.<br>     <br>Unlike the **FILE** data element, the **IMAGE** data element can display the uploaded image directly in forms. |
       | Integer | Any whole number (positive and negative), including zero. |
@@ -1442,7 +1433,7 @@ form.
       | Percentage | Whole numbers inclusive between 0 and 100. |
       | Phone number | Phone number. |
       | Positive integer | Any whole number greater than (but not including) zero. |
-      | Positive of zero integer | Any positive whole number, including zero. |
+      | Positive or Zero integer | Any positive whole number, including zero. |
       | Organisation unit | Organisation units rendered as a hierarchy tree widget.<br>     <br>If the user has assigned "search organisation units", these will be displayed instead of the assigned organisation units. |
       | Unit interval | Any real number greater than or equal to 0 and less than or equal to 1. |
       | Text | Textual value. The maximum number of allowed characters per value is 50,000. |
@@ -1454,9 +1445,9 @@ form.
    3. (Optional) Select **Unique values only** to require that every value of this attribute is
       unique. Selecting the checkbox reveals:
 
-      - **Across entire system** or **Per organisation unit** — whether the value must be
+      - **Across entire system** or **Per organisation unit**. Whether the value must be
         unique system-wide, or only unique within the same organisation unit.
-      - **Automatically generate values** — select this to have the app generate the value
+      - **Automatically generate values**. Select this to have the app generate the value
         automatically. This reveals a **Pattern for automatically generated values** field,
         which takes a pattern in DHIS2 TextPattern syntax. When a value is auto-generated this
         way it is unique for this attribute across the entire system regardless of the scope
@@ -1464,7 +1455,7 @@ form.
 
    4. (Optional) In the **Field mask** field, type a template used to hint at the correct
       formatting of the attribute. **This is currently only implemented in the DHIS2 Android
-      Capture app, not in the Capture and Tracker Capture web apps.** The following special
+      Capture app, not in the web Capture app.** The following special
       characters match exactly one character of the given type:
 
       | Character | Match |
@@ -1483,31 +1474,35 @@ form.
       held by a related entity.
    2. (Optional) Select **Show in lists and search results when no program is selected**.
    3. (Optional) Select **Skip synchronization for this attribute and its values**.
-   4. (Optional) Select **Do not expose this attribute in analytics** to exclude the attribute
-      from all analytics processing, including analytics tables and analytics apps.
-   5. Select an **Aggregation type** — the default way this attribute is aggregated in
+   4. (DHIS2 2.43 and later) Select **Do not expose this attribute in analytics** to exclude
+      the attribute from all analytics processing, including analytics tables and analytics
+      apps.
+   5. Select an **Aggregation type**. The default way this attribute is aggregated in
       analytics. Disabled for value types that cannot be aggregated.
 
-6. On the **Search performance** tab:
+6. On the **Search performance** tab (DHIS2 2.43 and later; this tab does not appear on an
+   older server):
 
    1. (Optional) Select a **Preferred search operator**. Apps try to use this operator first,
       but may use others when needed.
    2. (Optional) Select one or more **Blocked search operators**. Searches using these
-      operators return no results — use this to prevent inefficient searches.
-   3. (Optional) Set **Minimum characters required to search** — users must enter at least this
+      operators return no results. Use this to prevent inefficient searches.
+   3. (Optional) Set **Minimum characters required to search**. Users must enter at least this
       many characters before a search runs. Enter 0 for no minimum.
    4. (Optional) Select **Mark for trigram indexing**. Only relevant when using LIKE or
       "ends with" based searches.
 
 7. On the **Legends** tab, (optional) assign one or multiple **Legends**.
 
-8. Click **Save**.
+8. Click **Save and close**, or **Save** to save without leaving the page.
 
 ### Create or edit a tracked entity type { #mmp_create_tracked_entity_type }
 
 Like tracked entity attributes, this form is
-now tabbed (Basic information, Tracked entity attributes, Attributes), and gained several
-fields that did not exist in the Maintenance app.
+now tabbed (Basic information, Tracked entity attributes), and gained several
+fields that did not exist in the Maintenance app. A third tab, named after whatever custom
+attributes an administrator has configured for tracked entity types on this instance, only
+appears if at least one such custom attribute exists; it has no fixed content of its own.
 
 1. Open the **Metadata Management** app and click **Programs** > **Tracked entity types**.
 
@@ -1515,13 +1510,13 @@ fields that did not exist in the Maintenance app.
 
 3. On the **Basic information** tab:
 
-   1. Fill in **Name** and **Short name** — both required. **Short name** is new compared
+   1. Fill in **Name** and **Short name**. Both required. **Short name** is new compared
       with the Maintenance app; see [Common metadata object fields](#mm_common_metadata_fields)
       in [Configure metadata (Metadata Management app)](#metadata_management_app).
    2. (Optional) Under **Visual configuration**, select a **Color** and an **Icon** that the
       data capture apps use to identify this tracked entity type.
    3. (Optional) Enter a **Description**.
-   4. Select a **Location type** — **Point**, **Polygon/Area**, or **Do not collect location
+   4. Select a **Location type**. **Point**, **Polygon/Area**, or **Do not collect location
       data**. This is new compared with the Maintenance app, which did not offer a location
       type choice here.
    5. (Optional) Select **Enable tracked entity instance audit log**. This is also new.
@@ -1530,18 +1525,16 @@ fields that did not exist in the Maintenance app.
       *global search*. See [Configure search](#mmp_configure_search) below.
    7. (Optional) Enter a **Maximum number of tracked entity instances to return when
       searching**. Entering 0 shows all search results.
+   8. DHIS2 2.43.2 and later also adds a **Name (Plural)** field.
 
 4. On the **Tracked entity attributes** tab, move attributes from **Available Tracked entity
-   attributes** into **Selected Tracked entity attributes** using the transfer list — see
+   attributes** into **Selected Tracked entity attributes** using the transfer list. See
    [Using a transfer list component](#mm_transfer_list_component) in
    [Configure metadata (Metadata Management app)](#metadata_management_app). Once attributes
    are selected, the **Manage attributes** grid below lets you mark each one **Required**,
    **Searchable**, and/or **Display in list**.
 
-5. On the **Attributes** tab, (optional) enter an **Alternative name** for the tracked entity
-   type.
-
-6. Click **Save**.
+5. Click **Save and close**, or **Save** to save without leaving the page.
 ## Configure search { #mmp_configure_search }
 
 Users can be given search organisation units, which makes it possible to
@@ -1584,62 +1577,57 @@ Searchable program attributes will be assigned to a search group.
     search.
 
 There are two limits that can be set for a program search, as part of
-the **Enrollment: Settings** section:
+the program's own **Program Details** section (see [Program Details](#mmp_tracker_program_details) above):
 
-  - Minimum number of attributes required to search: This property
-    defines how many of the non-unique attributes that must be entered
-    before a search can be performed.
+  - **Minimum number of attributes required to search**. Defines how many of the non-unique
+    attributes must be entered before a search can be performed.
 
-  - Maximum number of tracked entities to return: This property defines how specific a
+  - **Maximum number of search results to display**. Defines how specific a
     search must be, by limiting the number of matching tracked entities a user is allowed to get for
-    their search criteria. If the number of matching records is larger than this setting, they will not
-    be returned. The user must then provide more specific search criteria, in order to reduce the number
-    of matching records, before they are returned. More on limits
+    their search criteria. If the number of matching records is larger than this setting, the server rejects
+    the search with an error rather than returning a partial list. The user must then provide more specific search
+    criteria, in order to reduce the number of matching records. More on limits
     [here](../developer/web-api/tracker.md#tracked-entities-collection-limits).
 
     > **NOTE**
     >
-    > This maximum limit setting is only applied to search results when searching outside the users capture org unit. Within the
+    > This limit is only applied to search results when searching outside the user's capture scope. Within the
     capture scope, the user can see any number of results.
 
 ### Configure search for a tracked entity type { #mmp_configure_search_tracked_entity_type }
 
-> **Note**
->
-> TET = Tracked entity type
-
 To be able to search without a program, you will have to make some of
-the TET attributes searchable. Unique TET attributes will always be
+the tracked entity type's attributes searchable. Unique attributes will always be
 searchable.
 
 1.  Open the **Metadata Management** app and click **Programs** \> **Tracked entity types**.
 
 2.  Open a tracked entity type.
 
-3.  If the TET has no attributes, add one.
+3.  If it has no attributes, add one, under its **Tracked entity attributes** tab.
 
 4.  Set the attribute searchable.
 
-Searchable TET attributes will be assigned to a search group.
+Searchable attributes will be assigned to a search group.
 
-  - Unique group. One group per unique TET attribute. Unique attributes
-    cannot be combined with other TET attributes in a search. The result
+  - Unique group. One group per unique attribute. Unique attributes
+    cannot be combined with other attributes in a search. The result
     from the search can only be 0 or 1 tracked entity instance.
 
-  - Non-unique group. This group contains all non-unique TET attributes
+  - Non-unique group. This group contains all non-unique attributes
     and makes it possible to combine multiple attributes in a search.
 
-There are two limits that can be set for a TET search:
+There are two limits that can be set, as part of the tracked entity type's own **Basic
+information** tab (see [Create or edit a tracked entity type](#mmp_create_tracked_entity_type) above):
 
-  - Minimum number of attributes required to search: This property
-    defines how many of the non-unique attributes that must be entered
-    before a search can be performed.
+  - **Minimum number of attributes required to search**. Defines how many of the non-unique
+    attributes must be entered before a search can be performed.
 
-  - Maximum number of tracked entity types to return: This property defines how specific a search must be, by limiting the number of matching tracked entity types a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
+  - **Maximum number of tracked entity instances to return when searching**. Defines how specific a search must be, by limiting the number of matching tracked entities a user is allowed to get for their search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
 
     > **NOTE**
     >
-    > This maximum is only applied to search results outside the users capture org unit. Within the capture scope, the user can see any number of results.
+    > This maximum is only applied to search results outside the user's capture scope. Within the capture scope, the user can see any number of results.
 
 ### Configure search organisation units for a user { #mmp_configure_search_org_units }
 
