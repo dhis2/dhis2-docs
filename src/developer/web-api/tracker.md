@@ -1659,6 +1659,25 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 > * You can export a Gzip file by adding the `Accept` header *application/csv+gzip* for CSV or *application/json+gzip* for JSON.
 > * You can export a Zip file by adding the `Accept` header *application/csv+zip* for CSV or *application/json+zip* for JSON.
 
+### Request timeout { #webapi_tracker_export_timeout }
+
+Export requests are bounded by a time budget, configured with
+[`tracker.export.timeout`](#install_tracker_configuration) and 10 minutes by default. A request
+exceeding it is cancelled and fails with `504 Gateway Timeout`, naming the budget it exceeded. With
+`tracker.export.timeout = 60`:
+
+```json
+{
+  "httpStatus": "Gateway Timeout",
+  "httpStatusCode": 504,
+  "status": "ERROR",
+  "message": "Tracker export exceeded its time budget of 60s"
+}
+```
+
+The request is too expensive to complete in time. Narrow it, see
+[Performance](#webapi_tracker_performance).
+
 ### Common request parameters
 
 The following endpoints support standard pagination parameters.
@@ -3772,7 +3791,9 @@ rules with validations or assignments that must be enforced on import:
 #### General Principles
 
 Export endpoint response times are typically dominated by database query execution. The
-recommendations below focus on reducing the amount of work the database has to do.
+recommendations below focus on reducing the amount of work the database has to do. A request that
+outlives its [time budget](#webapi_tracker_export_timeout) is cancelled and fails with
+`504 Gateway Timeout`.
 
 ##### Query at the Right Level
 
