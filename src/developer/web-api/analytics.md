@@ -133,6 +133,12 @@ like this:
     /api/analytics.html?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014Q1;2014Q2
       &dimension=ou:O6uvpzGd5pu&tableLayout=true&columns=dx;ou&rows=pe
 
+The number of column and row combinations which can be requested in
+table layout is limited by the *keyAnalyticsDownloadCombinationLimit*
+system setting, which defaults to 20000. The limit is applied separately
+to the column combinations and to the row combinations, not to their
+product. A request which exceeds it fails with error code `E7151`.
+
 The *order* parameter can be used for analytics resource to generate
 ordered data. The data will be ordered in ascending (or descending) order
 of values. An example request for ordering the values in descending
@@ -568,6 +574,7 @@ API are described in the table below.
 | E7129      | Program is specified but does not exist |
 | E7130      | Program stage is specified but does not exist |
 | E7131      | Query failed, likely because the query timed out |
+| E7151      | Too many combinations of columns or rows |
 
 ### Data value set format { #webapi_analytics_data_value_set_format } 
 
