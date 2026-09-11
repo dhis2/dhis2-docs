@@ -303,8 +303,7 @@ key.
 
 The primary driver for DCR is the DHIS2 Android Capture app: every
 enrolled device becomes its own first-party OAuth2 client, authenticated
-via `private_key_jwt` instead of a shared secret. See
-[Android device enrollment walkthrough](#android_dcr_walkthrough).
+via `private_key_jwt` instead of a shared secret.
 
 ### Flow
 
