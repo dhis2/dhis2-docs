@@ -1153,6 +1153,20 @@ inline aggregation types looks like
 Note how the "sum" aggregation operator is used inside the expression
 itself.
 
+Table: Functions for custom aggregation to use in a program indicator expression
+
+| Function | Description |
+|---|---|
+| avg | The average of the argument's values across the aggregated rows. |
+| count | The number of non-null values of the argument across the aggregated rows. |
+| max | The largest of the argument's values across the aggregated rows. |
+| min | The smallest of the argument's values across the aggregated rows. |
+| stddev | The sample standard deviation of the argument's values across the aggregated rows. |
+| sum | The sum of the argument's values across the aggregated rows. |
+| variance | The sample variance of the argument's values across the aggregated rows. |
+
+These functions are only usable when the program indicator's **Aggregation type** is set to **Custom**, and the argument must be a data element or attribute reference, for example `sum(#{mCXR7u4kNBW.NFkjsNiQ9PH})`.
+
 #### Adding comments in program indicator expression or filter
 Uniform syntax is supported for both singleline and multiline comments
 
@@ -1187,6 +1201,8 @@ Table: Functions to use in a program indicator expression or filter
 | d2:count | (dataElement) | Useful only for enrollment program indicators. Counts the number of data values that has been collected for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. |
 | d2:countIfValue | (dataElement, value) | Useful only for enrollment program indicators. Counts the number of data values that matches the given literal value for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The value can be a hard coded text or number, for example 'No_anemia' if only the values containing this text should be counted. |
 | d2:countIfCondition | (dataElement, condition) | Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '<10' if only the values less than 10 should be counted. |
+| d2:maxValue | (dataElement) | Produces the maximum value of the given data element across the events in the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. |
+| d2:minValue | (dataElement) | Produces the minimum value of the given data element across the events in the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. |
 | if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. This is identical to the d2:condition function except that the boolean-expr is not quoted. |
 | is | (expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
 | isNull | (object) | Returns true if the object value is missing (null), otherwise false. |
@@ -1196,6 +1212,9 @@ Table: Functions to use in a program indicator expression or filter
 | least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions). |
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| contains | (text,text, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. Comparisons are case-sensitive. |
+| containsItems | (text,text, ...) | Searches a comma-separated expression for one or more items. Returns true if every item exactly matches an element in the expression. Comparisons are case-sensitive. |
+| removeZeros | (expression) | Replaces a value of exactly zero with no value, so it is excluded from aggregation instead of counted as zero. |
 
 A filter that uses the "hasValue" function looks like this:
 
@@ -1259,6 +1278,7 @@ Table: Variables to use in a program indicator expression or filter
 | event_date | The date of when the event or the last event in the enrollment took place. |
 | creation_date | The date of when an event or enrollment was created in the system. |
 | due_date | The date of when an event is due. |
+| scheduled_date | The date an event is scheduled for. Produces the same value as "due_date". |
 | sync_date | The date of when the event or enrollment was last synchronized with the Android app. |
 | incident_date | The date of the incidence of the event. |
 | enrollment_date | The date of when the tracked entity instance was enrolled in the program. |
@@ -1267,6 +1287,7 @@ Table: Variables to use in a program indicator expression or filter
 | value_count | The number of non-null values in the expression part of the event. |
 | zero_pos_value_count | The number of numeric positive values in the expression part of the event. |
 | event_count | The count of events (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
+| scheduled_event_count | The count of events with status SCHEDULE (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
 | enrollment_count | The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT.  |
 | tei_count | The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
 | org_unit_count | The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
@@ -1294,6 +1315,21 @@ looks like this:
 
     d2:daysBetween(V{incident_date},V{event_date})
 
+#### Operators to use in a program indicator expression
+
+A program indicator expression can use the following arithmetic operators, in addition to the functions above:
+
+Table: Arithmetic operators to use in a program indicator expression
+
+| Operator | Description |
+|---|---|
+| + | Add two numbers |
+| - | Subtract one number from another |
+| \* | Multiply two numbers |
+| / | Divide two numbers |
+| ^ | Exponentiation |
+| % | The modulus of two numbers |
+
 #### Operators to use in a program indicator filter
 
 
@@ -1319,15 +1355,6 @@ attributes must have numerical values less or greater than a constant.
 A filter that uses both attributes and data elements looks like this:
 
     A{cejWyOfXge6} == 'Female' and #{A03MvHHogjR.a3kGcGDCuk6} <= 2
-
-> **Tip**
->
-> DHIS2 is using the JEXL library for evaluating expressions which
-> supports additional syntax beyond what is covered in this
-> documentation. See the reference at the [project home
-> page](http://commons.apache.org/proper/commons-jexl/reference/syntax.html)
-> to learn how you can create more sophisticated expressions
-
 
 ## Tracked entity types, tracked entity attributes, and relationship types { #mmp_tracked_entity_relationship }
 
