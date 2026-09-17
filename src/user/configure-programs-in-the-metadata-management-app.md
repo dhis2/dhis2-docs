@@ -1303,6 +1303,11 @@ An expression that uses the "if" and "isnull" functions looks like this:
 
     if(isNull(A{GPkGfbmArby}),10,20)
 
+An expression that uses "isNull" to test whether an enrollment has any event in a given
+program stage looks like this:
+
+    if(isNull(PS_EVENTDATE:A03MvHHogjR),1,0)
+
 An expression that uses the "firstNonNull" function looks like this:
 
     firstNonNull(A{GPkGfbmArby}),#{mCXR7u4kNBW.NFkjsNiQ9PH},44)
@@ -1310,6 +1315,35 @@ An expression that uses the "firstNonNull" function looks like this:
 An expression that uses the "greatest" function looks like this:
 
     greatest(#{mCXR7u4kNBW.k8ja2Aif1Ae},#{mCXR7u4kNBW.NFkjsNiQ9PH},1)
+
+#### Program stage event dates in expressions and filters
+
+`PS_EVENTDATE:programStageUid` yields the event date of an event in the named program stage.
+It can be used wherever a data element or attribute can, both on its own and as an argument
+to the `d2:daysBetween` family of functions described above.
+
+On an **enrollment** program indicator it evaluates to the event date of the latest event in
+that program stage for the enrollment, restricted by any event boundaries set on the program
+indicator. It has no value when the enrollment has no event in that stage, and also when the
+events in that stage have no event date recorded. `isNull` is therefore a reliable test for
+"this enrollment has no event in this program stage":
+
+    isNull(PS_EVENTDATE:A03MvHHogjR)
+
+An expression that uses the "condition" function to count the enrollments with no event in a
+given program stage — on an **enrollment** program indicator with aggregation type **SUM** —
+looks like this:
+
+    d2:condition('isNull(PS_EVENTDATE:A03MvHHogjR)',1,0)
+
+> **Warning**
+>
+> `PS_EVENTDATE` is only meaningful on an **enrollment** program indicator. On an *event*
+> program indicator the program stage identifier is ignored, and the expression evaluates to
+> the event date of the event being evaluated, whichever program stage that event belongs to.
+> No error is raised and no value is left empty, so an event program indicator written this
+> way returns plausible but incorrect figures. To restrict an event program indicator to one
+> program stage, use `V{program_stage_id}` in its filter instead.
 
 #### Variables to use in a program indicator expression or filter
 
@@ -1333,7 +1367,7 @@ Table: Variables to use in a program indicator expression or filter
 | current_date | The current date. |
 | value_count | The number of non-null values in the expression part of the event. |
 | zero_pos_value_count | The number of numeric positive values in the expression part of the event. |
-| event_count | The count of events (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
+| event_count | The count of events (useful in combination with filters). Aggregation type for the program indicator must be COUNT.<br> <br>Only events with status ACTIVE or COMPLETED are counted.<br> <br>The variable evaluates per event to either 1 or no value at all, never to 0, so it cannot be used to find records that have no events. To test for the absence of an event in a given program stage, use `isNull(PS_EVENTDATE:programStageUid)` on an enrollment program indicator. |
 | scheduled_event_count | The count of events with status SCHEDULE (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
 | enrollment_count | The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT.  |
 | tei_count | The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
