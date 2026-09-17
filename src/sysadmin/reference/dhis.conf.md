@@ -346,6 +346,23 @@ max.sessions.per_user = 10
 # e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
 route.remote_servers_allowed = https://*
 
+# ----------------------------------------------------------------------
+# OpenID Connect [Optional]
+# ----------------------------------------------------------------------
+
+# DHIS2 supports the OpenID Connect (OIDC) identity layer for single sign-in (SSO).
+# OIDC is a standard authentication protocol that lets users sign in with an identity provider (IdP)
+# such as for example Google. After users have successfully signed in to their IdP, they will be
+# automatically signed in to DHIS2.
+#
+# All details in https://docs.dhis2.org/en/manage/reference/openid-connect-oidc.html
+
+# Enable OIDC. (default: off)
+oidc.oauth2.login.enabled = off
+
+# Where to redirect after logging out. Usually, DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP). (default: empty)
+oidc.logout.redirect_url = https://mydhis2-server.org
+
 ```
 
 Note that the configuration file supports environment variables. This
