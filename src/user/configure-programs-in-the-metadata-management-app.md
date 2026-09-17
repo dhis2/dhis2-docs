@@ -1403,6 +1403,100 @@ A filter that uses both attributes and data elements looks like this:
 
     A{cejWyOfXge6} == 'Female' and #{A03MvHHogjR.a3kGcGDCuk6} <= 2
 
+#### Missing values in program indicator filters
+
+In a program indicator **filter**, a comparison against a data element or tracked entity
+attribute that has no recorded value is neither true nor false, so the record is excluded
+from the result. This applies to `==` and `!=` alike: `!= 1` does **not** include records where the
+value is blank.
+
+##### Worked example
+
+Child Programme, *Baby Postnatal* stage, *MCH Yellow fever dose*, January 2026, Sierra Leone.
+The stage has 778 events: 370 recorded **Yes**, 405 recorded **No**, and 3 were left **blank**.
+
+| Filter | Returns | |
+|---|---|---|
+| `#{ZzYYXq4fJie.rxBfISxXS2U} == 1` | 370 | Yes |
+| `#{ZzYYXq4fJie.rxBfISxXS2U} != 1` | 405 | No only; the 3 blanks are dropped |
+| stage-guarded blank-tolerant form (below) | 408 | No + blank |
+
+Note that 370 + 405 = 775, which is 3 short of the 778 events at the stage, while
+370 + 408 = 778 exactly. If you are reconciling a program indicator against the Line Listing
+or Event Reports app, this difference is usually the cause.
+
+##### Recipes
+
+| Intent | Filter |
+|---|---|
+| Value is recorded and is No | `#{X.de} == 0` |
+| Value is No **or** blank (event program indicator) | `V{program_stage_id} == 'X' && (!d2:hasValue(#{X.de}) \|\| #{X.de} != 1)` |
+| Value is No **or** blank (enrollment program indicator) | `!d2:hasValue(#{X.de}) \|\| #{X.de} != 1` |
+| Value is recorded and is not No | `d2:hasValue(#{X.de}) && #{X.de} != 1` |
+| Text: not `'Rapid'`, including blank | `V{program_stage_id} == 'X' && (!d2:hasValue(#{X.de}) \|\| #{X.de} != 'Rapid')` |
+| Has any value | `d2:hasValue(#{X.de})`. Do **not** use `== ''` |
+
+A clearer alternative for "count everything that is not Yes" is to put the logic in the
+expression with `d2:condition`, whose `else` branch covers blanks without a double negative:
+
+    expression:      d2:condition("#{ZzYYXq4fJie.rxBfISxXS2U} == 1", 0, 1)
+    filter:          V{program_stage_id} == 'ZzYYXq4fJie'
+    aggregationType: SUM
+
+##### `== ''` never matches
+
+A blank value is *absent*, not an empty string, so a filter clause such as
+`#{X.de} == ''` never matches any record. Combined with `&&` it makes the whole program
+indicator return nothing; combined with `||` it is silently dead code. Use
+`!d2:hasValue(#{X.de})` instead.
+
+`#{X.de} != ''` does work as a presence check, but `d2:hasValue(#{X.de})` states the intent
+more clearly and behaves identically.
+
+##### Event program indicators are not restricted to one program stage
+
+A program indicator has a `program`, not a program stage. An event program indicator with no
+filter counts every event of every stage in the program.
+
+Stage scoping happens as a side effect of each `#{stage.dataElement}` reference: a clause that
+requires a *positive* match on a data element of a given stage can only be true for events of
+that stage. A clause that can be true *without* a value at that stage is not scoped. In
+particular `!d2:hasValue(#{stage.dataElement})` is true for every event of every **other**
+stage.
+
+For the example above, the filter
+`!d2:hasValue(#{ZzYYXq4fJie.rxBfISxXS2U}) || #{ZzYYXq4fJie.rxBfISxXS2U} != 1` returns
+**1102** rather than 408, because it also matches all 694 events of the *Birth* stage.
+
+Add `V{program_stage_id} == '<stageUid>' &&` whenever the filter contains `!d2:hasValue(...)`,
+or when the blank handling lives in the expression rather than the filter. If every `&&`-ed
+clause already requires a positive match on a data element of that stage, the guard is
+redundant. `V{program_stage_id}` is empty for enrollment program indicators, where it is
+neither needed nor usable: the enrollment subquery is already restricted to the stage.
+
+##### Filters and expressions treat blanks differently
+
+Filters exclude blanks, but **expressions still substitute a default** for a missing value:
+`0` for numeric and boolean, `''` for text. The two halves of the same program indicator
+therefore disagree about what a blank means:
+
+| | in a filter | in an expression |
+|---|---|---|
+| `#{X.booleanDe} == 0` | 405 (blanks excluded) | 408 (blanks counted as 0) |
+| `#{X.textDe} == ''` | 0 (never matches) | 3 (matches the blanks) |
+
+Two consequences. A record admitted by a blank-tolerant filter contributes `0` to the
+expression, which matters for `SUM` and `AVERAGE` program indicators. And a condition written
+inside `d2:condition(...)` follows the *expression* rule, not the filter rule, so
+`d2:condition("#{X.de} == 0", 1, 0)` counts blanks as No.
+
+##### Enrollment program indicators: blank also means "no event"
+
+On an enrollment program indicator, a blank value covers both "the event exists but the field
+was left empty" and "no event of that stage exists for this enrollment". These cannot be
+distinguished. For coverage reporting that is usually what you want; if it is not, use an
+event program indicator.
+
 ## Tracked entity types, tracked entity attributes, and relationship types { #mmp_tracked_entity_relationship }
 
 ![Tracked entity types list](resources/images/metadata-management/mma-tracked-entity-types-list.jpg)
