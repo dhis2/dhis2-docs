@@ -1794,7 +1794,7 @@ And last, an example to return all org units that does not start with "Bo":
 
 ## Data items { #webapi_data_items } 
 
-This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`, `OPTION_SET`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
+This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
 
 The URL is `/api/dataItems` and as you can imagine, it is able to retrieve different objects through the same endpoint in the same `GET` request. For this reason, some queriable attributes available will differ depending on the dimensional item(s) being queried.
 
@@ -1807,7 +1807,11 @@ In this example the item type `DATA_ELEMENT` has a `valueType` attribute which c
 
 Here, the `PROGRAM_INDICATOR` allows filtering by `programId`.
 
-So, based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `programId` or filter a `PROGRAM_INDICATOR` by `valueType`, you should get no results.
+3) `GET /api/dataItems?filter=dimensionItemType:eq:DATA_ELEMENT&filter=optionSetId:eq:pC3RGZ6nAyf`
+
+Here, `DATA_ELEMENT` items are filtered down to those associated with the option set `pC3RGZ6nAyf`. The `optionSetId` filter is also available for `PROGRAM_DATA_ELEMENT` and `PROGRAM_ATTRIBUTE` items that have an associated option set.
+
+So, based on the examples `1)`, `2)` and `3)` if you try filtering a `DATA_ELEMENT` by `programId` or filter a `PROGRAM_INDICATOR` by `valueType`, you should get no results.
 In other words, the filter will be applied only when the attribute actually exists for the respective data item.
 
 Another important aspect to be highlighted is that this endpoint does NOT follow the same querying standards as other existing endpoints, like [Metadata object filter](#webapi_metadata_object_filter) for example. As a consequence, it supports a smaller set of features and querying.
@@ -1837,6 +1841,7 @@ Base on the `GET` request/query, the following status codes and responses are ca
       "shortName": "TB prog Gen",
       "id": "ur1Edk5Oe2n.cejWyOfXge6",
       "programId": "ur1Edk5Oe2n",
+      "optionSetId": "pC3RGZ6nAyf",
       "dimensionItemType": "PROGRAM_ATTRIBUTE"
     }
   ]
@@ -1895,7 +1900,7 @@ Here is an example of a payload when the pagination is enabled. Remember that pa
 > The /dataItems endpoint will bring only data items that are defined as aggregatable type. The current list of valid aggregatable types is:
 `TEXT, LONG_TEXT`, `LETTER`, `BOOLEAN`, `TRUE_ONLY`, `NUMBER`, `UNIT_INTERVAL`, `PERCENTAGE`, `INTEGER`, `INTEGER_POSITIVE`, `INTEGER_NEGATIVE`, `INTEGER_ZERO_OR_POSITIVE`, `COORDINATE`.
 >
-> Even though the response returns several different attributes, the filtering can only be applied to specific ones: `displayName`, `name`, `valueType`, `id`, `dimensionItemType`, `programId`.
+> Even though the response returns several different attributes, the filtering can only be applied to specific ones: `displayName`, `name`, `valueType`, `id`, `dimensionItemType`, `programId`, `optionSetId`.
 >
 > The `order` will be considered invalid if it is set on top of `name` (ie.: order=*name:asc*) and a `filter` is set to `displayName` (ie.: filter=*displayName:ilike:aName*), and vice-versa.
 
@@ -1917,6 +1922,7 @@ Table: Data items attributes
 | valueType | The item value type (more specific definition). Possitble types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE |
 | simplifiedValueType | The genereal representation of a value type. Valid values: NUMBER, BOOLEAN, DATE, FILE_RESOURCE, COORDINATE, TEXT |
 | programId | The associated programId. |
+| optionSetId | The identifier of the option set associated with the item, when applicable (`DATA_ELEMENT`, `PROGRAM_DATA_ELEMENT` and `PROGRAM_ATTRIBUTE` items with an associated option set). |
 
 ## Viewing analytical resource representations { #webapi_viewing_analytical_resource_representations } 
 
