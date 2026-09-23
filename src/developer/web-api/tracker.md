@@ -1671,7 +1671,7 @@ exceeding it is cancelled and fails with `504 Gateway Timeout`, naming the budge
   "httpStatus": "Gateway Timeout",
   "httpStatusCode": 504,
   "status": "ERROR",
-  "message": "Tracker export exceeded its time budget of 60s"
+  "message": "Request exceeded its time budget of 60s"
 }
 ```
 
