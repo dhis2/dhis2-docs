@@ -154,7 +154,7 @@ filestore.secret = xxxx
 # LDAP [Optional]
 # ----------------------------------------------------------------------
 
-# LDAP server URL
+# LDAP server URL (default: ldaps://0:1)
 ldap.url = ldaps://300.20.300.20:636
 
 # LDAP manager user distinguished name
@@ -166,7 +166,7 @@ ldap.manager.password = xxxx
 # LDAP entry distinguished name search base
 ldap.search.base = dc=hisp,dc=org
 
-# LDAP entry distinguished name filter
+# LDAP entry distinguished name filter (default: (cn={0}))
 ldap.search.filter = (cn={0})
 
 # ----------------------------------------------------------------------
@@ -328,7 +328,7 @@ logging.level.org.springframework = INFO
 # Base URL to the DHIS2 App Hub service (default: https://apps.dhis2.org)
 apphub.base.url = https://apps.dhis2.org
 
-# Base API URL to the DHIS2 App Hub service, used for app updates (default: https://apps.dhis2.org)
+# Base API URL to the DHIS2 App Hub service, used for app updates (default: https://apps.dhis2.org/api)
 apphub.api.url = https://apps.dhis2.org/api
 
 # ----------------------------------------------------------------------
@@ -492,3 +492,35 @@ Email-based 2FA sends a verification code to the user's email address during log
 ```properties
 login.security.email_2fa.enabled = on
 ```
+
+## Tracker configuration { #install_tracker_configuration }
+
+This section covers configuration properties specific to tracker.
+
+```properties
+tracker.export.timeout = (seconds)
+```
+
+Maximum number of seconds a tracker export request may spend fetching data before it is cancelled and fails with `504 Gateway Timeout`. One budget is shared by every database query and object store read of a request. Default is `600`, 10 minutes, a backstop generous enough that typical workloads are unaffected. `0` disables it.
+
+Set it below any timeout in front of DHIS2, such as a reverse proxy. If the proxy times out first, the request keeps running and holds resources for a result nobody will read, and the `504` the client gets is the proxy's, which says nothing about what went wrong. The 10 minute default is above nginx's 60s `proxy_read_timeout` default, so lower it to fit rather than raising the proxy.
+
+Applies to `GET` and `HEAD` requests on the tracker export endpoints and their sub-resources:
+
+* `/api/tracker/trackedEntities`
+* `/api/tracker/enrollments`
+* `/api/tracker/events`
+* `/api/tracker/trackerEvents`
+* `/api/tracker/singleEvents`
+* `/api/tracker/relationships`
+
+What the budget does **not** cover:
+
+* **Waiting for a database connection.** Bounded separately by `connection.pool.timeout` on the default `hikari` pool, and answered with `503 Service Unavailable`. With `db.pool.type = unpooled` there is no queueing, so the limit becomes the database's own `max_connections`.
+* **Writing the response.** Once the first bytes are on the wire the status is committed, so a request that exceeds its budget while streaming results ends as a truncated response rather than a `504`.
+* **Clients that have gone away.** A disconnect is not detected until the server next writes to the response, which is after the queries have run.
+
+Precision depends on what the request is waiting for:
+
+* **A database query** is cancelled to the second, rounded up, so a request can overrun the configured value by up to one second.
+* **A file read from an S3 object store**, when `filestore.provider` is `s3` or `aws-s3`, is bounded to the millisecond, but the AWS SDK gives no strict guarantee on how quickly it aborts: typically a few milliseconds after the limit, occasionally several seconds.

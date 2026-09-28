@@ -325,11 +325,15 @@ query using the id property of the associated data element groups:
 
     /api/dataElements.json?filter=dataElementGroups.id:eq:qfxEYY9xAl6
 
-To get data elements with a particular attribute value for a metadata 
-attribute, a filter for the attribute ID and the attribute value can be 
-specified using the same collection query syntax:
+To get data elements with a particular value for a metadata attribute,
+use the attribute's ID as the property name in the filter:
 
-    /api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
+    /api/dataElements.json?filter=n2xYlNbsfko:eq:AFP
+
+To get data elements which have any value for a metadata attribute, use
+the `!null` operator with the attribute's ID as the property name:
+
+    /api/dataElements.json?filter=n2xYlNbsfko:!null
 
 Get data elements which have any option set:
 
@@ -992,6 +996,7 @@ Table: Export parameters
 | locale | <locale\> | Change from user locale, to your own custom locale. |
 | defaults | INCLUDE/EXCLUDE | Should auto-generated category object be included or not in the payload. If you are moving metadata between 2 non-synced instances, it might make sense to set this to EXCLUDE to ease the handling of these generated objects. |
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| skipCreatedAndLastUpdated | false/true | Enabling this will strip the *created*, *lastUpdated*, *createdBy* and *lastUpdatedBy* properties from the exported objects. These are stripped at every level of the exported object graph, including from embedded objects such as the program stage data elements of a program stage. This takes precedence over the `fields` parameter, so a property named here is omitted even if `fields` asks for it. |
 | inclusionStrategy | NON_NULL, ALWAYS, NON_EMPTY | *NON_NULL* includes properties which are not null, *ALWAYS* includes all properties, *NON_EMPTY* includes non empty properties (will not include strings of 0 length or empty collections) |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
@@ -1017,6 +1022,13 @@ Export id and displayName for all data elements, ordered by displayName:
 Export data elements and indicators where name starts with "ANC":
 
     /api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
+
+Export all metadata without the *created*, *lastUpdated*, *createdBy* and
+*lastUpdatedBy* properties. This is useful when comparing metadata between
+instances, as these properties differ between instances even when the metadata
+is otherwise identical:
+
+    /api/metadata?skipCreatedAndLastUpdated=true
 
 ### Metadata export with dependencies { #webapi_dataset_program_export_dependencies } 
 
@@ -1047,7 +1059,67 @@ Table: Export parameters
 | Name | Options | Description |
 |---|---|---|
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| skipCreatedAndLastUpdated | false/true | Enabling this will strip the *created*, *lastUpdated*, *createdBy* and *lastUpdatedBy* properties from the exported objects. These are stripped at every level of the exported object graph, including from embedded objects such as the program stage data elements of a program stage. |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
+
+### Multi-object metadata export with dependencies { #webapi_metadata_export_multiple_dependencies }
+
+To export several objects with their dependencies in a single request, use
+the following endpoint:
+
+    GET /api/metadata/dependencies?objects={type}:{id}
+
+The dependencies of every requested object are combined into one payload.
+An object that is a dependency of more than one requested object, such as an
+attribute shared by two option sets, appears only once in the payload. The
+result can be imported using `/api/metadata`.
+
+The `objects` parameter takes a type followed by a colon and one or more
+comma-separated object identifiers. The type can be given in its singular or
+plural form, for example `optionSet` or `optionSets`. The parameter can be
+repeated. Requesting the same object more than once exports it once.
+
+> **Note**
+>
+> Only option sets are supported by this endpoint currently.
+> To export any of the other object types with dependencies, use the
+> single-object endpoint for that type, described above.
+
+Export a single option set with its dependencies:
+
+    /api/metadata/dependencies?objects=optionSet:Tbv6XPHOGd0
+
+Export two option sets with their dependencies:
+
+    /api/metadata/dependencies?objects=optionSet:Tbv6XPHOGd0,cBRlOSzx8Id
+
+This is equivalent to repeating the parameter:
+
+    /api/metadata/dependencies?objects=optionSet:Tbv6XPHOGd0&objects=optionSet:cBRlOSzx8Id
+
+The endpoint supports the `skipSharing`, `skipCreatedAndLastUpdated` and
+`download` parameters described in the table above. The response can also be
+compressed by using the `.json.zip` or `.json.gz` extension:
+
+    /api/metadata/dependencies.json.zip?objects=optionSet:Tbv6XPHOGd0,cBRlOSzx8Id&download=true
+
+The `F_METADATA_EXPORT` authority is required to use this endpoint. Objects
+which the user does not have access to are treated as not found.
+
+All requested objects are validated before anything is exported. If any
+object cannot be resolved, the request fails with `409 Conflict`, nothing is
+exported, and the response contains an error report for every invalid
+object. The `mainId` of each error report is the `type:id` value which
+caused it. An object cannot be resolved when:
+
+- the `objects` parameter is missing (`E6028`)
+- a value is not of the form `type:id` (`E6024`)
+- the type is unknown (`E6002`)
+- the type is not supported for export with dependencies (`E6026`)
+- the type is supported for single-object export with dependencies, but not
+  yet by this endpoint (`E6029`)
+- the identifier is not a valid UID, or the object does not exist or is not
+  accessible to the user (`E1113`)
 
 ## Metadata import { #webapi_metadata_import } 
 

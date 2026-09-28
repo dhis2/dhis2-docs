@@ -153,11 +153,11 @@ captured.
 ### Data sharing for event based programs
 
 Applies to the object types of tracked entity type, program and program
-stage. When working with single event programs in event capture, a user
+stage. When working with single event programs in the Capture app, a user
 will have to possess the "DATA:Can view data" sharing level to see the
 program and its data. Without this sharing level, the program and its
 data will not be visible to the user. When working with tracker programs
-in tracker capture, the user will need to have "DATA:Can view data" to
+in the Capture app, the user will need to have "DATA:Can view data" to
 both the tracked entity type and program. In case of a tracker program,
 the user will also need "DATA:Can view data" on each program stage
 individually to be able to see the data within the program. To capture

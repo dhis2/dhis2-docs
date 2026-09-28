@@ -110,6 +110,21 @@ options are `on` (default) and `off`:
 changelog.aggregate = on
 ```
 
-The tracker changelog is configured per program and tracked entity type. In the 
-maintenance app, you can enable or disable change logs individually for each program 
-and tracked entity type.
+The tracker changelog is configured per program and tracked entity type.
+You can enable or disable it by sending a `PATCH` request to the API.
+
+### Program
+
+```bash
+curl --location --request PATCH '/api/programs/[P_UID]' \
+  --header 'Content-Type: application/json-patch+json' \
+  --data '[{"op":"replace","path":"/enableChangeLog","value":true}]'
+```
+
+### Tracked entity type
+
+```bash
+curl --location --request PATCH '/api/trackedEntityTypes/[TET_UID]' \
+  --header 'Content-Type: application/json-patch+json' \
+  --data '[{"op":"add","path":"/enableChangeLog","value":false}]'
+```

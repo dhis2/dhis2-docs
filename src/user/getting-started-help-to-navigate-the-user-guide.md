@@ -4,8 +4,7 @@
 | What do you want to do? || Link to documentation | Related app(s) |
 |---|---|---|---|
 | Enter data | Enter aggregate data | [Using the Data Entry app](https://docs.dhis2.org/master/en/user/html/data_entry_app.html) | **Data Entry** |
-|| Enter data for a program without registration (event program) | [Using the Capture app](https://docs.dhis2.org/master/en/user/html/capture_app.html) | **Capture** |
-|| Enter data for a program with registration (tracker program) | [Using the Tracker Capture app](https://docs.dhis2.org/master/en/user/html/tracker_capture_app.html) | **Tracker Capture** |
+|| Enter data for a program without registration (event program) or a program with registration (tracker program) | [Using the Capture app](#capture_app) | **Capture** |
 | Analyse and visualize data | Analyze data in a table | [Analyse data in pivot tables](https://docs.dhis2.org/master/en/user/html/pivot.html) | **Pivot Table** |
 || Visualize data in a chart | [Using the Data Visualizer app](https://docs.dhis2.org/master/en/user/html/data_visualizer.html) | **Data Visualizer** |
 || Visualize data in a map | [Using the Maps app](https://docs.dhis2.org/master/en/user/html/using_maps.html) | **Maps** |

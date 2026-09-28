@@ -286,18 +286,6 @@ Some aspects of the data synchronization feature to be aware of:
   to decide to not synchronize some sensitive or not relevant data and to keep
   them only locally.
 
-- The authority
-  `Ignore validation of required fields in Tracker and Event Capture`
-  (`F_IGNORE_TRACKER_REQUIRED_VALUE_VALIDATION`) should be used when there
-  is a requirement that some mandatory attribute / data element has at the same
-  time a "Skip synchronization" property turned on. Such a setting will lead to
-  validation failure on the central server as the given attribute / data element
-  will not be present in the payload.
-
-  The validation won't fail for the user with this authority. The authority
-  should be assigned to the user, on the central server, that will be used for
-  synchronization job.
-
 - In specific cases, **the initial synchronization of all the data can be
   undesirable**; for example, when a database on the local instance is a fresh
   copy of the database present on the central instance, or when it is preferred

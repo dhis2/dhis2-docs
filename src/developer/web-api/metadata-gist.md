@@ -66,7 +66,7 @@ Known Limitations:
   non-persistent fields (synthetic fields) can be added explicitly; other 
   non-persistent fields might be possible to extract using `from` transformation
 * filters can only be applied to persisted fields
-* orders can only be applied to persisted fields
+* orders can only be applied to persisted fields (44+ also supports translated properties)
 * token filters are not available
 * order is always case-sensitive
 * `pluck` transformer limited to text properties (or simple properties for multi-pluck)
@@ -75,6 +75,39 @@ Known Limitations:
 
 Where possible to use the `/gist` API should be considered the preferable way
 of fetching metadata information.
+
+
+## Metadata API to Gist Backend Bridge { #metadata_api_gist_bridge }
+<!--DHIS2-SECTION-ID:metadata_api_gist_bridge-->
+A query to metadata API might internally be handled by the Gist backend for better performance/scaling.
+
+Heuristics are used to decide if the Gist backend results in an equivalent response for the query.
+
+The conditions are (slightly generalised):
+
+* all URL parameters present must be meaningful in the context of Gist API
+* no properties of `fields`, `filter` and `order` parameters may involve embedded objects
+* all properties of `fields`, `filter` and `order` parameters must be persisted or translations of persisted properties
+* `fields` must be explicitly given (in the URL) or having an explicit default internally
+* `fields` properties can only nest 2 levels if the root level is an `IdentifiableObject` or collection thereof (more levels never qualifies)
+* all `filter` properties must be non-nested and persisted
+* all `order` properties must not be case-insensitive ordering
+* paging must be used
+
+A response produced by the gist backend is indicated in the root response object 
+with `"gist":true` as shown in the example below:
+
+```json
+{
+  "pager": {},
+  "gist": true,
+  "dataElements": []
+}
+```
+
+To opt-out of this heuristic being used, add `?gist=false` to the URL (e.g. when heuristic fails).
+To force using the gist backend regardless of the heuristic add `?gist=false` to the URL (e.g. for testing). 
+This will then be a mostly identical response to adding `/gist` to the path. 
 
 
 ## Endpoints { #gist_endpoints } 

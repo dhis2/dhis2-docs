@@ -747,10 +747,10 @@ POST /api/tracker?async=false&importStrategy=DELETE
 {
   "events": [
     {
-      "event": "ZwwuwNp6gVd",
+      "event": "ZwwuwNp6gVd"
     },
     {
-      "event": "XwwuwNp6gVE",
+      "event": "XwwuwNp6gVE"
     }
   ]
 }
@@ -767,10 +767,10 @@ POST /api/tracker?async=false&importStrategy=DELETE
 {
   "trackedEntities": [
     {
-      "trackedEntity": "Kj6vYde4LHh",
+      "trackedEntity": "Kj6vYde4LHh"
     },
     {
-      "trackedEntity": "Gjaiu3ea38E",
+      "trackedEntity": "Gjaiu3ea38E"
     }
   ]
 }
@@ -1658,6 +1658,25 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 >     *  JSON and CSV for Events
 > * You can export a Gzip file by adding the `Accept` header *application/csv+gzip* for CSV or *application/json+gzip* for JSON.
 > * You can export a Zip file by adding the `Accept` header *application/csv+zip* for CSV or *application/json+zip* for JSON.
+
+### Request timeout { #webapi_tracker_export_timeout }
+
+Export requests are bounded by a time budget, configured with
+[`tracker.export.timeout`](#install_tracker_configuration) and 10 minutes by default. A request
+exceeding it is cancelled and fails with `504 Gateway Timeout`, naming the budget it exceeded. With
+`tracker.export.timeout = 60`:
+
+```json
+{
+  "httpStatus": "Gateway Timeout",
+  "httpStatusCode": 504,
+  "status": "ERROR",
+  "message": "Request exceeded its time budget of 60s"
+}
+```
+
+The request is too expensive to complete in time. Narrow it, see
+[Performance](#webapi_tracker_performance).
 
 ### Common request parameters
 
@@ -3767,12 +3786,35 @@ rules with validations or assignments that must be enforced on import:
 
     POST /api/tracker?skipRuleEngine=true
 
+#### Change Logs
+
+When change logs are enabled on a tracked entity type or program, the import writes one change log 
+row for every attribute value, data value, and event field it creates, updates, or deletes, in 
+addition to the imported data itself.
+
+Creating a tracked entity with 20 attributes, or an event with 30 data values, therefore writes 20
+or 30 additional rows. For bulk imports, this will significantly increase the number of rows 
+written, import time, and database growth.
+
+Disable change logs for tracked entity types and programs that do not require them:
+
+```http
+PATCH /api/trackedEntityTypes/{uid}
+PATCH /api/programs/{uid}
+```
+
+```json
+[{ "op": "replace", "path": "/enableChangeLog", "value": false }]
+```
+
 ### Export
 
 #### General Principles
 
 Export endpoint response times are typically dominated by database query execution. The
-recommendations below focus on reducing the amount of work the database has to do.
+recommendations below focus on reducing the amount of work the database has to do. A request that
+outlives its [time budget](#webapi_tracker_export_timeout) is cancelled and fails with
+`504 Gateway Timeout`.
 
 ##### Query at the Right Level
 
