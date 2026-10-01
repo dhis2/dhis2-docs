@@ -601,6 +601,7 @@ API are described in the table below.
 | E7151      | Too many combinations of columns or rows |
 | E7152      | Periods as filter not supported with Indicator with period offset |
 
+
 ### Data value set format { #webapi_analytics_data_value_set_format } 
 
 The analytics *dataValueSet* resource allows for returning aggregated
