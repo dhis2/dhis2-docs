@@ -6,7 +6,7 @@ This section contains information related to the installation, management and ma
 
 ---
 
-DHIS2 runs on all platforms for which there exists a Java JRE, which includes most popular operating systems such as Linux, Windows and Mac. DHIS2 is packaged as a standard Java Web Archive (WAR-file) and thus runs on any Servlet containers such as Tomcat and Jetty. Its writes its data to a PostgreSQL database. Its recommended that you run it on a Supported Ubuntu LTS system,
+DHIS2 runs on platforms with a supported Java JRE, including Linux, Windows and Mac, and stores its data in PostgreSQL. The Java Web Archive (WAR) can be deployed in a compatible external Tomcat, or, from DHIS2 2.44, run directly with [embedded Tomcat](#install_embedded_tomcat); a supported Ubuntu LTS system is recommended.
 
 This chapter provides a guide for setting up the above technology stack. It should however be read as a guide for getting up and running and not as an exhaustive documentation for the mentioned environment. We refer to the official Ubuntu, PostgreSQL and Tomcat documentation for in-depth reading.
 
@@ -157,6 +157,14 @@ Step-by-step manual installation providing complete control over the deployment 
 > **NOTE**
 >
 > For production environments, we highly recommend the automated installation approach for consistency, security, and ease of management.
+
+---
+
+### Embedded Tomcat { #install_deployment_embedded_tomcat }
+
+From DHIS2 2.44, run `java -jar dhis.war` without installing a separate servlet container. This is a production-ready alternative with a reverse proxy for TLS and appropriate operational safeguards.
+
+[Get Started](#install_embedded_tomcat){ .md-button }
 
 ---
 
