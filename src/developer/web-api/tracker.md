@@ -1427,6 +1427,21 @@ These configurations will further change how validation is performed during impo
 Tracked entity attributes that use automatic generation of unique values
 have three endpoints utilized by apps for generating and reserving these values.
 
+There are two pattern methods for automatically generating values: `SEQUENTIAL` and `RANDOM`.
+`SEQUENTIAL` generates numeric values following a sequence starting from 1, with each value being incremented automatically.
+`RANDOM` can generate numeric, lowercase, uppercase, or alphanumeric values randomly, so the next value cannot be easily guessed.
+
+Examples of text patterns are:
+- `SEQUENTIAL(##)` → 01, 02, 03, 04
+- `RANDOM(xx)` → mb, jf, sq, ow
+- `RANDOM(XX)` → RF, GH, WQ, JS
+- `RANDOM(##)` → 42, 14, 54, 76
+- `RANDOM(**)` → 5A, h4, 22, Ba
+- `RANDOM(#*)` → 4a, 8J, 92, 0Q
+
+As a rule of thumb, if you don't need randomness and numeric values are enough for your use case, always prefer `SEQUENTIAL`, as it performs better than `RANDOM`.
+The reason is that, with `RANDOM`, we need to check the reserved and used values in the database to make sure that the generated value is unique. This is inherently solved with `SEQUENTIAL`, since following the sequence guarantees that the next value has never been used.
+
 #### Required values
 
 A TextPattern may include variables that change based on different factors. Some of these factors are unknown to the server;
@@ -1531,10 +1546,9 @@ Table: Reserved values
 | created | The timestamp when the reservation was made |
 | expiryDate | The timestamp when the reservation will no longer be reserved |
 
-Expired reservations are removed daily. If a pattern changes, values
-that were already reserved will be accepted when storing data, even if
-they don't match the new pattern, as long as the reservation has not
-expired.
+Expired or used reservations are removed nightly. 
+
+Values are not validated against the text pattern when stored, so if a pattern changes, a previously reserved value will still be accepted even if it no longer matches the new pattern.
 
 ### Program rules { #webapi_tracker_program_rules }
 
