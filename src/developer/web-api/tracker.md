@@ -1671,7 +1671,7 @@ exceeding it is cancelled and fails with `504 Gateway Timeout`, naming the budge
   "httpStatus": "Gateway Timeout",
   "httpStatusCode": 504,
   "status": "ERROR",
-  "message": "Tracker export exceeded its time budget of 60s"
+  "message": "Request exceeded its time budget of 60s"
 }
 ```
 
@@ -3785,6 +3785,27 @@ which can increase latency significantly for bulk imports. Skip it only if the p
 rules with validations or assignments that must be enforced on import:
 
     POST /api/tracker?skipRuleEngine=true
+
+#### Change Logs
+
+When change logs are enabled on a tracked entity type or program, the import writes one change log 
+row for every attribute value, data value, and event field it creates, updates, or deletes, in 
+addition to the imported data itself.
+
+Creating a tracked entity with 20 attributes, or an event with 30 data values, therefore writes 20
+or 30 additional rows. For bulk imports, this will significantly increase the number of rows 
+written, import time, and database growth.
+
+Disable change logs for tracked entity types and programs that do not require them:
+
+```http
+PATCH /api/trackedEntityTypes/{uid}
+PATCH /api/programs/{uid}
+```
+
+```json
+[{ "op": "replace", "path": "/enableChangeLog", "value": false }]
+```
 
 ### Export
 

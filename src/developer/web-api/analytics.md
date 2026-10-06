@@ -574,7 +574,27 @@ API are described in the table below.
 | E7129      | Program is specified but does not exist |
 | E7130      | Program stage is specified but does not exist |
 | E7131      | Query failed, likely because the query timed out |
+| E7132      | Expression violation. Maybe an indicator caused division by zero? |
+| E7133      | Query cannot be executed, possibly because of invalid types or invalid operation |
+| E7134      | Cannot retrieve total value for data elements with skip total category combination |
+| E7135      | Date time is not parsable: `{0}` |
+| E7136      | Query exceeded the maximum allowed execution time |
+| E7137      | Expression is not parsable: `{0}` |
+| E7138      | Invalid offset: `{0}` |
+| E7139      | Parameters programStatus and enrollmentStatus cannot be used together |
+| E7140      | Parameters programStatus/enrollmentStatus must be of the form: [programUid].[ENROLLMENT_STATUS] |
+| E7141      | Parameter eventStatus must be of the form: [programUid].[programStageUid].[EVENT_STATUS] |
+| E7142      | Program(s) `{0}` are not defined on Tracked Entity Type `{1}` |
+| E7143      | Organisation unit or organisation unit level is not valid |
+| E7144      | Query failed because a referenced table does not exist. Please ensure analytics job was run |
+| E7145      | Query failed because of a syntax error |
+| E7146      | A {0} date was not specified in periods, dimensions, filters |
+| E7147      | Query failed because of a missing column: `{0}` |
+| E7148      | Could not create CTE SQL query, unexpected error: `{0}` |
+| E7149      | Invalid measure filter operator: `{0}` |
+| E7150      | No periods found for subexpression query |
 | E7151      | Too many combinations of columns or rows |
+| E7152      | Periods as filter not supported with Indicator with period offset |
 
 ### Data value set format { #webapi_analytics_data_value_set_format } 
 

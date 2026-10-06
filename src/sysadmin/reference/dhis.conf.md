@@ -516,7 +516,6 @@ Applies to `GET` and `HEAD` requests on the tracker export endpoints and their s
 
 What the budget does **not** cover:
 
-* **Shared metadata queries.** An export also runs metadata lookups that are not tracker specific and stay unbounded.
 * **Waiting for a database connection.** Bounded separately by `connection.pool.timeout` on the default `hikari` pool, and answered with `503 Service Unavailable`. With `db.pool.type = unpooled` there is no queueing, so the limit becomes the database's own `max_connections`.
 * **Writing the response.** Once the first bytes are on the wire the status is committed, so a request that exceeds its budget while streaming results ends as a truncated response rather than a `504`.
 * **Clients that have gone away.** A disconnect is not detected until the server next writes to the response, which is after the queries have run.

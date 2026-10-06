@@ -237,7 +237,7 @@ translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
 locales).
 
-The status code will be `204 No Content` if the data value was successfully saved or updated, or `404 Not Found` if there was a validation error (e.g. more than one `SHORT_NAME` for the same `locale`).
+The status code will be `204 No Content` if the translations were successfully saved or updated, or `409 Conflict` if there was a validation error (e.g. more than one `SHORT_NAME` for the same `locale`).
 
 
 ### Web API versions { #webapi_api_versions } 
@@ -642,7 +642,23 @@ request to the endpoint + id:
 curl -X DELETE -u user:password "http://server/api/constants/ID"
 ```
 
-A successful delete should return HTTP status 204 (no content).
+A successful delete returns HTTP status `200 OK` with a `WebMessage`
+response body wrapping an `ObjectReport` for the deleted object, for
+example:
+
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "response": {
+    "responseType": "ObjectReport",
+    "uid": "abc123",
+    "klass": "org.hisp.dhis.constant.Constant",
+    "errorReports": []
+  }
+}
+```
 
 ### Adding and removing objects in collections { #webapi_adding_removing_objects_collections } 
 
@@ -1045,6 +1061,65 @@ Table: Export parameters
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
 | skipCreatedAndLastUpdated | false/true | Enabling this will strip the *created*, *lastUpdated*, *createdBy* and *lastUpdatedBy* properties from the exported objects. These are stripped at every level of the exported object graph, including from embedded objects such as the program stage data elements of a program stage. |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
+
+### Multi-object metadata export with dependencies { #webapi_metadata_export_multiple_dependencies }
+
+To export several objects with their dependencies in a single request, use
+the following endpoint:
+
+    GET /api/metadata/dependencies?objects={type}:{id}
+
+The dependencies of every requested object are combined into one payload.
+An object that is a dependency of more than one requested object, such as an
+attribute shared by two option sets, appears only once in the payload. The
+result can be imported using `/api/metadata`.
+
+The `objects` parameter takes a type followed by a colon and one or more
+comma-separated object identifiers. The type can be given in its singular or
+plural form, for example `optionSet` or `optionSets`. The parameter can be
+repeated. Requesting the same object more than once exports it once.
+
+> **Note**
+>
+> Only option sets are supported by this endpoint currently.
+> To export any of the other object types with dependencies, use the
+> single-object endpoint for that type, described above.
+
+Export a single option set with its dependencies:
+
+    /api/metadata/dependencies?objects=optionSet:Tbv6XPHOGd0
+
+Export two option sets with their dependencies:
+
+    /api/metadata/dependencies?objects=optionSet:Tbv6XPHOGd0,cBRlOSzx8Id
+
+This is equivalent to repeating the parameter:
+
+    /api/metadata/dependencies?objects=optionSet:Tbv6XPHOGd0&objects=optionSet:cBRlOSzx8Id
+
+The endpoint supports the `skipSharing`, `skipCreatedAndLastUpdated` and
+`download` parameters described in the table above. The response can also be
+compressed by using the `.json.zip` or `.json.gz` extension:
+
+    /api/metadata/dependencies.json.zip?objects=optionSet:Tbv6XPHOGd0,cBRlOSzx8Id&download=true
+
+The `F_METADATA_EXPORT` authority is required to use this endpoint. Objects
+which the user does not have access to are treated as not found.
+
+All requested objects are validated before anything is exported. If any
+object cannot be resolved, the request fails with `409 Conflict`, nothing is
+exported, and the response contains an error report for every invalid
+object. The `mainId` of each error report is the `type:id` value which
+caused it. An object cannot be resolved when:
+
+- the `objects` parameter is missing (`E6028`)
+- a value is not of the form `type:id` (`E6024`)
+- the type is unknown (`E6002`)
+- the type is not supported for export with dependencies (`E6026`)
+- the type is supported for single-object export with dependencies, but not
+  yet by this endpoint (`E6029`)
+- the identifier is not a valid UID, or the object does not exist or is not
+  accessible to the user (`E1113`)
 
 ## Metadata import { #webapi_metadata_import } 
 
