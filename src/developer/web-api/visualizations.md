@@ -1794,7 +1794,11 @@ And last, an example to return all org units that does not start with "Bo":
 
 ## Data items { #webapi_data_items } 
 
-This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
+This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`, `EXPRESSION_DIMENSION_ITEM`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
+
+> **Note**
+>
+> Two further item types, `PROGRAM_DATA_ELEMENT_OPTION` and `PROGRAM_ATTRIBUTE_OPTION`, are not returned by default but can be retrieved by explicitly requesting them, e.g.: `filter=dimensionItemType:in:[PROGRAM_DATA_ELEMENT_OPTION,PROGRAM_ATTRIBUTE_OPTION]`.
 
 The URL is `/api/dataItems` and as you can imagine, it is able to retrieve different objects through the same endpoint in the same `GET` request. For this reason, some queriable attributes available will differ depending on the dimensional item(s) being queried.
 
