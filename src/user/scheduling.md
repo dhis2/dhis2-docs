@@ -169,11 +169,8 @@ elements. The following parameters are available:
 - **Full update hour of day:** The hour of the day at which the full update will
   be done. As an example, if you specify 1, the full update will be performed at
   1 AM.
-- **Last years:** The number of last years to populate analytics tables for. As
-  an example, if you specify 2 years, the process will update the two last years
-  worth of data, but not update older data. This parameter is useful to reduce
-  the time the process takes to complete, and is appropriate if older data has
-  not changed, and when updating the latest data is desired.
+- **Last years:** Has no effect on this job. The full update always covers all
+  years, and the latest update covers only data changed since the last update.
 - **Skip resource tables:** Skip resource tables during the analytics table
   update process. This reduces the time the process takes to complete, but leads
   to changes in metadata not being reflected in the analytics data.
