@@ -91,9 +91,13 @@ startup:
 1. **From a keystore file** (recommended for production): a Java
    KeyStore (`.jks` / `.p12`) on disk.
 2. **Ephemeral** (default): a fresh RSA-2048 keypair is generated in
-   memory at startup. **Every restart invalidates every previously
-   issued token**, because the public key used to sign them is gone.
+   memory at startup. **Previously issued access tokens are rejected after
+   a restart**, but stored refresh tokens continue to work.
    This mode is only appropriate for development or first-boot.
+
+> **Note**
+>
+> Configure `oauth2.server.jwt.keystore.*` for stable signing keys in durable deployments, whether using external or [embedded Tomcat](#install_embedded_tomcat_security).
 
 Configuration keys (all in `dhis.conf`):
 

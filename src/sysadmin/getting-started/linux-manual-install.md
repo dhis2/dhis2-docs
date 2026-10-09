@@ -7,6 +7,8 @@ using a proxy (like nginx or Apache) and monitoring tools (like Munin or
 Zabbix) for enhanced performance. Although all components can be hosted
 separately, this guide focuses on a simple, single-server setup.
 
+For DHIS2 2.44 or later, [embedded Tomcat](#install_embedded_tomcat) is an alternative that runs the WAR directly with Java, without a separate Tomcat installation.
+
 This guide is intended mainly as a reference for general installation
 practices. Setup steps can vary depending on factors like operating system,
 database choice, and other configurations. It is therefore, strongly

@@ -18,6 +18,10 @@ has many advantages:
     responses and provide non-sensitive error messages which will
     improve security.
 
+> **Note**
+>
+> The `server.xml` connector settings below apply only to external Tomcat. For embedded Tomcat, use the [embedded reverse proxy and TLS configuration](#install_embedded_tomcat_reverse_proxy), including forwarded-header handling and firewalling the application port.
+
 ### Basic nginx setup { #install_basic_nginx_setup } 
 
 We recommend using [nginx](http://www.nginx.org) as a reverse proxy due to
