@@ -404,6 +404,32 @@ then you will run latest or continuous analytics, as defined in
 
 4.  Click **Start export**.
 
+> **Important**
+>
+> When you include only the last years, analytics rebuilds those years and
+> leaves the older years as they were. After some changes, the older years no
+> longer match the rebuilt ones, and visualizations, maps and line lists can
+> show no data or an error. After any of the following changes, run a full
+> analytics tables update once, that is an update of all years, with **Number
+> of last years of data to include** set to **All**:
+>
+> - Turning **Data dimension** on or off for a category, category option
+>   group set, organisation unit group set or data element group set, or
+>   adding or deleting one that has it turned on.
+> - Adding organisation units at a new, deeper level of the hierarchy.
+> - Changing **Period types available in analytics apps** in the **Settings**
+>   app, under **Analytics**.
+> - Adding data elements or tracked entity attributes to a program, removing
+>   them, or changing whether they are included in analytics.
+> - Changing whether **Skip generation of outlier data** is selected.
+>
+> Later runs can include only the last years again.
+>
+> If you use the
+> [continuous analytics table](#scheduling_continuous_analytics_table) job,
+> its daily full update covers all years and fixes this at the configured hour.
+> This does not apply to table types the job skips.
+
 ## Data statistics { #data_admin__data_statistics }
 
 The data statistics module provides an overview of the number of objects
