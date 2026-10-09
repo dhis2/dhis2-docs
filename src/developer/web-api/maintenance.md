@@ -40,6 +40,16 @@ Table: Analytics tables optional query parameters
 > lastYears=0 means latest or continuous analytics, as defined in
 [Continuous analytics table](#scheduling_continuous_analytics_table).
 
+> **Important**
+>
+> lastYears only rebuilds the tables for those years. After a change that adds
+> or removes analytics dimensions, for example setting `dataDimension` on a
+> category or group set, adding a deeper organisation unit level, or changing
+> `skipOutliers`, run a full analytics tables update once, that is an update
+> without the lastYears parameter. Otherwise the older
+> years keep the previous set of dimensions, and analytics queries that span
+> old and new years fail.
+
 
 "Data Quality" and "Data Surveillance" can be run through the monitoring
 task, triggered with the following endpoint:
