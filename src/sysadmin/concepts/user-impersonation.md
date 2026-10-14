@@ -20,54 +20,80 @@ This feature is built upon the `SwitchUserFilter` from Spring Security, but with
 > property
 > in the `dhis.conf` file. This restriction might be removed in the future.
 
-## How It Works
+## How it works
 
-The user impersonation feature operates in the following manner:
+Impersonation is done through two API endpoints. Both use `POST`; opening them in the browser address bar (a `GET` request) will not work.
 
-1. An administrative user makes a request to a specific URL (e.g., `/impersonate?username=USERNAME`) with the `username`
-   parameter
-   indicating the username of the user they wish to impersonate.
+| Action | Request |
+|---|---|
+| Start impersonating | `POST /api/auth/impersonate?username=<USERNAME>` |
+| Stop impersonating | `POST /api/auth/impersonateExit` |
 
-2. The user impersonation feature intercepts this request, switches the `SecurityContext` to the new user, and redirects
-   to the home page.
+While impersonating, every request in the same session runs as the impersonated user, with that user's authorities, sharing and organisation units.
 
-3. While impersonating another user, the administrative user can make requests as if they were the impersonated user.
+A successful request returns:
 
-4. To switch back to the original user, the administrative user makes a request to another URL (
-   e.g., `/impersonateExit`). The user impersonation feature intercepts this request, switches the `SecurityContext`
-   back to the original user, and redirects to the home page.
+```json
+{ "status": "IMPERSONATION_SUCCESS", "username": "<USERNAME>" }
+```
 
-## How To Use
+and exiting returns `"status": "IMPERSONATION_EXIT_SUCCESS"`.
 
-Follow these steps to use the user impersonation feature:
+`GET /api/me` includes an `impersonation` field with the username of the original user while impersonation is active. From 2.43 it also includes `canImpersonate: true` when the current user is allowed to impersonate (feature enabled, required authority, and request from an allowed IP).
 
-1. Log in as an administrative user with either the `ALL` or `F_IMPERSONATE_USER` authority.
-2. Navigate to the URL for user impersonation (e.g., `/impersonate?username=USERNAME`).
-3. Provide the `username` parameter of the user you wish to impersonate.
-4. The system will switch your session to that of the impersonated user, and you will be redirected to the home page.
-5. Perform any actions necessary for troubleshooting or user support.
-6. When you're finished, navigate to the URL to end impersonation (e.g., `/impersonateExit`). Your session will be
-   switched back to your original administrative user.
+Logging in again in the same browser session ends impersonation.
+
+## How to use
+
+1. Enable the feature in `dhis.conf` and restart the server (see Configuration).
+2. Log in as a user with the `ALL` authority or the `F_IMPERSONATE_USER` authority.
+3. Send `POST /api/auth/impersonate?username=<USERNAME>` from the same session, for example:
+```
+   curl -b cookies.txt -c cookies.txt -X POST "https://<server>/api/auth/impersonate?username=<USERNAME>"
+```
+4. Use DHIS2 as the impersonated user.
+5. Send `POST /api/auth/impersonateExit` to return to your own user.
 
 ## Configuration
 
-The user impersonation feature configuration options.
+| Property | Description | Default |
+|---|---|---|
+| `switch_user_feature.enabled` | Enables the feature. When disabled, both endpoints return 404. | `off` |
+| `switch_user_allow_listed_ips` | Comma-separated list of IP addresses from which impersonation requests are accepted. Values must match exactly; ranges/CIDR are not supported. | `localhost,127.0.0.1,[0:0:0:0:0:0:0:1]` (2.43 adds `0:0:0:0:0:0:0:1`) |
 
-* `switch_user_feature.enabled` (Enable or disable the feature, default: `disabled`)
-* `switch_user_allow_listed_ips` (Default allowed IP(s) are; `localhost,127.0.0.1,[0:0:0:0:0:0:0:1]`)
+Example:
+
+```
+switch_user_feature.enabled = on
+switch_user_allow_listed_ips = 10.0.0.5
+```
+
+> **Important: reverse proxies**
+>
+> The allow-list is checked against the address of whatever connects directly to DHIS2. In most deployments that is a reverse proxy or load balancer, not the user's browser:
+>
+> - If nginx or Apache runs on the same server (as in the recommended setup), every request appears to come from `127.0.0.1`. Because `127.0.0.1` is in the default allow-list, **every user passes the IP check** once the feature is enabled.
+> - In Docker or Kubernetes, requests appear to come from the proxy container or ingress address.
+>
+> To restrict impersonation to specific client IPs, configure Tomcat to take the client IP from your proxy (see *Reverse proxy → Passing the client IP to DHIS2*), and only then add client IPs to the allow-list. Without this, the allow-list cannot distinguish users.
+>
+> From 2.43, a rejected request returns `403 … not allowed to impersonate user from IP: <address>`, which shows the address DHIS2 sees.
 
 ## Security restrictions
 
-* Feature must be enabled in the `dhis.conf` configuration file, default value is; `disabled`.
-* Users trying to impersonate need to send requests from an allowed IP.
-* Users without the `ALL` authority can not impersonate another user that has the `ALL` authority.
-* Users can not impersonate themselves.
+- The feature is disabled by default.
+- The user must have the `ALL` or `F_IMPERSONATE_USER` authority.
+- Requests must come from an allowed IP (see the note on reverse proxies above).
+- Users without the `ALL` authority cannot impersonate a user who has `ALL`.
+- Users cannot impersonate themselves.
+- An impersonated session cannot start a further impersonation unless the impersonated user has `F_IMPERSONATE_USER`.
 
-## Security Implications
+## Logging
 
-This feature should be used with caution due to its inherent security implications. Only trusted administrators should
-be granted the capability to impersonate users. It's also recommended to pay attention to the log events related to the
-user impersonation.
+Each switch is logged as an `AuthenticationSwitchUserEvent`:
 
-User impersonation events are logged in the following
-format: `Authentication event: AuthenticationSwitchUserEvent; username: USER_DOING_THE_IMPERSONATION; targetUser: USER_BEING_IMPERSONATED;`
+```
+Authentication event: AuthenticationSwitchUserEvent; username: <impersonator>; targetUser: <impersonated user>
+```
+
+When exiting, `username` is the impersonated user and `targetUser` is the original user.
