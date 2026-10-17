@@ -2237,6 +2237,8 @@ GET /api/tracker/trackedEntities/{uid}/changeLogs
 
 This endpoint retrieves change logs for the attributes of a specific tracked entity. It returns a list of all tracked entity attributes that have changed over time for that entity.
 
+Changes are only recorded while `enableChangeLog` is set on the tracked entity type (**Record change history for attribute values** in the Metadata Management app).
+
 | Request parameter | Type | Allowed values |
 | --- | --- | --- |
 | path `/{uid}` | String |Tracked entity `UID`. |
@@ -2764,6 +2766,8 @@ although it might have multiple rows for each data element value.
 `GET /api/tracker/events/{uid}/changeLogs`
 
 This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values and event fields (`occurredAt`, `scheduledAt`, and `geometry`) that have changed over time for the specified event.
+
+Changes are only recorded while `enableChangeLog` is set on the event's program (**Record change history for event data values** in the Metadata Management app).
 
 |Request parameter|Type|Allowed values|
 |---|---|---|

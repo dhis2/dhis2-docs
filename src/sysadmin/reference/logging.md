@@ -110,21 +110,10 @@ options are `on` (default) and `off`:
 changelog.aggregate = on
 ```
 
-The tracker changelog is configured per program and tracked entity type.
-You can enable or disable it by sending a `PATCH` request to the API.
+From version 2.43, the tracker changelog is configured per program and per tracked
+entity type in the Metadata Management app:
 
-### Program
+* **Tracked entity type**: **Record change history for attribute values**.
+* **Program** (event and tracker): **Record change history for event data values**.
 
-```bash
-curl --location --request PATCH '/api/programs/[P_UID]' \
-  --header 'Content-Type: application/json-patch+json' \
-  --data '[{"op":"replace","path":"/enableChangeLog","value":true}]'
-```
-
-### Tracked entity type
-
-```bash
-curl --location --request PATCH '/api/trackedEntityTypes/[TET_UID]' \
-  --header 'Content-Type: application/json-patch+json' \
-  --data '[{"op":"add","path":"/enableChangeLog","value":false}]'
-```
+Change logs are disabled by default for new programs and tracked entity types.
