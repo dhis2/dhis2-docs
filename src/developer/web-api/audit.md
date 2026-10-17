@@ -36,7 +36,7 @@ Example: Get audits for data element `BOSZApCrBni`, org unit `DiszpKrYNg8` and c
 
 ### Tracked entity audits { #webapi_tracked_entity_audits }
 
-Once auditing is enabled for tracked entities (by setting `allowAuditLog` of tracked entity types to `true`), all read and search operations are logged. The endpoint for accessing audit logs is located at:
+Once auditing is enabled for tracked entities (by setting `allowAuditLog` of tracked entity types to `true`, **Record access to tracked entities** in the Metadata Management app), all read, search and delete operations are logged. The endpoint for accessing audit logs is located at:
 
 ```
 /api/audits/trackedEntity

@@ -110,6 +110,10 @@ options are `on` (default) and `off`:
 changelog.aggregate = on
 ```
 
-The tracker changelog is configured per program and tracked entity type. In the 
-maintenance app, you can enable or disable change logs individually for each program 
-and tracked entity type.
+From version 2.43, the tracker changelog is configured per program and per tracked
+entity type in the Metadata Management app:
+
+* **Tracked entity type**: **Record change history for attribute values**.
+* **Program** (event and tracker): **Record change history for event data values**.
+
+Change logs are disabled by default for new programs and tracked entity types.
