@@ -174,6 +174,8 @@ The following two checkboxes are always available, letting you close data entry 
 
 Once an event falls outside one of these windows, it can no longer be edited. Only a user with the **Edit expired data** authority can still change it.
 
+(DHIS2 2.43 and later) **Record change history for event data values**. Records changes to event data values in the changelog. Off by default.
+
 ### Program Settings { #mmp_single_event_program_settings }
 
 ![New program, Program Settings section](resources/images/metadata-management/mma-program-settings.jpg)
@@ -319,13 +321,15 @@ The following two checkboxes are always available, letting you close data entry 
 
 Once an event falls outside one of these windows, it can no longer be edited. Only a user with the **Edit expired data** authority can still change it.
 
-![Tracker program editor, Program Details section, showing the search and start-page fields below the expiry checkboxes](resources/images/metadata-management/mma-tracker-program-details-expiry.jpg)
+![Tracker program editor, Program Details section, showing the search, start-page and change history fields below the expiry checkboxes](resources/images/metadata-management/mma-tracker-program-details-expiry.png)
 
 A tracker program also has three fields to manage tracked entity search options:
 
 * **Minimum number of attributes required to search**. How many tracked entity attributes a user must fill in before they can search for a tracked entity. In the Maintenance app, this field had the same name.
 * **Maximum number of search results to display.** For a search outside the user's capture scope, the server rejects the search with an error if it would match more tracked entities than this, rather than returning a partial list. It has no effect on searches within capture scope. Enter **0** to disable the limit. In the Maintenance app, this was **Maximum number of tracked entities to return in search**.
 * **Start page in web Capture app**. **Search form** or **List of enrolled tracked entities**. In the Maintenance app, this was a checkbox, **Display front page list**.
+
+(DHIS2 2.43 and later) **Record change history for event data values**. Records changes to event data values in the changelog. Off by default.
 
 ### Enrollment: Settings { #mmp_tracker_enrollment_settings }
 
@@ -1603,13 +1607,17 @@ fields that did not exist in the Maintenance app.
    4. Select a **Location type**. **Point**, **Polygon/Area**, or **Do not collect location
       data**. This is new compared with the Maintenance app, which did not offer a location
       type choice here.
-   5. (Optional) Select **Enable tracked entity instance audit log**. This is also new.
-   6. (Optional) Enter a **Minimum number of attributes required to search**. This specifies
+   5. (DHIS2 2.43 and later) Select **Record change history for attribute values** to record
+      changes to this tracked entity type's attribute values in the changelog.
+   6. (Optional) Select **Record access to tracked entities** to log who views or searches
+      for tracked entities of this type. This was previously labelled **Enable tracked
+      entity instance audit log**.
+   7. (Optional) Enter a **Minimum number of attributes required to search**. This specifies
       how many attributes must be filled in to search for this tracked entity type in a
       *global search*. See [Configure search](#mmp_configure_search) below.
-   7. (Optional) Enter a **Maximum number of tracked entity instances to return when
+   8. (Optional) Enter a **Maximum number of tracked entity instances to return when
       searching**. Entering 0 shows all search results.
-   8. DHIS2 2.43.2 and later also adds a **Name (Plural)** field.
+   9. DHIS2 2.43.2 and later also adds a **Name (Plural)** field.
 
 4. On the **Tracked entity attributes** tab, move attributes from **Available Tracked entity
    attributes** into **Selected Tracked entity attributes** using the transfer list. See
