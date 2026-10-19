@@ -15,9 +15,9 @@ usually outputs standard output to a file under "logs":
 ```
 
 Second, log output is written to a "logs" directory under the DHIS2 home
-directory as defined by the `DHIS2_HOME` environment variables. There is a main
+directory as defined by the `DHIS2_HOME` environment variable. There is a main
 log file for all output, and separate log files for various background
-processes. The main file includes the background process logs as well. The log
+processes. The main file also includes the background process logs. The log
 files are capped at 50 Mb and log content is continuously appended.
 ```properties
 
@@ -30,17 +30,17 @@ files are capped at 50 Mb and log content is continuously appended.
 
 ## Log configuration
 
-To override the default log configuration you can specify a Java system
+To override the default log configuration, you can specify a Java system
 property with the name `log4j2.configurationFile` and a value pointing to the
 [Log4j version 2](https://logging.apache.org/log4j/2.x/manual/configuration.html)
-configuration file at the file system like this:
+configuration file on the file system like this:
 
 ```properties
 -Dlog4j2.configurationFile=/home/dhis/config/log4j2.properties
 ```
 
-Java system properties can be set e.g. through the *JAVA\_OPTS* environment
-variable or in the tomcat startup script.
+Java system properties can be set, e.g. through the *JAVA\_OPTS* environment
+variable or in the Tomcat startup script.
 
 A second approach to overriding the log configuration is to specify logging
 properties in the `dhis.conf` configuration file. The supported properties are:
@@ -59,17 +59,17 @@ result it is recommended to rely on the logs under `DHIS2_HOME`.
 DHIS2 will provide the following context values:
 
 * `sessionId`: Current user's session ID
-* `xRequestID`: An alphanumeric ID as send by the `X-Request-ID` HTTP header
+* `xRequestID`: An alphanumeric ID as sent by the `X-Request-ID` HTTP header
   for the currently processed request; empty if not provided
 
-To use the context variables in the log add them using `-X{<name>}` to your log
+To use the context variables in the log, add them using `-X{<name>}` to your log
 pattern as in this example:
 
     * %-5p %d{ISO8601} %m (%F [%t]) %X{sessionId} %X{xRequestID}%n
 
 ## Log level configuration
 
-To set the log level of individual packages you can specify properties on the
+To set the log level of individual packages, you can specify properties on the
 format  `logging.level.{package-names}` in `dhis.conf`. For example, to set the
 log level for the entire Spring Framework to DEBUG and up, you can specify:
 
@@ -96,12 +96,12 @@ _aggregate_ category includes changes to aggregate data values. The _tracker_
 category includes changes to tracked entity attribute values and event data values.
 
 The benefit of the changelog is the ability to see changes which have been
-performed to the data. The benefits of disabling the changelog is a minor
+performed to the data. The benefits of disabling the changelog are a minor
 performance improvement by avoiding the cost of writing changelog items to the
 database, and less database storage used. It is recommended to enable
 changelog, and great care should be taken if disabling it.
 
-The aggregate changelog is enabled by default. You can control its behavior 
+The aggregate changelog is enabled by default. You can control its behaviour 
 through the `dhis.conf` configuration file using the following property. Available 
 options are `on` (default) and `off`:
 
@@ -113,7 +113,5 @@ changelog.aggregate = on
 From version 2.43, the tracker changelog is configured per program and per tracked
 entity type in the Metadata Management app:
 
-* **Tracked entity type**: **Record change history for attribute values**.
+* **Tracked entity type**: **Record change history for tracked entity attribute values**.
 * **Program** (event and tracker): **Record change history for event data values**.
-
-Change logs are disabled by default for new programs and tracked entity types.
