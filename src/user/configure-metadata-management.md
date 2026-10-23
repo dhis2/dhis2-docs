@@ -2446,14 +2446,6 @@ For Show details, Sharing settings, Translate, Delete and Clone, see [Common act
 
 For Show details, Sharing settings, Translate, Delete and Clone, see [Common actions](#mm_common_actions). Predictor groups support the same actions as individual predictors, including **Run now**.
 
-## Manage push reports { #mm_manage_push_report }
-
-> **Note**
->
-> Push reports are not available in the Metadata Management app. If your DHIS2 instance still uses push reports,
-> configure them in the legacy Maintenance app — see
-> [Manage push reports](#manage_push_report).
-
 ## Manage external map layers { #mm_manage_external_maplayer }
 
 > **Note**

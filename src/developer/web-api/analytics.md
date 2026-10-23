@@ -2644,41 +2644,6 @@ The syntax for this endpoint is otherwise equal to the general data set report e
     GET /api/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
 
 
-## Push Analysis { #webapi_push_analysis } 
-
-The push analysis API includes endpoints for previewing a push analysis
-report for the logged in user and manually triggering the system to
-generate and send push analysis reports, in addition to the normal CRUD
-operations. When using the create and update endpoints for push
-analysis, the push analysis will be scheduled to run based on the
-properties of the push analysis. When deleting or updating a
-push analysis to be disabled, the job will also be stopped from running
-in the future.
-
-To get an HTML preview of an existing push analysis, you can do a GET
-request to the following endpoint:
-
-    /api/pushAnalysis/<id>/render
-
-To manually trigger a push analysis job, you can do a POST request to
-this endpoint:
-
-    /api/pushAnalysis/<id>/run
-
-A push analysis consists of the following properties, where some are
-required to automatically run push analysis jobs:
-
-Table: Push analysis properties
-
-| Property | Description | Type | Required |
-|---|---|---|---|
-| dashboard | Dashboard on which reports are based | Dashboard UID | Yes |
-| message | Appears after title in reports | String | No |
-| recipientUserGroups | A set of user groups who should receive the reports | One or more user Group UID | No. Scheduled jobs without any recipient will be skipped. |
-| enabled | Indicated whether this push analysis should be scheduled or not. False by default. | Boolean | Yes. Must be true to be scheduled. |
-| schedulingFrequency | The frequency of which reports should be scheduled. | "DAILY", "WEEKLY", "MONTHLY" | No. Push analysis without a frequency will not be scheduled |
-| schedulingDayOfFrequency | The day in the frequency the job should be scheduled. | Integer. Any value when frequency is "DAILY". 0-7 when frequency is "WEEKLY". 1-31 when frequency is "MONTHLY" | No. Push analysis without a valid day of frequency for the frequency set will not be scheduled. |
-
 ## Data usage analytics { #webapi_usage_analytics } 
 
 The usage analytics API lets you access information about how people are

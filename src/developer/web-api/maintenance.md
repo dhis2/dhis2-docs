@@ -356,7 +356,6 @@ The response will look similar to this:
       "completed": true
     }]
   },
-  "PUSH_ANALYSIS": {},
   "MONITORING": {},
   "VALIDATION_RESULTS_NOTIFICATION": {},
   "REMOVE_EXPIRED_RESERVED_VALUES": {},
