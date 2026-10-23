@@ -473,6 +473,60 @@ The following parameters are available:
 
 See [Data Administration](#data_admin_data_integrity) for more information about the available data integrity checks.
 
+### HTML push analytics { #scheduling_html_push_analytics }
+
+The HTML push analytics job sends a dashboard by email to the members of a
+user group. The email shows the dashboard items as charts, tables and maps,
+the way they look in the Dashboard app. The subject of the email is the name
+of the job. This job type is available from DHIS2 version 2.41.
+
+The emails are produced by the push analytics service, which is installed
+separately from DHIS2. Before you can use this job type:
+
+- The push analytics service must be installed and able to reach your DHIS2
+  instance. See the
+  [push analytics README](https://github.com/dhis2/push-analytics#readme) for
+  how to install and configure it, including the user account the service
+  logs in with and the [user impersonation](#user_impersonation) settings it
+  needs.
+- Email must be configured. See [Email settings](#system_email_settings).
+- The system setting `keyHtmlPushAnalyticsUrl` must contain the address of the
+  push analytics service. This setting is not available in the System
+  Settings app. Set it through the Web API, for example:
+
+  ```bash
+  curl "https://dhis2.example.org/api/systemSettings/keyHtmlPushAnalyticsUrl"     -d "http://push-analytics.example.org:1337/?dashboardId={id}&username={username}&locale={locale}"     -H "Content-Type: text/plain" -u admin:district
+  ```
+
+  DHIS2 replaces `{id}` with the dashboard, `{username}` with the user the
+  dashboard is shown as and `{locale}` with that user's language.
+- The dashboard must be shared, with at least view access, with the user
+  account of the push analytics service.
+
+The following parameters are available:
+
+- **Dashboard** the dashboard to send.
+- **Receivers** the user group that receives the email. Only active members
+  with an email address get the email.
+- **Mode** whose view of the dashboard is sent. The available options are:
+  - **Executor** - the dashboard is shown once, as the user who runs the job
+    sees it, and every receiver gets that same email. Receivers can see data
+    they might not have access to in DHIS2, so check the dashboard content
+    before you choose this option.
+  - **Receiver** - the dashboard is shown separately for each receiver, as
+    that user sees it and in that user's language. Each receiver gets their own
+    email. This takes longer than **Executor** for large user groups.
+
+> **Note**
+>
+> - Users with the "ALL" authority (superusers) cannot be impersonated. A job
+>   in **Executor** mode fails when it runs as such a user, and in **Receiver**
+>   mode such receivers do not get an email.
+> - Dashboard items from apps and plugins, and messages and users items, cannot
+>   be shown in an email and are left out.
+> - Some email clients, such as Gmail, do not show the charts and maps in the
+>   email, and may shorten long emails.
+
 ## Schedule Queues { #schedule_queues }
 
 ### Creating a queue { #scheduling_create_queue }
