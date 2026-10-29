@@ -923,6 +923,8 @@ Table: Functions to use in a program indicator expression or filter
 | least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions). |
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| contains | (text,text, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. Comparisons are case-sensitive. Use without the `d2:` prefix, unlike in program rules. |
+| containsItems | (text,text, ...) | Searches a comma-separated expression for one or more items. Returns true if every item exactly matches an element in the expression. Comparisons are case-sensitive. Use without the `d2:` prefix, unlike in program rules. |
 
 A filter that uses the "hasValue" function looks like this:
 
@@ -935,6 +937,10 @@ A filter that uses the "relationshipCount(relationshipTypeUid)" function looks l
 A filter that uses the "is( x in y, z )" function looks like this:
 
     is(#{oahc9ooVema} in 'New', 'Relapse')
+
+A filter that uses the "containsItems" function looks like this. It is true when a multi-text value such as `SULFA,NSAIDS` includes the item `SULFA`. Note that there is no `d2:` prefix:
+
+    containsItems(#{mCXR7u4kNBW.NFkjsNiQ9PH}, 'SULFA')
 
 An expression that uses the "zing" and "oizp" functions looks like this:
 
