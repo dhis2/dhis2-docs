@@ -1,5 +1,5 @@
 # Run DHIS2 with embedded Tomcat { #install_embedded_tomcat }
-<!-- Author: Morten (Morty) <netroms@gmail.com> -->
+<!-- Author: Morten Svanæs <msvanaes@dhis2.org> -->
 
 ## Overview { #install_embedded_tomcat_overview }
 
@@ -325,9 +325,10 @@ before directing users to the new deployment.
 ## Docker images { #install_embedded_tomcat_docker }
 
 The released `dhis2/core` images run external Tomcat. The `dhis2/core-dev`
-images for 2.43 and later use embedded Tomcat, but are development builds,
-not the supported release-WAR workflow described here. For production
-container deployment, see [dhis2/docker-deployment](https://github.com/dhis2/docker-deployment).
+images built from the 2.43 and later development branches use embedded Tomcat,
+but are development builds, not the supported release-WAR workflow described
+here. For production container deployment, see
+[dhis2/docker-deployment](https://github.com/dhis2/docker-deployment).
 
 ## Troubleshooting { #install_embedded_tomcat_troubleshooting }
 
