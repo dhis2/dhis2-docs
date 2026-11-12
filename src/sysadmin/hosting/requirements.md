@@ -34,7 +34,7 @@ Therefore, it is vital to plan for the server implementation early on. This way,
 
 A DHIS2 application requires a minimum of three components to run:
 
-- **Servlet container (Required):** Like tomcat (or jetty). Runs the java DHIS2 web application and hosts additional apps.
+- **Servlet container:** Runs the Java DHIS2 web application and hosts additional apps. A separate Tomcat installation is not required when using [embedded Tomcat](#install_embedded_tomcat) from DHIS2 2.44.
 - **A database server (Required):** Recent versions of DHIS2 require a postgresql database with version greater than 9.6.
 - **A web proxy front-end (Optional):** The primary function of this is for SSL termination and potentially load sharing. Nginx and apache2 are commonly used.
 - **Monitoring (Optional):** For real-world use (production), keeping an eye on both the application and server health is crucial. This can be done with tools like Prometheus (modern and likely to be directly integrated with the dhis2 system ) or Munin/Zabbix. Alerts can be sent via email or integrated with messaging apps like Telegram or Slack.

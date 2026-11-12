@@ -4,6 +4,7 @@ Getting Started:
   # alt__DHIS core version master:
   - Automated Install on Ubuntu: "@github(dhis2/dhis2-server-tools, docs/getting-started/linux-automated-install.md, main)"
   - Manual install on Ubuntu: "@github(dhis2/dhis2-docs, src/sysadmin/getting-started/linux-manual-install.md, master)"
+  - Run DHIS2 with embedded Tomcat: "@github(dhis2/dhis2-docs, src/sysadmin/getting-started/embedded-tomcat.md, master)"
   - Manual Install on Windows: "@github(dhis2/dhis2-docs, src/sysadmin/getting-started/windows-manual-install.md, master)"
   # - Post Install: '@github(dhis2/dhis2-docs, src/sysadmin/getting-started/post-install.md, master)'
   # - Automated Install on Linux Server: '@github(dhis2/dhis2-docs, src/sysadmin/getting-started/dhis2-tools.md, master)'
