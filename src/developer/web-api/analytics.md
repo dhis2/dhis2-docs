@@ -869,7 +869,7 @@ Filters by the status of an event within a stage.
 | `{stageUid}.EVENT_STATUS:{status}` | `dimension=A03MvHHogjR.EVENT_STATUS:ACTIVE` | Events in the stage with status `ACTIVE`. |
 | `{stageUid}.EVENT_STATUS:{s1};{s2}` | `dimension=edqlbukwRfQ.EVENT_STATUS:COMPLETED;ACTIVE` | Events with status `COMPLETED` **or** `ACTIVE` (OR logic). |
 
-Valid status values: `ACTIVE`, `COMPLETED`, `SCHEDULED`, `OVERDUE`, `SKIPPED`.
+Valid status values: `ACTIVE`, `COMPLETED`, `SCHEDULE`. These are the event statuses stored in the analytics tables; other values return E7222.
 
 #### Program Status (`PROGRAM_STATUS`)
 
@@ -896,11 +896,14 @@ Table: Query parameters for event query analytics only
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
-| eventDate | no | Events resource only. Custom period on `eventDate`. See "custom date periods" section. | See "date and period format" section |
+| eventDate | no | Events resource only. Custom period on `eventDate`. *Deprecated, prefer `occurredDate`*. See "custom date periods" section. | See "date and period format" section |
+| occurredDate | no | Events resource only. Custom period on the event occurred date (`eventDate`). See "custom date periods" section. | See "date and period format" section |
 | enrollmentDate | no | Custom period on `enrollmentDate`. See "custom date periods" section. | See "date and period format" section |
 | scheduledDate | no | Events resource only. Custom period on `scheduledDate`. See "custom date periods" section. | See "date and period format" section |
 | incidentDate | no | Custom period on `incidentDate`. See "custom date periods" section. | See "date and period format" section |
 | lastUpdated | no | Custom period on `lastUpdated`. See "custom date periods" section. | See "date and period format" section |
+
+The custom date parameters above are also accepted by the event aggregate analytics endpoint.
 
 
 
@@ -1877,7 +1880,7 @@ Filters by the status of an event within a stage.
 | `{stageUid}.EVENT_STATUS:{status}` | `dimension=A03MvHHogjR.EVENT_STATUS:ACTIVE` | Events in the stage with status `ACTIVE`. |
 | `{stageUid}.EVENT_STATUS:{s1};{s2}` | `dimension=edqlbukwRfQ.EVENT_STATUS:COMPLETED;ACTIVE` | Events with status `COMPLETED` **or** `ACTIVE` (OR logic). |
 
-Valid status values: `ACTIVE`, `COMPLETED`, `SCHEDULED`, `OVERDUE`, `SKIPPED`.
+Valid status values: `ACTIVE`, `COMPLETED`, `SCHEDULE`. These are the event statuses stored in the analytics tables; other values return E7222.
 
 #### Program Status (`PROGRAM_STATUS`)
 
