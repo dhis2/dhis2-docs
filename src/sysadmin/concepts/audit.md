@@ -28,7 +28,7 @@ All audit entries, except the ones related to tracked entities, will be saved in
 | Column | Type | Description |
 | --- | --- | --- |
 | auditid | integer | Primary key. |
-| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
+| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH, SECURITY |
 | auditscope | text | METADATA, AGGREGATE, TRACKER |
 | klass | text | Audit Entity Java class name. |
 | attributes | jsonb | A JSON string with attributes of the audited object. Example: `{"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"}`. |
@@ -52,19 +52,22 @@ An audit scope is a logical area of the application which can be audited. Curren
 
 ## Audit Type { #audit_type }
 
-An audit type is an action that triggers an audit operation. Currently we support the following four types.
+An audit type is an action that triggers an audit operation. The supported types match the `AuditType` values in DHIS2 core.
 
-| Name     | Key      | Description         |
-| -------- | -------- | ------------------- |
-| Read     | READ     | Object was read.    |
+| Name     | Key      | Description |
+| -------- | -------- | ----------- |
 | Create   | CREATE   | Object was created. |
+| Read     | READ     | Object was read.    |
 | Update   | UPDATE   | Object was updated. |
 | Delete   | DELETE   | Object was deleted. |
-| Disabled | DISABLED | Disable audit.      |
+| Search   | SEARCH   | A search was performed (used in tracked entity audits). |
+| Security | SECURITY | A security-related event was audited. |
+
+`DISABLED` is not an audit type. It is a configuration token you can put in an `audit.<scope>` property in `dhis.conf` to turn auditing off for that scope. See the examples below.
 
 > **Caution**
 >
-> The READ audit type may generate a lot of data in the database and may have an impact on the performance.
+> The READ audit type may generate a lot of data in the database and may have an impact on the performance. SEARCH is not enabled by default and should also be turned on only when you need it.
 
 ## Tracked entity audits
 
@@ -78,7 +81,7 @@ Operations on tracked entities are stored in the `trackedentityaudit` table.
 | trackedentity | text | Tracked entity name. |
 | created | timestamp without time zone | Time of creation. |
 | accessedby | text | Username of the user performing the audited operation. |
-| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
+| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH, SECURITY |
 | comment | text | The code of the audited object. |
 
 This data can be retrieved via the [API](#webapi_tracked_entity_audits).
@@ -102,32 +105,32 @@ The breaking the glass event is stored in the `programtempownershipaudit` table,
 
 ## Setup { #audit_configuration }
 
-The audit system is enabled by default for the following scopes and types.
+The audit system is enabled by default for all three scopes. The default types are CREATE, UPDATE, DELETE and SECURITY. Other types (READ and SEARCH) are off until you add them in `dhis.conf`.
 
 Scopes (case sensitive):
-
-- `READ`
-- `CREATE`
-- `UPDATE`
-- `DELETE`
-- `SEARCH`
-- `DISABLED`
-
-Types:
 
 - `METADATA`
 - `TRACKER`
 - `AGGREGATE`
 
+Types (case sensitive):
+
+- `CREATE`
+- `READ`
+- `UPDATE`
+- `DELETE`
+- `SEARCH`
+- `SECURITY`
+
 This means that **no action is required** to enable the default audit system. The default setting is equivalent to the following `dhis.conf` configuration.
 
 ```properties
-audit.metadata = CREATE;UPDATE;DELETE
-audit.tracker = CREATE;UPDATE;DELETE
-audit.aggregate = CREATE;UPDATE;DELETE
+audit.metadata = CREATE;UPDATE;DELETE;SECURITY
+audit.tracker = CREATE;UPDATE;DELETE;SECURITY
+audit.aggregate = CREATE;UPDATE;DELETE;SECURITY
 ```
 
-The audit can be configured using the _audit matrix_. The audit matrix represents the valid combinations of scopes and types, and is defined with the following properties in the `dhis.conf` configuration file. Each property accepts a semicolon (`;`) delimited list of audit types.
+The audit can be configured using the _audit matrix_. The audit matrix represents the valid combinations of scopes and types, and is defined with the following properties in the `dhis.conf` configuration file. Each property accepts a semicolon (`;`) delimited list of audit types. Use `DISABLED` on its own to turn a scope off, as shown in the examples below.
 
 - `audit.metadata`
 - `audit.tracker`
@@ -143,13 +146,13 @@ However, if you have already an Artemis server, you can connect to it from DHIS2
 
 ### log4j2
 
-[log4j2](https://logging.apache.org/log4j/2.x/index.html) is the default DHIS2 logging library used to handle output messages. It's used to control what events are recored in which file.
+[log4j2](https://logging.apache.org/log4j/2.x/index.html) is the default DHIS2 logging library used to handle output messages. It's used to control what events are recorded in which file.
 
 The application ships a [log4j2 default configuration file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-web/dhis-web-commons-resources/src/main/webapp/WEB-INF/classes/log4j2.xml), which instructs what information to log and where (console). DHIS2 then takes care of import that file and instruction logging as described in the [log4j configuration class](https://github.com/dhis2/dhis2-core/blob/2.38/dhis-2/dhis-support/dhis-support-system/src/main/java/org/hisp/dhis/system/log/Log4JLogConfigInitializer.java), that is, redirecting output from console to files.
 
 From 2.36 to 2.38, audit log file `dhis-audit.log` is rotated [every day at midnight](https://github.com/dhis2/dhis2-core/blob/2.38/dhis-2/dhis-support/dhis-support-system/src/main/java/org/hisp/dhis/system/log/Log4JLogConfigInitializer.java#L171).
 
-An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](#install_application_logging) on how to use it.
+An example of a custom log4j2 configuration can be found in the [application logging section](#install_custom_log4j2_example): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](#install_application_logging) on how to use it.
 
 ## Examples
 
