@@ -605,7 +605,7 @@ The counter `dhis2_cross_origin_rejected_requests_total` on the `/api/metrics` e
 
 ### Turning the protection off { #install_cross_origin_protection_off }
 
-With `http.security.cross_origin_protection.enabled = off`, DHIS2 does not apply rule 3. It does not switch off the origin check: rules 1 and 2 still reject requests from an origin that is not allowed, as the CORS handling of earlier versions did. Turning the protection off is not recommended. Use log-only mode to diagnose problems with rule 3 instead.
+With `http.security.cross_origin_protection.enabled = off`, DHIS2 does not apply rule 3. It does not switch off the origin check: rules 1 and 2 still reject requests from an origin that is not allowed. The API rejected such requests in earlier versions as well. The OAuth2 authorization server endpoints (`oauth2.server.enabled = on`) had no CORS handling, so for them the rejection is new. Turning the protection off is not recommended. Use log-only mode to diagnose problems with rule 3 instead.
 
 ## Tracker configuration { #install_tracker_configuration }
 
