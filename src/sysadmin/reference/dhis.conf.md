@@ -536,6 +536,10 @@ DHIS2 answers a rejected request with status `403` and this body:
 }
 ```
 
+> **Upgrade note**
+>
+> Earlier versions accepted `Origin: null` when a CORS allowlist entry matched the text `null`, for example `*` or a literal `null`. DHIS2 no longer checks `Origin: null` against the allowlist; only rule 2 can accept it. On a server whose allowlist has such an entry, a web page with an opaque origin that calls DHIS2, such as a page opened from a `file:` URL or a frame sandboxed without `allow-same-origin`, gets a `403` after the upgrade. This applies in every mode: log-only mode and `enabled = off` do not cover it, and no setting restores the old behaviour or only logs these requests. Serve such a page from an `http` or `https` origin and add that origin to the allowlist, or serve it from the DHIS2 server itself. Scripts, integrations and mobile apps send no `Origin` header and are not affected.
+
 ### The server's own origin and reverse proxies
 
 DHIS2 computes its own origin from the scheme, host and port of each request it receives. When the `X-Forwarded-Proto` header is present, DHIS2 takes the scheme from it. It does not use `server.base.url` for this check.
@@ -559,7 +563,7 @@ Each entry must be an origin of the form `http://host[:port]` or `https://host[:
 
 > **Upgrade note**
 >
-> Earlier versions matched entries as loose patterns. After the upgrade, DHIS2 keeps a stored entry that breaks these rules, but ignores it for CORS, for this protection and for the `frame-ancestors` content security policy, and logs a warning when it loads the list. Re-enter such entries as full origins. The ignored forms are:
+> Earlier versions matched entries as loose patterns. After the upgrade, DHIS2 keeps a stored entry that breaks these rules, but ignores it for CORS, for this protection and for the `frame-ancestors` content security policy. When DHIS2 loads the list, it writes one `WARN` line to the server log for each ignored entry. The upgrade does not rewrite stored entries, so re-enter such entries as full origins. The ignored forms are:
 >
 > * no scheme or scheme-relative: `example.org`, `//example.org`, `*.example.org`
 > * other schemes, including wildcard schemes: `capacitor://localhost`, `ftp://example.org`, `*://example.org`, `http*://example.org`
