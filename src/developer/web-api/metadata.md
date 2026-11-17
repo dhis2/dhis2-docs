@@ -2804,7 +2804,8 @@ Table: Organisation units query parameters
 | level | integer | Organisation units at the given level in the hierarchy. |
 | maxLevel | integer | Organisation units at the given max level or levels higher up in the hierarchy. |
 | withinUserHierarchy | false &#124; true | Limits search and retrieval to organisation units that are within the users data capture scope. |
-| withinUserSearchHierarchy | false &#124; true | Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence. |
+| withinDataViewUserHierarchy | false &#124; true | Limits search and retrieval to organisation units that are within the users data view scope, i.e. the data view organisation units of the current user and all organisation units below them in the hierarchy. |
+| withinUserSearchHierarchy | false &#124; true | Limits search and retrieval to organisation units that are within the current users search scope. Note: if more than one of "withinUserHierarchy", "withinDataViewUserHierarchy" and "withinUserSearchHierarchy" is true, the result includes the organisation units within any of the scopes. |
 | memberCollection | string | For displaying count of members within a collection, refers to the name of the collection associated with organisation units. |
 | memberObject | UID | For displaying count of members within a collection, refers to the identifier of the object member of the collection. |
 
