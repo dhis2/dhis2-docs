@@ -35,3 +35,27 @@ seconds) and `client_id`. The Maps, Climate and Import/Export apps request this
 token to access Earth Engine. If it doesn't return a token, check the server
 log. See [Google Service Account](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/settings-and-configuration.html#webapi_tokens_google_service_account)
 in the Web API documentation.
+
+## Replace or revoke a key { #replace_google_service_account_key }
+
+Replace the key when it may have been exposed, or when people who had a copy
+should no longer have access:
+
+1. Create a new key for the same service account, as in Step 4 of
+   [Google Earth Engine sign-up](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
+2. Replace `dhis-google-auth.json` in the `DHIS2_HOME` directory with the new
+   key file, and restart DHIS2.
+3. Check that DHIS2 loaded the new key, as described in
+   [Check that DHIS2 loaded the key](#check_google_service_account_configuration).
+4. In the Google Cloud console, go to **IAM & Admin → Service Accounts**, click
+   the service account, open the **Keys** tab, and click **Delete** for the old
+   key. A deleted key can't be used again or restored.
+
+Access tokens already issued with the old key stay valid until they expire, up
+to one hour for the tokens DHIS2 requests.
+
+To stop DHIS2 from using Earth Engine, remove `dhis-google-auth.json`, restart
+DHIS2, and delete the key in the Google Cloud console.
+
+See Google's guide
+[Create and delete service account keys](https://docs.cloud.google.com/iam/docs/keys-create-delete).
