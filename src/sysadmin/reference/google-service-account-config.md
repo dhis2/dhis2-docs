@@ -19,9 +19,9 @@ As an example this location could be:
 DHIS2 reads the key file when it starts: restart DHIS2 after adding or
 replacing it.
 
-## Bing Maps API key { #install_bing_maps_api_key }
+## Azure Maps and Bing Maps API keys { #install_bing_maps_api_key }
 
-To enable use of Bing Maps basemap layers, you need to set up the Bing Maps API
-key. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key)
-for information on setting up the key.
+To enable the Azure Maps or Bing Maps basemaps in the Maps app, enter the key in
+**Azure Maps API key** or **Bing Maps API key** in the System Settings app. See
+[Accessing Azure Maps and Bing Maps basemaps](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html#accessing-bing-maps-basemaps).
 
