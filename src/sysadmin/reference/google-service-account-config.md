@@ -40,4 +40,4 @@ in the Web API documentation.
 
 To enable the Azure Maps or Bing Maps basemaps in the Maps app, enter the key in
 **Azure Maps API key** or **Bing Maps API key** in the System Settings app. See
-[Accessing Azure Maps and Bing Maps basemaps](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html#accessing-bing-maps-basemaps).
+[Accessing Azure Maps and Bing Maps basemaps](https://docs.dhis2.org/en/topics/tutorials/azure-maps-and-bing-maps-basemaps.html).
