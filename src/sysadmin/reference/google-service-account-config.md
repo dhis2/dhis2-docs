@@ -36,8 +36,9 @@ token to access Earth Engine. If it doesn't return a token, check the server
 log. See [Tokens: Google Earth Engine](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/settings-and-configuration.html#webapi_tokens_google_service_account)
 in the Web API documentation.
 
-A token shows that DHIS2 loaded the key. To confirm that the Google Cloud project
-gives access to Earth Engine, open an Earth Engine layer in the Maps app.
+A token shows that DHIS2 loaded the key and Google accepted it. To confirm that
+the Google Cloud project gives access to Earth Engine, open an Earth Engine
+layer in the Maps app.
 
 ## Replace or revoke a key { #replace_google_service_account_key }
 

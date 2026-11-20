@@ -198,7 +198,7 @@ Table: System settings
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
 | keyGoogleMapsApiKey | Google Maps API key | No |
 | keyBingMapsApiKey | Bing Maps API key, for the Bing basemaps in the Maps app and the Android Capture app | No |
-| keyAzureMapsApiKey | Azure Maps API key, for the Azure basemaps in the Maps app and the Android Capture app | No |
+| keyAzureMapsApiKey | Azure Maps API key, for the Azure basemaps in the Maps app and the Android Capture app (from version 3.4) | No |
 | keyLastMetaDataSyncSuccess | Keeps timestamp of last successful metadata synchronization | No |
 | keyVersionEnabled | Enables metadata versioning | No |
 | keyMetadataFailedVersion | Keeps details about failed metadata version sync | No |
