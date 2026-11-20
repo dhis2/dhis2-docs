@@ -131,7 +131,10 @@ elements. The following parameters are available:
   an example, if you specify 2 years, the process will update the two last years
   worth of data, but not update older data. This parameter is useful to reduce
   the time the process takes to complete, and is appropriate if older data has
-  not changed, and when updating the latest data is desired.
+  not changed, and when updating the latest data is desired. It is not
+  appropriate after changes to analytics dimensions, such as turning **Data
+  dimension** on for a category: run a full analytics tables update first. See
+  [Analytics tables management](#data_admin_analytics_tables).
 - **Skip resource tables:** Skip resource tables during the analytics table
   update process. This reduces the time the process takes to complete, but leads
   to changes in metadata not being reflected in the analytics data.
