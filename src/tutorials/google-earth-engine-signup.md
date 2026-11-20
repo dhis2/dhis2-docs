@@ -1,8 +1,8 @@
 ---
-title: Accessing map layers from Google Earth Engine
+title: Google Earth Engine sign-up
 ---
 
-# Accessing map layers from Google Earth Engine { #accessing-map-layers-from-google-earth-engine }
+# Google Earth Engine sign-up { #accessing-map-layers-from-google-earth-engine }
 
 DHIS2 has a powerful integration with [Google Earth Engine](https://earthengine.google.com/) allowing you to access detailed datasets for population (WorldPop), building footprints, elevation, land use and climate. The Maps app shows them as map layers, the Climate app uses them for climate and environmental data, and the Import/Export app can import them as data values.
 
@@ -121,7 +121,3 @@ Guides: [Create and delete service account keys](https://docs.cloud.google.com/i
 - [ ] Service account created with Service Usage Consumer and Earth Engine Resource Admin
 - [ ] JSON key created and stored securely
 - [ ] Key renamed to `dhis-google-auth.json`, placed next to `dhis.conf`, and DHIS2 restarted
-
-# Accessing Azure Maps and Bing Maps basemaps { #accessing-bing-maps-basemaps }
-
-See [Accessing Azure Maps and Bing Maps basemaps](https://docs.dhis2.org/en/topics/tutorials/azure-maps-and-bing-maps-basemaps.html).

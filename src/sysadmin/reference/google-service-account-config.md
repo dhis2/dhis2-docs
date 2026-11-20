@@ -6,7 +6,7 @@ climate and environmental data, and the Import/Export app to import Earth Engine
 data. DHIS2 uses the key for Earth Engine only.
 
 To create the Google Cloud project, the service account and its key, follow
-[Accessing map layers from Google Earth Engine](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
+[Google Earth Engine sign-up](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
 
 ## Install the key file
 
@@ -35,9 +35,3 @@ seconds) and `client_id`. The Maps, Climate and Import/Export apps request this
 token to access Earth Engine. If it doesn't return a token, check the server
 log. See [Google Service Account](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/settings-and-configuration.html#webapi_tokens_google_service_account)
 in the Web API documentation.
-
-# Azure Maps and Bing Maps API keys { #install_bing_maps_api_key }
-
-To enable the Azure Maps or Bing Maps basemaps in the Maps app, enter the key in
-**Azure Maps API key** or **Bing Maps API key** in the System Settings app. See
-[Accessing Azure Maps and Bing Maps basemaps](https://docs.dhis2.org/en/topics/tutorials/azure-maps-and-bing-maps-basemaps.html).

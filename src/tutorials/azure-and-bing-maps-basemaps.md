@@ -1,8 +1,8 @@
 ---
-title: Accessing Azure Maps and Bing Maps basemaps
+title: Azure Maps and Bing Maps basemaps
 ---
 
-# Accessing Azure Maps and Bing Maps basemaps { #accessing-azure-maps-and-bing-maps-basemaps }
+# Azure Maps and Bing Maps basemaps { #azure-maps-and-bing-maps-basemaps }
 
 Azure Maps and Bing Maps can be used as basemaps in the DHIS2 Maps app. Each provider adds four basemaps: Road, Dark, Aerial and Aerial Labels.
 
