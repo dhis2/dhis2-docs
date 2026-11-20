@@ -386,9 +386,13 @@ The *tokens* resource provides access tokens for Google Earth Engine.
 
 ### Google Earth Engine { #webapi_tokens_google_service_account } 
 
-You can retrieve an OAuth 2.0 access token for Google Earth Engine with a
-GET request to the following resource. DHIS2 requests the token from Google
-with the server's Google Earth Engine service account key.
+You can retrieve an OAuth 2.0 access token with a GET request to the
+following resource. DHIS2 requests the token from Google with the server's
+Google Earth Engine service account key, and with the Earth Engine scope only
+(`https://www.googleapis.com/auth/earthengine`). The Maps, Climate and
+Import/Export apps use it to access Google Earth Engine. What the token can
+do in Earth Engine depends on the roles of the service account in Google
+Cloud.
 
     GET /api/tokens/google
 
