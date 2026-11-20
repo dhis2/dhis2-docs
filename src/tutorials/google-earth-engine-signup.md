@@ -109,6 +109,8 @@ Then install it in DHIS2:
 2. Place it in your DHIS2 folder, alongside the `dhis.conf` file.
 3. Restart the DHIS2 server.
 
+To check that DHIS2 loaded the key, see [Check that DHIS2 loaded the key](https://docs.dhis2.org/en/manage/reference/google-service-account-configuration.html#check_google_service_account_configuration).
+
 Guides: [Create and delete service account keys](https://docs.cloud.google.com/iam/docs/keys-create-delete) (Google) · [Google service account configuration](https://docs.dhis2.org/en/manage/reference/google-service-account-configuration.html) (DHIS2)
 
 ## Final checklist
