@@ -1,4 +1,4 @@
-# Google service account configuration { #install_google_service_account_configuration } 
+# Google Earth Engine service account configuration { #install_google_service_account_configuration }
 
 The key file of a Google service account gives DHIS2 access to Google Earth
 Engine. The Maps app uses it for Earth Engine layers, the Climate app for

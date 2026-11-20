@@ -406,7 +406,7 @@ Table: Token response
 | expires_in | The number of seconds until the access token expires, typically 3600 seconds (1 hour). |
 | client_id | The Google service account client id. |
 
-This assumes that a Google service account has been set up and configured for DHIS2. See [Google service account configuration](https://docs.dhis2.org/en/manage/reference/google-service-account-configuration.html).
+This assumes that a Google service account has been set up and configured for DHIS2. See [Google Earth Engine service account configuration](https://docs.dhis2.org/en/manage/reference/google-earth-engine-service-account-configuration.html).
 
 ## Static content { #webapi_static_content } 
 
