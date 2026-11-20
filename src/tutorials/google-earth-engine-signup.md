@@ -121,3 +121,4 @@ Guides: [Create and delete service account keys](https://docs.cloud.google.com/i
 - [ ] Service account created with Service Usage Consumer and Earth Engine Resource Admin
 - [ ] JSON key created and stored securely
 - [ ] Key renamed to `dhis-google-auth.json`, placed next to `dhis.conf`, and DHIS2 restarted
+- [ ] Checked that DHIS2 loaded the key ([Check that DHIS2 loaded the key](https://docs.dhis2.org/en/manage/reference/google-earth-engine-service-account-configuration.html#check_google_service_account_configuration)) and that an Earth Engine layer loads in the Maps app
