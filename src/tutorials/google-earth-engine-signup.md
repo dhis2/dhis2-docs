@@ -2,11 +2,11 @@
 title: Accessing map layers from Google Earth Engine and Bing Maps
 ---
 
-# Accessing map layers from Google Earth Engine
+# Accessing map layers from Google Earth Engine { #accessing-map-layers-from-google-earth-engine }
 
 DHIS2 has a powerful integration with [Google Earth Engine](https://earthengine.google.com/) allowing you to access detailed datasets for population (WorldPop), building footprints, elevation, land use and climate. The Maps app shows them as map layers, the Climate app uses them for climate and environmental data, and the Import/Export app can import them as data values.
 
-![](resources/images/earth_engine_layers.png)
+![Earth Engine layers, framed in red, in the Maps app's Add layer list](resources/images/earth_engine_layers.png){.center}
 
 DHIS2 connects to Earth Engine through a Google service account that your organisation owns. You install the service account's key file on your DHIS2 server, and all users of that DHIS2 instance can then access the Earth Engine layers.
 
@@ -32,23 +32,7 @@ The person setting up the project needs a Google account in your organisation wi
 | Billing Account User (`roles/billing.user`), if billing is required | To link a billing account (needed for commercial use or the noncommercial Contributor Tier) |
 | Owner on the new project, or Service Account Admin + Project IAM Admin + Service Account Key Admin | To create the service account, grant roles and create a key |
 
-Google Cloud organisations created on or after 3 May 2024 block service account key creation by default. If yours does, you will need your Google Cloud administrator's help in Step 4.
-
-### Eligibility and cost
-
-Google decides who can use Earth Engine and on what terms. Noncommercial projects are not charged, within a monthly compute quota. Commercial projects are charged for Earth Engine use. Google lists these noncommercial users, among others:
-
-- nonprofit organisations, for research, education or other noncommercial activities;
-- academic and educational institutions, for research or teaching;
-- government agencies from a UN Least Developed Country, agencies of an officially recognised Indigenous government, and agencies using Earth Engine for scholarly research.
-
-Other government agencies, and government use for operational purposes, need a paid commercial account. Government users must sign up with an institutional Google account supported by their agency, and Google reviews their noncommercial access. Read Google's [noncommercial eligibility](https://earthengine.google.com/noncommercial) page and [transition to commercial](https://developers.google.com/earth-engine/guides/transition_to_commercial) guide before you register. The terms are Google's and can change.
-
-You choose noncommercial or commercial use when you register the project in Step 2.
-
-### Usage quota
-
-Noncommercial projects get a monthly compute quota. The default Community Tier allows 150 EECU-hours a month. You can upgrade a project to the Contributor Tier (1,000 EECU-hours), which requires a billing account but is not charged for noncommercial Earth Engine use, and apply for the Partner Tier. Noncommercial status must be reverified every year. See [noncommercial quota tiers](https://developers.google.com/earth-engine/guides/noncommercial_tiers).
+Also decide whether your Earth Engine use is **noncommercial** (research, education, nonprofit) or **commercial**. This distinction will help determine the appropriate registration process in Step 2.
 
 ## If your organisation doesn't have a Google account
 
@@ -56,8 +40,8 @@ You need a Google account to use Google Cloud, but not Gmail or Google Workspace
 
 | Option | How | Best for |
 |---|---|---|
-| **Cloud Identity Free** (recommended) | Sign up for Google's free Cloud Identity service and verify your organisation's domain (e.g. @health.gov.xx); this needs someone who can add a DNS record. Takes about 30–60 minutes. | Organisations: the project belongs to the organisation, not to one person |
-| **Google account with your work email** | On the Google account sign-up page, choose **Use your existing email** and enter your existing work email. No Gmail needed. | Quickest option; the project sits under "No organisation" |
+| **Cloud Identity Free** (recommended) | [Sign up for Google's free Cloud Identity service](https://support.google.com/cloudidentity/answer/7389973) and verify your organisation's domain (e.g. @health.gov.xx); this needs someone who can add a DNS record. Takes about 30–60 minutes. | Organisations: the project belongs to the organisation, not to one person |
+| **Google account with your work email** | On the [Google account sign-up page](https://support.google.com/accounts/answer/27441), choose **Use your existing email** and enter your existing work email. No Gmail needed. | Quickest option; the project sits under "No organisation" |
 | **Personal Gmail account** | Sign up for a standard Gmail account. | Last resort only |
 
 If you use a work email or personal Gmail account, the project is tied to one person's account. If that person leaves, your organisation can lose access. To avoid this:
@@ -65,7 +49,7 @@ If you use a work email or personal Gmail account, the project is tied to one pe
 - Create the account with a shared, organisation-controlled mailbox (e.g. gis@your-org.xx), **or**
 - Add at least one more colleague as **Owner** of the project (**IAM & Admin → IAM → Grant access**).
 
-If you choose Cloud Identity, the person who signs up becomes its first **super admin**. Because this account is on your own domain, your organisation can always recover it: whoever manages your domain's DNS can prove ownership again if all admins are locked out. To make the setup more resilient:
+If you choose Cloud Identity, the person who signs up becomes its first **super admin**. Because this account is on your own domain, your organisation can always [recover it](https://support.google.com/a/answer/33561): whoever manages your domain's DNS can prove ownership again if all admins are locked out. To make the setup more resilient:
 
 - Use a role-based admin account (e.g. gcp-admin@your-org.xx), with its password stored where the organisation controls it.
 - Have at least two super admins.
@@ -137,33 +121,18 @@ Guides: [Create and delete service account keys](https://docs.cloud.google.com/i
 
 ## Final checklist
 
-- Project created (and billing linked, if needed)
-- Google Earth Engine API enabled
-- Project registered for Earth Engine
-- Service account created with Service Usage Consumer and Earth Engine Resource Admin
-- JSON key created and stored securely
-- Key renamed to `dhis-google-auth.json`, placed next to `dhis.conf`, and DHIS2 restarted
-
-## References
-
-| Topic | Official guide |
-|---|---|
-| Google account with an existing email | [Create a Google Account](https://support.google.com/accounts/answer/27441) |
-| Cloud Identity Free sign-up | [Sign up for Cloud Identity](https://support.google.com/cloudidentity/answer/7389973) |
-| Recovering admin access | [Recover administrator access](https://support.google.com/a/answer/33561) |
-| Noncommercial eligibility | [Earth Engine noncommercial use](https://earthengine.google.com/noncommercial) |
-| Creating a project | [Creating and managing projects](https://docs.cloud.google.com/resource-manager/docs/creating-managing-projects) |
-| Earth Engine registration | [Earth Engine access](https://developers.google.com/earth-engine/guides/access) |
-| Noncommercial tiers | [Earth Engine noncommercial tiers](https://developers.google.com/earth-engine/guides/noncommercial_tiers) |
-| Roles and permissions | [Earth Engine access control](https://developers.google.com/earth-engine/guides/access_control) |
-| Service accounts | [Create service accounts](https://docs.cloud.google.com/iam/docs/service-accounts-create) |
-| Service account keys | [Create and delete service account keys](https://docs.cloud.google.com/iam/docs/keys-create-delete) |
-| Key creation disabled | [Troubleshoot organization policy errors](https://docs.cloud.google.com/iam/docs/troubleshoot-org-policies) |
-| Installing the key in DHIS2 | [Google service account configuration](https://docs.dhis2.org/en/manage/reference/google-service-account-configuration.html) (DHIS2 docs) |
+- [ ] Project created (and billing linked, if needed)
+- [ ] Google Earth Engine API enabled
+- [ ] Project registered for Earth Engine
+- [ ] Service account created with Service Usage Consumer and Earth Engine Resource Admin
+- [ ] JSON key created and stored securely
+- [ ] Key renamed to `dhis-google-auth.json`, placed next to `dhis.conf`, and DHIS2 restarted
 
 # Accessing Azure Maps and Bing Maps basemaps { #accessing-bing-maps-basemaps }
 
 Azure Maps and Bing Maps can be used as basemaps in the DHIS2 Maps app. Each provider adds four basemaps: Road, Dark, Aerial and Aerial Labels.
+
+![Azure Maps basemaps in the Maps app's basemap card](resources/images/bing-maps-basemap-layers.png){.center}
 
 Microsoft is retiring Bing Maps. Free (Basic) Bing Maps keys stopped working on 30 June 2025, and paid Bing Maps for Enterprise licences end on 30 June 2028. Use Azure Maps unless your organisation already has a paid Bing Maps licence. See [Migrate from Bing Maps to Azure Maps](https://learn.microsoft.com/azure/azure-maps/migrate-bing-maps-overview).
 
@@ -173,5 +142,3 @@ To enable the Azure Maps basemaps:
 2. In the System Settings app, open **Server settings** and enter the key in **Azure Maps API key**.
 
 If your organisation has a paid Bing Maps for Enterprise licence, enter its key in **Bing Maps API key** instead.
-
-![](resources/images/bing-maps-basemap-layers.png)
