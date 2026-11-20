@@ -8,19 +8,11 @@ DHIS2 has a powerful integration with [Google Earth Engine](https://earthengine.
 
 ![Earth Engine layers, framed in red, in the Maps app's Add layer list](resources/images/earth_engine_layers.png){.center}
 
-DHIS2 connects to Earth Engine through a Google service account that your organisation owns. You install the service account's key file on your DHIS2 server, and all users of that DHIS2 instance can then access the Earth Engine layers.
-
-If your DHIS2 instance already uses a key file issued by the DHIS2 team, it keeps working and you don't need to change anything.
+DHIS2 connects to Earth Engine through a Google service account that your organisation owns. This guide shows how to set it up: you create a Google Cloud project registered for Earth Engine, and a service account in it with two roles, **Service Usage Consumer** and **Earth Engine Resource Admin**. You then install the service account's JSON key file on your DHIS2 server or servers, and all users of those DHIS2 instances can access the Earth Engine layers. The whole setup takes about 20–30 minutes.
 
 > **Note**
 >
 > This guide is not an official Google resource and is not endorsed by Google. Google changes its products, screens and policies, sometimes on short notice, so some steps may be out of date or incorrect. Always check the linked Google guides for the current process. To suggest a correction, please open a ticket on [DHIS2 Jira](https://dhis2.atlassian.net).
-
-## Purpose
-
-Set up a Google Cloud project registered for Earth Engine, and a service account in it with two roles: **Service Usage Consumer** and **Earth Engine Resource Admin**. The whole setup takes about 20–30 minutes.
-
-When you are done, you will have a JSON key file to install on your DHIS2 server(s), as described in Step 4.
 
 ## Before you start
 
