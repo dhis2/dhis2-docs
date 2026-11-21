@@ -88,6 +88,42 @@ Common log levels are `DEBUG`, `INFO`, `WARN` and `ERROR`.
 > 
 > Log level configuration is not supported for the embedded DHIS2 Jetty version.
 
+## Custom log4j2 example { #install_custom_log4j2_example }
+
+The Log configuration section above explains how to point DHIS2 at your own Log4j 2 file with the `log4j2.configurationFile` system property. The following `log4j2.properties` example writes all logs to an external directory (`/var/log/dhis2`), rotates the file every week, and deletes archived logs after 30 days.
+
+```properties
+status = warn
+name = DHIS2CustomLogging
+
+appender.file.type = RollingFile
+appender.file.name = RollingFile
+appender.file.fileName = /var/log/dhis2/dhis.log
+appender.file.filePattern = /var/log/dhis2/dhis-%d{yyyy-MM-dd}.log.gz
+appender.file.layout.type = PatternLayout
+appender.file.layout.pattern = %d{ISO8601} %-5p %m (%F [%t]) %X{sessionId} %X{xRequestID}%n
+appender.file.policies.type = Policies
+appender.file.policies.cron.type = CronTriggeringPolicy
+appender.file.policies.cron.schedule = 0 0 0 ? * SUN
+appender.file.strategy.type = DefaultRolloverStrategy
+appender.file.strategy.delete.type = Delete
+appender.file.strategy.delete.basePath = /var/log/dhis2
+appender.file.strategy.delete.maxDepth = 1
+appender.file.strategy.delete.ifLastMod.type = IfLastModified
+appender.file.strategy.delete.ifLastMod.age = 30d
+
+rootLogger.level = info
+rootLogger.appenderRef.file.ref = RollingFile
+```
+
+Save the file on the server (for example as `/home/dhis/config/log4j2.properties`) and start DHIS2 with:
+
+```properties
+-Dlog4j2.configurationFile=/home/dhis/config/log4j2.properties
+```
+
+Create the `/var/log/dhis2` directory and give the DHIS2 process permission to write to it before you use this configuration.
+
 ## Changelog
 
 DHIS2 writes entries to changelogs when certain entities were changed in the
