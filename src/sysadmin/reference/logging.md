@@ -86,7 +86,7 @@ Common log levels are `DEBUG`, `INFO`, `WARN` and `ERROR`.
 
 > **Note**
 > 
-> Log level configuration is not supported for the embedded DHIS2 Jetty version.
+> [Embedded Tomcat](#install_embedded_tomcat_logging) uses the same DHIS2 logging configuration, with console output captured by journald when run as a systemd service. Pass JVM properties before `-jar dhis.war` or through `JAVA_TOOL_OPTIONS`, not a Tomcat startup script.
 
 ## Changelog
 
