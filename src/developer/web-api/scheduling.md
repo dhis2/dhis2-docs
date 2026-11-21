@@ -108,12 +108,6 @@ Table: `MONITORING` (Validation rule analysis) job parameters
 | `sendNotification` | boolean | `false` | Set `true` if job should send notifications based on validation rule groups |
 | `persistsResults` | boolean | `false` | Set `true` if job should persist validation results |
 
-Table: `PUSH_ANALYSIS` job parameters
-
-| Name          | Type          | Default | Description                                      |
-|---------------|---------------|---------|--------------------------------------------------|
-| `pushAnalysis` | array of string | `[]` |  The UIDs of the push analysis you want to run |
-
 Table: `PREDICTOR` job parameters
 
 | Name          | Type          | Default | Description                                      |
@@ -159,21 +153,6 @@ An example of an analytics table job with parameters in JSON format:
     "skipResourceTables": false
   }
 }
-```
-
-As example of a push analysis job with parameters in JSON format:
-
-```json
-{
-   "name": "Push anlysis charts",
-   "jobType": "PUSH_ANALYSIS",
-   "cronExpression": "0 * * ? * *",
-   "jobParameters": {
-     "pushAnalysis": [
-       "jtcMAKhWwnc"
-     ]
-    }
- }
 ```
 
 An example of a job with scheduling type `FIXED_DELAY` and 120 seconds delay:
