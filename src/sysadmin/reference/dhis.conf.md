@@ -339,6 +339,16 @@ apphub.api.url = https://apps.dhis2.org/api
 max.sessions.per_user = 10
 
 # ----------------------------------------------------------------------
+# Cross-origin request protection [Optional]
+# ----------------------------------------------------------------------
+
+# Reject state-changing browser requests without an Origin header that come from another site. Requests from an origin that is neither this server nor on the CORS allowlist are rejected in every mode. Can be 'on', 'off' (default: 'on'). See "Cross-origin request protection" below.
+http.security.cross_origin_protection.enabled = on
+
+# Only log, and let through, the requests without an Origin header that the protection would reject. Requests from an origin that is not allowed are still rejected. Can be 'on', 'off' (default: 'off').
+http.security.cross_origin_protection.log_only = off
+
+# ----------------------------------------------------------------------
 # Route API [Optional]
 # ----------------------------------------------------------------------
 
@@ -492,6 +502,114 @@ Email-based 2FA sends a verification code to the user's email address during log
 ```properties
 login.security.email_2fa.enabled = on
 ```
+
+## Cross-origin request protection { #install_cross_origin_protection }
+
+DHIS2 rejects browser requests that a web page on another origin sends, unless that origin is on the CORS allowlist. This stops a malicious site from using a logged-in user's browser to read or change data in DHIS2 (cross-site request forgery, CSRF). The protection relies on the `Origin` and `Sec-Fetch-Site` request headers that browsers add themselves. It needs no tokens, and DHIS2 apps need no changes.
+
+```properties
+http.security.cross_origin_protection.enabled = on | off
+http.security.cross_origin_protection.log_only = on | off
+```
+
+The protection is on by default, and log-only mode is off by default. DHIS2 reads both properties at startup. They only change rule 3 below; see [Log-only mode](#install_cross_origin_protection_log_only) and [Turning the protection off](#install_cross_origin_protection_off).
+
+### Rules
+
+DHIS2 checks each request before it authenticates the user:
+
+1. If the request has an `Origin` header, the origin must be the server's own origin or match an entry on the CORS allowlist. This applies to all HTTP methods, including `GET` and CORS preflight (`OPTIONS`) requests.
+2. `Origin: null` is accepted only together with `Sec-Fetch-Site: same-origin`. A browser sends this pair when a DHIS2 page with the `no-referrer` referrer policy calls its own server. Page scripts cannot set `Sec-Fetch-Site`. Sandboxed frames, `file:` pages and other opaque origins also send `Origin: null`, but with a different `Sec-Fetch-Site` value or none, so DHIS2 rejects them.
+3. If the request has no `Origin` header, DHIS2 rejects a request that can change data (any method except `GET`, `HEAD`, `OPTIONS` and `TRACE`) when its `Sec-Fetch-Site` header is present and is neither `same-origin` nor `none`.
+4. DHIS2 accepts requests that have neither header. Scripts, integrations, mobile apps and other servers do not send these headers, so the protection does not affect them.
+
+The public endpoints that DHIS2 serves without any login handling are not checked: `/api/ping`, `/api/system/ping` and `/favicon.ico`. They return no user data. The login bootstrap endpoint `/api/loginConfig` also skips login handling, but DHIS2 checks it with the same rules, so an origin that is not allowed gets the same `403` there.
+
+DHIS2 answers a rejected request with status `403` and this body:
+
+```json
+{
+  "httpStatus": "Forbidden",
+  "httpStatusCode": 403,
+  "status": "ERROR",
+  "message": "Cross-origin request rejected: origin is not allowed"
+}
+```
+
+> **Upgrade note**
+>
+> Earlier versions accepted `Origin: null` when a CORS allowlist entry matched the text `null`, for example `*` or a literal `null`. DHIS2 no longer checks `Origin: null` against the allowlist; only rule 2 can accept it. On a server whose allowlist has such an entry, a web page with an opaque origin that calls DHIS2, such as a page opened from a `file:` URL or a frame sandboxed without `allow-same-origin`, gets a `403` after the upgrade. This applies in every mode: log-only mode and `enabled = off` do not cover it, and no setting restores the old behaviour or only logs these requests. Serve such a page from an `http` or `https` origin and add that origin to the allowlist, or serve it from the DHIS2 server itself. Scripts, integrations and mobile apps send no `Origin` header and are not affected.
+
+### The server's own origin and reverse proxies
+
+DHIS2 computes its own origin from the scheme, host and port of each request it receives. When the `X-Forwarded-Proto` header is present, DHIS2 takes the scheme from it. It does not use `server.base.url` for this check.
+
+Behind a reverse proxy, the proxy must forward the original `Host` header and set `X-Forwarded-Proto`, as the [reverse proxy configuration](#install_reverse_proxy_configuration) examples do. Otherwise the origin the browser sends, for example `https://dhis2.example.org`, does not match the origin DHIS2 computes, for example `http://localhost:8080`. DHIS2 then rejects requests from its own pages, in every mode. Earlier versions also blocked these requests, with an empty response, so a setup that worked before keeps working. When requests are rejected after a proxy change, the `WARN` log line shows both origins.
+
+### Relation to the CORS allowlist
+
+The protection uses the same CORS allowlist as cross-origin resource sharing. You can edit the list in the **CORS allowlist** system setting or through the `/api/configuration/corsAllowlist` endpoint. An origin on the list gets CORS response headers and passes the check. An origin that is not on the list gets neither.
+
+An allowlist entry is compared with the browser's `Origin` header. That header holds the scheme, host and port, with no path and no trailing slash. To let a web app on another origin use DHIS2, add that app's origin to the allowlist.
+
+Each entry must be an origin of the form `http://host[:port]` or `https://host[:port]`, for example `https://app.example.org` or `http://localhost:3000`. DHIS2 checks entries when you save the list and rejects an invalid entry with status `409` and error code `E1136`. These rules apply:
+
+* A wildcard is allowed only as the whole leftmost label of the host, as in `https://*.example.org`, and not over a public suffix such as `https://*.org` or `https://*.co.uk`. DHIS2 logs a warning for wildcard entries.
+* One trailing slash is accepted and removed. A path, query, fragment or user name is not allowed.
+* Default ports are removed: `https://example.org:443` is stored as `https://example.org`.
+* A Unicode host is stored in its Punycode form, for example `https://bücher.example` as `https://xn--bcher-kva.example`. A host whose conversion changes more than Punycode and lower case, such as `https://straße.de`, is rejected.
+* An IPv6 address is stored in its canonical form, so `http://[0:0:0:0:0:0:0:1]:3000` is stored as `http://[::1]:3000`, the form browsers send.
+* Empty values are skipped, so saving a list with only an empty value clears the allowlist.
+
+> **Upgrade note**
+>
+> Earlier versions matched entries as loose patterns. After the upgrade, DHIS2 keeps a stored entry that breaks these rules, but ignores it for CORS, for this protection and for the `frame-ancestors` content security policy. When DHIS2 loads the list, it writes one `WARN` line to the server log for each ignored entry. The upgrade does not rewrite stored entries, so re-enter such entries as full origins. The ignored forms are:
+>
+> * no scheme or scheme-relative: `example.org`, `//example.org`, `*.example.org`
+> * other schemes, including wildcard schemes: `capacitor://localhost`, `ftp://example.org`, `*://example.org`, `http*://example.org`
+> * catch-all entries: `*`, `*.*`, `*://*`, `https://*`, `null`
+> * a wildcard anywhere except as the whole leftmost label: `https://app-*.example.org`, `https://sub.*.example.org`, `https://example.*`, `https://*.*.example.org`, `https://**.example.org`
+> * a leftmost wildcard over a public suffix, a single label or a numeric label: `https://*.org`, `https://*.co.uk`, `https://*.github.io`, `https://*.localhost`, `https://*.10.0.0`
+> * the `?` pattern character: `https://app?.example.org`
+> * port wildcards and invalid ports: `http://localhost:*`, `https://example.org:8?`, and empty, non-numeric, zero, too large or more than five digit ports
+> * a user name, path, query or fragment: `https://user@example.org`, `https://example.org/path`, `https://example.org?x=1`, `https://example.org#top`
+> * invalid hosts: empty labels, a trailing dot, a leading or trailing hyphen, spaces or other forbidden characters, labels longer than 63 characters, Unicode that changes beyond Punycode and lower case, malformed IPv6 addresses and IPv6 zone identifiers such as `https://[fe80::1%eth0]`
+> * regular expression syntax that the old pattern matching accepted: `https://(app|admin).example.org`, `https://app[12].example.org`, and `+`, `{2}` or `$` in an entry
+
+### Logout and other state-changing GET requests
+
+Logging out with a `GET` request to `/dhis-web-commons-security/logout.action` is deprecated; use `POST`. DHIS2 rejects a `GET` logout with status `403` when the browser sends it as a navigation or resource load from another origin. Browsers send no `Origin` header on navigations, so this also applies to origins on the CORS allowlist.
+
+> **Upgrade note**
+>
+> A web app on another origin, for example a local app on `http://localhost:3000`, that logs out with a link or a redirect to the logout URL gets a `403` after the upgrade. Change the app to log out with `POST`, for example `fetch(url, { method: 'POST', credentials: 'include' })`. Apps served by DHIS2 itself are not affected.
+
+The same rule applies to the other `GET` endpoints that change server state, such as app reload, metadata sync and marking a message as read. They reject `GET` requests from navigations and resource loads that come from another origin; use `POST` where the endpoint supports it. Such a rejection has the error code `E1008`.
+
+### Log-only mode { #install_cross_origin_protection_log_only }
+
+With `http.security.cross_origin_protection.log_only = on`, DHIS2 lets through the requests that rule 3 would reject, and logs a warning for each of them. Use it to find out whether browsers send such requests to your server before you enforce rule 3.
+
+Log-only mode does not apply to rules 1 and 2. DHIS2 rejects a request from an origin that is not allowed in every mode, as the CORS handling of earlier versions did. To let a web app on another origin use DHIS2, add its origin to the allowlist.
+
+### Log messages
+
+The `org.hisp.dhis.webapi.filter.CrossOriginRequestFilter` logger writes one `WARN` line for each rejected request. When log-only mode lets a request through, the line starts with `Would reject (log-only mode)` instead of `Rejected`:
+
+```
+WARN Rejected cross-origin request: reason=origin_not_allowed, method=POST, path=/api/dataValueSets, origin=https://other.example.org, sec-fetch-site=cross-site, self-origin=https://dhis2.example.org. If this was a same-origin request behind a reverse proxy, check that the proxy forwards the original Host header and X-Forwarded-Proto.
+WARN Would reject (log-only mode) cross-origin request: reason=cross_site_without_origin, method=POST, path=/api/dataValueSets, origin=(absent), sec-fetch-site=cross-site, self-origin=https://dhis2.example.org. If this was a same-origin request behind a reverse proxy, check that the proxy forwards the original Host header and X-Forwarded-Proto.
+```
+
+The `reason` is `origin_not_allowed` (rules 1 and 2) or `cross_site_without_origin` (rule 3). A header the request did not send appears as `(absent)`. If `origin` is the address users open in their browser but `self-origin` differs, fix the reverse proxy headers.
+
+### Metrics
+
+The counter `dhis2_cross_origin_rejected_requests_total` on the `/api/metrics` endpoint counts the requests DHIS2 rejected, and the requests log-only mode let through. Its `mode` label is `enforce` for a rejected request and `log_only` for a request that was only logged. Its `reason` label has the same values as the log line. DHIS2 always exports the counter; it does not depend on the `monitoring.*` settings. See [Monitoring](#monitoring) for how to collect these metrics.
+
+### Turning the protection off { #install_cross_origin_protection_off }
+
+With `http.security.cross_origin_protection.enabled = off`, DHIS2 does not apply rule 3. It does not switch off the origin check: rules 1 and 2 still reject requests from an origin that is not allowed. The API rejected such requests in earlier versions as well. The OAuth2 authorization server endpoints (`oauth2.server.enabled = on`) had no CORS handling, so for them the rejection is new. Turning the protection off is not recommended. Use log-only mode to diagnose problems with rule 3 instead.
 
 ## Tracker configuration { #install_tracker_configuration }
 
