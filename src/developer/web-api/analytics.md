@@ -899,7 +899,8 @@ Table: Query parameters for event query analytics only
 | eventDate | no | Events resource only. Custom period on `eventDate`. See "custom date periods" section. | See "date and period format" section |
 | enrollmentDate | no | Custom period on `enrollmentDate`. See "custom date periods" section. | See "date and period format" section |
 | scheduledDate | no | Events resource only. Custom period on `scheduledDate`. See "custom date periods" section. | See "date and period format" section |
-| incidentDate | no | Custom period on `incidentDate`. See "custom date periods" section. | See "date and period format" section |
+| incidentDate | no | Custom period on `incidentDate`. *Deprecated, prefer `enrollmentOccurredDate`*. See "custom date periods" section. | See "date and period format" section |
+| enrollmentOccurredDate | no | Custom period on the enrollment occurred date (`incidentDate`). See "custom date periods" section. | See "date and period format" section |
 | lastUpdated | no | Custom period on `lastUpdated`. See "custom date periods" section. | See "date and period format" section |
 
 
