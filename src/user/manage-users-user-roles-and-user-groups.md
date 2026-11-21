@@ -225,6 +225,12 @@ names or organisation unit level names.
 
 6. In the **Available roles** section, double-click the user roles you want to assign to the user.
 
+> **Note**
+>
+> The general rule is that users can only give user roles to others if they themselves have all of the authorities in those roles.
+> The concept of allowing people to give out authorities they don’t have themselves is not secure anyway, since they could easily grant themselves a new user account with those extra authorities.
+> For allowing a user to grant his own user roles to other, you have to go to settings > access > and check "Allow users to grant own user roles".
+
 7. Select **Data capture and maintenance organisation units**.<br/>
  ![](resources/images/dhis2UserManual/user_management_fewer_options.png)<br/>
     The data capture and maintenance organisation units control for which organisation units the user can do data entry. You must assign at least one data capture and maintenance organisation unit to each user.<br/><br/>
