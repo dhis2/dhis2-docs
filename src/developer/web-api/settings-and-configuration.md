@@ -197,6 +197,7 @@ Table: System settings
 | keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
 | keyGoogleMapsApiKey | Google Maps API key | No |
+| keyHtmlPushAnalyticsUrl | URL template of the push analytics service used by the `HTML_PUSH_ANALYTICS` job type. `{id}`, `{username}` and `{locale}` are replaced with the dashboard UID, the username and the user's locale. Example: `http://push-analytics.example.org:1337/?dashboardId={id}&username={username}&locale={locale}` | No |
 | keyGoogleCloudApiKey | Google Cloud API key | No |
 | keyLastMetaDataSyncSuccess | Keeps timestamp of last successful metadata synchronization | No |
 | keyVersionEnabled | Enables metadata versioning | No |
