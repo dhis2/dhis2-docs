@@ -114,6 +114,14 @@ Table: `PUSH_ANALYSIS` job parameters
 |---------------|---------------|---------|--------------------------------------------------|
 | `pushAnalysis` | array of string | `[]` |  The UIDs of the push analysis you want to run |
 
+Table: `HTML_PUSH_ANALYTICS` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `dashboard` | string | | Required. The UID of the dashboard to send |
+| `receivers` | string | | Required. The UID of the user group whose members receive the email |
+| `mode` | enum | | Required. `EXECUTOR` to send the dashboard as the user running the job sees it to all receivers, or `RECEIVER` to send each receiver the dashboard as they see it |
+
 Table: `PREDICTOR` job parameters
 
 | Name          | Type          | Default | Description                                      |
