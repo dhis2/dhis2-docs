@@ -130,9 +130,6 @@ See also:
 [Manage program
 notifications](https://docs.dhis2.org/master/en/user/html/configure_tracker_program_in_Maintenance_app.html#create-a-program-stage-notification)
 
-[Manage push
-reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
-
 ## Workflow { #user_mgt_workflow } 
 
 1.  Define the positions you need for your project and identify which

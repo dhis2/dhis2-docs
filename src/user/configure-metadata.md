@@ -31,8 +31,6 @@ need to collect and analyze data:
 
   - Predictors
 
-  - Push reports
-
   - External map layers
 
   - SQL views
@@ -4636,199 +4634,20 @@ cultural region.
 
 5.  Click **Save**.
 
-## Manage push reports { #manage_push_report } 
+## Manage push reports { #manage_push_report }
 
-### About push reports { #about_push_report } 
+Push reports have been removed from DHIS2 and are no longer available from
+version 2.43.
 
-Push reports allows you to increase awareness and usage of data analysis
-by sending reports with charts, tables and maps directly to users e-mail
-addresses.
-
-  - A push report gets its content from existing dashboards.
-
-  - A push report lists the dashboard items in the same order as on the
-    dashboard.
-
-  - A push report can only contain dashboard items with charts, maps or
-    tables.
-
-  - You create the push report and its schedule in the **Maintenance**
-    app.
-
-  - The **Title** and **Message** parameters you set up in the
-    **Maintenance** app, are included in each report. The **Name** you
-    give the report is not included in the report. Instead, the name is
-    used to identify the push analysis object in the system. This way a
-    report can be named one thing, and the title of the report can be
-    another.
-
-  - When you run a push report job, the system compiles a list of
-    recipients from the user groups you've selected. The system then
-    generates a report for each member of the selected user groups. Each
-    of the dashboard items are generated specifically for each user.
-    This means that the data included in the report reflects the data
-    the user has access to. All users could therefore get the same
-    report (if all the data is "static") or custom reports (if all the
-    data is "dynamic"), or a combination of the two.
-
-  - Push reports are sent by e-mail to the recipients, not through the
-    internal DHIS2 messaging system. If a user doesn't have a valid
-    e-mail, or if the job fails, no e-mails are sent. In this case, the
-    problem is logged on the server.
+To send dashboards to users by email, use the **HTML push analytics** job type
+in the Scheduler app. See [Scheduling](#scheduling).
 
 > **Note**
 >
-> The data generated in the push reports is public so verify that you
-> don't include any sensitive data.
-
-
-![](resources/images/maintenance/push_report_ex.png)
-
-In the **Maintenance** app, you manage the following push reports
-objects:
-
-
-
-Table: Push reports objects in the Maintenance app
-
-| Object type | Available functions |
-|---|---|
-| Push analysis | Create, edit, clone, delete, show details, translate, preview and run |
-
-### Create or edit a push report { #create_push_report } 
-
-1.  Open the **Maintenance** app and click **Other** \> **Push
-    analysis**.
-
-2.  Click the add button.
-
-3.  In the **Name** field, type the name of the scheduled report.
-
-    This name is not included in the report e-mail. Instead, the name is
-    used to identify the push analysis object in the system.
-
-4.  (Optional) In the **Code** field, assign a code.
-
-5.  Add a report **Title**.
-
-    This title is included in the report e-mail.
-
-6.  (Optional) Add a **Message**.
-
-    This message is included in the report e-mail.
-
-7.  Select a **Dashboard** to base the report on.
-
-8.  Select and assign the user groups you want to send the report to.
-
-9.  Select a **Scheduling frequency**: **Daily**, **Weekly** or
-    **Monthly**.
-
-    > **Note**
-    >
-    > If you schedule a push report to "Monthly" and "31", the scheduled
-    > report job will not run if the month has less than 31 days.
-
-10. (Optional) Select **Enable** to activate the push report job.
-
-    The job won't run until you activate it.
-
-11. Click **Save**.
-
-### Preview push reports { #preview_push_report } 
-
-1.  Open the **Maintenance** app and click **Other** \> **Push
-    analysis**.
-
-2.  In the push report list, locate the push report you want to preview.
-
-3.  Click the options menu and select **Preview**.
-
-    A preview of the push report opens in a new window.
-
-### Run push report jobs { #run_push_report } 
-
-1.  Open the **Maintenance** app and click **Other** \> **Push
-    analysis**.
-
-2.  In the push report list, locate the push report you want to run.
-
-3.  Click the options menu and select **Run now**.
-
-    The push report job runs immediately.
-
-### Clone metadata objects { #clone_metadata_push_reports } 
-
-Cloning a data element or other objects can save time when you create
-many similar objects.
-
-1.  Open the **Maintenance** app and find the type of metadata object
-    you want to clone.
-
-2.  In the object list, click the options menu and select **Clone**.
-
-3.  Modify the options you want.
-
-4.  Click **Save**.
-
-### Delete metadata objects
-
-> **Note**
->
-> You can only delete a data element and other data element objects if
-> no data is associated to the data element itself.
-
-> **Warning**
->
-> Any data set that you delete from the system is irrevocably lost. All
-> data entry forms, and section forms which may have been developed will
-> also be removed. Make sure that you have made a backup of your
-> database before deleting any data set in case you need to restore it
-> at some point in time.
-
-1.  Open the **Maintenance** app and find the type of metadata object
-    you want to delete.
-
-2.  In the object list, click the options menu and select **Delete**.
-
-3.  Click **Confirm**.
-
-### Display details of metadata objects
-
-1.  Open the **Maintenance** app and find the type of metadata object
-    you want to view.
-
-2.  In the object list, click the options menu and select **Show
-    details**.
-
-### Translate metadata objects
-
-DHIS2 provides functionality for translations of database content, for
-example data elements, data element groups, indicators, indicator groups
-or organisation units. You can translate these elements to any number of
-locales. A locale represents a specific geographical, political, or
-cultural region.
-
-> **Tip**
->
-> To activate a translation, open the **System Settings** app, click \>
-> **Appearance** and select a language.
-
-1.  Open the **Maintenance** app and find the type of metadata object
-    you want to translate.
-
-2.  In the object list, click the options menu and select **Translate**.
-
-    > **Tip**
-    >
-    > If you want to translate an organisation unit level, click
-    > directly on the **Translate** icon next to each list item.
-
-3.  Select a locale.
-
-4.  Type a **Name**, **Short name** and **Description**.
-
-5.  Click **Save**.
+> If you are still running DHIS2 version 2.42 or earlier, you can find the
+> push reports documentation for version 2.42 of DHIS2
+> [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-242/configuring-the-system/metadata.html#manage_push_report).
+> Version 2.42 is the last version for which this documentation is published.
 
 ## Manage external map layers { #manage_external_maplayer } 
 
