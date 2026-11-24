@@ -33,7 +33,7 @@ Once the key is loaded, `GET /api/tokens/google` returns a short-lived Earth
 Engine access token, with the properties `access_token`, `expires_in` (in
 seconds) and `client_id`. The Maps, Climate and Import/Export apps request this
 token to access Earth Engine. If it doesn't return a token, check the server
-log. See [Tokens: Google Earth Engine](#webapi_tokens_google_service_account)
+log. See [Tokens: Google Earth Engine](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/settings-and-configuration.html#webapi_tokens_google_service_account)
 in the Web API documentation.
 
 A token shows that DHIS2 loaded the key and Google accepted it. To confirm that
