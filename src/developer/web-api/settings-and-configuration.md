@@ -412,7 +412,7 @@ Table: Token response
 | expires_in | The number of seconds until the access token expires. A new token is valid for about 3600 seconds (1 hour). DHIS2 reuses a token across requests, so the value is often lower. |
 | client_id | The client ID of the Google Earth Engine service account. |
 
-This requires a Google Earth Engine service account key installed on the DHIS2 server. See [Google Earth Engine service account configuration](https://docs.dhis2.org/en/manage/reference/google-earth-engine-service-account-configuration.html).
+This requires a Google Earth Engine service account key installed on the DHIS2 server. See [Google Earth Engine service account configuration](#install_google_service_account_configuration).
 
 ## Static content { #webapi_static_content } 
 

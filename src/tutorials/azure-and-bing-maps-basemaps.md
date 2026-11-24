@@ -2,11 +2,11 @@
 title: Azure Maps and Bing Maps basemaps setup
 ---
 
-# Azure Maps and Bing Maps basemaps setup { #azure-maps-and-bing-maps-basemaps-setup }
+# Azure Maps and Bing Maps basemaps setup { #azure_maps_and_bing_maps_basemaps_setup }
 
 Azure Maps and Bing Maps can be used as basemaps in the DHIS2 Maps app and the DHIS2 Android Capture app. In the Maps app, each provider adds four basemaps: Road, Dark, Aerial and Aerial Labels.
 
-![Azure Maps basemaps in the Maps app's basemap card](resources/images/bing-maps-basemap-layers.png){.center}
+![Azure Maps basemaps in the Maps app's basemap card](resources/images/bing-maps-basemap-layers.png)
 
 Microsoft is retiring Bing Maps. Free (Basic) Bing Maps keys stopped working on 30 June 2025, and paid Bing Maps for Enterprise licences end on 30 June 2028. Use Azure Maps unless your organisation already has a paid Bing Maps licence. See [Migrate from Bing Maps to Azure Maps](https://learn.microsoft.com/azure/azure-maps/migrate-bing-maps-overview).
 

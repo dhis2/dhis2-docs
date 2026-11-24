@@ -2,11 +2,11 @@
 title: Google Earth Engine sign-up
 ---
 
-# Google Earth Engine sign-up { #accessing-map-layers-from-google-earth-engine }
+# Google Earth Engine sign-up { #google_earth_engine_sign_up }
 
 DHIS2 has a powerful integration with [Google Earth Engine](https://earthengine.google.com/) allowing you to access detailed datasets for population (WorldPop), building footprints, elevation, land use and climate. The Maps app shows them as map layers, the Climate app uses them for climate and environmental data, and the Import/Export app can import them as data values.
 
-![Earth Engine layers, framed in red, in the Maps app's Add layer list](resources/images/earth_engine_layers.png){.center}
+![Earth Engine layers, framed in red, in the Maps app's Add layer list](resources/images/earth_engine_layers.png)
 
 DHIS2 connects to Earth Engine through a Google service account that your organisation owns. This guide shows how to set it up: you create a Google Cloud project registered for Earth Engine, and a service account in it with two roles, **Service Usage Consumer** and **Earth Engine Resource Admin**. You then install the service account's JSON key file on your DHIS2 server or servers, and all users of those DHIS2 instances can access the Earth Engine layers. The whole setup takes about 20–30 minutes.
 
@@ -109,9 +109,9 @@ Then install it in DHIS2:
 2. Place it in your DHIS2 folder, alongside the `dhis.conf` file.
 3. Restart the DHIS2 server.
 
-To check that DHIS2 loaded the key, see [Check that DHIS2 loaded the key](https://docs.dhis2.org/en/manage/reference/google-earth-engine-service-account-configuration.html#check_google_service_account_configuration).
+To check that DHIS2 loaded the key, see [Check that DHIS2 loaded the key](#check_google_service_account_configuration).
 
-Guides: [Create and delete service account keys](https://docs.cloud.google.com/iam/docs/keys-create-delete) (Google) · [Google Earth Engine service account configuration](https://docs.dhis2.org/en/manage/reference/google-earth-engine-service-account-configuration.html) (DHIS2)
+Guides: [Create and delete service account keys](https://docs.cloud.google.com/iam/docs/keys-create-delete) (Google) · [Google Earth Engine service account configuration](#install_google_service_account_configuration) (DHIS2)
 
 ## Final checklist
 
@@ -121,4 +121,4 @@ Guides: [Create and delete service account keys](https://docs.cloud.google.com/i
 - [ ] Service account created with Service Usage Consumer and Earth Engine Resource Admin
 - [ ] JSON key created and stored securely
 - [ ] Key renamed to `dhis-google-auth.json`, placed next to `dhis.conf`, and DHIS2 restarted
-- [ ] [DHIS2 loaded the key](https://docs.dhis2.org/en/manage/reference/google-earth-engine-service-account-configuration.html#check_google_service_account_configuration), and an Earth Engine layer loads in the Maps app
+- [ ] [DHIS2 loaded the key](#check_google_service_account_configuration), and an Earth Engine layer loads in the Maps app
