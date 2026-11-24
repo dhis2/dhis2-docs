@@ -197,7 +197,8 @@ Table: System settings
 | keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
 | keyGoogleMapsApiKey | Google Maps API key | No |
-| keyGoogleCloudApiKey | Google Cloud API key | No |
+| keyBingMapsApiKey | Bing Maps API key, for the Bing basemaps in the Maps app and the Android Capture app | No |
+| keyAzureMapsApiKey | Azure Maps API key, for the Azure basemaps in the Maps app and the Android Capture app (from version 3.4) | No |
 | keyLastMetaDataSyncSuccess | Keeps timestamp of last successful metadata synchronization | No |
 | keyVersionEnabled | Enables metadata versioning | No |
 | keyMetadataFailedVersion | Keeps details about failed metadata version sync | No |
@@ -381,18 +382,24 @@ curl "localhost/api/33/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
 
 ## Tokens { #webapi_tokens } 
 
-The *tokens* resource provides access tokens to various services.
+The *tokens* resource provides access tokens for Google Earth Engine.
 
-### Google Service Account { #webapi_tokens_google_service_account } 
+### Google Earth Engine { #webapi_tokens_google_service_account } 
 
-You can retrieve a Google service account OAuth 2.0 access token with a
-GET request to the following resource.
+You can retrieve an OAuth 2.0 access token with a GET request to the
+following resource. DHIS2 requests the token from Google with the server's
+Google Earth Engine service account key, and with the Earth Engine scope only
+(`https://www.googleapis.com/auth/earthengine`). The Maps, Climate and
+Import/Export apps use it to access Google Earth Engine. What the token can
+do in Earth Engine depends on the roles of the service account in Google
+Cloud.
 
     GET /api/tokens/google
 
 The token will be valid for a certain amount of time, after which
 another token must be requested from this resource. The response
-contains a cache control header which matches the token expiration. The
+must not be cached: it has the header
+`Cache-Control: no-cache, no-store, max-age=0, must-revalidate`. The
 response will contain the following properties in JSON format.
 
 
@@ -401,11 +408,11 @@ Table: Token response
 
 | Property | Description |
 |---|---|
-| access_token | The OAuth 2.0 access token to be used when authentication against Google services. |
-| expires_in | The number of seconds until the access token expires, typically 3600 seconds (1 hour). |
-| client_id | The Google service account client id. |
+| access_token | The OAuth 2.0 access token to use when authenticating with Google Earth Engine. |
+| expires_in | The number of seconds until the access token expires. A new token is valid for about 3600 seconds (1 hour). DHIS2 reuses a token across requests, so the value is often lower. |
+| client_id | The client ID of the Google Earth Engine service account. |
 
-This assumes that a Google service account has been set up and configured for DHIS2. Please consult the installation guide for more info.
+This requires a Google Earth Engine service account key installed on the DHIS2 server. See [Google Earth Engine service account configuration](#install_google_service_account_configuration).
 
 ## Static content { #webapi_static_content } 
 
