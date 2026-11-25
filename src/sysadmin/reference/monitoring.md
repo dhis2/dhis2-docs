@@ -399,10 +399,12 @@ The endpoint is `/api/dataIntegrity/metrics`. It does not need the monitoring se
 A scrape does not run the checks. The endpoint only returns results that are in the cache. This protects the server: Prometheus cannot start slow database queries.
 
 - A check runs when a data integrity job runs, or when a user runs it in the Data Administration app.
-- DHIS2 keeps each result in the cache for *one hour*. After one hour, the check is not in the response.
+- In v43 and earlier, DHIS2 keeps each result in the cache for *one hour*. After one hour, the check is not in the response.
 - When a check is not in the response, its series disappears from Prometheus. An alert on that series then stops, even if the problem still exists.
 
-So run the checks that you want alerts for at least every hour. Run them more often than every hour, so that a result is always in the cache.
+So, in v43 and earlier, run the checks that you want alerts for at least every hour. Run them more often than every hour, so that a result is always in the cache.
+
+From v44, a result stays in the cache until the check runs again. If DHIS2 does not use Redis, a restart removes all results. See [v44 and later](#monitoring_data_integrity_v44_and_later).
 
 If DHIS2 runs on more than one server with Redis, all servers share the cache. You can scrape any one of the servers.
 
@@ -413,7 +415,7 @@ Create two jobs in the Scheduler app. See [Data integrity](#scheduling_data_inte
 1. Create a **Data integrity** job for the checks that you want alerts for. Set **Report type** to **Summary**. Choose only the checks that you need, for example the checks with severity `CRITICAL`. Schedule the job every 30 minutes.
 2. Create a second **Data integrity** job for all other checks. Set **Report type** to **Summary**. Schedule the job once each night, when few users work.
 
-The results of the nightly job are in the cache for one hour only. Use them in the Data Administration app, not for alerts.
+In v43 and earlier, the results of the nightly job are in the cache for one hour only. Use them in the Data Administration app, not for alerts. From v44, you can also use them for alerts.
 
 > **Caution**
 >
@@ -442,7 +444,7 @@ The file `/etc/prometheus/dhis2_token` contains only the token. Prometheus sends
 
 Set `scrape_interval` to 5 minutes or less. Prometheus uses a sample for 5 minutes only. With a longer interval, the series has gaps, and alerts start and stop.
 
-To test the endpoint with `curl`, send an `Accept` header. Without it, DHIS2 returns HTTP 406.
+To test the endpoint with `curl`, send the header `Accept: text/plain`. Some versions return HTTP 406 for the `curl` default `Accept: */*`.
 
 ```bash
 curl -H "Authorization: ApiToken $TOKEN" -H "Accept: text/plain" \
@@ -488,4 +490,4 @@ From v44, you can add a rule that finds results that are older than the job sche
           summary: "The result of {{ $labels.check }} is more than 45 minutes old."
 ```
 
-The limit must be less than 3600 seconds. After one hour, the result is not in the cache, and the series disappears.
+From v44, a result stays in the cache until the check runs again, so the series does not disappear between runs. You can use this rule for any job schedule. For a nightly job, use a limit of 26 hours (93600 seconds).

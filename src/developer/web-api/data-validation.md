@@ -596,7 +596,7 @@ To fetch the data integrity summary of the triggered check(s) use:
 When the `checks` parameter is omitted, all checks are fetched from the server cache.
 
 The response is a "map" of check results, one for each check that has completed already.
-This information is cached for one hour or until the check is rerun.
+In v43 and earlier, this information is cached for one hour or until the check is rerun. For v44, see [v44 and later](#webapi_data_integrity_summary_v44_and_later).
 
 To wait for the summary to be available in the cache a `timeout` in milliseconds can be added:
 
@@ -675,6 +675,22 @@ To get a list of the names of checks for which results are available already use
 
     GET /api/dataIntegrity/summary/completed
 
+#### v44 and later { #webapi_data_integrity_summary_v44_and_later }
+
+From v44, DHIS2 keeps a summary result until the check runs again. The result does not leave the cache after one hour.
+
+From v44, these endpoints have the parameter `maxAge`:
+
+- `GET /api/dataIntegrity/summary`
+- `GET /api/dataIntegrity/summary/completed`
+- `GET /api/dataIntegrity/{check}/summary`
+
+`maxAge` is the maximum age of a result in hours. The response only has results of checks that finished within the last `maxAge` hours. The default is `1`, so the response is the same as in v43. Use `0` to get results of any age. A negative value gives HTTP 400 with the error code `E2005`.
+
+    GET /api/dataIntegrity/summary?checks=<name1>,<name2>&maxAge=24
+
+From v44, `GET /api/dataIntegrity/summary/completed` needs the authority `F_PERFORM_MAINTENANCE`, the same as `GET /api/dataIntegrity/summary`.
+
 ### Retrieving completed checks as Prometheus metrics {#webapi_data_integrity_metrics}
 
 To get the results of the checks that are in the cache in the Prometheus metrics format, use:
@@ -682,7 +698,7 @@ To get the results of the checks that are in the cache in the Prometheus metrics
     GET /api/dataIntegrity/metrics
 
 The response uses the [Prometheus text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format).
-The request must accept `text/plain`. Without an `Accept` header, the response is HTTP 406.
+Send the header `Accept: text/plain`. Some versions give HTTP 406 for `Accept: */*` or for a request without an `Accept` header.
 The user must have the authority `F_PERFORM_MAINTENANCE`.
 
 The response has these metrics for each check:
@@ -713,11 +729,13 @@ dhis_data_integrity_check_duration_milliseconds{check="categories_no_options",se
 dhis_data_integrity_check_duration_milliseconds{check="orgunits_multiple_roots",severity="CRITICAL",object_type="organisationUnits"} 1
 ```
 
-The endpoint does not run checks. A check that is not in the cache is not in the response. A result stays in the cache for one hour. To run the checks, use the `/summary` endpoint or a scheduled data integrity job. For how to monitor the checks with Prometheus, see [Monitor data integrity checks](#monitoring_data_integrity).
+The endpoint does not run checks. A check that is not in the cache is not in the response. In v43 and earlier, a result stays in the cache for one hour. To run the checks, use the `/summary` endpoint or a scheduled data integrity job. For how to monitor the checks with Prometheus, see [Monitor data integrity checks](#monitoring_data_integrity).
 
 #### v44 and later { #webapi_data_integrity_metrics_v44_and_later }
 
 From v44, the endpoint `/api/dataIntegrity/metrics` also has the metric `dhis_data_integrity_check_finished_timestamp_seconds`. It gives the time when each result was made, in Unix seconds. It has the same labels as the other metrics.
+
+From v44, the endpoint gives the latest result of each check, of any age. A result stays in the cache until the check runs again. If DHIS2 does not use Redis, a restart removes all results. The parameter `maxAge` of the `/summary` endpoints does not apply to this endpoint.
 
 From v44, a check without an object type has the label `object_type=""`. In v43 and earlier, the label for such a check is `object_type="null"`.
 
