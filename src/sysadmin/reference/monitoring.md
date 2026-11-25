@@ -387,3 +387,107 @@ The monitoring subsystem is disabled by default in DHIS2.
 
 Each metrics cluster has to be explicitly enabled in order for the metrics to be exported. To configure DHIS2 to export one or more metrics, check this [document](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md#dhis2-monitoring-configuration).
 
+
+## Monitor data integrity checks { #monitoring_data_integrity }
+
+DHIS2 can show the results of data integrity checks as Prometheus metrics. Use these metrics to get an alert when a check finds problems, or when the checks stop running.
+
+The endpoint is `/api/dataIntegrity/metrics`. It does not need the monitoring settings in `dhis.conf`. For a description of each metric, see [Retrieving completed checks as Prometheus metrics](#webapi_data_integrity_metrics).
+
+### How the results reach Prometheus { #monitoring_data_integrity_cache }
+
+A scrape does not run the checks. The endpoint only returns results that are in the cache. This protects the server: Prometheus cannot start slow database queries.
+
+- A check runs when a data integrity job runs, or when a user runs it in the Data Administration app.
+- In v43 and earlier, DHIS2 keeps each result in the cache for *one hour*. After one hour, the check is not in the response.
+- When a check is not in the response, its series disappears from Prometheus. An alert on that series then stops, even if the problem still exists.
+
+So, in v43 and earlier, run the checks that you want alerts for at least every hour. Run them more often than every hour, so that a result is always in the cache.
+
+From v44, a result stays in the cache until the check runs again. If DHIS2 does not use Redis, a restart removes all results. See [v44 and later](#monitoring_data_integrity_v44_and_later).
+
+If DHIS2 runs on more than one server with Redis, all servers share the cache. You can scrape any one of the servers.
+
+### Schedule the checks { #monitoring_data_integrity_jobs }
+
+Create two jobs in the Scheduler app. See [Data integrity](#scheduling_data_integrity) for the job parameters.
+
+1. Create a **Data integrity** job for the checks that you want alerts for. Set **Report type** to **Summary**. Choose only the checks that you need, for example the checks with severity `CRITICAL`. Schedule the job every 30 minutes.
+2. Create a second **Data integrity** job for all other checks. Set **Report type** to **Summary**. Schedule the job once each night, when few users work.
+
+In v43 and earlier, the results of the nightly job are in the cache for one hour only. Use them in the Data Administration app, not for alerts. From v44, you can also use them for alerts.
+
+> **Caution**
+>
+> Some checks are slow on large databases. A check that is fast on a small database can take minutes on a large one. Before you add a check to the frequent job, run it once and look at its duration in the `dhis_data_integrity_check_duration_milliseconds` metric.
+
+### Configure the scrape { #monitoring_data_integrity_scrape }
+
+The user for the scrape must have the authority **Perform maintenance tasks**. Use a personal access token for this user. Do not use a password.
+
+Add a scrape job to `prometheus.yml`:
+
+```yaml
+scrape_configs:
+  - job_name: dhis2_data_integrity
+    metrics_path: /api/dataIntegrity/metrics
+    scrape_interval: 2m
+    scheme: https
+    authorization:
+      type: ApiToken
+      credentials_file: /etc/prometheus/dhis2_token
+    static_configs:
+      - targets: ['dhis2.example.org']
+```
+
+The file `/etc/prometheus/dhis2_token` contains only the token. Prometheus sends the header `Authorization: ApiToken <token>`.
+
+Set `scrape_interval` to 5 minutes or less. Prometheus uses a sample for 5 minutes only. With a longer interval, the series has gaps, and alerts start and stop.
+
+To test the endpoint with `curl`, send the header `Accept: text/plain`. Some versions return HTTP 406 for the `curl` default `Accept: */*`.
+
+```bash
+curl -H "Authorization: ApiToken $TOKEN" -H "Accept: text/plain" \
+  https://dhis2.example.org/api/dataIntegrity/metrics
+```
+
+### Add alert rules { #monitoring_data_integrity_alerts }
+
+The following rules give an alert when a check finds problems, when a check fails, and when results are missing. Add the file to `rule_files` in `prometheus.yml`.
+
+```yaml
+groups:
+  - name: dhis2_data_integrity
+    rules:
+      - alert: DHIS2DataIntegrityResultsMissing
+        expr: absent(dhis_data_integrity_issues_count_total)
+        for: 15m
+        annotations:
+          summary: No data integrity results. Check that the data integrity job runs.
+      - alert: DHIS2DataIntegrityCheckFailed
+        expr: dhis_data_integrity_issues_count_total < 0
+        annotations:
+          summary: "The check {{ $labels.check }} failed with an error."
+      - alert: DHIS2DataIntegrityCriticalIssues
+        expr: dhis_data_integrity_issues_count_total{severity="CRITICAL"} > 0
+        annotations:
+          summary: "The check {{ $labels.check }} found {{ $value }} issues."
+```
+
+A check that fails with an error has the count `-1`. The rule `DHIS2DataIntegrityCheckFailed` finds these checks.
+
+#### v44 and later { #monitoring_data_integrity_v44_and_later }
+
+From v44, the metric `dhis_data_integrity_check_finished_timestamp_seconds` gives the time when each result was made, in Unix seconds.
+
+From v44, you can add a rule that finds results that are older than the job schedule. For a job that runs every 30 minutes, use a limit of 45 minutes (2700 seconds):
+
+```yaml
+      - alert: DHIS2DataIntegrityResultsOld
+        expr: time() - dhis_data_integrity_check_finished_timestamp_seconds > 2700
+        for: 5m
+        annotations:
+          summary: "The result of {{ $labels.check }} is more than 45 minutes old."
+```
+
+From v44, a result stays in the cache until the check runs again, so the series does not disappear between runs. You can use this rule for any job schedule. For a nightly job, use a limit of 26 hours (93600 seconds).

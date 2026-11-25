@@ -596,7 +596,7 @@ To fetch the data integrity summary of the triggered check(s) use:
 When the `checks` parameter is omitted, all checks are fetched from the server cache.
 
 The response is a "map" of check results, one for each check that has completed already.
-This information is cached for one hour or until the check is rerun.
+In v43 and earlier, this information is cached for one hour or until the check is rerun. For v44, see [v44 and later](#webapi_data_integrity_summary_v44_and_later).
 
 To wait for the summary to be available in the cache a `timeout` in milliseconds can be added:
 
@@ -675,39 +675,69 @@ To get a list of the names of checks for which results are available already use
 
     GET /api/dataIntegrity/summary/completed
 
+#### v44 and later { #webapi_data_integrity_summary_v44_and_later }
+
+From v44, DHIS2 keeps a summary result until the check runs again. The result does not leave the cache after one hour.
+
+From v44, these endpoints have the parameter `maxAge`:
+
+- `GET /api/dataIntegrity/summary`
+- `GET /api/dataIntegrity/summary/completed`
+- `GET /api/dataIntegrity/{check}/summary`
+
+`maxAge` is the maximum age of a result in hours. The response only has results of checks that finished within the last `maxAge` hours. The default is `1`, so the response is the same as in v43. Use `0` to get results of any age. A negative value gives HTTP 400 with the error code `E2005`.
+
+    GET /api/dataIntegrity/summary?checks=<name1>,<name2>&maxAge=24
+
+From v44, `GET /api/dataIntegrity/summary/completed` needs the authority `F_PERFORM_MAINTENANCE`, the same as `GET /api/dataIntegrity/summary`.
+
 ### Retrieving completed checks as Prometheus metrics {#webapi_data_integrity_metrics}
 
-Metadata integrity checks which are present in the cache, can be retrieved in the Prometheus
-metrics format by making a request to :
+To get the results of the checks that are in the cache in the Prometheus metrics format, use:
+
     GET /api/dataIntegrity/metrics
 
-The response should return a plain text format in the [Prometheus plain text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format). Several metrics are available
-for each data integrity check.
- - Count: A count of the number of issues identified by the metadata check. 
- - Percentage: When available, provides a percentage of the objects which have been identified by the check relative to a baseline. For instance, if check "Organisation units with trailing spaces" has a percent of 2.13, the percentage is calculated by dividing the number of organisation units with trailing spaces by the total number of organisation units. Note that this percentage may not be available for all metadata integrity checks.
- - Duration: Number of milliseconds that the check took to execute the last time it was run.
+The response uses the [Prometheus text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format).
+Send the header `Accept: text/plain`. Some versions give HTTP 406 for `Accept: */*` or for a request without an `Accept` header.
+The user must have the authority `F_PERFORM_MAINTENANCE`.
 
-An example of the output of this endpoint is provided below:
+The response has these metrics for each check:
+
+- `dhis_data_integrity_issues_count_total`: the number of issues that the check found. A check that failed with an error has the count `-1`.
+- `dhis_data_integrity_issues_percentage`: the percentage of objects with issues, compared to all objects of the same type. For example, for the check "Organisation units with trailing spaces", it is the number of organisation units with trailing spaces divided by the number of all organisation units. Some checks do not have a percentage.
+- `dhis_data_integrity_check_duration_milliseconds`: the time in milliseconds that the check took the last time it ran.
+
+Each metric has these labels:
+
+- `check`: the name of the check.
+- `severity`: the severity of the check, for example `WARNING` or `CRITICAL`.
+- `object_type`: the type of object that the check looks at, for example `organisationUnits`.
+
+An example of the output of this endpoint:
 
 ```text
-# HELP dhis_data_integrity_check_count Data integrity check counts
-# TYPE dhis_data_integrity_check_count gauge
-dhis_data_integrity_check_count{check="orgunits_invalid_geometry"} 1
-dhis_data_integrity_check_count{check="user_groups_scarce"} 0
-dhis_data_integrity_check_count{check="indicator_no_analysis"} 13
-# HELP dhis_data_integrity_check_percentage Data integrity check percentages
-# TYPE dhis_data_integrity_check_percentage gauge
-dhis_data_integrity_check_percentage{check="orgunits_invalid_geometry"} 0.13054830287206268
-dhis_data_integrity_check_percentage{check="user_groups_scarce"} 0.0
-dhis_data_integrity_check_percentage{check="indicator_no_analysis"} 16.0
-# HELP dhis_data_integrity_check_duration Data integrity check durations
-# TYPE dhis_data_integrity_check_duration gauge
-dhis_data_integrity_check_duration{check="orgunits_invalid_geometry"} 11
-dhis_data_integrity_check_duration{check="user_groups_scarce"} 1
-dhis_data_integrity_check_duration{check="indicator_no_analysis"} 0
+# HELP dhis_data_integrity_issues_count_total Data integrity check counts
+# TYPE dhis_data_integrity_issues_count_total gauge
+dhis_data_integrity_issues_count_total{check="categories_no_options",severity="WARNING",object_type="categories"} 0
+dhis_data_integrity_issues_count_total{check="orgunits_multiple_roots",severity="CRITICAL",object_type="organisationUnits"} 0
+# HELP dhis_data_integrity_issues_percentage Data integrity check percentages
+# TYPE dhis_data_integrity_issues_percentage gauge
+dhis_data_integrity_issues_percentage{check="categories_no_options",severity="WARNING",object_type="categories"} 0.0
+# HELP dhis_data_integrity_check_duration_milliseconds Data integrity check durations
+# TYPE dhis_data_integrity_check_duration_milliseconds gauge
+dhis_data_integrity_check_duration_milliseconds{check="categories_no_options",severity="WARNING",object_type="categories"} 1
+dhis_data_integrity_check_duration_milliseconds{check="orgunits_multiple_roots",severity="CRITICAL",object_type="organisationUnits"} 1
 ```
 
-Data integrity checks which are not currently in the cache will not be returned by this endpoint.  A request would need to be made to the `/summary` endpoint to trigger the checks to be run or alternatively through a scheduled job.
+The endpoint does not run checks. A check that is not in the cache is not in the response. In v43 and earlier, a result stays in the cache for one hour. To run the checks, use the `/summary` endpoint or a scheduled data integrity job. For how to monitor the checks with Prometheus, see [Monitor data integrity checks](#monitoring_data_integrity).
+
+#### v44 and later { #webapi_data_integrity_metrics_v44_and_later }
+
+From v44, the endpoint `/api/dataIntegrity/metrics` also has the metric `dhis_data_integrity_check_finished_timestamp_seconds`. It gives the time when each result was made, in Unix seconds. It has the same labels as the other metrics.
+
+From v44, the endpoint gives the latest result of each check, of any age. A result stays in the cache until the check runs again. If DHIS2 does not use Redis, a restart removes all results. The parameter `maxAge` of the `/summary` endpoints does not apply to this endpoint.
+
+From v44, a check without an object type has the label `object_type=""`. In v43 and earlier, the label for such a check is `object_type="null"`.
 
 ### Running data integrity details { #webapi_data_integrity_run_details }
 
