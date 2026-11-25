@@ -41,4 +41,4 @@ Which should I use?
 
 **Q:** I added a new dimension to the system, but I get errors when using it in analytics through the Data Visualizer or Line Listing app. The API returns HTTP 409 Conflict.
 
-**A:** When new dimensions are added to the system, a FULL analytics export is required (for all years preferable). Otherwise, the new dimensions won't be available to the analytics APIs.
+**A:** When new dimensions are added to the system, a full analytics tables update is required. Otherwise, the new dimensions won't be available to the analytics APIs, and visualizations that cover years from before the change can show no data. See [Analytics tables management](#data_admin_analytics_tables) for the changes that need a full analytics tables update.
