@@ -32,7 +32,7 @@ Reference:
   - Connection Pool Configuration: "@github(dhis2/dhis2-docs, src/sysadmin/reference/connection-pool.md, master)"
   - File Storage: "@github(dhis2/dhis2-docs, src/sysadmin/reference/file-storage.md, master)"
   - OpenID Connect (OIDC): "@github(dhis2/dhis2-docs, src/sysadmin/reference/oauth.md, master)"
-  - Google service account configuration: "@github(dhis2/dhis2-docs, src/sysadmin/reference/google-service-account-config.md, master)"
+  - Google Earth Engine service account configuration: "@github(dhis2/dhis2-docs, src/sysadmin/reference/google-service-account-config.md, master)"
   - Ldap: "@github(dhis2/dhis2-docs, src/sysadmin/reference/ldap.md, master)"
   - Logging: "@github(dhis2/dhis2-docs, src/sysadmin/reference/logging.md, master)"
   - PostgreSQL: "@github(dhis2/dhis2-docs, src/sysadmin/reference/postgresql.md, master)"
